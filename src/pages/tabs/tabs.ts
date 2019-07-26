@@ -1,19 +1,21 @@
 import { Component } from '@angular/core';
+import { HoyPage } from '../hoy/hoy';
+import { ProgresoPage } from '../progreso/progreso';
+import { InformePage } from '../informe/informe';
+import { MedicoPage } from '../medico/medico';
 
-import { AboutPage } from '../about/about';
-import { ContactPage } from '../contact/contact';
-import { HomePage } from '../home/home';
 
 @Component({
-  templateUrl: 'tabs.html'
+    templateUrl: 'tabs.html'
 })
 export class TabsPage {
 
-  tab1Root = HomePage;
-  tab2Root = AboutPage;
-  tab3Root = ContactPage;
+    hoyRoot = HoyPage;
+    progresoRoot = ProgresoPage;
+    informeRoot = InformePage;
+    medicoRoot = MedicoPage;
 
-  constructor() {
-
-  }
+    constructor() {
+        console.log("tabsPage");
+    }
 }

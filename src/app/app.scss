@@ -1,16 +1,99 @@
-// http://ionicframework.com/docs/theming/
+@font-face {
+  font-family: "K2D";
+  src: url("../assets/fonts/K2D.woff2");
+}
+*,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "K2D";
+  // background: #EEEEEE;
+}
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #222;
+}
 
-// App Global Sass
-// --------------------------------------------------
-// Put style rules here that you want to apply globally. These
-// styles are for the entire app and not just one component.
-// Additionally, this file can be also used as an entry point
-// to import other Sass files to be included in the output CSS.
-//
-// Shared Sass variables, which can be used to adjust Ionic's
-// default Sass variables, belong in "theme/variables.scss".
-//
-// To declare rules for a specific mode, create a child rule
-// for the .md, .ios, or .wp mode classes. The mode class is
-// automatically applied to the <body> element in the app.
+*::-webkit-scrollbar {
+  display: none;
+}
+
+ion-content {
+  // background-color: #F6F8FC !important;#e8e7e7
+  background-color: color($colors, bgApp) !important;
+}
+
+ion-toast.text-center {
+  text-align: center;
+}
+
+ion-toast.success .toast-wrapper {
+  background: #00796b !important;
+}
+
+ion-toast.dark .toast-wrapper {
+  background: #222222 !important;
+}
+
+ion-toast.error .toast-wrapper {
+  background: #c62828 !important;
+}
+
+ion-toast.warning .toast-wrapper {
+  background: #ffb300 !important;
+}
+
+.text-right {
+  text-align: right;
+}
+
+ion-app .nav-decor {
+  background-color: transparent !important;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: color($colors, bgApp);
+}
+
+ion-tabs {
+  a:nth-child(1) {
+    &.tab-button[aria-selected="true"] {
+      color: color($colors, blueMaterial) !important;
+      ion-icon {
+        color: color($colors, blueMaterial) !important;
+      }
+    }
+  }
+  a:nth-child(2) {
+    &.tab-button[aria-selected="true"] {
+      color: color($colors, greenMaterial) !important;
+      ion-icon {
+        color: color($colors, greenMaterial) !important;
+      }
+    }
+  }
+  a:nth-child(3) {
+    &.tab-button[aria-selected="true"] {
+      color: color($colors, redMaterial) !important;
+      ion-icon {
+        color: color($colors, redMaterial) !important;
+      }
+    }
+  }
+  a:nth-child(4) {
+    &.tab-button[aria-selected="true"] {
+      color: color($colors, orangeMaterial) !important;
+      ion-icon {
+        color: color($colors, orangeMaterial) !important;
+      }
+    }
+  }
+}

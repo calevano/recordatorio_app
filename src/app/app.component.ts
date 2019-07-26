@@ -2,21 +2,34 @@ import { Component } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { HeaderColor } from '@ionic-native/header-color';
 
-import { TabsPage } from '../pages/tabs/tabs';
+import { IntroPage } from '../pages/intro/intro';
 
 @Component({
-  templateUrl: 'app.html'
+    templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = TabsPage;
+    rootPage: any;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
-    platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      statusBar.styleDefault();
-      splashScreen.hide();
-    });
-  }
+    constructor(
+        platform: Platform,
+        statusBar: StatusBar,
+        splashScreen: SplashScreen,
+        private headerColor: HeaderColor,
+    ) {
+        platform.ready().then(() => {
+            this.rootPage = IntroPage;
+            if (platform.is('cordova')) {
+                if (platform.is('android')) {
+                    this.headerColor.tint('#D1DA28');
+                    statusBar.styleLightContent();
+                    statusBar.backgroundColorByHexString('#222222');
+                } else {
+                    statusBar.styleLightContent();
+                }
+                splashScreen.hide();
+            }
+        });
+    }
 }

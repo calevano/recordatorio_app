@@ -1,0 +1,22 @@
+page-hoy {
+  ion-content {
+    ion-list {
+      button {
+        &.item {
+          border-radius: 10px;
+        }
+        ion-avatar {
+          img {
+            border-radius: 0 !important;
+          }
+        }
+      }
+    }
+  }
+
+  ion-note {
+    font-size: 12px;
+    align-self: flex-start;
+    margin-top: 14px;
+  }
+}

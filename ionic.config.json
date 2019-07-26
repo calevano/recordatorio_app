@@ -1,5 +1,7 @@
 {
   "name": "recordatorio",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular"
 }

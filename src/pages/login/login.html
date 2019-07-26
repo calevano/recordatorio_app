@@ -1,0 +1,25 @@
+<ion-header no-border>
+    <ion-navbar transparent>
+        <ion-title></ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <div class="logo">
+        <img src="assets/imgs/login/user.svg" alt="">
+    </div>
+    <div class="form">
+        <h6>Ingresa tu nombre para que el app pueda interacturar interactuar contigo.</h6>
+        <ion-list>
+            <ion-item>
+                <ion-icon name="contact" item-start></ion-icon>
+                <ion-input type="text" placeholder="Nombre"></ion-input>
+            </ion-item>
+        </ion-list>
+        <div>
+            <button ion-button color="orangeMaterial" block large (click)="ingresarApp()" *ngIf="!continue">COMENZAR</button>
+            <button ion-button color="orangeMaterial" block large *ngIf="continue">
+                <ion-spinner></ion-spinner>
+            </button>
+        </div>
+    </div>
+</ion-content>

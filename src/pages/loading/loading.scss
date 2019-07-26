@@ -1,0 +1,33 @@
+page-loading {
+  ion-content {
+    background-color: color($colors, bgApp) !important;
+    ion-grid {
+      &.loadingGrid {
+        height: 100%;
+        ion-row {
+          height: 100%;
+          ion-col {
+            &.spinnerMessage {
+              text-align: center;
+              ion-spinner {
+                &.mySpinner {
+                  width: 40px;
+                  height: 40px;
+                  * {
+                    stroke: #222 !important;
+                  }
+
+                  &.spinner-circles circle,
+                  &.spinner-bubbles circle,
+                  &.spinner-dots circle {
+                    fill: #222;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

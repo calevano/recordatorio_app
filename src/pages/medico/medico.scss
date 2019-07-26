@@ -1,0 +1,16 @@
+page-medico {
+  ion-content {
+    ion-list {
+      button {
+        &.item {
+          border-radius: 10px;
+        }
+        ion-avatar {
+          img {
+            border-radius: 0 !important;
+          }
+        }
+      }
+    }
+  }
+}

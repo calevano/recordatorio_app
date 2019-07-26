@@ -1,0 +1,47 @@
+<ion-content>
+    <ion-slides pager #slides (ionSlideWillChange)="slideWillChange()" (ionSlideAutoplay)="slideAutoplay()">
+        <ion-slide class="slide_one">
+            <div class="intro-content-slide">
+                <img src="assets/imgs/intro/drugs.svg" class="slide-image" />
+                <h2 class="slide-title">Hoy</h2>
+                <p>Te mostraremos una lista de los medicamentos que tienes que tomar en el día.</p>
+            </div>
+        </ion-slide>
+        <ion-slide class="slide_two">
+            <div class="intro-content-slide">
+                <img src="assets/imgs/intro/heart.svg" class="slide-image" />
+                <h2 class="slide-title">Progreso</h2>
+                <p>Tendrás una lista donde estarán todos los medicamentos que habias agendado.</p>
+            </div>
+        </ion-slide>
+        <ion-slide class="slide_three">
+            <div class="intro-content-slide">
+                <img src="assets/imgs/intro/open_email.svg" class="slide-image" />
+                <h2 class="slide-title">Informe</h2>
+                <p>Podrás hacer el envío de los medicamentos que has tomado en el mes.<br>Esto te sirve para mostrarle a
+                    tú medico.</p>
+            </div>
+        </ion-slide>
+        <ion-slide class="slide_four">
+            <div class="intro-content-slide">
+                <img src="assets/imgs/intro/doctor.svg" class="slide-image" />
+                <h2 class="slide-title">Médico</h2>
+                <p>Podrás agregar a un médico y poder agendar tu proxima visita.</p>
+                <button class="button-continue" ion-button round color="light" (click)="goToLogin()">
+                    Continuar
+                </button>
+            </div>
+        </ion-slide>
+    </ion-slides>
+</ion-content>
+<ion-footer no-border>
+    <ion-navbar transparent>
+        <ion-buttons *ngIf="previus">
+            <button ion-button (click)="prevSlide()">Anterior</button>
+        </ion-buttons>
+        <ion-title></ion-title>
+        <ion-buttons end>
+            <button *ngIf="next" ion-button (click)="nextSlide()">Siguiente</button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-footer>

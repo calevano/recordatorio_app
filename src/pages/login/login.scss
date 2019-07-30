@@ -35,13 +35,13 @@ page-login {
             ion-input {
               input {
                 &::placeholder {
-                  color: #222;
+                  color: #CFD8DC;
                 }
                 &:-ms-input-placeholder {
-                  color: #222;
+                  color: #CFD8DC;
                 }
                 &::-ms-input-placeholder {
-                  color: #222;
+                  color: #CFD8DC;
                 }
               }
             }
@@ -62,7 +62,7 @@ page-login {
 
       button {
         color: #f4f4f4;
-        box-shadow: none !important;
+        // box-shadow: none !important;
         border-radius: 10px;
         span {
           ion-spinner {

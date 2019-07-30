@@ -1,3 +1,110 @@
 page-informe {
+  .scroll-content {
+    padding: 32px;
+    padding-bottom: 16px !important;
+  }
 
+  ion-content {
+    .iconText {
+      text-align: center;
+      margin-bottom: 3rem;
+      i {
+        font-size: 10em;
+      }
+      h6 {
+        margin-top: 0;
+      }
+    }
+    .listMonthData {
+      ion-list {
+        button {
+          box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1) !important;
+          &.item {
+            border-radius: 10px;
+          }
+          ion-avatar {
+            img {
+              border-radius: 0 !important;
+            }
+          }
+        }
+      }
+    }
+    .formSendEmail {
+      margin-top: 3rem;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      text-align: center;
+      .selectAnioMes {
+        padding: 0 !important;
+        ion-row {
+          ion-col {
+            &.colLeft {
+              padding-left: 0 !important;
+            }
+            &.colRight {
+              padding-right: 0 !important;
+            }
+            ion-list {
+              ion-item {
+                box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1) !important;
+                padding-left: 0;
+                border-radius: 10px;
+                ion-select {
+                  max-width: 100% !important;
+                  width: 100% !important;
+                }
+              }
+            }
+          }
+        }
+      }
+      .listInputEmail {
+        ion-list {
+          ion-item {
+            border-top: 0 !important;
+            padding-left: 0;
+            background-color: transparent !important;
+            border-bottom-color: #222 !important;
+            &.input-has-focus:last-child {
+              border-bottom-color: #222 !important;
+              box-shadow: none !important;
+            }
+            ion-icon {
+              font-size: 2.5rem;
+              color: #222;
+            }
+            .item-inner {
+              margin-left: 0 !important;
+              ion-input {
+                input {
+                  &::placeholder {
+                    color: #cfd8dc;
+                  }
+                  &:-ms-input-placeholder {
+                    color: #cfd8dc;
+                  }
+                  &::-ms-input-placeholder {
+                    color: #cfd8dc;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      button {
+        color: #f4f4f4;
+        box-shadow: none !important;
+        border-radius: 10px;
+        span {
+          ion-spinner {
+            * {
+              stroke: #f4f4f4 !important;
+            }
+          }
+        }
+      }
+    }
+  }
 }

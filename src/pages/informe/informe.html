@@ -5,5 +5,65 @@
 </ion-header>
 
 <ion-content padding>
+    <h6>Seleccione el año/mes para poder generar el informe y así pueda imprimirlo y mostrarle al médico en su siguiente cita.</h6>
+    <div class="formSendEmail">
+        <form (ngSubmit)="sendEmail()">
+            <ion-grid class="selectAnioMes">
+                <ion-row>
+                    <ion-col col-6 class="colLeft">
+                        <h6>Año</h6>
+                        <ion-list>
+                            <ion-item>
+                                <ion-label>Año</ion-label>
+                                <ion-select placeholder="Año" interface="popover" [(ngModel)]="data.anio" name="anio">
+                                    <ion-option value="2019">2019</ion-option>
+                                    <ion-option value="2018">2018</ion-option>
+                                </ion-select>
+                            </ion-item>
+                        </ion-list>
+                    </ion-col>
+                    <ion-col col-6 class="colRight">
+                        <h6>Mes</h6>
+                        <ion-list>
+                            <ion-item>
+                                <ion-label>Mes</ion-label>
+                                <ion-select placeholder="Mes" interface="popover" [(ngModel)]="data.mes" name="mes">
+                                    <ion-option value="1">Enero</ion-option>
+                                    <ion-option value="2">Febrero</ion-option>
+                                    <ion-option value="3">Marzo</ion-option>
+                                    <ion-option value="4">Abril</ion-option>
+                                    <ion-option value="5">Mayo</ion-option>
+                                    <ion-option value="6">Junio</ion-option>
+                                    <ion-option value="7">Julio</ion-option>
+                                    <ion-option value="8">Agosto</ion-option>
+                                    <ion-option value="9">Septiembre</ion-option>
+                                    <ion-option value="10">Octubre</ion-option>
+                                    <ion-option value="11">Noviembre</ion-option>
+                                    <ion-option value="12">Diciembre</ion-option>
+                                </ion-select>
+                            </ion-item>
+                        </ion-list>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
 
+            <div class="listInputEmail">
+                <h6>Ingrese el correo para enviar el informe</h6>
+                <ion-list>
+                    <ion-item>
+                        <ion-icon name="mail" item-start></ion-icon>
+                        <ion-input type="email" placeholder="test@example.com" [(ngModel)]="data.email" name="email">
+                        </ion-input>
+                    </ion-item>
+                </ion-list>
+            </div>
+
+            <div>
+                <button ion-button color="redMaterial" type="submit" block *ngIf="!continue">Enviar</button>
+                <button ion-button color="redMaterial" block *ngIf="continue">
+                    <ion-spinner></ion-spinner>
+                </button>
+            </div>
+        </form>
+    </div>
 </ion-content>

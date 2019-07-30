@@ -8,15 +8,16 @@
         <img src="assets/imgs/login/user.svg" alt="">
     </div>
     <div class="form">
-        <h6>Ingresa tu nombre para que el app pueda interacturar interactuar contigo.</h6>
+        <h6>Ingresa tú nombre para que el app pueda interacturar interactuar contigo.</h6>
         <ion-list>
             <ion-item>
                 <ion-icon name="contact" item-start></ion-icon>
-                <ion-input type="text" placeholder="Nombre"></ion-input>
+                <ion-input type="text" placeholder="Tú nombre"></ion-input>
             </ion-item>
         </ion-list>
         <div>
-            <button ion-button color="orangeMaterial" block large (click)="ingresarApp()" *ngIf="!continue">COMENZAR</button>
+            <button ion-button color="orangeMaterial" block large (click)="ingresarApp()"
+                *ngIf="!continue">COMENZAR</button>
             <button ion-button color="orangeMaterial" block large *ngIf="continue">
                 <ion-spinner></ion-spinner>
             </button>

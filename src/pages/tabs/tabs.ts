@@ -4,7 +4,6 @@ import { ProgresoPage } from '../progreso/progreso';
 import { InformePage } from '../informe/informe';
 import { MedicoPage } from '../medico/medico';
 
-
 @Component({
     templateUrl: 'tabs.html'
 })

@@ -1,0 +1,21 @@
+page-informe-envio {
+  ion-content {
+    background-color: color($colors, greenMaterial) !important;
+    ion-grid {
+      &.loadingGrid {
+        height: 100%;
+        ion-row {
+          height: 100%;
+          ion-col {
+            h6 {
+              color: #fff;
+            }
+            button{
+                border-radius: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

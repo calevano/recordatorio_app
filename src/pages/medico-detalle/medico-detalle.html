@@ -1,0 +1,86 @@
+<ion-header>
+    <ion-navbar color="bluegrayMaterial">
+        <ion-title>Detalle Médico</ion-title>
+    </ion-navbar>
+    <ion-toolbar no-border-top no-border>
+        <ion-segment [(ngModel)]="directionType">
+            <ion-segment-button value="perfil" (click)="hiddenCitasFab()">
+                Perfil
+            </ion-segment-button>
+            <ion-segment-button value="citas" (click)="showCitasFab()">
+                Citas
+            </ion-segment-button>
+        </ion-segment>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-fab right bottom [hidden]="fabCitas">
+        <button ion-fab color="bluegrayMaterial">
+            <ion-icon name="add"></ion-icon>
+        </button>
+    </ion-fab>
+    <div>
+        <div [ngSwitch]="directionType">
+
+            <div *ngSwitchCase="'perfil'" class="perfilToolbar">
+                <div text-center class="profileMedico">
+                    <div class="photoMedico">
+                        <img src="assets/imgs/intro/doctor.svg" alt="MedicalLogo">
+                    </div>
+                    <h5>Dr. Gabriel Levano Soto</h5>
+                    <h6>Gastroenterólogo</h6>
+                </div>
+                <ion-list>
+                    <button ion-item text-wrap>
+                        <h2>956560360</h2>
+                        <ion-icon name="call" item-end (click)="callMedico()"></ion-icon>
+                    </button>
+                </ion-list>
+                <ion-list>
+                    <button ion-item text-wrap>
+                        <h2>gabriel.levano@gmail.com</h2>
+                        <ion-icon name="mail" item-end (click)="sendEmailMedico()"></ion-icon>
+                    </button>
+
+                </ion-list>
+            </div>
+            <div *ngSwitchCase="'citas'" class="citasToolbar">
+                <ion-card color="redMaterial">
+                    <ion-card-header>
+                        <h4>Tienes una nueva cita</h4>
+                        <p>2019-07-30 09:00 <i class="material-icons">alarm</i></p>
+                    </ion-card-header>
+                    <ion-card-content>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque rerum, unde, vitae, nam aut
+                            sapiente veniam nihil error aspernatur repellat hic magni! Architecto, earum in ut eligendi
+                            non tenetur totam!</p>
+                    </ion-card-content>
+                </ion-card>
+                <ion-card color="greenMaterial">
+                    <ion-card-header>
+                        <h4>Tienes una nueva cita</h4>
+                        <p>2019-07-30 09:00 <i class="material-icons">alarm</i></p>
+                    </ion-card-header>
+                    <ion-card-content>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque rerum, unde, vitae, nam aut
+                            sapiente veniam nihil error aspernatur repellat hic magni! Architecto, earum in ut eligendi
+                            non tenetur totam!</p>
+                    </ion-card-content>
+                </ion-card>
+                <ion-card color="bluegrayLightMaterial">
+                    <ion-card-header>
+                        <h4>Tienes una nueva cita</h4>
+                        <p>2019-07-30 09:00 <i class="material-icons">alarm</i></p>
+                    </ion-card-header>
+                    <ion-card-content>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque rerum, unde, vitae, nam aut
+                            sapiente veniam nihil error aspernatur repellat hic magni! Architecto, earum in ut eligendi
+                            non tenetur totam!</p>
+                    </ion-card-content>
+                </ion-card>
+            </div>
+        </div>
+    </div>
+
+</ion-content>

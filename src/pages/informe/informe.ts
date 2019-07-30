@@ -1,24 +1,54 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the InformePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { LoadingPage } from '../loading/loading';
+import { ToastProvider } from '../../providers/toast/toast';
+// import { InformeEnvioPage } from '../informe-envio/informe-envio';
 
 @Component({
-  selector: 'page-informe',
-  templateUrl: 'informe.html',
+    selector: 'page-informe',
+    templateUrl: 'informe.html',
 })
 export class InformePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+    continue: boolean = false;
+    data: any = {
+        anio: '',
+        mes: '',
+        email: ''
+    };
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad InformePage');
-  }
+    constructor(
+        public navCtrl: NavController,
+        public navParams: NavParams,
+        public toastProvider: ToastProvider
+    ) {
+    }
+
+    ionViewDidLoad() {
+        console.log('ionViewDidLoad InformePage');
+    }
+
+    ionViewDidLeave() {
+        this.data.email = '';
+    }
+
+    sendEmail() {
+        console.log("thisData:::", this.data);
+
+        if (this.data.anio === "" ||
+            this.data.mes === "" ||
+            this.data.email === "") {
+            this.toastProvider.showToast("warning", "TODOS LOS CAMPOS SON REQUERIDOS.");
+        } else {
+            this.continue = true;
+            this.navCtrl.setRoot(LoadingPage, {
+                message: 'Estamos preparando todo para enviar el informe al correo ',
+                reference: 'informe',
+                parameters: {
+                    email: this.data.email
+                }
+            });
+        }
+    }
 
 }

@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HeaderColor } from '@ionic-native/header-color';
 
 import { IntroPage } from '../pages/intro/intro';
+// import { TabsPage } from '../pages/tabs/tabs';
 
 @Component({
     templateUrl: 'app.html'
@@ -22,9 +23,8 @@ export class MyApp {
             this.rootPage = IntroPage;
             if (platform.is('cordova')) {
                 if (platform.is('android')) {
-                    this.headerColor.tint('#D1DA28');
-                    statusBar.styleLightContent();
-                    statusBar.backgroundColorByHexString('#222222');
+                    this.headerColor.tint('#1976D2');
+                    statusBar.backgroundColorByHexString('#33000000');
                 } else {
                     statusBar.styleLightContent();
                 }

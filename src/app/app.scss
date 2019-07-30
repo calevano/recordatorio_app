@@ -2,7 +2,10 @@
   font-family: "K2D";
   src: url("../assets/fonts/K2D.woff2");
 }
-*,
+* {
+  font-family: "K2D";
+}
+
 h1,
 h2,
 h3,
@@ -10,15 +13,6 @@ h4,
 h5,
 h6 {
   font-family: "K2D";
-  // background: #EEEEEE;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
   color: #222;
 }
 
@@ -26,8 +20,18 @@ h6 {
   display: none;
 }
 
+.platform-android {
+  .ion-page {
+    ion-header {
+      ion-navbar {
+        padding-top: calc(env(safe-area-inset-top) + 24px) !important;
+        min-height: calc(76px + env(safe-area-inset-top)) !important;
+      }
+    }
+  }
+}
+
 ion-content {
-  // background-color: #F6F8FC !important;#e8e7e7
   background-color: color($colors, bgApp) !important;
 }
 

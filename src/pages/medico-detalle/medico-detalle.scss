@@ -1,0 +1,116 @@
+page-medico-detalle {
+  ion-header {
+    ion-toolbar {
+      min-height: 42px !important;
+      padding: 0 !important;
+      .toolbar-background {
+        background-color: color($colors, bluegrayMaterial) !important;
+      }
+      .toolbar-content {
+        ion-segment {
+          height: 43px !important;
+          ion-segment-button {
+            border-color: #fff !important;
+            color: #fff !important;
+            font-size: 1.5rem !important;
+            border-bottom-width: 0px !important;
+            &.segment-activated {
+              border-bottom-width: 4px !important;
+            }
+          }
+        }
+      }
+    }
+  }
+  ion-content {
+    .perfilToolbar {
+      .profileMedico {
+        .photoMedico {
+          //   img {
+          // text-align: center;
+          box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1) !important;
+          border-radius: 50%;
+          padding: 2rem;
+          width: 35%;
+          margin: 0 auto;
+          border: 0.6rem solid #fff;
+          //   }
+        }
+        h5 {
+          font-weight: bold;
+          margin-top: 1rem;
+          margin-bottom: 0;
+        }
+        h6 {
+          margin-top: 0;
+        }
+      }
+      ion-list {
+        margin-top: 2rem;
+        button {
+          box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1) !important;
+          &.item {
+            border-radius: 10px;
+          }
+          ion-avatar {
+            img {
+              border-radius: 0 !important;
+            }
+          }
+        }
+      }
+    }
+    .citasToolbar {
+      ion-card {
+        border-radius: 10px !important;
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1) !important;
+        ion-card-header {
+          border-bottom: 1px solid #f3eeee;
+          text-transform: uppercase;
+          font-weight: bold;
+          padding-left: 0;
+          padding-right: 0;
+          padding-top: 12px !important;
+          padding-bottom: 12px !important;
+          margin-left: 16px;
+          margin-right: 16px;
+          h4 {
+            display: none;
+            font-weight: bold;
+          }
+          p {
+            font-weight: bold;
+            i {
+              float: right;
+            }
+          }
+        }
+        ion-card-content {
+          padding-top: 8px !important;
+          padding-bottom: 8px !important;
+          ion-list {
+            ion-item {
+              padding-left: 0 !important;
+              border-top: 0 !important;
+              border-bottom: 0 !important;
+              min-height: 2.4rem !important;
+              ion-icon {
+                margin-top: 4px !important;
+                margin-bottom: 4px !important;
+                font-size: 2.2rem !important;
+                min-height: 2rem !important;
+              }
+              .item-inner {
+                padding-right: 0 !important;
+                margin-left: 0 !important;
+                ion-label {
+                  margin: 4px 8px 4px 0 !important;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

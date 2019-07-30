@@ -1,24 +1,20 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
-/**
- * Generated class for the HoyPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @Component({
-  selector: 'page-hoy',
-  templateUrl: 'hoy.html',
+    selector: 'page-hoy',
+    templateUrl: 'hoy.html',
 })
 export class HoyPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+    constructor(
+        public navCtrl: NavController,
+        public navParams: NavParams,
+    ) {
+    }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad HoyPage');
-  }
+    ionViewDidLoad() {
+        console.log('ionViewDidLoad HoyPage');
+    }
 
 }

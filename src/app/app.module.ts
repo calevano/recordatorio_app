@@ -16,7 +16,9 @@ import { HoyMedicamentoCrearPage } from '../pages/hoy-medicamento-crear/hoy-medi
 import { ProgresoPage } from '../pages/progreso/progreso';
 import { ProgresoDetallePage } from '../pages/progreso-detalle/progreso-detalle';
 import { InformePage } from '../pages/informe/informe';
+import { InformeEnvioPage } from '../pages/informe-envio/informe-envio';
 import { MedicoPage } from '../pages/medico/medico';
+import { MedicoDetallePage } from '../pages/medico-detalle/medico-detalle';
 import { MedicoCrearPage } from '../pages/medico-crear/medico-crear';
 import { MedicoCitaPage } from '../pages/medico-cita/medico-cita';
 import { MedicoCitaCrearPage } from '../pages/medico-cita-crear/medico-cita-crear';
@@ -24,11 +26,13 @@ import { MedicoCitaCrearPage } from '../pages/medico-cita-crear/medico-cita-crea
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HeaderColor } from '@ionic-native/header-color';
+import { CallNumber } from '@ionic-native/call-number';
 
 import { LoadingProvider } from '../providers/loading/loading';
 import { ToastProvider } from '../providers/toast/toast';
 
 import { IonicStorageModule } from '@ionic/storage';
+
 
 @NgModule({
     declarations: [
@@ -44,7 +48,9 @@ import { IonicStorageModule } from '@ionic/storage';
         ProgresoPage,
         ProgresoDetallePage,
         InformePage,
+        InformeEnvioPage,
         MedicoPage,
+        MedicoDetallePage,
         MedicoCrearPage,
         MedicoCitaPage,
         MedicoCitaCrearPage
@@ -52,7 +58,7 @@ import { IonicStorageModule } from '@ionic/storage';
     imports: [
         BrowserModule,
         HttpClientModule,
-        IonicModule.forRoot(MyApp),
+        IonicModule.forRoot(MyApp, { tabsHideOnSubPages: true, platforms: { ios: { backButtonText: 'Atrás' } } }),
         IonicStorageModule.forRoot()
     ],
     bootstrap: [IonicApp],
@@ -69,7 +75,9 @@ import { IonicStorageModule } from '@ionic/storage';
         ProgresoPage,
         ProgresoDetallePage,
         InformePage,
+        InformeEnvioPage,
         MedicoPage,
+        MedicoDetallePage,
         MedicoCrearPage,
         MedicoCitaPage,
         MedicoCitaCrearPage
@@ -78,6 +86,7 @@ import { IonicStorageModule } from '@ionic/storage';
         StatusBar,
         SplashScreen,
         HeaderColor,
+        CallNumber,
         { provide: ErrorHandler, useClass: IonicErrorHandler },
         LoadingProvider,
         ToastProvider

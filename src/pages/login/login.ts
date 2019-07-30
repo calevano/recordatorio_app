@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-// import { TabsPage } from '../tabs/tabs';
 import { LoadingPage } from '../loading/loading';
 
 @Component({
@@ -23,17 +22,12 @@ export class LoginPage {
 
     ingresarApp() {
         this.continue = true;
-        // this.loadingProvider.preload("Ingresando...");
-        setTimeout(() => {
-            // this.navCtrl.setRoot(TabsPage);
-            this.navCtrl.setRoot(LoadingPage, {
-                message: 'Guardando tu nombre, solo será unos segundos',
-                reference: 'login'
-            });
-        }, 1000);
-
-
-
+        // setTimeout(() => {
+        this.navCtrl.setRoot(LoadingPage, {
+            message: 'Guardando tu nombre, solo será unos segundos',
+            reference: 'login'
+        });
+        // }, 500);
     }
 
 }

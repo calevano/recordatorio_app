@@ -20,11 +20,13 @@
     "@angular/http": "5.2.11",
     "@angular/platform-browser": "5.2.11",
     "@angular/platform-browser-dynamic": "5.2.11",
+    "@ionic-native/call-number": "^4.20.0",
     "@ionic-native/core": "~4.20.0",
     "@ionic-native/header-color": "^4.20.0",
     "@ionic-native/splash-screen": "~4.20.0",
     "@ionic-native/status-bar": "~4.20.0",
     "@ionic/storage": "^2.2.0",
+    "call-number": "^1.0.1",
     "cordova-android": "^8.0.0",
     "cordova-plugin-headercolor": "^1.0.0",
     "cordova-sqlite-storage": "^3.2.1",
@@ -56,7 +58,8 @@
       },
       "cordova-plugin-ionic-keyboard": {},
       "cordova-plugin-headercolor": {},
-      "cordova-sqlite-storage": {}
+      "cordova-sqlite-storage": {},
+      "mx.ferreyra.callnumber": {}
     },
     "platforms": [
       "android"

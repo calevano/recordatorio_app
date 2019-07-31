@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { LoadingPage } from '../loading/loading';
 import { ToastProvider } from '../../providers/toast/toast';
-// import { InformeEnvioPage } from '../informe-envio/informe-envio';
 
 @Component({
     selector: 'page-informe',
@@ -38,7 +37,7 @@ export class InformePage {
         if (this.data.anio === "" ||
             this.data.mes === "" ||
             this.data.email === "") {
-            this.toastProvider.showToast("warning", "TODOS LOS CAMPOS SON REQUERIDOS.");
+            this.toastProvider.showToast("warning", "TODOS LOS CAMPOS SON REQUERIDOS");
         } else {
             this.continue = true;
             this.navCtrl.setRoot(LoadingPage, {

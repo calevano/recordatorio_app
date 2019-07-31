@@ -1,17 +1,17 @@
 <ion-header>
     <ion-navbar color="redMaterial">
-        <ion-title>Informe</ion-title>
+        <ion-title>INFORME</ion-title>
     </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-    <h6>Seleccione el año/mes para poder generar el informe y así pueda imprimirlo y mostrarle al médico en su siguiente cita.</h6>
+    <p>Seleccione el año/mes para poder generar el informe y así pueda imprimirlo y mostrarle al médico en su siguiente cita.</p>
     <div class="formSendEmail">
         <form (ngSubmit)="sendEmail()">
             <ion-grid class="selectAnioMes">
                 <ion-row>
                     <ion-col col-6 class="colLeft">
-                        <h6>Año</h6>
+                        <p>Año</p>
                         <ion-list>
                             <ion-item>
                                 <ion-label>Año</ion-label>
@@ -23,7 +23,7 @@
                         </ion-list>
                     </ion-col>
                     <ion-col col-6 class="colRight">
-                        <h6>Mes</h6>
+                        <p>Mes</p>
                         <ion-list>
                             <ion-item>
                                 <ion-label>Mes</ion-label>
@@ -48,7 +48,7 @@
             </ion-grid>
 
             <div class="listInputEmail">
-                <h6>Ingrese el correo para enviar el informe</h6>
+                <p>Ingrese el correo para enviar el informe</p>
                 <ion-list>
                     <ion-item>
                         <ion-icon name="mail" item-start></ion-icon>

@@ -1,11 +1,16 @@
 <ion-content padding>
     <ion-grid class="loadingGrid">
         <ion-row justify-content-center align-items-center>
-            <ion-col col-12 text-center>
+            <ion-col text-center>
+                <img src="assets/imgs/check-circle.svg" alt="">
                 <h6>Se envío el informe correctamente al correo</h6>
                 <h6><strong>{{ email }}</strong></h6>
-                <button ion-button (click)="backButton()" color="redMaterial">Regresar</button>
             </ion-col>
         </ion-row>
     </ion-grid>
 </ion-content>
+<ion-footer no-border>
+    <ion-navbar transparent>
+        <button ion-button block outline color="light" (click)="backButton()">Regresar</button>
+    </ion-navbar>
+</ion-footer>

@@ -1,3 +1,81 @@
 page-medico-cita-crear {
-
+  ion-content {
+    .image {
+      text-align: center;
+      margin-bottom: 12px;
+      img {
+        width: 28%;
+      }
+    }
+    .fechaHora {
+      ion-grid {
+        padding: 0 !important;
+        margin-bottom: 16px;
+        ion-row {
+          ion-col {
+            ion-list {
+              ion-item {
+                border-radius: 8px;
+                box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1) !important;
+                &.input-has-focus:last-child {
+                  border-bottom-color: rgba(71, 77, 84, 0.5) !important;
+                }
+                .item-inner {
+                  margin-left: 0 !important;
+                  //   ion-label {
+                  //     color: #cfd8dc;
+                  //   }
+                  ion-datetime {
+                      width: 100%;
+                      text-align: right;
+                  }
+                  //   ion-input {
+                  //     border-color: rgba(71, 77, 84, 0.5) !important;
+                  //     input {
+                  //       &::placeholder {
+                  //         color: #cfd8dc;
+                  //       }
+                  //       &:-ms-input-placeholder {
+                  //         color: #cfd8dc;
+                  //       }
+                  //       &::-ms-input-placeholder {
+                  //         color: #cfd8dc;
+                  //       }
+                  //     }
+                  //   }
+                }
+              }
+            }
+            textarea {
+              box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1) !important;
+              width: 100%;
+              border-radius: 8px;
+              padding: 16px;
+              border-color: #fff !important;
+              &::placeholder {
+                color: #cfd8dc;
+              }
+              &:-ms-input-placeholder {
+                color: #cfd8dc;
+              }
+              &::-ms-input-placeholder {
+                color: #cfd8dc;
+              }
+            }
+          }
+        }
+      }
+      .buttons {
+        padding-right: 5px !important;
+        padding-left: 5px !important;
+        button {
+          border-radius: 8px !important;
+        }
+      }
+    }
+    .textContent {
+      padding-right: 10px;
+      padding-left: 10px;
+    }
+  }
 }

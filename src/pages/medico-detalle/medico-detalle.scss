@@ -4,7 +4,7 @@ page-medico-detalle {
       min-height: 42px !important;
       padding: 0 !important;
       .toolbar-background {
-        background-color: color($colors, bluegrayMaterial) !important;
+        background-color: color($colors, orangeMaterial) !important;
       }
       .toolbar-content {
         ion-segment {
@@ -26,15 +26,12 @@ page-medico-detalle {
     .perfilToolbar {
       .profileMedico {
         .photoMedico {
-          //   img {
-          // text-align: center;
           box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1) !important;
           border-radius: 50%;
           padding: 2rem;
           width: 35%;
           margin: 0 auto;
           border: 0.6rem solid #fff;
-          //   }
         }
         h5 {
           font-weight: bold;
@@ -50,19 +47,19 @@ page-medico-detalle {
         button {
           box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1) !important;
           &.item {
-            border-radius: 10px;
+            border-radius: 5px;
           }
-          ion-avatar {
-            img {
-              border-radius: 0 !important;
-            }
+          .item-inner {
+              ion-icon{
+                color: rgba(71, 77, 84, 1);
+              }
           }
         }
       }
     }
     .citasToolbar {
       ion-card {
-        border-radius: 10px !important;
+        border-radius: 5px !important;
         box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1) !important;
         ion-card-header {
           border-bottom: 1px solid #f3eeee;
@@ -88,27 +85,6 @@ page-medico-detalle {
         ion-card-content {
           padding-top: 8px !important;
           padding-bottom: 8px !important;
-          ion-list {
-            ion-item {
-              padding-left: 0 !important;
-              border-top: 0 !important;
-              border-bottom: 0 !important;
-              min-height: 2.4rem !important;
-              ion-icon {
-                margin-top: 4px !important;
-                margin-bottom: 4px !important;
-                font-size: 2.2rem !important;
-                min-height: 2rem !important;
-              }
-              .item-inner {
-                padding-right: 0 !important;
-                margin-left: 0 !important;
-                ion-label {
-                  margin: 4px 8px 4px 0 !important;
-                }
-              }
-            }
-          }
         }
       }
     }

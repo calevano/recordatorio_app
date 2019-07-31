@@ -1,19 +1,35 @@
 page-informe-envio {
   ion-content {
-    background-color: color($colors, greenMaterial) !important;
+    background-color: color($colors, redMaterial) !important;
     ion-grid {
       &.loadingGrid {
         height: 100%;
         ion-row {
           height: 100%;
           ion-col {
+            img {
+              width: 40%;
+              filter: invert(1);
+            }
             h6 {
               color: #fff;
             }
-            button{
-                border-radius: 10px;
+            button {
+              border-radius: 10px;
             }
           }
+        }
+      }
+    }
+  }
+  ion-footer {
+    ion-navbar {
+      padding: 4px 8px !important;
+      .toolbar-content {
+        button {
+          height: 56px;
+          margin: 0;
+          border-radius: 5px;
         }
       }
     }

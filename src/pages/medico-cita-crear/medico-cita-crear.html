@@ -1,15 +1,50 @@
-<!--
-  Generated template for the MedicoCitaCrearPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-  <ion-navbar>
-    <ion-title>MedicoCitaCrear</ion-title>
-  </ion-navbar>
+    <ion-navbar color="orangeMaterial">
+        <ion-title>Crear Cita</ion-title>
+    </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-
+    <div class="image">
+        <img src="assets/imgs/intro/calendar.svg" alt="image">
+    </div>
+    <div class="fechaHora">
+        <form (ngSubmit)="saveCita()">
+            <ion-grid class="selectFechaHora">
+                <ion-row>
+                    <ion-col col-6 class="colLeft">
+                        <ion-list>
+                            <ion-item>
+                                <!-- <ion-label>Fecha</ion-label> -->
+                                <ion-datetime [(ngModel)]="fecha" min="{{ date }}" displayFormat="DD-MM-YYYY"
+                                    name="fecha" cancelText="Cancelar" doneText="OK" placeholder="Fecha"></ion-datetime>
+                            </ion-item>
+                        </ion-list>
+                    </ion-col>
+                    <ion-col col-6 class="colRight">
+                        <ion-list>
+                            <ion-item>
+                                <!-- <ion-label>Hora</ion-label> -->
+                                <ion-datetime displayFormat="HH:mm" [(ngModel)]="hora" name="hora" cancelText="Cancelar"
+                                    doneText="OK" placeholder="Hora"></ion-datetime>
+                            </ion-item>
+                        </ion-list>
+                    </ion-col>
+                    <ion-col col-12>
+                        <textarea placeholder="Preguntas?" name="pregunta" [(ngModel)]="pregunta" rows="3"></textarea>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+            <div class="buttons">
+                <button ion-button color="orangeMaterial" block *ngIf="!continue" type="submit">Guardar</button>
+                <button ion-button color="orangeMaterial" block *ngIf="continue">
+                    <ion-spinner></ion-spinner>
+                </button>
+            </div>
+        </form>
+    </div>
+    <div class="textContent">
+        <p>Recibirás un recordatorio el día de la cita.</p>
+        <p>Se notificará 30 min antes para que tome sus precauciones.</p>
+    </div>
 </ion-content>

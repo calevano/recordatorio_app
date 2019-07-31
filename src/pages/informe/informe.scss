@@ -31,28 +31,34 @@ page-informe {
       }
     }
     .formSendEmail {
-      margin-top: 3rem;
+      //   margin-top: 3rem;
       padding-left: 1rem;
       padding-right: 1rem;
       text-align: center;
-      .selectAnioMes {
-        padding: 0 !important;
-        ion-row {
-          ion-col {
-            &.colLeft {
-              padding-left: 0 !important;
-            }
-            &.colRight {
-              padding-right: 0 !important;
-            }
-            ion-list {
-              ion-item {
-                box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1) !important;
-                padding-left: 0;
-                border-radius: 10px;
-                ion-select {
-                  max-width: 100% !important;
-                  width: 100% !important;
+      ion-grid {
+        &.selectAnioMes {
+          padding: 0 !important;
+          ion-row {
+            ion-col {
+              &.colLeft {
+                padding-left: 0 !important;
+              }
+              &.colRight {
+                padding-right: 0 !important;
+              }
+              p {
+                margin-top: 0;
+                display: none;
+              }
+              ion-list {
+                ion-item {
+                  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1) !important;
+                  padding-left: 0;
+                  border-radius: 10px;
+                  ion-select {
+                    max-width: 100% !important;
+                    width: 100% !important;
+                  }
                 }
               }
             }
@@ -60,19 +66,23 @@ page-informe {
         }
       }
       .listInputEmail {
+        padding: 0 2px;
         ion-list {
           ion-item {
             border-top: 0 !important;
             padding-left: 0;
             background-color: transparent !important;
-            border-bottom-color: #222 !important;
+            border-bottom-width: 2px !important;
+            border-bottom-color: rgba(71, 77, 84, 0.5) !important;
+            box-shadow: none !important;
             &.input-has-focus:last-child {
-              border-bottom-color: #222 !important;
+              border-bottom-color: rgba(71, 77, 84, 0.5) !important;
               box-shadow: none !important;
             }
             ion-icon {
               font-size: 2.5rem;
-              color: #222;
+            //   color: color($colors, dark);
+              color: rgba(71, 77, 84, 1);
             }
             .item-inner {
               margin-left: 0 !important;
@@ -96,7 +106,7 @@ page-informe {
       button {
         color: #f4f4f4;
         box-shadow: none !important;
-        border-radius: 10px;
+        border-radius: 8px;
         span {
           ion-spinner {
             * {

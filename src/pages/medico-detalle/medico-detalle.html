@@ -1,6 +1,6 @@
 <ion-header>
-    <ion-navbar color="bluegrayMaterial">
-        <ion-title>Detalle Médico</ion-title>
+    <ion-navbar color="orangeMaterial">
+        <ion-title>DETALLE MÉDICO</ion-title>
     </ion-navbar>
     <ion-toolbar no-border-top no-border>
         <ion-segment [(ngModel)]="directionType">
@@ -16,7 +16,7 @@
 
 <ion-content padding>
     <ion-fab right bottom [hidden]="fabCitas">
-        <button ion-fab color="bluegrayMaterial">
+        <button ion-fab color="orangeMaterial" (click)="addCitaMedico()">
             <ion-icon name="add"></ion-icon>
         </button>
     </ion-fab>
@@ -46,10 +46,10 @@
                 </ion-list>
             </div>
             <div *ngSwitchCase="'citas'" class="citasToolbar">
-                <ion-card color="redMaterial">
+                <ion-card >
                     <ion-card-header>
                         <h4>Tienes una nueva cita</h4>
-                        <p>2019-07-30 09:00 <i class="material-icons">alarm</i></p>
+                        <p>2019-07-30 09:00 <i class="material-icons redMaterial">alarm</i></p>
                     </ion-card-header>
                     <ion-card-content>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque rerum, unde, vitae, nam aut
@@ -57,10 +57,10 @@
                             non tenetur totam!</p>
                     </ion-card-content>
                 </ion-card>
-                <ion-card color="greenMaterial">
+                <ion-card>
                     <ion-card-header>
                         <h4>Tienes una nueva cita</h4>
-                        <p>2019-07-30 09:00 <i class="material-icons">alarm</i></p>
+                        <p>2019-07-30 09:00 <i class="material-icons greenMaterial">alarm</i></p>
                     </ion-card-header>
                     <ion-card-content>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque rerum, unde, vitae, nam aut
@@ -68,10 +68,10 @@
                             non tenetur totam!</p>
                     </ion-card-content>
                 </ion-card>
-                <ion-card color="bluegrayLightMaterial">
+                <ion-card>
                     <ion-card-header>
                         <h4>Tienes una nueva cita</h4>
-                        <p>2019-07-30 09:00 <i class="material-icons">alarm</i></p>
+                        <p>2019-07-30 09:00 <i class="material-icons blueGrayLightMaterial">alarm</i></p>
                     </ion-card-header>
                     <ion-card-content>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque rerum, unde, vitae, nam aut

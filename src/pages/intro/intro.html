@@ -38,11 +38,16 @@
 <ion-footer no-border>
     <ion-navbar transparent>
         <ion-buttons *ngIf="previus">
-            <button ion-button (click)="prevSlide()">Anterior</button>
+            <button ion-button (click)="prevSlide()" icon-only>
+                <!-- <img src="assets/imgs/left-arrow.svg" alt="previus"> -->
+                <ion-icon name="custom-arrow-left"></ion-icon>
+            </button>
         </ion-buttons>
         <ion-title></ion-title>
-        <ion-buttons end>
-            <button *ngIf="next" ion-button (click)="nextSlide()">Siguiente</button>
+        <ion-buttons end *ngIf="next">
+            <button ion-button (click)="nextSlide()" icon-only>
+                <ion-icon name="custom-arrow-right"></ion-icon>
+            </button>
         </ion-buttons>
     </ion-navbar>
 </ion-footer>

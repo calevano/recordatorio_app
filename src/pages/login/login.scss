@@ -16,53 +16,47 @@ page-login {
       margin-top: 1rem;
       padding-left: 1rem;
       padding-right: 1rem;
+      p {
+        font-size: 1.6rem;
+      }
       ion-list {
         ion-item {
           border-top: 0 !important;
           padding-left: 0;
           background-color: transparent !important;
-          border-bottom-color: #222 !important;
+          border-bottom-width: 2px !important;
+          border-bottom-color: rgba(71, 77, 84, 0.5) !important;
+          box-shadow: none !important;
           &.input-has-focus:last-child {
-            border-bottom-color: #222 !important;
+            border-bottom-color: rgba(71, 77, 84, 0.5) !important;
             box-shadow: none !important;
           }
           ion-icon {
             font-size: 2.5rem;
-            color: #222;
+            color: rgba(71, 77, 84, 1);
+            // color: color($colors, dark);
           }
           .item-inner {
             margin-left: 0 !important;
             ion-input {
               input {
                 &::placeholder {
-                  color: #CFD8DC;
+                  color: #cfd8dc;
                 }
                 &:-ms-input-placeholder {
-                  color: #CFD8DC;
+                  color: #cfd8dc;
                 }
                 &::-ms-input-placeholder {
-                  color: #CFD8DC;
+                  color: #cfd8dc;
                 }
               }
             }
           }
         }
       }
-      .linkRegister {
-        margin-top: 2rem;
-        h6 {
-          text-align: center;
-          margin-bottom: 0;
-          a {
-            text-decoration: none;
-            color: #f4f4f4;
-          }
-        }
-      }
 
       button {
         color: #f4f4f4;
-        // box-shadow: none !important;
         border-radius: 10px;
         span {
           ion-spinner {

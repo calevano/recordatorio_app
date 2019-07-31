@@ -7,37 +7,44 @@ page-intro {
     }
   }
   ion-content {
-      .scroll-content{
-          margin-bottom: 0 !important;
-      }
-    // background-color: #00838f !important;
-    // background-color: #222 !important;
-    // background-color: #00897b !important;
+    .scroll-content {
+      margin-bottom: 0 !important;
+    }
     color: #fff !important;
+    ion-slides {
+      ion-slide {
+        .intro-content-slide {
+          padding-left: 1rem;
+          padding-right: 1rem;
+          img {
+            width: 45%;
+          }
+          h2 {
+            margin-top: 1rem;
+            text-transform: uppercase;
+            color: #f4f4f4;
+          }
+          p {
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            font-size: 16px;
+            padding: 0 1rem;
+          }
+          button {
+            font-weight: bold;
+          }
+        }
+      }
+    }
   }
-  ion-slides {
-    ion-slide {
-      .intro-content-slide {
-        padding-left: 1rem;
-        padding-right: 1rem;
-        img {
-          width: 45%;
-        }
-        h2 {
-          margin-top: 1rem;
-          text-transform: uppercase;
-          color: #f4f4f4;
-        }
-        p {
-          margin-top: 1rem;
-          margin-bottom: 1rem;
-          font-size: 16px;
-          padding: 0 1rem;
-        }
-        button {
-          //   color: #fff;
-          font-weight: bold;
-        //   box-shadow: none;
+
+  ion-footer {
+    ion-navbar {
+      ion-buttons {
+        button[icon-only] {
+            margin-left: 10px !important;
+            margin-right: 10px !important;
+            font-size: 1.5em;
         }
       }
     }
@@ -54,34 +61,5 @@ page-intro {
   }
   .slide_four {
     background-color: color($colors, orangeMaterial) !important;
-  }
-
-  .intro-page {
-    .slide-title {
-      margin-top: 2rem;
-      color: #ffb300;
-      font-weight: bold;
-    }
-
-    .slide-image {
-      max-height: 50%;
-      max-width: 35%;
-      margin: 1rem 0;
-    }
-
-    b {
-      font-weight: 500;
-    }
-
-    p {
-      padding: 0 40px;
-      font-size: 1.6rem;
-      line-height: 1.4;
-      color: #cfd8dc;
-
-      b {
-        color: #222;
-      }
-    }
   }
 }

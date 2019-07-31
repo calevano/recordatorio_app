@@ -1,24 +1,36 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
-/**
- * Generated class for the MedicoCitaCrearPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import * as moment from 'moment';
+import "moment/locale/es";
 
 @Component({
-  selector: 'page-medico-cita-crear',
-  templateUrl: 'medico-cita-crear.html',
+    selector: 'page-medico-cita-crear',
+    templateUrl: 'medico-cita-crear.html',
 })
 export class MedicoCitaCrearPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+    continue: boolean = false;
+    data: any = {
+        fecha: '',
+        hora: '',
+        pregunta: ''
+    };
+    date: any;
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad MedicoCitaCrearPage');
-  }
+    constructor(
+        public navCtrl: NavController,
+        public navParams: NavParams
+    ) {
+        // moment.locale('es');
+        let probando = moment().format('YYYY-MM-DD HH:mm:ss');
+        console.log("probando:::", probando);
+        this.date = moment().format('YYYY-MM-DD');
+        console.log("date:::", this.date);
+    }
+
+    ionViewDidLoad() {
+        console.log('ionViewDidLoad MedicoCitaCrearPage');
+    }
 
 }

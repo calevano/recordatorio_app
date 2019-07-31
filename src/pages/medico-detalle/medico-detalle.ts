@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, Platform } from 'ionic-angular';
 import { ToastProvider } from '../../providers/toast/toast';
 import { CallNumber } from '@ionic-native/call-number';
+import { MedicoCitaCrearPage } from '../medico-cita-crear/medico-cita-crear';
 
 @Component({
     selector: 'page-medico-detalle',
@@ -45,8 +46,11 @@ export class MedicoDetallePage {
 
     sendEmailMedico() {
         let url = "mailto:calevano@gmail.com";
-
         window.open(url, "_system", "location = no");
+    }
+
+    addCitaMedico() {
+        this.navCtrl.push(MedicoCitaCrearPage);
     }
 
 }

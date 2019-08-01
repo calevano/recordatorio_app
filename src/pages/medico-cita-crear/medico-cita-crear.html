@@ -15,8 +15,7 @@
                     <ion-col col-6 class="colLeft">
                         <ion-list>
                             <ion-item>
-                                <!-- <ion-label>Fecha</ion-label> -->
-                                <ion-datetime [(ngModel)]="fecha" min="{{ date }}" displayFormat="DD-MM-YYYY"
+                                <ion-datetime [(ngModel)]="data.fecha" displayFormat="DD-MM-YYYY" min="{{ date }}"
                                     name="fecha" cancelText="Cancelar" doneText="OK" placeholder="Fecha"></ion-datetime>
                             </ion-item>
                         </ion-list>
@@ -24,8 +23,7 @@
                     <ion-col col-6 class="colRight">
                         <ion-list>
                             <ion-item>
-                                <!-- <ion-label>Hora</ion-label> -->
-                                <ion-datetime displayFormat="HH:mm" [(ngModel)]="hora" name="hora" cancelText="Cancelar"
+                                <ion-datetime [(ngModel)]="data.hora" displayFormat="hh:mm a" name="hora" cancelText="Cancelar"
                                     doneText="OK" placeholder="Hora"></ion-datetime>
                             </ion-item>
                         </ion-list>

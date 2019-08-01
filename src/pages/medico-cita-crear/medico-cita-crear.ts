@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
+import { LoadingProvider } from '../../providers/loading/loading';
+
 import * as moment from 'moment';
 import "moment/locale/es";
 
@@ -17,20 +19,27 @@ export class MedicoCitaCrearPage {
         pregunta: ''
     };
     date: any;
+    hour: any;
 
     constructor(
         public navCtrl: NavController,
-        public navParams: NavParams
+        public navParams: NavParams,
+        public loadingProvider: LoadingProvider
     ) {
-        // moment.locale('es');
-        let probando = moment().format('YYYY-MM-DD HH:mm:ss');
-        console.log("probando:::", probando);
         this.date = moment().format('YYYY-MM-DD');
-        console.log("date:::", this.date);
+        this.data.fecha = this.date;
+        this.data.hora = moment().format('hh:mm');
     }
 
     ionViewDidLoad() {
         console.log('ionViewDidLoad MedicoCitaCrearPage');
+    }
+
+    saveCita() {
+        this.loadingProvider.preload("Guardando cita<br>Creando recordatorio...");
+        setTimeout(() => {
+            this.navCtrl.pop();
+        }, 1400);
     }
 
 }

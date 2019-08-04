@@ -1,3 +1,49 @@
 page-medico-crear {
-
+  .scroll-content {
+    padding: 32px;
+    padding-bottom: 16px !important;
+  }
+  ion-content {
+    .profileMedico {
+      margin-bottom: 1.5rem;
+      .photoMedico {
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1) !important;
+        border-radius: 50%;
+        padding: 2rem;
+        width: 35%;
+        margin: 0 auto;
+        border: 0.6rem solid #fff;
+      }
+    }
+    .formMedico {
+      ion-list {
+        ion-item {
+          border-radius: 8px;
+          box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1) !important;
+          border-bottom-color: rgba(0, 0, 0, 0.1) !important;
+          &.input-has-focus:last-child {
+            border-bottom-color: rgba(0, 0, 0, 0.1) !important;
+          }
+          .item-inner {
+            margin-left: 0 !important;
+            ion-icon {
+            }
+            ion-input {
+            }
+          }
+        }
+      }
+      button {
+        margin-top: 1rem;
+        color: #f4f4f4;
+        padding: 0 1em;
+        height: 2.8em;
+        font-weight: bold;
+        font-size: 1.8rem;
+        text-transform: initial;
+        border-radius: 5px;
+        letter-spacing: 0.03em;
+      }
+    }
+  }
 }

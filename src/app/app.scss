@@ -41,19 +41,19 @@ h6 {
   display: none;
 }
 
-.platform-android {
-  .ion-page {
-    ion-header {
-      ion-navbar {
-        padding-top: calc(env(safe-area-inset-top) + 24px) !important;
-        min-height: calc(76px + env(safe-area-inset-top)) !important;
-      }
-    }
-  }
-}
+// .platform-android {
+//   .ion-page {
+//     ion-header {
+//       ion-navbar {
+//         padding-top: calc(env(safe-area-inset-top) + 24px) !important;
+//         min-height: calc(76px + env(safe-area-inset-top)) !important;
+//       }
+//     }
+//   }
+// }
 
 ion-content {
-  background-color: color($colors, bgApp) !important;
+  background-color: color($colors, light) !important;
 }
 
 ion-toast.text-center {

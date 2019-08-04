@@ -9,18 +9,15 @@
     </div>
     <div class="form">
         <p>Ingresa tú nombre para que el app pueda interacturar interactuar contigo.</p>
-        <ion-list>
-            <ion-item>
-                <ion-icon name="contact" item-start></ion-icon>
-                <ion-input type="text" placeholder="Tú nombre"></ion-input>
-            </ion-item>
-        </ion-list>
-        <div>
-            <button ion-button color="orangeMaterial" block large (click)="ingresarApp()"
-                *ngIf="!continue">COMENZAR</button>
-            <button ion-button color="orangeMaterial" block large *ngIf="continue">
-                <ion-spinner></ion-spinner>
-            </button>
-        </div>
+        <form [formGroup]="loginForm" novalidate="novalidate" (ngSubmit)="ingresarApp()">
+            <ion-list>
+                <ion-item>
+                    <ion-icon name="person" item-start></ion-icon>
+                    <ion-input placeholder="Tú nombre" type="text" formControlName="nombre"></ion-input>
+                </ion-item>
+                <button ion-button [disabled]="!loginForm.valid" type="submit" color="orangeMaterial"
+                    block>Comenzar</button>
+            </ion-list>
+        </form>
     </div>
 </ion-content>

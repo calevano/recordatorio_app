@@ -10,6 +10,7 @@ page-medico-detalle {
         ion-segment {
           height: 43px !important;
           ion-segment-button {
+            // text-transform: initial !important;
             border-color: #fff !important;
             color: #fff !important;
             font-size: 1.5rem !important;
@@ -50,9 +51,9 @@ page-medico-detalle {
             border-radius: 5px;
           }
           .item-inner {
-              ion-icon{
-                color: rgba(71, 77, 84, 1);
-              }
+            ion-icon {
+              color: rgba(71, 77, 84, 1);
+            }
           }
         }
       }

@@ -1,15 +1,44 @@
-<!--
-  Generated template for the MedicoCrearPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-  <ion-navbar>
-    <ion-title>MedicoCrear</ion-title>
-  </ion-navbar>
+    <ion-navbar color="orangeMaterial">
+        <ion-title>Agregar Médico</ion-title>
+    </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-
+    <div class="profileMedico">
+        <div class="photoMedico">
+            <img src="assets/imgs/intro/doctor.svg" alt="MedicalLogo">
+        </div>
+    </div>
+    <div class="formMedico">
+        <form [formGroup]="addMedicoForm" novalidate="novalidate" (ngSubmit)="saveMedico()">
+            <ion-list>
+                <ion-item>
+                    <ion-icon name="person" item-start></ion-icon>
+                    <ion-input placeholder="Nombres" type="text" formControlName="nombres"></ion-input>
+                </ion-item>
+            </ion-list>
+            <ion-list>
+                <ion-item>
+                    <ion-icon name="school" item-start></ion-icon>
+                    <ion-input placeholder="Especialidad" type="text" formControlName="especialidad"></ion-input>
+                </ion-item>
+            </ion-list>
+            <ion-list>
+                <ion-item>
+                    <ion-icon name="call" item-start></ion-icon>
+                    <ion-input placeholder="Teléfono" type="tel" maxlength="9" formControlName="telefono"></ion-input>
+                </ion-item>
+            </ion-list>
+            <ion-list>
+                <ion-item>
+                    <ion-icon name="mail" item-start></ion-icon>
+                    <ion-input placeholder="E-mail" type="email" formControlName="email"></ion-input>
+                </ion-item>
+            </ion-list>
+            <button ion-button [disabled]="!addMedicoForm.valid" type="submit" color="orangeMaterial" block>
+                Guardar
+            </button>
+        </form>
+    </div>
 </ion-content>

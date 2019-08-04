@@ -5,6 +5,7 @@ import { LoadingProvider } from '../../providers/loading/loading';
 
 import * as moment from 'moment';
 import "moment/locale/es";
+import { ToastProvider } from '../../providers/toast/toast';
 
 @Component({
     selector: 'page-medico-cita-crear',
@@ -12,7 +13,6 @@ import "moment/locale/es";
 })
 export class MedicoCitaCrearPage {
 
-    continue: boolean = false;
     data: any = {
         fecha: '',
         hora: '',
@@ -24,7 +24,8 @@ export class MedicoCitaCrearPage {
     constructor(
         public navCtrl: NavController,
         public navParams: NavParams,
-        public loadingProvider: LoadingProvider
+        public loadingProvider: LoadingProvider,
+        public toastProvider: ToastProvider,
     ) {
         this.date = moment().format('YYYY-MM-DD');
         this.data.fecha = this.date;
@@ -36,10 +37,18 @@ export class MedicoCitaCrearPage {
     }
 
     saveCita() {
-        this.loadingProvider.preload("Guardando cita<br>Creando recordatorio...");
-        setTimeout(() => {
-            this.navCtrl.pop();
-        }, 1400);
+
+        if (this.data.fecha === "" ||
+            this.data.hora === "" ||
+            this.data.pregunta === "") {
+            console.log("vacio");
+            this.toastProvider.showToast("dark", "Necesita completar todos los campos...", 'bottom');
+        } else {
+            this.loadingProvider.preload("Guardando cita<br>Creando recordatorio...");
+            setTimeout(() => {
+                this.navCtrl.pop();
+            }, 1400);
+        }
     }
 
 }

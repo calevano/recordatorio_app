@@ -31,7 +31,13 @@ page-intro {
             padding: 0 1rem;
           }
           button {
+            padding: 0 1em;
+            height: 2.8em;
             font-weight: bold;
+            font-size: 1.8rem;
+            text-transform: initial;
+            border-radius: 5px;
+            width: 50vw;
           }
         }
       }
@@ -42,9 +48,9 @@ page-intro {
     ion-navbar {
       ion-buttons {
         button[icon-only] {
-            margin-left: 10px !important;
-            margin-right: 10px !important;
-            font-size: 1.5em;
+          margin-left: 10px !important;
+          margin-right: 10px !important;
+          font-size: 1.5em;
         }
       }
     }

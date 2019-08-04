@@ -42,7 +42,7 @@ export class MedicoCitaCrearPage {
             this.data.hora === "" ||
             this.data.pregunta === "") {
             console.log("vacio");
-            this.toastProvider.showToast("dark", "Necesita completar todos los campos...", 'bottom');
+            this.toastProvider.showToast("warning", "Necesita completar todos los campos...", 'bottom');
         } else {
             this.loadingProvider.preload("Guardando cita<br>Creando recordatorio...");
             setTimeout(() => {

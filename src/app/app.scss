@@ -61,19 +61,19 @@ ion-toast.text-center {
 }
 
 ion-toast.success .toast-wrapper {
-  background: #00796b !important;
+  background: color($colors, greenMaterial) !important;
 }
 
 ion-toast.dark .toast-wrapper {
-  background: #222222 !important;
+  background: color($colors, dark) !important;
 }
 
 ion-toast.error .toast-wrapper {
-  background: #c62828 !important;
+  background: color($colors, redMaterial) !important;
 }
 
 ion-toast.warning .toast-wrapper {
-  background: #ffb300 !important;
+  background: color($colors, warningMaterial) !important;
 }
 
 .text-right {

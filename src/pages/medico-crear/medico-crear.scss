@@ -24,12 +24,13 @@ page-medico-crear {
           &.input-has-focus:last-child {
             border-bottom-color: rgba(0, 0, 0, 0.1) !important;
           }
+          ion-icon {
+            font-size: 2.5rem;
+            color: rgba(71, 77, 84, 1);
+            margin-right: 5px;
+          }
           .item-inner {
             margin-left: 0 !important;
-            ion-icon {
-            }
-            ion-input {
-            }
           }
         }
       }

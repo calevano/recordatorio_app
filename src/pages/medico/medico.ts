@@ -10,6 +10,7 @@ import { MedicoCrearPage } from '../medico-crear/medico-crear';
 export class MedicoPage {
 
     medicoDetalle = MedicoDetallePage;
+    medicoCrear = MedicoCrearPage;
 
     constructor(
         public navCtrl: NavController,
@@ -19,10 +20,6 @@ export class MedicoPage {
 
     ionViewDidLoad() {
         console.log('ionViewDidLoad MedicoPage');
-    }
-
-    addMedico() {
-        this.navCtrl.push(MedicoCrearPage);
     }
 
 }

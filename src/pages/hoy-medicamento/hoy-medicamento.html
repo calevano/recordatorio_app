@@ -4,6 +4,8 @@
     </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-    <ion-searchbar (ionInput)="searchMedicamento($event)"></ion-searchbar>
+<ion-content>
+    <ion-searchbar type="search" (ionInput)="searchMedicamento($event)" animated="true"
+        placeholder="Buscar medicamento">
+    </ion-searchbar>
 </ion-content>

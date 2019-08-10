@@ -1,3 +1,19 @@
 page-hoy-medicamento {
-
+  ion-content {
+    ion-searchbar {
+    }
+    .addMedicamento {
+      padding: 1rem;
+      form {
+        ion-item {
+          ion-label {
+          }
+          ion-input {
+          }
+        }
+        button {
+        }
+      }
+    }
+  }
 }

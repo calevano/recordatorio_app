@@ -27,12 +27,13 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HeaderColor } from '@ionic-native/header-color';
 import { CallNumber } from '@ionic-native/call-number';
+import { SQLite } from '@ionic-native/sqlite';
 
 import { LoadingProvider } from '../providers/loading/loading';
 import { ToastProvider } from '../providers/toast/toast';
 
 import { IonicStorageModule } from '@ionic/storage';
-
+import { DatabaseProvider } from '../providers/database/database';
 
 @NgModule({
     declarations: [
@@ -87,9 +88,11 @@ import { IonicStorageModule } from '@ionic/storage';
         SplashScreen,
         HeaderColor,
         CallNumber,
+        SQLite,
         { provide: ErrorHandler, useClass: IonicErrorHandler },
         LoadingProvider,
-        ToastProvider
+        ToastProvider,
+    DatabaseProvider
     ]
 })
 export class AppModule { }

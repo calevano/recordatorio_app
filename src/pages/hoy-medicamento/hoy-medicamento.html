@@ -5,7 +5,20 @@
 </ion-header>
 
 <ion-content>
-    <ion-searchbar type="search" (ionInput)="searchMedicamento($event)" animated="true"
-        placeholder="Buscar medicamento">
+    <ion-searchbar (ionInput)="searchMedicamento($event)" (ionCancel)="searchCancel($event)"
+        placeholder="Escriba su medicamento" animated=true cancelButtonText="Cancelar" autocomplete="on"
+        autocorrect="on">
     </ion-searchbar>
+    <div class="addMedicamento" [hidden]="!showAddMedicina">
+        <h3>Ingrese el nombre del nuevo medicamento para poder agregarlo y puedas usarlo para tu recordatorio.</h3>
+        <form [formGroup]="medicamentoForm" (ngSubmit)="addMedicamento()">
+            <ion-item>
+                <ion-label position="floating">Medicina</ion-label>
+                <ion-input required formControlName="name" type="text"></ion-input>
+            </ion-item>
+            <button ion-button block color="greenMaterial" type="submit" [disabled]="medicamentoForm.invalid">
+                Agregar
+            </button>
+        </form>
+    </div>
 </ion-content>

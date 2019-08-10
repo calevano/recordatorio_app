@@ -92,7 +92,7 @@ import { DatabaseProvider } from '../providers/database/database';
         { provide: ErrorHandler, useClass: IonicErrorHandler },
         LoadingProvider,
         ToastProvider,
-    DatabaseProvider
+        DatabaseProvider
     ]
 })
 export class AppModule { }

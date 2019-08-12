@@ -1,17 +1,109 @@
 page-hoy-medicamento {
+  ion-header {
+    ion-navbar {
+      ion-title {
+        .toolbar-title {
+          padding-left: 0 !important;
+          text-transform: inherit !important;
+        }
+      }
+    }
+  }
   ion-content {
     ion-searchbar {
+      .searchbar-input-container {
+        input {
+          box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1) !important;
+          border-radius: 5px !important;
+        }
+      }
     }
     .addMedicamento {
       padding: 1rem;
-      form {
-        ion-item {
-          ion-label {
-          }
-          ion-input {
+      .preguntaMessage {
+        text-align: center;
+        ion-grid {
+          ion-row {
+            ion-col {
+              button {
+                padding: 0 1em;
+                height: 2.8em;
+                font-weight: bold;
+                font-size: 1.8rem;
+                text-transform: initial;
+                border-radius: 5px;
+                span {
+                  letter-spacing: 0.05em;
+                }
+              }
+            }
           }
         }
+      }
+      .formMedicamento {
+        p {
+          padding-left: 1rem;
+          padding-right: 1rem;
+          line-height: 140%;
+        }
+        form {
+          ion-list {
+            padding-left: 1rem;
+            padding-right: 1rem;
+            ion-item {
+              border-bottom-width: 0 !important;
+              box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1) !important;
+              border-radius: 5px !important;
+              &.input-has-focus:last-child {
+                border-bottom-width: 0 !important;
+                box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1) !important;
+              }
+            }
+          }
+
+          button {
+            padding: 0 1em;
+            height: 2.8em;
+            font-weight: bold;
+            font-size: 1.8rem;
+            text-transform: initial;
+            border-radius: 5px;
+            span {
+              letter-spacing: 0.05em;
+            }
+          }
+        }
+      }
+    }
+    .resultadoBusqueda {
+      margin-top: 1.5rem;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      ion-list {
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1) !important;
         button {
+          //   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1) !important;
+          border-bottom: 1px solid color($colors, bluegrayLightMaterial);
+          &:first-child {
+            border-radius: 5px 5px 0 0;
+          }
+          &:last-child {
+            border-radius: 0 0 5px 5px;
+            border-bottom: none;
+          }
+          ion-icon {
+            color: color($colors, blueMaterial) !important;
+          }
+          .item-inner {
+            margin-left: 1rem !important;
+            border-bottom: 0 !important;
+            ion-label {
+              h2 {
+                margin-top: 0 !important;
+                // font-family: "vagBold";
+              }
+            }
+          }
         }
       }
     }

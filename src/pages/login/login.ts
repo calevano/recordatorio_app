@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { LoadingPage } from '../loading/loading';
-import { ToastProvider } from '../../providers/toast/toast';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+import { LoadingPage } from '../loading/loading';
+
+import { ToastProvider } from '../../providers/toast/toast';
+import { StorageProvider } from '../../providers/storage/storage';
 
 @Component({
     selector: 'page-login',
@@ -17,6 +20,7 @@ export class LoginPage {
         public navParams: NavParams,
         public toastProvider: ToastProvider,
         public formBuilder: FormBuilder,
+        private storageProvider: StorageProvider
     ) {
         this.loginForm = this.formBuilder.group({
             nombre: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
@@ -32,6 +36,7 @@ export class LoginPage {
             this.toastProvider.showToast("dark", "Debes ingresar un nombre", 'bottom');
         } else {
             setTimeout(() => {
+                this.storageProvider.setStorageLogin(this.loginForm.value.nombre);
                 this.navCtrl.setRoot(LoadingPage, {
                     message: 'Estamos guardando tu nombre, solo será unos segundos',
                     reference: 'login'

@@ -11,25 +11,26 @@
         </button>
     </ion-fab>
 
-    <ion-list>
-        <button ion-item>
-            <ion-avatar item-start>
-                <img src="assets/imgs/intro/drugs.svg" alt="PastillaLogo" />
-            </ion-avatar>
-            <h2>Bactrim</h2>
-            <p>5 pastilla(s)</p>
-            <ion-note item-end>08:00</ion-note>
-        </button>
-    </ion-list>
-    <ion-list>
-        <button ion-item>
-            <ion-avatar item-start>
-                <img src="assets/imgs/intro/drugs.svg" alt="PastillaLogo" />
-            </ion-avatar>
-            <h2>Bactrim</h2>
-            <p>5 pastilla(s)</p>
-            <ion-note item-end>08:00</ion-note>
-        </button>
-    </ion-list>
+    <div class="emptyRecordatorio" *ngIf="recordatorios.length==0">
+        <ion-grid>
+            <ion-row justify-content-center align-items-center>
+                <ion-col>
+                    <ion-icon name="custom-hoy" item-start></ion-icon>
+                    <p>Aún no haz creado recordatorio(s) comienza agregando uno</p>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+
+    <div class="listadoRecordatorio" *ngIf="recordatorios.length>0">
+        <ion-list *ngFor="let recordatorio of recordatorios">
+            <button ion-item>
+                <ion-icon name="custom-hoy" item-start></ion-icon>
+                <h2>Bactrim</h2>
+                <p>5 pastilla(s)</p>
+                <ion-note item-end>08:00</ion-note>
+            </button>
+        </ion-list>
+    </div>
 
 </ion-content>

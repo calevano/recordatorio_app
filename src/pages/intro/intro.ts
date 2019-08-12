@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 
-import { Storage } from '@ionic/storage';
+import { StorageProvider } from '../../providers/storage/storage';
 
 @Component({
     selector: 'page-intro',
@@ -19,18 +19,12 @@ export class IntroPage {
     constructor(
         public navCtrl: NavController,
         public navParams: NavParams,
-        private storage: Storage
+        private storageProvider: StorageProvider
     ) {
-        this.storage.get(this.keyIntro).then((val) => {
-            if (val === 1) {
-                this.navCtrl.setRoot(LoginPage);
-            }
-        });
     }
 
     ionViewDidLoad() {
         console.log('ionViewDidLoad IntroPage');
-
     }
 
     ionViewDidEnter() {
@@ -38,7 +32,7 @@ export class IntroPage {
     }
 
     goToLogin() {
-        // this.storage.set(this.keyIntro, 1);
+        this.storageProvider.setStorageIntro();
         this.navCtrl.setRoot(LoginPage);
     }
 

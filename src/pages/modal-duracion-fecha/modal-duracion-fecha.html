@@ -1,0 +1,43 @@
+<ion-header>
+    <ion-navbar color="blueMaterial">
+        <ion-title>Duración</ion-title>
+        <ion-buttons start>
+            <button ion-button (click)="dismiss()">
+                <span ion-text color="light" showWhen="ios">Cancelar</span>
+                <ion-icon name="md-close" showWhen="android"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+    <ion-list class="fechaInicio">
+        <ion-item>
+            <ion-label>Fecha de inicio</ion-label>
+            <ion-datetime [(ngModel)]="data.inicio" displayFormat="DD-MM-YYYY" min="{{ dateInit }}" name="inicio"
+                cancelText="Cancelar" doneText="OK" placeholder="Fecha de inicio"></ion-datetime>
+        </ion-item>
+    </ion-list>
+    <ion-list class="opcionDias" radio-group [(ngModel)]="data.dias">
+        <ion-item>
+            <ion-label>Hasta la fecha</ion-label>
+            <ion-radio value="0" (ionSelect)="showDateEnd(0)"></ion-radio>
+        </ion-item>
+        <ion-item>
+            <ion-label>Para "X" días</ion-label>
+            <ion-radio value="1" (ionSelect)="showDateEnd(1)"></ion-radio>
+        </ion-item>
+    </ion-list>
+    <ion-list class="fechaFinal" *ngIf="showEndDate">
+        <ion-item>
+            <ion-label>Fecha final</ion-label>
+            <ion-datetime [(ngModel)]="data.final" displayFormat="DD-MM-YYYY" min="{{ dateEnd }}" name="final"
+                cancelText="Cancelar" doneText="OK" placeholder="Fecha final"></ion-datetime>
+        </ion-item>
+    </ion-list>
+    <button ion-button color="blueMaterial" block type="button" (click)="selectOpcion()">
+        Continuar
+    </button>
+
+</ion-content>

@@ -22,6 +22,8 @@ import { MedicoDetallePage } from '../pages/medico-detalle/medico-detalle';
 import { MedicoCrearPage } from '../pages/medico-crear/medico-crear';
 import { MedicoCitaPage } from '../pages/medico-cita/medico-cita';
 import { MedicoCitaCrearPage } from '../pages/medico-cita-crear/medico-cita-crear';
+import { ModalConsejoTomaPage } from '../pages/modal-consejo-toma/modal-consejo-toma';
+import { ModalDuracionFechaPage } from '../pages/modal-duracion-fecha/modal-duracion-fecha';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -31,9 +33,10 @@ import { SQLite } from '@ionic-native/sqlite';
 
 import { LoadingProvider } from '../providers/loading/loading';
 import { ToastProvider } from '../providers/toast/toast';
+import { DatabaseProvider } from '../providers/database/database';
+import { StorageProvider } from '../providers/storage/storage';
 
 import { IonicStorageModule } from '@ionic/storage';
-import { DatabaseProvider } from '../providers/database/database';
 
 @NgModule({
     declarations: [
@@ -54,7 +57,9 @@ import { DatabaseProvider } from '../providers/database/database';
         MedicoDetallePage,
         MedicoCrearPage,
         MedicoCitaPage,
-        MedicoCitaCrearPage
+        MedicoCitaCrearPage,
+        ModalConsejoTomaPage,
+        ModalDuracionFechaPage
     ],
     imports: [
         BrowserModule,
@@ -81,7 +86,9 @@ import { DatabaseProvider } from '../providers/database/database';
         MedicoDetallePage,
         MedicoCrearPage,
         MedicoCitaPage,
-        MedicoCitaCrearPage
+        MedicoCitaCrearPage,
+        ModalConsejoTomaPage,
+        ModalDuracionFechaPage
     ],
     providers: [
         StatusBar,
@@ -92,7 +99,8 @@ import { DatabaseProvider } from '../providers/database/database';
         { provide: ErrorHandler, useClass: IonicErrorHandler },
         LoadingProvider,
         ToastProvider,
-        DatabaseProvider
+        DatabaseProvider,
+        StorageProvider
     ]
 })
 export class AppModule { }

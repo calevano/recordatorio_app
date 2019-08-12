@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 import { LoadingPage } from '../loading/loading';
 import { ToastProvider } from '../../providers/toast/toast';
 
@@ -9,45 +11,62 @@ import { ToastProvider } from '../../providers/toast/toast';
 })
 export class InformePage {
 
-    continue: boolean = false;
-    data: any = {
-        anio: '',
-        mes: '',
-        email: ''
-    };
+    informeForm: FormGroup;
+    emailPattern = "[a-zA-Z0-9._-]+[@]+[a-zA-Z0-9.-]+[.]+[a-zA-Z]{2,6}";
+    // data: any = {
+    //     anio: '',
+    //     mes: '',
+    //     email: ''
+    // };
 
     constructor(
         public navCtrl: NavController,
         public navParams: NavParams,
-        public toastProvider: ToastProvider
+        public toastProvider: ToastProvider,
+        public formBuilder: FormBuilder
     ) {
+        this.informeForm = this.formBuilder.group({
+            anio: ['', Validators.compose([Validators.required])],
+            mes: ['', Validators.compose([Validators.required])],
+            email: ['', Validators.compose([Validators.required, Validators.pattern(this.emailPattern)])],
+        });
     }
 
     ionViewDidLoad() {
         console.log('ionViewDidLoad InformePage');
     }
 
-    ionViewDidLeave() {
-        this.data.email = '';
-    }
+    // ionViewDidLeave() {
+    //     this.informeForm.email = '';
+    // }
 
     sendEmail() {
-        console.log("thisData:::", this.data);
 
-        if (this.data.anio === "" ||
-            this.data.mes === "" ||
-            this.data.email === "") {
-            this.toastProvider.showToast("warning", "TODOS LOS CAMPOS SON REQUERIDOS");
+        if (!this.informeForm.valid) {
+            this.toastProvider.showToast("dark", "Todos los campos son requeridos", 'bottom');
         } else {
-            this.continue = true;
             this.navCtrl.setRoot(LoadingPage, {
                 message: 'Estamos preparando todo para enviar el informe al correo ',
                 reference: 'informe',
                 parameters: {
-                    email: this.data.email
+                    email: this.informeForm.value.email
                 }
             });
         }
+
+        // if (this.data.anio === "" ||
+        //     this.data.mes === "" ||
+        //     this.data.email === "") {
+        //     this.toastProvider.showToast("warning", "TODOS LOS CAMPOS SON REQUERIDOS");
+        // } else {
+        //     this.navCtrl.setRoot(LoadingPage, {
+        //         message: 'Estamos preparando todo para enviar el informe al correo ',
+        //         reference: 'informe',
+        //         parameters: {
+        //             email: this.informeForm.value.email
+        //         }
+        //     });
+        // }
     }
 
 }

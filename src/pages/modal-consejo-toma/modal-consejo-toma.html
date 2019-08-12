@@ -1,0 +1,36 @@
+<ion-header>
+    <ion-navbar color="blueMaterial">
+        <ion-title>Consejos de la toma</ion-title>
+        <ion-buttons start>
+            <button ion-button (click)="dismiss()">
+                <span ion-text color="light" showWhen="ios">Cancelar</span>
+                <ion-icon name="md-close" showWhen="android"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-list radio-group [(ngModel)]="consejoToma">
+        <ion-item>
+            <ion-label>Ninguna</ion-label>
+            <ion-radio value="Ninguna"></ion-radio>
+        </ion-item>
+        <ion-item>
+            <ion-label>Antes de la comida</ion-label>
+            <ion-radio value="Antes de la comida"></ion-radio>
+        </ion-item>
+        <ion-item>
+            <ion-label>Junto con la comida</ion-label>
+            <ion-radio value="Junto con la comida"></ion-radio>
+        </ion-item>
+        <ion-item>
+            <ion-label>Después de la comida</ion-label>
+            <ion-radio value="Después de la comida"></ion-radio>
+        </ion-item>
+    </ion-list>
+    <button ion-button color="blueMaterial" block type="button" (click)="selectOpcion()">
+        Continuar
+    </button>
+
+</ion-content>

@@ -27,9 +27,16 @@ page-informe-envio {
       padding: 4px 8px !important;
       .toolbar-content {
         button {
-          height: 56px;
-          margin: 0;
+          padding: 0 1em;
+          height: 2.8em;
+          font-weight: bold;
+          font-family: "vagBlack";
+          font-size: 1.8rem;
+          text-transform: initial;
           border-radius: 5px;
+          span {
+            letter-spacing: 0.05em;
+          }
         }
       }
     }

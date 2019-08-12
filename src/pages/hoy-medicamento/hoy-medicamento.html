@@ -5,20 +5,63 @@
 </ion-header>
 
 <ion-content>
-    <ion-searchbar (ionInput)="searchMedicamento($event)" (ionCancel)="searchCancel($event)"
-        placeholder="Escriba su medicamento" animated=true cancelButtonText="Cancelar" autocomplete="on"
-        autocorrect="on">
+    <ion-searchbar [hidden]="showFormulario" [(ngModel)]="medicamentoTexto" (ionInput)="searchMedicamento($event)"
+        (ionCancel)="searchCancel($event)" placeholder="Escriba su medicamento" cancelButtonText="Cancelar">
     </ion-searchbar>
-    <div class="addMedicamento" [hidden]="!showAddMedicina">
-        <h3>Ingrese el nombre del nuevo medicamento para poder agregarlo y puedas usarlo para tu recordatorio.</h3>
-        <form [formGroup]="medicamentoForm" (ngSubmit)="addMedicamento()">
-            <ion-item>
-                <ion-label position="floating">Medicina</ion-label>
-                <ion-input required formControlName="name" type="text"></ion-input>
-            </ion-item>
-            <button ion-button block color="greenMaterial" type="submit" [disabled]="medicamentoForm.invalid">
-                Agregar
+    <div class="addMedicamento" *ngIf="medicamentos.length==0">
+        <div class="preguntaMessage" [hidden]="!showPregunta">
+            <h2>No hemos encontrado el medicamento que buscas.</h2>
+            <h4>¿Quieres agregarlo?</h4>
+            <ion-grid>
+                <ion-row>
+                    <ion-col col-6>
+                        <button ion-button block type="button" color="blueMaterial" (click)="mostrarFormulario()">
+                            SI
+                        </button>
+                    </ion-col>
+                    <ion-col col-6>
+                        <button ion-button block type="button" color="redMaterial" (click)="cancelar()">
+                            NO
+                        </button>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </div>
+        <div class="formMedicamento" [hidden]="!showFormulario">
+            <p>Por favor escribe el <strong>Nombre de medicamento</strong> y presiona en <strong>"Guardar"</strong>
+                cuando termines de escribir el medicamento para que puedas usarlo más adelante.</p>
+            <form [formGroup]="medicamentoForm" (ngSubmit)="addMedicamento()">
+                <ion-list>
+                    <ion-item>
+                        <ion-label floating>Nombre de medicamento</ion-label>
+                        <ion-input type="text" formControlName="name"></ion-input>
+                    </ion-item>
+                </ion-list>
+                <ion-grid>
+                    <ion-row>
+                        <ion-col col-6>
+                            <button ion-button block color="blueMaterial" type="submit"
+                                [disabled]="medicamentoForm.invalid">
+                                Guardar
+                            </button>
+                        </ion-col>
+                        <ion-col col-6>
+                            <button ion-button block type="button" color="redMaterial" (click)="cancelarFormulario()">
+                                Cancelar
+                            </button>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </form>
+        </div>
+    </div>
+    <div class="resultadoBusqueda" *ngIf="medicamentos.length>0">
+        <ion-list>
+            <button ion-item *ngFor="let medicamento of medicamentos" [navPush]="hoyMedicamentoCrear"
+                [navParams]="{ medicamento: medicamento }">
+                <ion-icon name="custom-hoy" item-start></ion-icon>
+                <h2>{{ medicamento.name }}</h2>
             </button>
-        </form>
+        </ion-list>
     </div>
 </ion-content>

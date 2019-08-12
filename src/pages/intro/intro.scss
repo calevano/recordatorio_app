@@ -23,11 +23,12 @@ page-intro {
             margin-top: 1rem;
             text-transform: uppercase;
             color: #f4f4f4;
+            font-family: "vagBold";
           }
           p {
             margin-top: 1rem;
             margin-bottom: 1rem;
-            font-size: 16px;
+            font-size: 1.6rem;
             padding: 0 1rem;
           }
           button {
@@ -38,6 +39,9 @@ page-intro {
             text-transform: initial;
             border-radius: 5px;
             width: 50vw;
+            span {
+              letter-spacing: 0.05em;
+            }
           }
         }
       }

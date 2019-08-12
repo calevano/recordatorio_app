@@ -1,23 +1,52 @@
 page-hoy {
   ion-content {
-    ion-list {
-    //   margin-bottom: 8px !important;
-      button {
-        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1) !important;
-        &.item {
-          border-radius: 5px;
-        }
-        ion-avatar {
-          img {
-            border-radius: 0 !important;
+    .emptyRecordatorio {
+      height: 100%;
+      ion-grid {
+        height: 100%;
+        ion-row {
+          height: 100%;
+          ion-col {
+            text-align: center;
+            ion-icon {
+              color: color($colors, blueMaterial) !important;
+              font-size: 10rem;
+            }
+            p {
+              font-size: 2.5rem;
+              //   font-weight: bold;
+            }
           }
         }
       }
     }
-  }
-
-  ion-note {
-    font-size: 12px;
-    align-self: center;
+    .listadoRecordatorio {
+      ion-list {
+        button {
+          box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1) !important;
+          border-radius: 5px;
+          ion-icon {
+            color: color($colors, blueMaterial) !important;
+          }
+          .item-inner {
+            margin-left: 1rem !important;
+            ion-label {
+              h2 {
+                margin-top: 0 !important;
+                font-family: "vagBold";
+              }
+              p {
+              }
+            }
+            ion-note {
+              font-size: 1.5rem;
+              align-self: center;
+              font-family: "vagBold";
+              color: #222;
+            }
+          }
+        }
+      }
+    }
   }
 }

@@ -2,29 +2,29 @@
   font-family: "K2D";
   src: url("../assets/fonts/K2D.woff2");
 }
-// @font-face {
-//   font-family: "NunitoBold";
-//   src: url("../assets/fonts/Nunito-Bold.ttf");
-//   line-height: 1.2;
-// }
-// @font-face {
-//   font-family: "NunitoLight";
-//   src: url("../assets/fonts/Nunito-Light.ttf");
-//   line-height: 1.2;
-// }
-// @font-face {
-//   font-family: "NunitoRegular";
-//   src: url("../assets/fonts/Nunito-Regular.ttf");
-//   line-height: 1.2;
-// }
+@font-face {
+  font-family: "vagBlack";
+  src: url("../assets/fonts/VAG-Rounded-Std-Black_47296.ttf");
+}
 
-// @font-face {
-//   font-family: "NunitoSemiBold";
-//   src: url("../assets/fonts/Nunito-SemiBold.ttf");
-//   line-height: 1.2;
-// }
+@font-face {
+  font-family: "vagBold";
+  src: url("../assets/fonts/VAG-Rounded-Std-Bold_47297.ttf");
+}
+
+@font-face {
+  font-family: "vagLight";
+  src: url("../assets/fonts/VAG-Rounded-Std-Light_47298.ttf");
+}
+
+@font-face {
+  font-family: "vagThin";
+  src: url("../assets/fonts/VAG-Rounded-Std-Thin_47299.ttf");
+}
+
 * {
-  font-family: "K2D";
+  font-family: "vagLight";
+  letter-spacing: 0.02em;
 }
 
 h1,
@@ -33,8 +33,8 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "K2D";
-  color: #222;
+  font-family: "vagLight";
+  //   color: #222;
 }
 
 *::-webkit-scrollbar {
@@ -51,6 +51,18 @@ h6 {
 //     }
 //   }
 // }
+
+ion-header {
+  ion-navbar {
+    ion-title {
+      .toolbar-title {
+        font-family: "vagBlack";
+        text-transform: uppercase;
+        padding-top: 5px;
+      }
+    }
+  }
+}
 
 ion-content {
   background-color: color($colors, light) !important;
@@ -99,35 +111,46 @@ ion-app .nav-decor {
 }
 
 ion-tabs {
-  a:nth-child(1) {
-    &.tab-button[aria-selected="true"] {
-      color: color($colors, blueMaterial) !important;
-      ion-icon {
+  .tabbar {
+    background: #fff !important;
+    a:nth-child(1) {
+      min-height: 75px !important;
+      &.tab-button[aria-selected="true"] {
+        font-weight: bold;
         color: color($colors, blueMaterial) !important;
+        ion-icon {
+          color: color($colors, blueMaterial) !important;
+        }
       }
     }
-  }
-  a:nth-child(2) {
-    &.tab-button[aria-selected="true"] {
-      color: color($colors, greenMaterial) !important;
-      ion-icon {
+    a:nth-child(2) {
+      min-height: 75px !important;
+      &.tab-button[aria-selected="true"] {
         color: color($colors, greenMaterial) !important;
+        font-weight: bold;
+        ion-icon {
+          color: color($colors, greenMaterial) !important;
+        }
       }
     }
-  }
-  a:nth-child(3) {
-    &.tab-button[aria-selected="true"] {
-      color: color($colors, redMaterial) !important;
-      ion-icon {
+    a:nth-child(3) {
+      min-height: 75px !important;
+      &.tab-button[aria-selected="true"] {
         color: color($colors, redMaterial) !important;
+        font-weight: bold;
+        ion-icon {
+          color: color($colors, redMaterial) !important;
+        }
       }
     }
-  }
-  a:nth-child(4) {
-    &.tab-button[aria-selected="true"] {
-      color: color($colors, orangeMaterial) !important;
-      ion-icon {
+    a:nth-child(4) {
+      min-height: 75px !important;
+      &.tab-button[aria-selected="true"] {
         color: color($colors, orangeMaterial) !important;
+        font-weight: bold;
+        ion-icon {
+          color: color($colors, orangeMaterial) !important;
+        }
       }
     }
   }
@@ -149,16 +172,28 @@ ion-icon {
   &[class*="custom-arrow-right"] {
     mask-image: url(../assets/imgs/right-arrow.svg);
   }
+  &[class*="custom-hoy"] {
+    mask-image: url(../assets/imgs/random/medicine.svg);
+  }
+  &[class*="custom-progreso"] {
+    mask-image: url(../assets/imgs/random/progreso.svg);
+  }
+  &[class*="custom-informe"] {
+    mask-image: url(../assets/imgs/random/informe.svg);
+  }
+  &[class*="custom-doctor"] {
+    mask-image: url(../assets/imgs/random/doctor.svg);
+  }
 }
 
-.redMaterial{
-    color: #e53935;
+.redMaterial {
+  color: #e53935;
 }
 
-.greenMaterial{
-    color: #00897B;
+.greenMaterial {
+  color: #00897b;
 }
 
-.blueGrayLightMaterial{
-    color: #B0BEC5;
+.blueGrayLightMaterial {
+  color: #b0bec5;
 }

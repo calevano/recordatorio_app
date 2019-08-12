@@ -1,7 +1,11 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 import { ToastProvider } from '../../providers/toast/toast';
+
+import { DatabaseProvider } from '../../providers/database/database';
+import { HoyMedicamentoCrearPage } from '../hoy-medicamento-crear/hoy-medicamento-crear';
 
 @Component({
     selector: 'page-hoy-medicamento',
@@ -9,16 +13,22 @@ import { ToastProvider } from '../../providers/toast/toast';
 })
 export class HoyMedicamentoPage {
 
-    showAddMedicina: boolean = false;
-    isRealText: string = "";
-
     medicamentoForm: FormGroup;
+    hoyMedicamentoCrear = HoyMedicamentoCrearPage;
+
+    showOpciones: boolean = false;
+    showPregunta: boolean = false;
+    showFormulario: boolean = false;
+
+    medicamentos: any = [];
+    medicamentoTexto: string;
 
     constructor(
         public navCtrl: NavController,
         public navParams: NavParams,
         public toastProvider: ToastProvider,
         public formBuilder: FormBuilder,
+        public databaseProvider: DatabaseProvider,
     ) {
         this.medicamentoForm = this.formBuilder.group({
             name: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
@@ -31,39 +41,77 @@ export class HoyMedicamentoPage {
     }
 
     searchMedicamento(ev: any) {
-        console.log("ev:::", ev);
         let val = ev.target.value;
         if (val) {
-            console.log("length:::", val.length);
             console.log("searchMedicamento:::", val);
             if (val.length < 3) {
-                console.log();
-                this.isRealText = "Esconder";
-                this.showAddMedicina = false;
+                this.showOpciones = false;
             } else {
-                console.log("agregando ");
-                this.isRealText = "Mostrar";
-                this.showAddMedicina = false;
+                this.databaseProvider.searchMedicamento(val).then((res) => {
+                    console.log("getAllMedicamento:::res:::", res);
+                    if (res.length === 0) {
+                        this.showOpciones = true;
+                        this.showPregunta = true;
+                        this.medicamentos = [];
+                    } else {
+                        this.showOpciones = false;
+                        this.showPregunta = false;
+                        this.medicamentos = res;
+                        console.log("Listado de medicamentos:::", this.medicamentos);
+                    }
+                }).catch((err) => {
+                    console.log("getAllMedicamento:::err:::", err);
+                    this.toastProvider.showToast("error", "Porfavor intenta buscando de nuevo", "bottom");
+                });
             }
         } else {
-            this.isRealText = "";
-            this.showAddMedicina = false;
+            this.showOpciones = false;
+            this.showPregunta = false;
+            this.showFormulario = false;
+            this.medicamentos = [];
             console.log("no hay data");
         }
     }
 
-    searchCancel(ev: any) {
+    searchCancel(ev?: any) {
         console.log("onCancel:::");
+        this.showOpciones = false;
+        this.showPregunta = false;
+        this.showFormulario = false;
     }
 
     addMedicamento() {
-        if (!this.medicamentoForm.valid) {
-            this.toastProvider.showToast("dark", "Debes ingresar un nombre", 'bottom');
-        } else {
-            setTimeout(() => {
+        if (this.medicamentoForm.valid) {
+            console.log("medicamentoNuevo:::", this.medicamentoForm);
+            this.databaseProvider.insertMedicamento(this.medicamentoForm.value).then((res) => {
+                console.log("addMedicamento:::res:::", res);
                 this.toastProvider.showToast("success", "Se agrego el medicamento", 'bottom');
-            }, 500);
+                this.medicamentoForm.reset();
+                this.searchCancel();
+            }).catch((err) => {
+                console.log("addMedicamento:::err:::", err);
+                this.toastProvider.showToast("error", "No se pudo agregar. favor de intentarlo de nuevo", 'bottom');
+                this.searchCancel();
+            });
         }
+    }
+
+    mostrarFormulario() {
+        this.showPregunta = false;
+        this.showFormulario = true;
+        this.medicamentoForm = this.formBuilder.group({
+            name: [this.medicamentoTexto],
+        });
+        this.medicamentoTexto = "";
+    }
+
+    cancelarFormulario() {
+        this.showFormulario = false;
+        this.medicamentoTexto = "";
+    }
+
+    cancelar() {
+        this.navCtrl.pop();
     }
 
 }

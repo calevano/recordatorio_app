@@ -5,9 +5,10 @@
 </ion-header>
 
 <ion-content padding>
-    <p>Seleccione el año/mes para poder generar el informe y así pueda imprimirlo y mostrarle al médico en su siguiente cita.</p>
+    <p>Seleccione el año/mes para poder generar el informe y así pueda imprimirlo y mostrarle al médico en su siguiente
+        cita.</p>
     <div class="formSendEmail">
-        <form (ngSubmit)="sendEmail()">
+        <form [formGroup]="informeForm" novalidate="novalidate" (ngSubmit)="sendEmail()">
             <ion-grid class="selectAnioMes">
                 <ion-row>
                     <ion-col col-6 class="colLeft">
@@ -15,7 +16,7 @@
                         <ion-list>
                             <ion-item>
                                 <ion-label>Año</ion-label>
-                                <ion-select placeholder="Año" interface="popover" [(ngModel)]="data.anio" name="anio">
+                                <ion-select placeholder="Año" interface="popover" formControlName="anio">
                                     <ion-option value="2019">2019</ion-option>
                                     <ion-option value="2018">2018</ion-option>
                                 </ion-select>
@@ -27,7 +28,7 @@
                         <ion-list>
                             <ion-item>
                                 <ion-label>Mes</ion-label>
-                                <ion-select placeholder="Mes" interface="popover" [(ngModel)]="data.mes" name="mes">
+                                <ion-select placeholder="Mes" interface="popover" formControlName="mes">
                                     <ion-option value="1">Enero</ion-option>
                                     <ion-option value="2">Febrero</ion-option>
                                     <ion-option value="3">Marzo</ion-option>
@@ -52,17 +53,14 @@
                 <ion-list>
                     <ion-item>
                         <ion-icon name="mail" item-start></ion-icon>
-                        <ion-input type="email" placeholder="test@example.com" [(ngModel)]="data.email" name="email">
-                        </ion-input>
+                        <ion-input type="email" placeholder="test@example.com" formControlName="email"></ion-input>
                     </ion-item>
                 </ion-list>
             </div>
 
             <div>
-                <button ion-button color="redMaterial" type="submit" block *ngIf="!continue">Enviar</button>
-                <button ion-button color="redMaterial" block *ngIf="continue">
-                    <ion-spinner></ion-spinner>
-                </button>
+                <button ion-button [disabled]="!informeForm.valid" type="submit" color="redMaterial"
+                    block>Enviar</button>
             </div>
         </form>
     </div>

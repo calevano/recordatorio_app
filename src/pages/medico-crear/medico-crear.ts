@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { LoadingPage } from '../loading/loading';
 import { LoadingProvider } from '../../providers/loading/loading';
 import { ToastProvider } from '../../providers/toast/toast';
 
@@ -38,18 +37,10 @@ export class MedicoCrearPage {
         if (!this.addMedicoForm.valid) {
             this.toastProvider.showToast("dark", "Debes ingresar un nombre", 'bottom');
         } else {
-
             this.loadingProvider.preload("Agregando médico...");
             setTimeout(() => {
                 this.navCtrl.pop();
             }, 1400);
-
-            // setTimeout(() => {
-            //     this.navCtrl.setRoot(LoadingPage, {
-            //         message: 'Estamos guardando tu nombre, solo será unos segundos',
-            //         reference: 'addMedico'
-            //     });
-            // }, 500);
         }
     }
 

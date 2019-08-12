@@ -1,0 +1,55 @@
+page-modal-duracion-fecha {
+  ion-content {
+    ion-list {
+      &.fechaInicio {
+        margin-bottom: 0;
+        ion-item {
+          background: transparent !important;
+          padding-left: 0 !important;
+          .item-inner {
+            border-bottom: 1px solid #dedede !important;
+            padding-right: 0 !important;
+            ion-label {
+              color: #222 !important;
+            }
+          }
+        }
+      }
+      &.opcionDias {
+        margin-bottom: 0;
+        ion-item {
+          background: transparent !important;
+          padding-left: 0 !important;
+          ion-radio {
+            margin-right: 0 !important;
+          }
+        }
+      }
+      &.fechaFinal {
+        ion-item {
+          background: transparent !important;
+          padding-left: 0 !important;
+          .item-inner {
+            border-bottom: 1px solid #dedede !important;
+            padding-right: 0 !important;
+            ion-label {
+              color: #222 !important;
+            }
+          }
+        }
+      }
+    }
+    button {
+      margin-top: 1rem !important;
+      padding: 0 1em !important;
+      height: 2.8em !important;
+      font-weight: bold !important;
+      font-size: 1.8rem !important;
+      text-transform: initial !important;
+      border-radius: 5px !important;
+      span {
+        letter-spacing: 0.05em !important;
+      }
+    }
+  }
+}

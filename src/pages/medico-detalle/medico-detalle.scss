@@ -10,10 +10,11 @@ page-medico-detalle {
         ion-segment {
           height: 43px !important;
           ion-segment-button {
-            // text-transform: initial !important;
             border-color: #fff !important;
             color: #fff !important;
             font-size: 1.5rem !important;
+            font-family: "vagBold";
+            letter-spacing: 0.1em;
             border-bottom-width: 0px !important;
             &.segment-activated {
               border-bottom-width: 4px !important;
@@ -38,6 +39,7 @@ page-medico-detalle {
           font-weight: bold;
           margin-top: 1rem;
           margin-bottom: 0;
+          font-family: "vagBold";
         }
         h6 {
           margin-top: 0;
@@ -47,10 +49,15 @@ page-medico-detalle {
         margin-top: 2rem;
         button {
           box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1) !important;
-          &.item {
-            border-radius: 5px;
-          }
+          border-radius: 5px;
           .item-inner {
+            .input-wrapper {
+              ion-label {
+                h2 {
+                  margin-top: 0 !important;
+                }
+              }
+            }
             ion-icon {
               color: rgba(71, 77, 84, 1);
             }

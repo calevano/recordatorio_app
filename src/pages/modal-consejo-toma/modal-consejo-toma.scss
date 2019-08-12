@@ -1,0 +1,25 @@
+page-modal-consejo-toma {
+  ion-content {
+    ion-list {
+      ion-item {
+        background: transparent !important;
+        padding-left: 0 !important;
+        ion-radio{
+            margin-right: 0 !important;
+        }
+      }
+    }
+    button {
+      margin-top: 1rem !important;
+      padding: 0 1em !important;
+      height: 2.8em !important;
+      font-weight: bold !important;
+      font-size: 1.8rem !important;
+      text-transform: initial !important;
+      border-radius: 5px !important;
+      span {
+        letter-spacing: 0.05em !important;
+      }
+    }
+  }
+}

@@ -45,7 +45,7 @@ export class MyApp {
 
     private createDatabase() {
         this.sqlite.create({
-            name: 'data.db',
+            name: 'recordatorio.db',
             location: 'default'
         }).then((db) => {
             this.databaseProvider.setDatabase(db);

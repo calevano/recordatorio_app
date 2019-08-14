@@ -11,31 +11,68 @@
 </ion-header>
 
 <ion-content padding>
+    <div class="opcionDias">
+        <ion-list radio-group [(ngModel)]="data.opcionDia">
+            <ion-item>
+                <ion-label>Solo un día</ion-label>
+                <ion-radio value="0" (ionSelect)="selectOptionDay(0)"></ion-radio>
+            </ion-item>
+            <ion-item>
+                <ion-label>Para "x" días</ion-label>
+                <ion-radio value="1" (ionSelect)="selectOptionDay(1)"></ion-radio>
+            </ion-item>
+        </ion-list>
+    </div>
+    <div *ngIf="showOnlyDate" class="showOnlyDate">
+        <p><strong>Solo un día</strong> indica que tendrá que seleccionar una fecha para la toma.</p>
+        <ion-list>
+            <ion-item>
+                <ion-label>Seleccione Fecha -></ion-label>
+                <ion-datetime [(ngModel)]="data.only" displayFormat="DD-MM-YYYY" min="{{ dateOnly }}" name="only"
+                    cancelText="Cancelar" doneText="OK" placeholder="{{ dateOnly }}"></ion-datetime>
+            </ion-item>
+        </ion-list>
+    </div>
+    <div *ngIf="showSelectDate" class="showSelectDate">
+        <p><strong>Para "x" días</strong> indica que tendrá que indicar la cantidad de días seleccionando una
+            <strong>fecha de inicio</strong> y una <strong>fecha final</strong>.</p>
+        <p>Porfavor tenga en cuenta lo siguiente:</p>
+        <p><strong>Fecha inicio:</strong> Indica desde cuando inicia la toma.</p>
+        <p><strong>Fecha final:</strong> Indica desde cuando finaliza la toma.</p>
+        <ion-grid>
+            <ion-row>
+                <ion-col col-6 class="colLeft">
+                    <p>Fecha inicio</p>
+                    <ion-list>
+                        <ion-item>
+                            <ion-datetime [(ngModel)]="data.inicio" displayFormat="DD-MM-YYYY" min="{{ dateInit }}"
+                                name="inicio" cancelText="Cancelar" doneText="OK" placeholder="{{ dateInit }}"
+                                (ionChange)="changeDateInit($event)">
+                            </ion-datetime>
+                        </ion-item>
+                    </ion-list>
+                </ion-col>
+                <ion-col col-6 class="colRight">
+                    <p>Fecha final</p>
+                    <ion-list>
+                        <ion-item>
+                            <ion-datetime [(ngModel)]="data.final" displayFormat="DD-MM-YYYY" min="{{ dateEnd }}"
+                                name="final" cancelText="Cancelar" doneText="OK" placeholder="{{ dateEnd }}">
+                            </ion-datetime>
+                        </ion-item>
+                    </ion-list>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
 
-    <ion-list class="fechaInicio">
-        <ion-item>
-            <ion-label>Fecha de inicio</ion-label>
-            <ion-datetime [(ngModel)]="data.inicio" displayFormat="DD-MM-YYYY" min="{{ dateInit }}" name="inicio"
-                cancelText="Cancelar" doneText="OK" placeholder="Fecha de inicio"></ion-datetime>
-        </ion-item>
-    </ion-list>
-    <ion-list class="opcionDias" radio-group [(ngModel)]="data.dias">
-        <ion-item>
-            <ion-label>Hasta la fecha</ion-label>
-            <ion-radio value="0" (ionSelect)="showDateEnd(0)"></ion-radio>
-        </ion-item>
-        <ion-item>
-            <ion-label>Para "X" días</ion-label>
-            <ion-radio value="1" (ionSelect)="showDateEnd(1)"></ion-radio>
-        </ion-item>
-    </ion-list>
-    <ion-list class="fechaFinal" *ngIf="showEndDate">
-        <ion-item>
-            <ion-label>Fecha final</ion-label>
-            <ion-datetime [(ngModel)]="data.final" displayFormat="DD-MM-YYYY" min="{{ dateEnd }}" name="final"
-                cancelText="Cancelar" doneText="OK" placeholder="Fecha final"></ion-datetime>
-        </ion-item>
-    </ion-list>
+        <!-- <ion-list class="fechaFinal">
+            <ion-item>
+                <ion-label>Fecha final</ion-label>
+                <ion-datetime [(ngModel)]="data.final" displayFormat="DD-MM-YYYY" min="{{ dateEnd }}" name="final"
+                    cancelText="Cancelar" doneText="OK" placeholder="Fecha final"></ion-datetime>
+            </ion-item>
+        </ion-list> -->
+    </div>
     <button ion-button color="blueMaterial" block type="button" (click)="selectOpcion()">
         Continuar
     </button>

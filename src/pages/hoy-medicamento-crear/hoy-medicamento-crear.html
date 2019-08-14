@@ -14,12 +14,12 @@
             <ion-item (click)="modalConsejo()">
                 <h2>Consejos de la toma</h2>
                 <p *ngIf="note==''">Presiona aquí</p>
-                <p *ngIf="note!=''">{{ note }}</p>
+                <p *ngIf="note!==''">{{ note }}</p>
             </ion-item>
             <ion-item (click)="modalDuracion()">
                 <h2>Duración</h2>
-                <p *ngIf="day_duration==''">Presiona aquí</p>
-                <p *ngIf="day_duration!=''">{{ day_duration }}</p>
+                <p *ngIf="dayDurationText==''">Presiona aquí</p>
+                <p *ngIf="dayDurationText!==''">{{ dayDurationText }}</p>
             </ion-item>
         </ion-list>
     </div>

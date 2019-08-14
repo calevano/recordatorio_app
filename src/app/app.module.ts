@@ -65,7 +65,10 @@ import { IonicStorageModule } from '@ionic/storage';
         BrowserModule,
         HttpClientModule,
         IonicModule.forRoot(MyApp, { tabsHideOnSubPages: true, platforms: { ios: { backButtonText: 'Atrás' } } }),
-        IonicStorageModule.forRoot()
+        IonicStorageModule.forRoot({
+            name: '__mydbrecordatorio',
+            driverOrder: ['indexeddb', 'sqlite', 'websql']
+        })
     ],
     bootstrap: [IonicApp],
     entryComponents: [

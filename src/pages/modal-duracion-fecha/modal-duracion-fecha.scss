@@ -1,22 +1,8 @@
 page-modal-duracion-fecha {
   ion-content {
-    ion-list {
-      &.fechaInicio {
-        margin-bottom: 0;
-        ion-item {
-          background: transparent !important;
-          padding-left: 0 !important;
-          .item-inner {
-            border-bottom: 1px solid #dedede !important;
-            padding-right: 0 !important;
-            ion-label {
-              color: #222 !important;
-            }
-          }
-        }
-      }
-      &.opcionDias {
-        margin-bottom: 0;
+    .opcionDias {
+      margin-bottom: 0;
+      ion-list {
         ion-item {
           background: transparent !important;
           padding-left: 0 !important;
@@ -25,20 +11,95 @@ page-modal-duracion-fecha {
           }
         }
       }
-      &.fechaFinal {
+    }
+    .showOnlyDate {
+      ion-list {
         ion-item {
           background: transparent !important;
           padding-left: 0 !important;
           .item-inner {
-            border-bottom: 1px solid #dedede !important;
             padding-right: 0 !important;
             ion-label {
+              font-size: 1.4rem;
               color: #222 !important;
+            }
+            ion-datetime {
+              background-color: #fff;
+              border-radius: 5px;
+              box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1) !important;
+              padding-left: 12px;
             }
           }
         }
       }
     }
+    .showSelectDate {
+      p {
+        &:nth-child(2) {
+          margin-bottom: 0;
+        }
+        &:nth-child(3) {
+          margin: 0;
+        }
+        &:nth-child(4) {
+          margin-top: 0;
+        }
+      }
+      ion-grid {
+        padding: 0;
+        ion-row {
+          ion-col {
+            padding-top: 0;
+            padding-bottom: 0;
+            &.colLeft {
+              padding-left: 0;
+              p {
+                margin-top: 0;
+                text-align: center;
+                color: rgba(71, 77, 84, 1);
+              }
+              ion-list {
+                ion-item {
+                  padding-left: 0 !important;
+                  border-radius: 5px;
+                  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1) !important;
+                  .item-inner {
+                    padding-right: 0 !important;
+                    ion-datetime {
+                      width: 100%;
+                      text-align: center;
+                    }
+                  }
+                }
+              }
+            }
+            &.colRight {
+              padding-right: 0;
+              p {
+                margin-top: 0;
+                text-align: center;
+                color: rgba(71, 77, 84, 1);
+              }
+              ion-list {
+                ion-item {
+                  border-radius: 5px;
+                  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1) !important;
+                  padding-left: 0 !important;
+                  .item-inner {
+                    padding-right: 0 !important;
+                    ion-datetime {
+                      width: 100%;
+                      text-align: center;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
     button {
       margin-top: 1rem !important;
       padding: 0 1em !important;

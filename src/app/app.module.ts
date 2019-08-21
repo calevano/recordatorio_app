@@ -22,6 +22,7 @@ import { MedicoDetallePage } from '../pages/medico-detalle/medico-detalle';
 import { MedicoCrearPage } from '../pages/medico-crear/medico-crear';
 import { MedicoCitaPage } from '../pages/medico-cita/medico-cita';
 import { MedicoCitaCrearPage } from '../pages/medico-cita-crear/medico-cita-crear';
+import { MedicoCitaEditarPage } from '../pages/medico-cita-editar/medico-cita-editar';
 import { ModalConsejoTomaPage } from '../pages/modal-consejo-toma/modal-consejo-toma';
 import { ModalDuracionFechaPage } from '../pages/modal-duracion-fecha/modal-duracion-fecha';
 
@@ -58,6 +59,7 @@ import { IonicStorageModule } from '@ionic/storage';
         MedicoCrearPage,
         MedicoCitaPage,
         MedicoCitaCrearPage,
+        MedicoCitaEditarPage,
         ModalConsejoTomaPage,
         ModalDuracionFechaPage
     ],
@@ -90,6 +92,7 @@ import { IonicStorageModule } from '@ionic/storage';
         MedicoCrearPage,
         MedicoCitaPage,
         MedicoCitaCrearPage,
+        MedicoCitaEditarPage,
         ModalConsejoTomaPage,
         ModalDuracionFechaPage
     ],

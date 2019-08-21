@@ -48,6 +48,62 @@ export class DatabaseProvider {
         return this.db.executeSql(sql, []);
     }
 
+    async getAllCitas(doctor: any) {
+        let sql = 'SELECT * FROM doctor_appointments WHERE doctor_id=? ORDER BY day DESC, hour DESC';
+        try {
+            const response = await this.db.executeSql(sql, [doctor.id]);
+            let citas = [];
+            for (let index = 0; index < response.rows.length; index++) {
+                citas.push(response.rows.item(index));
+            }
+            return Promise.resolve(citas);
+        }
+        catch (error) {
+            return await Promise.reject(error);
+        }
+    }
+
+    insertCita(cita: any) {
+        console.log("cita:::", cita);
+        let sql = 'INSERT INTO doctor_appointments(day,hour,question,doctor_id) VALUES(?,?,?,?)';
+        return this.db.executeSql(sql, [cita.day, cita.hour, cita.question, cita.doctor_id]);
+    }
+
+    updateCita(cita: any) {
+        let sql = 'UPDATE doctor_appointments SET day=?, hour=?, question=?, doctor_id=? WHERE id=?';
+        return this.db.executeSql(sql, [cita.day, cita.hour, cita.question, cita.doctor_id, cita.id]);
+    }
+
+    deleteCita(id: any) {
+        let sql = 'DELETE FROM doctor_appointments WHERE id=?';
+        return this.db.executeSql(sql, [id]);
+    }
+
+    async getAllMedicos() {
+        let sql = 'SELECT * FROM doctors';
+        try {
+            const response = await this.db.executeSql(sql, []);
+            let doctors = [];
+            for (let index = 0; index < response.rows.length; index++) {
+                doctors.push(response.rows.item(index));
+            }
+            return Promise.resolve(doctors);
+        }
+        catch (error) {
+            return await Promise.reject(error);
+        }
+    }
+
+    insertMedico(medico: any) {
+        let sql = 'INSERT INTO doctors(names,prefix,speciality,phone,email) VALUES(?,?,?,?,?)';
+        return this.db.executeSql(sql, [medico.nombres, medico.prefix, medico.especialidad, medico.telefono, medico.email]);
+    }
+
+    deleteMedico(id: any) {
+        let sql = 'DELETE FROM doctors WHERE id=?';
+        return this.db.executeSql(sql, [id]);
+    }
+
     async getAllMedicamento() {
         let sql = 'SELECT * FROM medicines';
         try {

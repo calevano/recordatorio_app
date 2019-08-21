@@ -4,6 +4,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoadingProvider } from '../../providers/loading/loading';
 import { ToastProvider } from '../../providers/toast/toast';
+import { DatabaseProvider } from '../../providers/database/database';
 
 @Component({
     selector: 'page-medico-crear',
@@ -20,12 +21,14 @@ export class MedicoCrearPage {
         public toastProvider: ToastProvider,
         public loadingProvider: LoadingProvider,
         public formBuilder: FormBuilder,
+        public databaseProvider: DatabaseProvider,
     ) {
         this.addMedicoForm = this.formBuilder.group({
             nombres: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
             especialidad: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
-            telefono: ['', Validators.compose([Validators.required, Validators.minLength(9)])],
-            email: ['', Validators.compose([Validators.required, Validators.pattern(this.emailPattern)])],
+            telefono: ['', Validators.compose([Validators.minLength(9)])],
+            email: ['', Validators.compose([Validators.pattern(this.emailPattern)])],
+            prefix: ['dr', Validators.compose([Validators.required])],
         });
     }
 
@@ -34,13 +37,20 @@ export class MedicoCrearPage {
     }
 
     saveMedico() {
-        if (!this.addMedicoForm.valid) {
-            this.toastProvider.showToast("dark", "Debes ingresar un nombre", 'bottom');
-        } else {
-            this.loadingProvider.preload("Agregando médico...");
-            setTimeout(() => {
+        if (this.addMedicoForm.valid) {
+            this.loadingProvider.show("Agregando médico...");
+            console.log("saveMedico:::value:::", this.addMedicoForm.value);
+            this.databaseProvider.insertMedico(this.addMedicoForm.value).then((res) => {
+                console.log("saveMedico:::res:::", res);
+                this.toastProvider.show("success", "Se agrego al médico correctamente", 'bottom');
+                this.addMedicoForm.reset();
+                this.loadingProvider.hide(0);
                 this.navCtrl.pop();
-            }, 1400);
+            }).catch((err) => {
+                console.log("saveMedico:::err:::", err);
+                this.toastProvider.show("error", "No se pudo agregar. favor de intentarlo de nuevo", 'bottom');
+                this.loadingProvider.hide(0);
+            });
         }
     }
 

@@ -13,11 +13,6 @@ export class InformePage {
 
     informeForm: FormGroup;
     emailPattern = "[a-zA-Z0-9._-]+[@]+[a-zA-Z0-9.-]+[.]+[a-zA-Z]{2,6}";
-    // data: any = {
-    //     anio: '',
-    //     mes: '',
-    //     email: ''
-    // };
 
     constructor(
         public navCtrl: NavController,
@@ -36,14 +31,10 @@ export class InformePage {
         console.log('ionViewDidLoad InformePage');
     }
 
-    // ionViewDidLeave() {
-    //     this.informeForm.email = '';
-    // }
-
     sendEmail() {
 
         if (!this.informeForm.valid) {
-            this.toastProvider.showToast("dark", "Todos los campos son requeridos", 'bottom');
+            this.toastProvider.show("dark", "Todos los campos son requeridos", 'bottom');
         } else {
             this.navCtrl.setRoot(LoadingPage, {
                 message: 'Estamos preparando todo para enviar el informe al correo ',
@@ -53,20 +44,6 @@ export class InformePage {
                 }
             });
         }
-
-        // if (this.data.anio === "" ||
-        //     this.data.mes === "" ||
-        //     this.data.email === "") {
-        //     this.toastProvider.showToast("warning", "TODOS LOS CAMPOS SON REQUERIDOS");
-        // } else {
-        //     this.navCtrl.setRoot(LoadingPage, {
-        //         message: 'Estamos preparando todo para enviar el informe al correo ',
-        //         reference: 'informe',
-        //         parameters: {
-        //             email: this.informeForm.value.email
-        //         }
-        //     });
-        // }
     }
 
 }

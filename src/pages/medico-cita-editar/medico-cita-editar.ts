@@ -9,10 +9,10 @@ import moment from 'moment';
 import "moment/locale/es";
 
 @Component({
-    selector: 'page-medico-cita-crear',
-    templateUrl: 'medico-cita-crear.html',
+    selector: 'page-medico-cita-editar',
+    templateUrl: 'medico-cita-editar.html',
 })
-export class MedicoCitaCrearPage {
+export class MedicoCitaEditarPage {
 
     data: any = {
         fecha: '',
@@ -20,7 +20,8 @@ export class MedicoCitaCrearPage {
         pregunta: ''
     };
     date: any;
-    medico: any;
+    hour: any;
+    cita: any;
 
     constructor(
         public navCtrl: NavController,
@@ -29,41 +30,46 @@ export class MedicoCitaCrearPage {
         public databaseProvider: DatabaseProvider,
         public toastProvider: ToastProvider,
     ) {
-        this.medico = navParams.get('medico');
-        this.date = moment().format('YYYY-MM-DD');
+        this.cita = navParams.get('cita');
+        console.log("thisCita:::", this.cita);
+        this.date = moment(this.cita.day).format('YYYY-MM-DD');
         this.data.fecha = this.date;
-        this.data.hora = moment().format('HH:mm');
+        console.log("thisCita:::", this.date);
+        this.hour = moment(this.cita.hour, "HH:mm").format('HH:mm');
+        this.data.hora = this.hour;
+        console.log("thisCita:::", this.hour);
         console.log("this.data.hora:::", this.data.hora);
+        this.data.pregunta = this.cita.question;
     }
 
     ionViewDidLoad() {
-        console.log('ionViewDidLoad MedicoCitaCrearPage');
+        console.log('ionViewDidLoad MedicoCitaEditarPage');
     }
 
-    saveCita() {
+    editCita() {
         if (this.data.fecha === "" ||
             this.data.hora === "" ||
             this.data.pregunta === "") {
             console.log("vacio");
             this.toastProvider.show("error", "Necesita completar todos los campos...", 'bottom');
         } else {
-            this.loadingProvider.show("Agregando cita...");
+            this.loadingProvider.show("Editando cita...");
             let cita_: any = [];
             cita_['day'] = this.data.fecha;
             cita_['hour'] = this.data.hora;
             cita_['question'] = this.data.pregunta;
-            cita_['doctor_id'] = this.medico.id;
+            cita_['doctor_id'] = this.cita.doctor_id;
 
             console.log("cita:::", cita_);
 
-            this.databaseProvider.insertCita(cita_).then((res) => {
-                console.log("saveCita:::res:::", res);
-                this.toastProvider.show("success", "Se agrego la cita correctamente", 'bottom');
+            this.databaseProvider.updateCita(cita_).then((res) => {
+                console.log("editCita:::res:::", res);
+                this.toastProvider.show("success", "Se edito la cita correctamente", 'bottom');
                 this.loadingProvider.hide(0);
                 this.navCtrl.pop();
             }).catch((err) => {
-                console.log("saveCita:::err:::", err);
-                this.toastProvider.show("error", "No se pudo agregar. favor de intentarlo de nuevo", 'bottom');
+                console.log("editCita:::err:::", err);
+                this.toastProvider.show("error", "No se pudo editar. favor de intentarlo de nuevo", 'bottom');
                 this.loadingProvider.hide(0);
             });
         }

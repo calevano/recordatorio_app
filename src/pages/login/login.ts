@@ -33,7 +33,7 @@ export class LoginPage {
 
     ingresarApp() {
         if (!this.loginForm.valid) {
-            this.toastProvider.showToast("dark", "Debes ingresar un nombre", 'bottom');
+            this.toastProvider.show("dark", "Debes ingresar un nombre", 'bottom');
         } else {
             setTimeout(() => {
                 this.storageProvider.setStorageLogin(this.loginForm.value.nombre);
@@ -41,7 +41,7 @@ export class LoginPage {
                     message: 'Estamos guardando tu nombre, solo será unos segundos',
                     reference: 'login'
                 });
-            }, 500);
+            }, 100);
         }
     }
 

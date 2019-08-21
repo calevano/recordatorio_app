@@ -40,7 +40,7 @@ export class HoyPage {
             }
         }).catch((err) => {
             console.log("getAllRecordatorio:::err:::", err);
-            this.toastProvider.showToast("error", "Porfavor intenta buscando de nuevo", "bottom");
+            this.toastProvider.show("error", "Porfavor intenta buscando de nuevo", "bottom");
         });
     }
 

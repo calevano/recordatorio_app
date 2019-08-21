@@ -112,50 +112,51 @@ ion-app .nav-decor {
 
 ion-tabs {
   .tabbar {
-    background: #fff !important;
-    a:nth-child(1) {
+    background: color($colors, blanco) !important;
+    a {
       min-height: 75px !important;
+      ion-icon {
+        font-size: 3rem !important;
+      }
       &.tab-button[aria-selected="true"] {
-        font-weight: bold;
-        color: color($colors, blueMaterial) !important;
         ion-icon {
+        }
+      }
+      &:nth-child(1) {
+        &.tab-button[aria-selected="true"] {
           color: color($colors, blueMaterial) !important;
+          ion-icon {
+            color: color($colors, blueMaterial) !important;
+          }
         }
       }
-    }
-    a:nth-child(2) {
-      min-height: 75px !important;
-      &.tab-button[aria-selected="true"] {
-        color: color($colors, greenMaterial) !important;
-        font-weight: bold;
-        ion-icon {
+      &:nth-child(2) {
+        &.tab-button[aria-selected="true"] {
           color: color($colors, greenMaterial) !important;
+          ion-icon {
+            color: color($colors, greenMaterial) !important;
+          }
         }
       }
-    }
-    a:nth-child(3) {
-      min-height: 75px !important;
-      &.tab-button[aria-selected="true"] {
-        color: color($colors, redMaterial) !important;
-        font-weight: bold;
-        ion-icon {
+      &:nth-child(3) {
+        &.tab-button[aria-selected="true"] {
           color: color($colors, redMaterial) !important;
+          ion-icon {
+            color: color($colors, redMaterial) !important;
+          }
         }
       }
-    }
-    a:nth-child(4) {
-      min-height: 75px !important;
-      &.tab-button[aria-selected="true"] {
-        color: color($colors, orangeMaterial) !important;
-        font-weight: bold;
-        ion-icon {
+      &:nth-child(4) {
+        &.tab-button[aria-selected="true"] {
           color: color($colors, orangeMaterial) !important;
+          ion-icon {
+            color: color($colors, orangeMaterial) !important;
+          }
         }
       }
     }
   }
 }
-
 ion-icon {
   &[class*="custom-"] {
     mask-size: contain;
@@ -184,16 +185,36 @@ ion-icon {
   &[class*="custom-doctor"] {
     mask-image: url(../assets/imgs/random/doctor.svg);
   }
+  &[class*="custom-cita"] {
+    mask-image: url(../assets/imgs/random/cita.svg);
+  }
 }
 
 .redMaterial {
-  color: #e53935;
+  color: color($colors, redMaterial);
+}
+
+.orangeMaterial {
+  color: color($colors, orangeMaterial);
 }
 
 .greenMaterial {
-  color: #00897b;
+  color: color($colors, greenMaterial);
 }
 
 .blueGrayLightMaterial {
-  color: #b0bec5;
+  color: color($colors, blueGrayLightMaterial);
+}
+
+.alert-wrapper {
+  border-radius: 4px;
+  box-shadow: 0px 0px 10px 15px rgba(0, 0, 0, 0.1) !important;
+  .alert-head {
+    h2 {
+      &.alert-title {
+        font-family: "vagBold";
+        letter-spacing: 0.08rem;
+      }
+    }
+  }
 }

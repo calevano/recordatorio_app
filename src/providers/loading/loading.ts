@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LoadingController } from 'ionic-angular';
 
@@ -8,7 +7,6 @@ export class LoadingProvider {
     private loading: any;
 
     constructor(
-        public http: HttpClient,
         public loadingCtrl: LoadingController,
     ) {
         console.log('Hello LoadingProvider Provider');

@@ -14,7 +14,7 @@ page-medico-detalle {
             color: #fff !important;
             font-size: 1.5rem !important;
             font-family: "vagBold";
-            letter-spacing: 0.1em;
+            letter-spacing: 0.05em;
             border-bottom-width: 0px !important;
             &.segment-activated {
               border-bottom-width: 4px !important;
@@ -34,15 +34,20 @@ page-medico-detalle {
           width: 35%;
           margin: 0 auto;
           border: 0.6rem solid #fff;
+          ion-icon {
+            font-size: 6rem;
+          }
         }
         h5 {
           font-weight: bold;
           margin-top: 1rem;
           margin-bottom: 0;
           font-family: "vagBold";
+          text-transform: uppercase;
         }
         h6 {
           margin-top: 0;
+          text-transform: capitalize;
         }
       }
       ion-list {
@@ -66,35 +71,93 @@ page-medico-detalle {
       }
     }
     .citasToolbar {
-      ion-card {
-        border-radius: 5px !important;
-        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1) !important;
-        ion-card-header {
-          border-bottom: 1px solid #f3eeee;
-          text-transform: uppercase;
-          font-weight: bold;
-          padding-left: 0;
-          padding-right: 0;
-          padding-top: 12px !important;
-          padding-bottom: 12px !important;
-          margin-left: 16px;
-          margin-right: 16px;
-          h4 {
-            display: none;
-            font-weight: bold;
-          }
-          p {
-            font-weight: bold;
-            i {
-              float: right;
+      .emptyCitas {
+        height: 100%;
+        ion-grid {
+          height: 100%;
+          ion-row {
+            height: 100%;
+            ion-col {
+              text-align: center;
+              ion-icon {
+                //   color: color($colors, blueMaterial) !important;
+                font-size: 10rem;
+              }
+              p {
+                font-size: 2rem;
+                //   font-weight: bold;
+              }
             }
           }
         }
-        ion-card-content {
-          padding-top: 8px !important;
-          padding-bottom: 8px !important;
+      }
+      .listadoCitas {
+        ion-card {
+          border-radius: 5px !important;
+          box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1) !important;
+          margin: 10px 0 !important;
+          width: 100%;
+          ion-card-header {
+            border-bottom: 1px solid #f3eeee;
+            text-transform: uppercase;
+            font-weight: bold;
+            padding-left: 0;
+            padding-right: 0;
+            padding-top: 0.8rem !important;
+            padding-bottom: 0.8rem !important;
+            margin-left: 16px;
+            margin-right: 16px;
+            h4 {
+              display: none;
+              font-weight: bold;
+            }
+            p {
+              font-weight: bold;
+              i {
+                position: relative;
+                top: 0.6rem;
+                &.float-right {
+                  float: right;
+                }
+              }
+            }
+          }
+          ion-card-content {
+            padding-top: 8px !important;
+            padding-bottom: 8px !important;
+            textarea {
+              width: calc(100% - 10px);
+              border: 0;
+              border-radius: 0;
+              background: transparent;
+            }
+          }
         }
       }
     }
+  }
+}
+
+.action-sheets-cita {
+  .action-sheet-title {
+    padding: 10px 16px 5px;
+  }
+  .action-sheet-sub-title {
+    padding: 5px 16px 10px;
+  }
+  button {
+    span {
+      ion-icon {
+        margin-right: 2rem !important;
+      }
+    }
+  }
+
+  .ion-md-create {
+    color: color($colors, greenMaterial);
+  }
+  .action-sheet-cancel ion-icon,
+  .action-sheet-destructive ion-icon {
+    color: color($colors, redMaterial);
   }
 }

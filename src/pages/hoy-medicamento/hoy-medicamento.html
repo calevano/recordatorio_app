@@ -28,8 +28,8 @@
             </ion-grid>
         </div>
         <div class="formMedicamento" [hidden]="!showFormulario">
-            <p>Por favor escribe el <strong>Nombre de medicamento</strong> y presiona en <strong>"Guardar"</strong>
-                cuando termines de escribir el medicamento para que puedas usarlo más adelante.</p>
+            <p>Por favor escribe el <strong>"Nombre de medicamento"</strong> y cuando termines de escribir el
+                medicamento presiona en <strong>"Guardar"</strong> para que puedas usarlo más adelante.</p>
             <form [formGroup]="medicamentoForm" (ngSubmit)="addMedicamento()">
                 <ion-list>
                     <ion-item>

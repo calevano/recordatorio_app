@@ -33,8 +33,9 @@ page-login {
           }
           ion-icon {
             font-size: 2.5rem;
+            margin-bottom: 4px !important;
+            margin-top: 4px !important;
             color: rgba(71, 77, 84, 1);
-            // color: color($colors, dark);
           }
           .item-inner {
             box-shadow: none !important;
@@ -42,6 +43,8 @@ page-login {
             border-bottom-color: rgba(71, 77, 84, 0.5) !important;
             ion-input {
               input {
+                margin-bottom: 4px;
+                margin-top: 4px;
                 &::placeholder {
                   color: #cfd8dc;
                 }
@@ -58,7 +61,7 @@ page-login {
       }
 
       button {
-        margin-top: 1rem;
+        margin-top: 2rem;
         color: #f4f4f4;
         padding: 0 1em;
         height: 2.8em;

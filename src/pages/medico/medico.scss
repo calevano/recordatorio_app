@@ -1,25 +1,51 @@
 page-medico {
   ion-content {
-    ion-list {
-      button {
-        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1) !important;
-        border-radius: 5px;
-        ion-icon {
-          color: color($colors, orangeMaterial) !important;
-        }
-        .item-inner {
-          margin-left: 1rem !important;
-          ion-label {
-            h2 {
-              margin-top: 0 !important;
-              font-family: "vagBold";
+    .ionSpinner {
+        text-align: center;
+    }
+    .emptyMedico {
+      height: 100%;
+      ion-grid {
+        height: 100%;
+        ion-row {
+          height: 100%;
+          ion-col {
+            text-align: center;
+            ion-icon {
+              font-size: 10rem;
             }
             p {
+              font-size: 2.5rem;
             }
           }
-          ion-note {
-            font-size: 1.2rem;
-            align-self: center;
+        }
+      }
+    }
+    .listadoMedico {
+      ion-list {
+        button {
+          box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1) !important;
+          border-radius: 5px;
+          ion-icon {
+            color: color($colors, orangeMaterial) !important;
+            font-size: 3.5rem !important;
+            margin-right: 0 !important;
+          }
+          .item-inner {
+            margin-left: 1rem !important;
+            ion-label {
+              h2 {
+                margin-top: 0 !important;
+                text-transform: uppercase;
+              }
+              p {
+                text-transform: capitalize;
+              }
+            }
+            ion-note {
+              font-size: 1.2rem;
+              align-self: center;
+            }
           }
         }
       }

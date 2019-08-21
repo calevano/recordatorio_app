@@ -7,11 +7,31 @@
 <ion-content padding>
     <div class="profileMedico">
         <div class="photoMedico">
-            <img src="assets/imgs/intro/doctor.svg" alt="MedicalLogo">
+            <ion-icon name="custom-doctor" color="orangeMaterial"></ion-icon>
         </div>
     </div>
     <div class="formMedico">
         <form [formGroup]="addMedicoForm" novalidate="novalidate" (ngSubmit)="saveMedico()">
+            <ion-grid class="gridForm">
+                <ion-row radio-group formControlName="prefix">
+                    <ion-col col-6>
+                        <ion-list>
+                            <ion-item>
+                                <ion-radio value="dr" color="orangeMaterial"></ion-radio>
+                                <ion-label>Dr.</ion-label>
+                            </ion-item>
+                        </ion-list>
+                    </ion-col>
+                    <ion-col col-6>
+                        <ion-list>
+                            <ion-item>
+                                <ion-label>Dra.</ion-label>
+                                <ion-radio value="dra" color="orangeMaterial"></ion-radio>
+                            </ion-item>
+                        </ion-list>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
             <ion-list>
                 <ion-item>
                     <ion-icon name="person" item-start></ion-icon>
@@ -24,6 +44,7 @@
                     <ion-input placeholder="Especialidad" type="text" formControlName="especialidad"></ion-input>
                 </ion-item>
             </ion-list>
+
             <ion-list>
                 <ion-item>
                     <ion-icon name="call" item-start></ion-icon>

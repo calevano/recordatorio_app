@@ -61,7 +61,7 @@ export class HoyMedicamentoPage {
                     }
                 }).catch((err) => {
                     console.log("getAllMedicamento:::err:::", err);
-                    this.toastProvider.showToast("error", "Porfavor intenta buscando de nuevo", "bottom");
+                    this.toastProvider.show("error", "Porfavor intenta buscando de nuevo", "bottom");
                 });
             }
         } else {
@@ -85,12 +85,12 @@ export class HoyMedicamentoPage {
             console.log("medicamentoNuevo:::", this.medicamentoForm);
             this.databaseProvider.insertMedicamento(this.medicamentoForm.value).then((res) => {
                 console.log("addMedicamento:::res:::", res);
-                this.toastProvider.showToast("success", "Se agrego el medicamento", 'bottom');
+                this.toastProvider.show("success", "Se agrego el medicamento", 'bottom');
                 this.medicamentoForm.reset();
                 this.searchCancel();
             }).catch((err) => {
                 console.log("addMedicamento:::err:::", err);
-                this.toastProvider.showToast("error", "No se pudo agregar. favor de intentarlo de nuevo", 'bottom');
+                this.toastProvider.show("error", "No se pudo agregar. favor de intentarlo de nuevo", 'bottom');
                 this.searchCancel();
             });
         }

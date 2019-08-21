@@ -11,19 +11,36 @@
         </button>
     </ion-fab>
 
-    <ion-list>
-        <button ion-item [navPush]="medicoDetalle">
-            <ion-icon name="custom-doctor" item-start></ion-icon>
-            <h2>Dr. Gabriel Levano Soto</h2>
-            <p>Gastroenterólogo</p>
+    <!-- <ion-fab left bottom>
+        <button ion-fab color="redMaterial" (click)="deleteMedico(2)">
+            <ion-icon name="trash"></ion-icon>
         </button>
-    </ion-list>
-    <ion-list>
-        <button ion-item [navPush]="medicoDetalle">
-            <ion-icon name="custom-doctor" item-start></ion-icon>
-            <h2>Dr. Gabriel Levano Soto</h2>
-            <p>Gastroenterólogo</p>
-        </button>
-    </ion-list>
+    </ion-fab> -->
+    <div class="ionSpinner" *ngIf="loadInit">
+        <ion-spinner color="orangeMaterial"></ion-spinner>
+    </div>
+
+    <div *ngIf="!loadInit">
+        <div class="emptyMedico" *ngIf="medicos.length==0">
+            <ion-grid>
+                <ion-row justify-content-center align-items-center>
+                    <ion-col>
+                        <ion-icon name="custom-doctor" color="orangeMaterial"></ion-icon>
+                        <p>Aún no haz agregado medico(s) comienza agregando uno</p>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </div>
+
+        <div class="listadoMedico" *ngIf="medicos.length>0">
+            <ion-list *ngFor="let medico of medicos">
+                <button ion-item [navPush]="medicoDetalle" [navParams]="{'medico': medico}">
+                    <ion-icon name="custom-doctor" item-start></ion-icon>
+                    <h2>{{ medico.prefix }}. {{ medico.names }}</h2>
+                    <p>{{ medico.speciality }}</p>
+                </button>
+            </ion-list>
+        </div>
+    </div>
 
 </ion-content>

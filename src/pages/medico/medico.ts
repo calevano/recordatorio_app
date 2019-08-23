@@ -12,11 +12,13 @@ import { ToastProvider } from '../../providers/toast/toast';
 export class MedicoPage {
 
     loadInit: boolean = true;
+    medicosZero: boolean = true;
 
     medicoDetalle = MedicoDetallePage;
     medicoCrear = MedicoCrearPage;
 
     medicos: any = [];
+    searchMedicos: any = [];
 
     constructor(
         public navCtrl: NavController,
@@ -34,6 +36,10 @@ export class MedicoPage {
         this.getAllMedicos();
     }
 
+    getMedicosSearch() {
+        this.medicos = this.searchMedicos;
+    }
+
     async deleteMedico(id_: any) {
         await this.databaseProvider.deleteMedico(id_).then((res) => {
             console.log("deleteMedico:::res:::", res);
@@ -46,19 +52,32 @@ export class MedicoPage {
     async getAllMedicos() {
         this.medicos = [];
         this.loadInit = true;
-        await this.databaseProvider.getAllMedicos().then((res) => {
+        await this.databaseProvider.getAllMedicos().then((response) => {
             this.loadInit = false;
-            console.log("getAllMedicos:::res:::", res);
-            if (res.length === 0) {
+            console.log("getAllMedicos:::response:::", response);
+            if (response.length === 0) {
                 this.medicos = [];
+                this.medicosZero = true;
             } else {
-                this.medicos = res;
+                this.medicosZero = false;
+                this.medicos = response;
+                this.searchMedicos = response;
                 console.log("Listado de medicos:::", this.medicos);
             }
         }).catch((err) => {
             console.log("getAllMedicos:::err:::", err);
             this.toastProvider.show("error", "Porfavor intenta buscando de nuevo", "bottom");
         });
+    }
+
+    getItems(ev: any) {
+        this.getMedicosSearch();
+        let val = ev.target.value;
+        if (val && val.trim() != '') {
+            this.medicos = this.medicos.filter((item: any) => {
+                return (item.names.toLowerCase().indexOf(val.toLowerCase()) > -1);
+            });
+        }
     }
 
 }

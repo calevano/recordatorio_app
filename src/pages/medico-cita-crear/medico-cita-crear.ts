@@ -32,7 +32,7 @@ export class MedicoCitaCrearPage {
         this.medico = navParams.get('medico');
         this.date = moment().format('YYYY-MM-DD');
         this.data.fecha = this.date;
-        this.data.hora = moment().format('HH:mm');
+        // this.data.hora = moment().format('HH:mm');
         console.log("this.data.hora:::", this.data.hora);
     }
 

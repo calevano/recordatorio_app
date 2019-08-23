@@ -2,9 +2,14 @@
     <ion-navbar color="orangeMaterial">
         <ion-title>MÉDICO</ion-title>
     </ion-navbar>
+    <ion-toolbar>
+        <ion-searchbar *ngIf="searchMedicos.length>1 && medicosZero!==false" placeholder="Filtre nombre"
+            (ionInput)="getItems($event)">
+        </ion-searchbar>
+    </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
     <ion-fab right bottom>
         <button ion-fab color="orangeMaterial" [navPush]="medicoCrear">
             <ion-icon name="add"></ion-icon>
@@ -16,12 +21,13 @@
             <ion-icon name="trash"></ion-icon>
         </button>
     </ion-fab> -->
+
     <div class="ionSpinner" *ngIf="loadInit">
         <ion-spinner color="orangeMaterial"></ion-spinner>
     </div>
 
     <div *ngIf="!loadInit">
-        <div class="emptyMedico" *ngIf="medicos.length==0">
+        <div class="emptyMedico" *ngIf="medicos.length==0 && medicosZero">
             <ion-grid>
                 <ion-row justify-content-center align-items-center>
                     <ion-col>
@@ -32,9 +38,10 @@
             </ion-grid>
         </div>
 
-        <div class="listadoMedico" *ngIf="medicos.length>0">
-            <ion-list *ngFor="let medico of medicos">
-                <button ion-item [navPush]="medicoDetalle" [navParams]="{'medico': medico}">
+        <div class="listadoMedico" *ngIf="medicos.length>0 && medicosZero!==false">
+            <ion-list>
+                <button ion-item *ngFor="let medico of medicos" [navPush]="medicoDetalle"
+                    [navParams]="{'medico': medico}">
                     <ion-icon name="custom-doctor" item-start></ion-icon>
                     <h2>{{ medico.prefix }}. {{ medico.names }}</h2>
                     <p>{{ medico.speciality }}</p>

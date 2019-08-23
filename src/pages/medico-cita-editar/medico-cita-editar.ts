@@ -31,44 +31,38 @@ export class MedicoCitaEditarPage {
         public toastProvider: ToastProvider,
     ) {
         this.cita = navParams.get('cita');
-        console.log("thisCita:::", this.cita);
         this.date = moment(this.cita.day).format('YYYY-MM-DD');
         this.data.fecha = this.date;
-        console.log("thisCita:::", this.date);
         this.hour = moment(this.cita.hour, "HH:mm").format('HH:mm');
         this.data.hora = this.hour;
-        console.log("thisCita:::", this.hour);
-        console.log("this.data.hora:::", this.data.hora);
         this.data.pregunta = this.cita.question;
     }
 
     ionViewDidLoad() {
-        console.log('ionViewDidLoad MedicoCitaEditarPage');
+        console.log('MedicoCitaEditarPage ionViewDidLoad');
     }
 
     editCita() {
         if (this.data.fecha === "" ||
             this.data.hora === "" ||
             this.data.pregunta === "") {
-            console.log("vacio");
             this.toastProvider.show("error", "Necesita completar todos los campos...", 'bottom');
         } else {
             this.loadingProvider.show("Editando cita...");
             let cita_: any = [];
+            cita_['id'] = this.cita.id;
             cita_['day'] = this.data.fecha;
             cita_['hour'] = this.data.hora;
             cita_['question'] = this.data.pregunta;
             cita_['doctor_id'] = this.cita.doctor_id;
-
             console.log("cita:::", cita_);
-
             this.databaseProvider.updateCita(cita_).then((res) => {
-                console.log("editCita:::res:::", res);
+                console.log("MedicoCitaEditarPage:::editCita:::res:::", res);
                 this.toastProvider.show("success", "Se edito la cita correctamente", 'bottom');
                 this.loadingProvider.hide(0);
                 this.navCtrl.pop();
             }).catch((err) => {
-                console.log("editCita:::err:::", err);
+                console.log("MedicoCitaEditarPage::::editCita:::err:::", err);
                 this.toastProvider.show("error", "No se pudo editar. favor de intentarlo de nuevo", 'bottom');
                 this.loadingProvider.hide(0);
             });

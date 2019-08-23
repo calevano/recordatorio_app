@@ -80,7 +80,7 @@ export class DatabaseProvider {
     }
 
     async getAllMedicos() {
-        let sql = 'SELECT * FROM doctors';
+        let sql = 'SELECT * FROM doctors ORDER BY id DESC';
         try {
             const response = await this.db.executeSql(sql, []);
             let doctors = [];

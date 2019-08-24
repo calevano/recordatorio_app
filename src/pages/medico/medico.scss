@@ -1,14 +1,11 @@
 page-medico {
   ion-header {
-    ion-navbar {
-    }
     ion-toolbar {
       ion-searchbar {
         &.searchbar-md {
           padding-left: 0;
           padding-top: 0;
           padding-right: 0;
-          // padding-bottom: 2rem;
           .searchbar-input-container {
             input {
               box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1) !important;

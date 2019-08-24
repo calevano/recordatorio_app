@@ -3,9 +3,9 @@
         <ion-title *ngIf="!isSearchbarOpened">
             DETALLE MÉDICO
         </ion-title>
-        <ion-searchbar *ngIf="isSearchbarOpened" showCancelButton="true" placeholder="Filtre cita"
-            (ionInput)="getCitas($event)" (ionCancel)="cancelSearch()"></ion-searchbar>
-        <ion-buttons end *ngIf="isButtonSearchVisibility">
+        <ion-searchbar #searchBar *ngIf="isSearchbarOpened" showCancelButton="true" placeholder="Filtre cita"
+            (ionInput)="getItems($event)" (ionCancel)="cancelSearch()"></ion-searchbar>
+        <ion-buttons end *ngIf="isButtonSearchVisibility && searchCitas.length>1">
             <button *ngIf="!isSearchbarOpened" ion-button icon-only (click)="openedSearch()">
                 <ion-icon name="search"></ion-icon>
             </button>
@@ -29,12 +29,11 @@
 
 <ion-content>
     <ion-fab right bottom [hidden]="!fabCitas">
-        <button ion-fab color="orangeMaterial" [navPush]="medicoCitaCrear" [navParams]="{'medico': medico}">
+        <button ion-fab color="orangeMaterial" (click)="medicoCreate(medico)">
             <ion-icon name="add"></ion-icon>
         </button>
     </ion-fab>
-
-    <ion-slides #mySlider pager (ionSlideWillChange)="onSlideChanged($event)" (ionSlideAutoplay)="slideAutoplay()">
+    <ion-slides (ionSlideDidChange)="slideDidChanged($event)" (ionSlideWillChange)="slideWillChanged($event)">
         <ion-slide class="perfilToolbar">
             <div text-center class="profileMedico">
                 <div class="photoMedico">
@@ -57,7 +56,7 @@
             </ion-list>
         </ion-slide>
         <ion-slide class="citasToolbar">
-            <div class="emptyCitas" *ngIf="citas.length==0">
+            <div class="emptyCitas" *ngIf="citas.length==0 && citasZero">
                 <ion-grid>
                     <ion-row justify-content-center align-items-center>
                         <ion-col>
@@ -67,7 +66,7 @@
                     </ion-row>
                 </ion-grid>
             </div>
-            <div class="listadoCitas" *ngIf="citas.length>0">
+            <div class="listadoCitas" *ngIf="citas.length>0 && !citasZero">
                 <ion-card *ngFor="let cita of citas">
                     <ion-card-header>
                         <h4>Tienes una nueva cita</h4>
@@ -84,7 +83,4 @@
             </div>
         </ion-slide>
     </ion-slides>
-
-
-
 </ion-content>

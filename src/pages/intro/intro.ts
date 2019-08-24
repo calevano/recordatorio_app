@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, Slides } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 
 import { StorageProvider } from '../../providers/storage/storage';
@@ -10,7 +10,7 @@ import { StorageProvider } from '../../providers/storage/storage';
 })
 export class IntroPage {
 
-    @ViewChild('slides') slider: any;
+    @ViewChild(Slides) slider: Slides;
     
     previus: boolean = false;
     next: boolean = true;

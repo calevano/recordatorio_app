@@ -17,8 +17,9 @@ import { CallNumber } from '@ionic-native/call-number';
 export class MedicoDetallePage {
 
     @ViewChild('textAreaResize') textAreaResize: ElementRef;
+    @ViewChild('searchBar') myInput;
     @ViewChild(Content) content: Content;
-    @ViewChild('mySlider') slider: Slides;
+    @ViewChild(Slides) slider: Slides;
 
     previus: boolean = false;
     next: boolean = true;
@@ -30,11 +31,13 @@ export class MedicoDetallePage {
 
     page: string = "perfil";
     fabCitas: boolean = false;
+    citasZero: boolean = true;
 
     medico: any;
     citas: any = [];
+    searchCitas: any = [];
 
-    medicoCitaCrear = MedicoCitaCrearPage;
+    // medicoCitaCrear = MedicoCitaCrearPage;
 
     constructor(
         public platform: Platform,
@@ -56,38 +59,32 @@ export class MedicoDetallePage {
 
     ionViewWillEnter() {
         console.log('ionViewWillEnter MedicoDetallePage');
-
-        let init_one = this.slider.isBeginning();
-        console.log("init_one:::", init_one);
-        let current_one = this.slider.getActiveIndex();
-        console.log("current_one:::", current_one);
-        let end_one = this.slider.isEnd();
-        console.log("end_one:::", end_one);
-
-        if (end_one) {
-            console.log("IF END:::", end_one);
-            this.slider.lockSwipes(false);
-            this.slider.lockSwipeToPrev(false);
-            this.slider.lockSwipeToNext(true);
-        }
-
         this.getCitas();
     }
 
     ionViewDidEnter() {
-        this.slideAutoplay();
+        console.log('ionViewDidEnter MedicoDetallePage');
+    }
+
+    medicoCreate(medico_: any) {
+        this.navCtrl.push(MedicoCitaCrearPage, { 'medico': medico_ });
     }
 
     async getCitas() {
         this.citas = [];
-        await this.databaseProvider.getAllCitas(this.medico).then((res) => {
-            console.log("getCitas:::res:::", res);
-            if (res.length === 0) {
+        await this.databaseProvider.getAllCitas(this.medico).then((response) => {
+            console.log("getCitas:::response:::", response);
+            if (response.length === 0) {
                 this.citas = [];
+                this.citasZero = true;
             } else {
-                this.citas = res;
+                this.citas = response;
+                this.searchCitas = response;
+                this.citasZero = false;
                 console.log("Listado de citas:::", this.citas);
             }
+
+            console.log("SearchCitas:::", this.searchCitas);
         }).catch((err) => {
             console.log("getCitas:::err:::", err);
             this.toastProvider.show("error", "Porfavor intenta buscando de nuevo", "bottom");
@@ -101,6 +98,20 @@ export class MedicoDetallePage {
                 .catch(() => console.log('Error LLamada'));
         } else {
             this.toastProvider.show("dark", "MEDIANTE LA APP " + numero_, 'bottom');
+        }
+    }
+
+    getCitasSearch() {
+        this.citas = this.searchCitas;
+    }
+
+    getItems(ev: any) {
+        this.getCitasSearch();
+        let val = ev.target.value;
+        if (val && val.trim() != '') {
+            this.citas = this.citas.filter((item: any) => {
+                return (item.question.toLowerCase().indexOf(val.toLowerCase()) > -1);
+            });
         }
     }
 
@@ -185,20 +196,22 @@ export class MedicoDetallePage {
 
     cancelSearch() {
         this.isSearchbarOpened = false;
+        this.fabCitas = true;
         this.content.resize();
     }
 
     openedSearch() {
         this.isSearchbarOpened = true;
+        this.fabCitas = false;
         this.content.resize();
-    }
-
-    slideAutoplay() {
-        this.slider.lockSwipeToPrev(true);
+        setTimeout(() => {
+            this.myInput.setFocus();
+        }, 150);
     }
 
     segmentChanged(ev: any) {
-        console.log("ev:::", ev);
+        console.log("segmentChanged:::ev:::", ev.value);
+        this.fabCitas = false;
         switch (ev.value) {
             case 'perfil':
                 this.fabCitas = false;
@@ -213,42 +226,45 @@ export class MedicoDetallePage {
         }
     }
 
-    onSlideChanged(ev: any) {
-        console.log('Slide changed:::', ev);
+    slideDidChanged(ev: any) {
+        this.fabCitas = false;
+        console.log('slideDidChanged:::ev:::', ev);
+        let currentIndex = this.slider.getActiveIndex();
+        this.fabCitas = (currentIndex === 0) ? false : true;
+        console.log('slideDidChanged:::currentIndex:::', currentIndex);
+    }
+
+    slideWillChanged(ev: any) {
+        this.fabCitas = false;
+        console.log('slideWillChanged:::ev:::', ev);
         let init_ = this.slider.isBeginning();
-        console.log("init_:::", init_);
+        console.log('slideWillChanged:::init_:::', init_);
         let current_ = this.slider.getActiveIndex();
-        console.log("current_:::", current_);
+        console.log('slideWillChanged:::current_:::', current_);
         let end_ = this.slider.isEnd();
-        console.log("end_:::", end_);
+        console.log('slideWillChanged:::end_:::', end_);
+
         if (init_) {
-            console.log("IF INIT");
             this.slider.lockSwipeToPrev(true);
             this.slider.lockSwipeToNext(false);
         }
 
         if (current_ === 0) {
-            console.log("IF CURRENT:::", current_);
             this.slider.lockSwipeToNext(false);
             this.isButtonSearchVisibility = false;
             this.fabCitas = false;
             this.page = 'perfil';
             this.cancelSearch();
         } else {
-            console.log("ELSE CURRENT:::", current_);
             this.slider.lockSwipes(false);
-            // if (current_ === 1) {
             this.isButtonSearchVisibility = true;
             this.fabCitas = true;
             this.page = 'citas';
-            // }
         }
 
         if (end_) {
-            console.log("IF END:::", end_);
             this.slider.lockSwipeToPrev(false);
             this.slider.lockSwipeToNext(true);
         }
     }
-
 }

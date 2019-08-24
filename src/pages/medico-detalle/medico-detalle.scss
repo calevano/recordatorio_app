@@ -2,9 +2,22 @@ page-medico-detalle {
   ion-header {
     ion-navbar {
       &.hiddenBack {
-        button {
-          &.back-button {
-            display: none !important;
+        &.toolbar-md {
+          padding-left: 0 !important;
+          padding-right: 0 !important;
+          padding-bottom: 0 !important;
+          button {
+            &.back-button {
+              display: none !important;
+            }
+          }
+          .toolbar-background {
+            background-color: #fff !important;
+          }
+          ion-searchbar {
+            input {
+              box-shadow: none !important;
+            }
           }
         }
       }
@@ -41,7 +54,7 @@ page-medico-detalle {
     ion-slides {
       ion-slide {
         &.swiper-slide {
-            text-align: inherit !important;
+          text-align: inherit !important;
         }
         .slide-zoom {
           height: 100%;
@@ -106,12 +119,10 @@ page-medico-detalle {
             ion-col {
               text-align: center;
               ion-icon {
-                //   color: color($colors, blueMaterial) !important;
                 font-size: 10rem;
               }
               p {
                 font-size: 2rem;
-                //   font-weight: bold;
               }
             }
           }
@@ -190,5 +201,18 @@ page-medico-detalle {
   .action-sheet-cancel ion-icon,
   .action-sheet-destructive ion-icon {
     color: color($colors, redMaterial);
+  }
+}
+
+.searchbar-md .searchbar-search-icon {
+  display: none !important;
+}
+.searchbar-md .searchbar-md-cancel {
+  display: block !important;
+  span {
+    ion-icon {
+      color: color($colors, orangeMaterial) !important;
+      font-size: 1.5em !important;
+    }
   }
 }

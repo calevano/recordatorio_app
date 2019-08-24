@@ -34,23 +34,22 @@ h4,
 h5,
 h6 {
   font-family: "vagLight";
-  //   color: #222;
 }
 
 *::-webkit-scrollbar {
   display: none;
 }
 
-// .platform-android {
-//   .ion-page {
-//     ion-header {
-//       ion-navbar {
-//         padding-top: calc(env(safe-area-inset-top) + 24px) !important;
-//         min-height: calc(76px + env(safe-area-inset-top)) !important;
-//       }
-//     }
-//   }
-// }
+.platform-android {
+  .ion-page {
+    ion-header {
+      ion-navbar {
+        padding-top: calc(env(safe-area-inset-top) + 26px) !important;
+        min-height: calc(76px + env(safe-area-inset-top)) !important;
+      }
+    }
+  }
+}
 
 ion-header {
   ion-navbar {
@@ -117,10 +116,6 @@ ion-tabs {
       min-height: 75px !important;
       ion-icon {
         font-size: 3rem !important;
-      }
-      &.tab-button[aria-selected="true"] {
-        ion-icon {
-        }
       }
       &:nth-child(1) {
         &.tab-button[aria-selected="true"] {

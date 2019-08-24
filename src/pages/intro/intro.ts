@@ -11,8 +11,7 @@ import { StorageProvider } from '../../providers/storage/storage';
 export class IntroPage {
 
     @ViewChild('slides') slider: any;
-
-    keyIntro: string = 'recordatorio_intro';
+    
     previus: boolean = false;
     next: boolean = true;
 

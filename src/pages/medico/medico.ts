@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavController, NavParams, Content } from 'ionic-angular';
 import { MedicoDetallePage } from '../medico-detalle/medico-detalle';
 import { MedicoCrearPage } from '../medico-crear/medico-crear';
 import { DatabaseProvider } from '../../providers/database/database';
@@ -10,6 +10,8 @@ import { ToastProvider } from '../../providers/toast/toast';
     templateUrl: 'medico.html',
 })
 export class MedicoPage {
+
+    @ViewChild(Content) content: Content;
 
     loadInit: boolean = true;
     medicosZero: boolean = true;
@@ -62,6 +64,7 @@ export class MedicoPage {
                 this.medicosZero = false;
                 this.medicos = response;
                 this.searchMedicos = response;
+                this.content.resize();
                 console.log("Listado de medicos:::", this.medicos);
             }
         }).catch((err) => {

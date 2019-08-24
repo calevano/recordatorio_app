@@ -1,5 +1,5 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { NavController, NavParams, Platform, ActionSheetController, AlertController } from 'ionic-angular';
+import { NavController, NavParams, Platform, ActionSheetController, AlertController, Content, Slides } from 'ionic-angular';
 
 import { MedicoCitaCrearPage } from '../medico-cita-crear/medico-cita-crear';
 import { MedicoCitaEditarPage } from '../medico-cita-editar/medico-cita-editar';
@@ -17,9 +17,19 @@ import { CallNumber } from '@ionic-native/call-number';
 export class MedicoDetallePage {
 
     @ViewChild('textAreaResize') textAreaResize: ElementRef;
+    @ViewChild(Content) content: Content;
+    @ViewChild('mySlider') slider: Slides;
 
-    directionType: string = "perfil";
-    fabCitas: boolean = true;
+    previus: boolean = false;
+    next: boolean = true;
+
+    selectedSegment: string;
+
+    isSearchbarOpened: boolean = false;
+    isButtonSearchVisibility: boolean = false;
+
+    page: string = "perfil";
+    fabCitas: boolean = false;
 
     medico: any;
     citas: any = [];
@@ -46,11 +56,26 @@ export class MedicoDetallePage {
 
     ionViewWillEnter() {
         console.log('ionViewWillEnter MedicoDetallePage');
+
+        let init_one = this.slider.isBeginning();
+        console.log("init_one:::", init_one);
+        let current_one = this.slider.getActiveIndex();
+        console.log("current_one:::", current_one);
+        let end_one = this.slider.isEnd();
+        console.log("end_one:::", end_one);
+
+        if (end_one) {
+            console.log("IF END:::", end_one);
+            this.slider.lockSwipes(false);
+            this.slider.lockSwipeToPrev(false);
+            this.slider.lockSwipeToNext(true);
+        }
+
         this.getCitas();
     }
 
-    resize() {
-        this.textAreaResize.nativeElement.style.height = this.textAreaResize.nativeElement.scrollHeight + 'px';
+    ionViewDidEnter() {
+        this.slideAutoplay();
     }
 
     async getCitas() {
@@ -67,13 +92,6 @@ export class MedicoDetallePage {
             console.log("getCitas:::err:::", err);
             this.toastProvider.show("error", "Porfavor intenta buscando de nuevo", "bottom");
         });
-    }
-
-    hiddenCitasFab() {
-        this.fabCitas = true;
-    }
-    showCitasFab() {
-        this.fabCitas = false;
     }
 
     callMedico(numero_: any) {
@@ -163,6 +181,74 @@ export class MedicoDetallePage {
             ]
         });
         alert.present();
+    }
+
+    cancelSearch() {
+        this.isSearchbarOpened = false;
+        this.content.resize();
+    }
+
+    openedSearch() {
+        this.isSearchbarOpened = true;
+        this.content.resize();
+    }
+
+    slideAutoplay() {
+        this.slider.lockSwipeToPrev(true);
+    }
+
+    segmentChanged(ev: any) {
+        console.log("ev:::", ev);
+        switch (ev.value) {
+            case 'perfil':
+                this.fabCitas = false;
+                this.isButtonSearchVisibility = false;
+                this.slider.slideTo(0);
+                break;
+            case 'citas':
+                this.fabCitas = true;
+                this.isButtonSearchVisibility = true;
+                this.slider.slideTo(1);
+                break;
+        }
+    }
+
+    onSlideChanged(ev: any) {
+        console.log('Slide changed:::', ev);
+        let init_ = this.slider.isBeginning();
+        console.log("init_:::", init_);
+        let current_ = this.slider.getActiveIndex();
+        console.log("current_:::", current_);
+        let end_ = this.slider.isEnd();
+        console.log("end_:::", end_);
+        if (init_) {
+            console.log("IF INIT");
+            this.slider.lockSwipeToPrev(true);
+            this.slider.lockSwipeToNext(false);
+        }
+
+        if (current_ === 0) {
+            console.log("IF CURRENT:::", current_);
+            this.slider.lockSwipeToNext(false);
+            this.isButtonSearchVisibility = false;
+            this.fabCitas = false;
+            this.page = 'perfil';
+            this.cancelSearch();
+        } else {
+            console.log("ELSE CURRENT:::", current_);
+            this.slider.lockSwipes(false);
+            // if (current_ === 1) {
+            this.isButtonSearchVisibility = true;
+            this.fabCitas = true;
+            this.page = 'citas';
+            // }
+        }
+
+        if (end_) {
+            console.log("IF END:::", end_);
+            this.slider.lockSwipeToPrev(false);
+            this.slider.lockSwipeToNext(true);
+        }
     }
 
 }

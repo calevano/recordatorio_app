@@ -2,9 +2,8 @@
     <ion-navbar color="orangeMaterial">
         <ion-title>MÉDICO</ion-title>
     </ion-navbar>
-    <ion-toolbar>
-        <ion-searchbar *ngIf="searchMedicos.length>1 && medicosZero!==false" placeholder="Filtre nombre"
-            (ionInput)="getItems($event)">
+    <ion-toolbar *ngIf="searchMedicos.length>1 && !medicosZero">
+        <ion-searchbar placeholder="Filtre nombre" (ionInput)="getItems($event)">
         </ion-searchbar>
     </ion-toolbar>
 </ion-header>
@@ -38,7 +37,7 @@
             </ion-grid>
         </div>
 
-        <div class="listadoMedico" *ngIf="medicos.length>0 && medicosZero!==false">
+        <div class="listadoMedico" *ngIf="medicos.length>0 && !medicosZero">
             <ion-list>
                 <button ion-item *ngFor="let medico of medicos" [navPush]="medicoDetalle"
                     [navParams]="{'medico': medico}">

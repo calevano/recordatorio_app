@@ -19,50 +19,45 @@ page-medico-crear {
       }
     }
     .formMedico {
-      form {
-        ion-list {
-          margin-bottom: 10px;
-          ion-item {
-            border-top: 0 !important;
-            border-bottom: 0 !important;
-            padding-left: 0;
-            background-color: transparent !important;
+      ion-list {
+        margin-bottom: 10px;
+        ion-item {
+          border-top: 0 !important;
+          border-bottom: 0 !important;
+          padding-left: 0;
+          background-color: transparent !important;
+          box-shadow: none !important;
+          &.input-has-focus:last-child {
             box-shadow: none !important;
-            &.input-has-focus:last-child {
-              box-shadow: none !important;
-            }
-            ion-icon {
-              font-size: 2.5rem;
-              color: rgba(71, 77, 84, 1);
-              margin-right: 5px;
-            }
-            .item-inner {
-              margin-left: 0 !important;
-              .input-wrapper {
-                border-bottom: 1px solid rgba(71, 77, 84, 0.3) !important;
-              }
+          }
+          ion-icon {
+            font-size: 2.5rem;
+            color: rgba(71, 77, 84, 1);
+            margin-right: 5px;
+          }
+          .item-inner {
+            margin-left: 0 !important;
+            .input-wrapper {
+              border-bottom: 1px solid rgba(71, 77, 84, 0.3) !important;
             }
           }
         }
-        ion-grid {
-          &.gridForm {
-            ion-row {
-              ion-col {
-                ion-list {
-                  ion-item {
-                    .item-inner {
-                      margin-right: 1rem;
-                      padding-left: 1rem;
-                      border-bottom: 1px solid rgba(71, 77, 84, 0.3) !important;
-                      .input-wrapper {
-                        border-bottom: 0 !important;
-                      }
-                      ion-radio {
-                        margin-right: 0;
-                      }
-                      ion-label {
-                        // color: #cfd8dc;
-                      }
+      }
+      ion-grid {
+        &.gridForm {
+          ion-row {
+            ion-col {
+              ion-list {
+                ion-item {
+                  .item-inner {
+                    margin-right: 1rem;
+                    padding-left: 1rem;
+                    border-bottom: 1px solid rgba(71, 77, 84, 0.3) !important;
+                    .input-wrapper {
+                      border-bottom: 0 !important;
+                    }
+                    ion-radio {
+                      margin-right: 0;
                     }
                   }
                 }
@@ -70,19 +65,19 @@ page-medico-crear {
             }
           }
         }
+      }
 
-        button {
-          margin-top: 1rem;
-          color: #f4f4f4;
-          padding: 0 1em;
-          height: 2.8em;
-          font-weight: bold;
-          font-size: 1.8rem;
-          text-transform: initial;
-          border-radius: 5px;
-          span {
-            letter-spacing: 0.05em;
-          }
+      button {
+        margin-top: 1rem;
+        color: #f4f4f4;
+        padding: 0 1em;
+        height: 2.8em;
+        font-weight: bold;
+        font-size: 1.8rem;
+        text-transform: initial;
+        border-radius: 5px;
+        span {
+          letter-spacing: 0.05em;
         }
       }
     }

@@ -1,123 +1,90 @@
 <ion-header>
-    <ion-navbar color="orangeMaterial">
-        <ion-title>DETALLE MÉDICO</ion-title>
+    <ion-navbar color="orangeMaterial" [ngClass]="isSearchbarOpened ? 'hiddenBack' : ''">
+        <ion-title *ngIf="!isSearchbarOpened">
+            DETALLE MÉDICO
+        </ion-title>
+        <ion-searchbar *ngIf="isSearchbarOpened" showCancelButton="true" placeholder="Filtre cita"
+            (ionInput)="getCitas($event)" (ionCancel)="cancelSearch()"></ion-searchbar>
+        <ion-buttons end *ngIf="isButtonSearchVisibility">
+            <button *ngIf="!isSearchbarOpened" ion-button icon-only (click)="openedSearch()">
+                <ion-icon name="search"></ion-icon>
+            </button>
+        </ion-buttons>
     </ion-navbar>
-    <ion-toolbar no-border-top no-border>
-        <ion-segment [(ngModel)]="directionType">
-            <ion-segment-button value="perfil" (click)="hiddenCitasFab()">
-                Perfil
+    <ion-toolbar no-border-top no-border *ngIf="!isSearchbarOpened">
+        <ion-segment [(ngModel)]="page" (ionChange)="segmentChanged($event)">
+            <ion-segment-button value="perfil">
+                <span>
+                    Perfil
+                </span>
             </ion-segment-button>
-            <ion-segment-button value="citas" (click)="showCitasFab()">
-                Citas
+            <ion-segment-button value="citas">
+                <span>
+                    Citas
+                </span>
             </ion-segment-button>
         </ion-segment>
     </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-    <ion-fab right bottom [hidden]="fabCitas">
+<ion-content>
+    <ion-fab right bottom [hidden]="!fabCitas">
         <button ion-fab color="orangeMaterial" [navPush]="medicoCitaCrear" [navParams]="{'medico': medico}">
             <ion-icon name="add"></ion-icon>
         </button>
     </ion-fab>
-    <div>
-        <div [ngSwitch]="directionType">
 
-            <div *ngSwitchCase="'perfil'" class="perfilToolbar">
-                <div text-center class="profileMedico">
-                    <div class="photoMedico">
-                        <ion-icon name="custom-doctor" color="orangeMaterial"></ion-icon>
-                    </div>
-                    <h5>{{ medico.prefix }}. {{ medico.names }}</h5>
-                    <h6>{{ medico.speciality }}</h6>
+    <ion-slides #mySlider pager (ionSlideWillChange)="onSlideChanged($event)" (ionSlideAutoplay)="slideAutoplay()">
+        <ion-slide class="perfilToolbar">
+            <div text-center class="profileMedico">
+                <div class="photoMedico">
+                    <ion-icon name="custom-doctor" color="orangeMaterial"></ion-icon>
                 </div>
-                <ion-list *ngIf="medico.phone">
-                    <button ion-item text-wrap>
-                        <h2>{{ medico.phone }}</h2>
-                        <ion-icon name="call" item-end (click)="callMedico(medico.phone)"></ion-icon>
-                    </button>
-                </ion-list>
-                <ion-list *ngIf="medico.email">
-                    <button ion-item text-wrap>
-                        <h2>{{ medico.email }}</h2>
-                        <ion-icon name="mail" item-end (click)="sendEmailMedico(medico.email)"></ion-icon>
-                    </button>
-                </ion-list>
+                <h5>{{ medico.prefix }}. {{ medico.names }}</h5>
+                <h6>{{ medico.speciality }}</h6>
             </div>
-            <div *ngSwitchCase="'citas'" class="citasToolbar">
-
-                <div class="emptyCitas" *ngIf="citas.length==0">
-                    <ion-grid>
-                        <ion-row justify-content-center align-items-center>
-                            <ion-col>
-                                <ion-icon name="custom-cita" color="orangeMaterial"></ion-icon>
-                                <p>Aún no haz agregado cita(s) comienza agregando uno</p>
-                            </ion-col>
-                        </ion-row>
-                    </ion-grid>
-                </div>
-                <div class="listadoCitas" *ngIf="citas.length>0">
-                    <ion-card *ngFor="let cita of citas">
-                        <ion-card-header>
-                            <h4>Tienes una nueva cita</h4>
-                            <p>
-                                <i class="material-icons redMaterial">alarm</i>
-                                {{ cita.day}} {{ cita.hour }}
-                                <i class="material-icons redMaterial float-right"
-                                    (click)="optionCita(cita)">more_vert</i>
-                            </p>
-                        </ion-card-header>
-                        <ion-card-content>
-
-                            <ion-textarea autosize readonly rows="1" disabled value="{{ cita.question }}">
-                            </ion-textarea>
-                            <!-- <textarea #textAreaResize id="textAreaResize"
-                                (keyup)="resize()">{{ cita.question }}</textarea> -->
-                            <!-- <div [innerHTML]="cita.question"></div> -->
-                        </ion-card-content>
-                    </ion-card>
-                    <!-- <ion-card>
-                        <ion-card-header>
-                            <h4>Tienes una nueva cita</h4>
-                            <p>2019-07-30 09:00 <i class="material-icons redMaterial">alarm</i></p>
-                        </ion-card-header>
-                        <ion-card-content>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque rerum, unde, vitae, nam
-                                aut
-                                sapiente veniam nihil error aspernatur repellat hic magni! Architecto, earum in ut
-                                eligendi
-                                non tenetur totam!</p>
-                        </ion-card-content>
-                    </ion-card>
-                    <ion-card>
-                        <ion-card-header>
-                            <h4>Tienes una nueva cita</h4>
-                            <p>2019-07-30 09:00 <i class="material-icons greenMaterial">alarm</i></p>
-                        </ion-card-header>
-                        <ion-card-content>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque rerum, unde, vitae, nam
-                                aut
-                                sapiente veniam nihil error aspernatur repellat hic magni! Architecto, earum in ut
-                                eligendi
-                                non tenetur totam!</p>
-                        </ion-card-content>
-                    </ion-card>
-                    <ion-card>
-                        <ion-card-header>
-                            <h4>Tienes una nueva cita</h4>
-                            <p>2019-07-30 09:00 <i class="material-icons blueGrayLightMaterial">alarm</i></p>
-                        </ion-card-header>
-                        <ion-card-content>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque rerum, unde, vitae, nam
-                                aut
-                                sapiente veniam nihil error aspernatur repellat hic magni! Architecto, earum in ut
-                                eligendi
-                                non tenetur totam!</p>
-                        </ion-card-content>
-                    </ion-card> -->
-                </div>
+            <ion-list *ngIf="medico.phone">
+                <button ion-item text-wrap>
+                    <h2>{{ medico.phone }}</h2>
+                    <ion-icon name="call" item-end (click)="callMedico(medico.phone)"></ion-icon>
+                </button>
+            </ion-list>
+            <ion-list *ngIf="medico.email">
+                <button ion-item text-wrap>
+                    <h2>{{ medico.email }}</h2>
+                    <ion-icon name="mail" item-end (click)="sendEmailMedico(medico.email)"></ion-icon>
+                </button>
+            </ion-list>
+        </ion-slide>
+        <ion-slide class="citasToolbar">
+            <div class="emptyCitas" *ngIf="citas.length==0">
+                <ion-grid>
+                    <ion-row justify-content-center align-items-center>
+                        <ion-col>
+                            <ion-icon name="custom-cita" color="orangeMaterial"></ion-icon>
+                            <p>Aún no haz agregado cita(s) comienza agregando uno</p>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
             </div>
-        </div>
-    </div>
+            <div class="listadoCitas" *ngIf="citas.length>0">
+                <ion-card *ngFor="let cita of citas">
+                    <ion-card-header>
+                        <h4>Tienes una nueva cita</h4>
+                        <p>
+                            <i class="material-icons redMaterial">alarm</i>
+                            {{ cita.day}} {{ cita.hour }}
+                            <i class="material-icons redMaterial float-right" (click)="optionCita(cita)">more_vert</i>
+                        </p>
+                    </ion-card-header>
+                    <ion-card-content>
+                        <div>{{ cita.question }}</div>
+                    </ion-card-content>
+                </ion-card>
+            </div>
+        </ion-slide>
+    </ion-slides>
+
+
 
 </ion-content>

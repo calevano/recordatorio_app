@@ -1,23 +1,36 @@
 page-medico-detalle {
   ion-header {
+    ion-navbar {
+      &.hiddenBack {
+        button {
+          &.back-button {
+            display: none !important;
+          }
+        }
+      }
+    }
     ion-toolbar {
       min-height: 42px !important;
       padding: 0 !important;
-      .toolbar-background {
-        background-color: color($colors, orangeMaterial) !important;
-      }
       .toolbar-content {
+        background-color: color($colors, orangeMaterial) !important;
         ion-segment {
-          height: 43px !important;
+          height: 42px !important;
+          padding-left: 2rem !important;
+          padding-right: 2rem !important;
           ion-segment-button {
-            border-color: #fff !important;
-            color: #fff !important;
-            font-size: 1.5rem !important;
-            font-family: "vagBold";
-            letter-spacing: 0.05em;
-            border-bottom-width: 0px !important;
+            font-size: 1.4rem !important;
+            border: 0 !important;
             &.segment-activated {
-              border-bottom-width: 4px !important;
+              border-bottom: 4px solid #fff !important;
+              span {
+                font-size: 1.5rem !important;
+              }
+            }
+            span {
+              color: #fff !important;
+              font-family: "vagBold";
+              letter-spacing: 0.1em;
             }
           }
         }
@@ -25,13 +38,26 @@ page-medico-detalle {
     }
   }
   ion-content {
+    ion-slides {
+      ion-slide {
+        &.swiper-slide {
+            text-align: inherit !important;
+        }
+        .slide-zoom {
+          height: 100%;
+          padding: 2rem;
+          text-align: inherit !important;
+        }
+      }
+    }
     .perfilToolbar {
       .profileMedico {
         .photoMedico {
           box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1) !important;
           border-radius: 50%;
           padding: 2rem;
-          width: 35%;
+          width: 112px;
+          height: 112px;
           margin: 0 auto;
           border: 0.6rem solid #fff;
           ion-icon {
@@ -141,14 +167,19 @@ page-medico-detalle {
 .action-sheets-cita {
   .action-sheet-title {
     padding: 10px 16px 5px;
+    font-family: "vagBold";
+    text-transform: uppercase;
   }
   .action-sheet-sub-title {
     padding: 5px 16px 10px;
+    font-family: "vagBold";
   }
   button {
     span {
+      font-family: "vagBold";
       ion-icon {
         margin-right: 2rem !important;
+        font-weight: bold !important;
       }
     }
   }

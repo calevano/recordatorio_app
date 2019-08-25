@@ -1,5 +1,5 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { NavController, NavParams, Platform, ActionSheetController, AlertController, Content, Slides } from 'ionic-angular';
+import { NavController, NavParams, Platform, ActionSheetController, AlertController, Content, Slides, FabContainer } from 'ionic-angular';
 
 import { MedicoCitaCrearPage } from '../medico-cita-crear/medico-cita-crear';
 import { MedicoCitaEditarPage } from '../medico-cita-editar/medico-cita-editar';
@@ -60,10 +60,8 @@ export class MedicoDetallePage {
     }
 
     ionViewWillEnter() {
-        console.log("MedicoDetallePage:::ionViewWillEnter");
         let medicoUpdate_ = this.navParams.get('medicoUpdate') || null;
         if (medicoUpdate_ != null) {
-            console.log("se actulizo medico", medicoUpdate_);
             this.medico = medicoUpdate_;
         }
         this.getCitas();
@@ -198,6 +196,41 @@ export class MedicoDetallePage {
         setTimeout(() => {
             this.myInput.setFocus();
         }, 150);
+    }
+
+    closeFab(fab: FabContainer) {
+        setTimeout(() => {
+            fab.close();
+        }, 300);
+    }
+
+    deleteMedico(id: number) {
+        let alert = this.alertCtrl.create({
+            title: 'Eliminar',
+            message: '¿Está seguro de eliminar al médico<br><strong>"' + this.medico.names + '"</strong> ?<br><br>Está acción no se podrá deshacer.',
+            buttons: [
+                {
+                    text: 'Cancelar',
+                    role: 'cancel',
+                    handler: () => { }
+                },
+                {
+                    text: 'Si, eliminar',
+                    handler: () => {
+                        this.cancelSearch();
+                        this.loadingProvider.show("Eliminando médico...");
+                        this.databaseProvider.deleteMedico(id).then((res) => {
+                            this.toastProvider.show("success", "Se elimino el médico correctamente", 'bottom');
+                            this.loadingProvider.hide(0);
+                            this.navCtrl.pop();
+                        }).catch((err) => {
+                            this.toastProvider.show("error", "No se pudo eliminar, favor de intentarlo de nuevo", "bottom");
+                        });
+                    }
+                }
+            ]
+        });
+        alert.present();
     }
 
     segmentChanged(ev: any) {

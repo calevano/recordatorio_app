@@ -29,10 +29,18 @@
 </ion-header>
 
 <ion-content>
-    <ion-fab right bottom *ngIf="fabPerfil">
-        <button ion-fab color="orangeMaterial" [navPush]="medicoEditar" [navParams]="{ 'medico': medico }">
-            <ion-icon name="create"></ion-icon>
+    <ion-fab right bottom *ngIf="fabPerfil" #fab>
+        <button ion-fab color="orangeMaterial">
+            <ion-icon name="more"></ion-icon>
         </button>
+        <ion-fab-list side="top">
+            <button ion-fab [navPush]="medicoEditar" [navParams]="{ 'medico': medico }">
+                <ion-icon name="create" (click)="closeFab(fab)"></ion-icon>
+            </button>
+            <button ion-fab (click)="deleteMedico(medico.id)">
+                <ion-icon name="trash"></ion-icon>
+            </button>
+        </ion-fab-list>
     </ion-fab>
     <ion-fab right bottom *ngIf="fabCitas">
         <button ion-fab color="orangeMaterial" [navPush]="medicoCitaCrear" [navParams]="{ 'medico': medico }"

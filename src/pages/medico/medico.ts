@@ -61,18 +61,14 @@ export class MedicoPage {
         }, 150);
     }
 
-    // detalleMedico(){
-    //     this.navCtrl();
+    // async deleteMedico(id_: any) {
+    //     await this.databaseProvider.deleteMedico(id_).then((res) => {
+    //         console.log("deleteMedico:::res:::", res);
+    //     }).catch((err) => {
+    //         console.log("deleteMedico:::err:::", err);
+    //         this.toastProvider.show("error", "Porfavor intenta buscando de nuevo", "bottom");
+    //     });
     // }
-
-    async deleteMedico(id_: any) {
-        await this.databaseProvider.deleteMedico(id_).then((res) => {
-            console.log("deleteMedico:::res:::", res);
-        }).catch((err) => {
-            console.log("deleteMedico:::err:::", err);
-            this.toastProvider.show("error", "Porfavor intenta buscando de nuevo", "bottom");
-        });
-    }
 
     async getAllMedicos() {
         this.medicos = [];

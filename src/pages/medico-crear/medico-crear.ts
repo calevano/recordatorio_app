@@ -33,15 +33,13 @@ export class MedicoCrearPage {
     }
 
     ionViewDidLoad() {
-        console.log('ionViewDidLoad MedicoCrearPage');
+        console.log('MedicoCrearPage ionViewDidLoad');
     }
 
     saveMedico() {
         if (this.addMedicoForm.valid) {
             this.loadingProvider.show("Agregando médico...");
-            console.log("saveMedico:::value:::", this.addMedicoForm.value);
             this.databaseProvider.insertMedico(this.addMedicoForm.value).then((res) => {
-                console.log("saveMedico:::res:::", res);
                 setTimeout(() => {
                     this.toastProvider.show("success", "Se agrego al médico correctamente", 'bottom');
                     this.addMedicoForm.reset();
@@ -49,7 +47,6 @@ export class MedicoCrearPage {
                     this.navCtrl.pop();
                 }, 500);
             }).catch((err) => {
-                console.log("saveMedico:::err:::", err);
                 this.toastProvider.show("error", "No se pudo agregar. favor de intentarlo de nuevo", 'bottom');
                 this.loadingProvider.hide(0);
             });

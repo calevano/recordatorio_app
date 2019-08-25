@@ -3,6 +3,7 @@ import { NavController, NavParams, Platform, ActionSheetController, AlertControl
 
 import { MedicoCitaCrearPage } from '../medico-cita-crear/medico-cita-crear';
 import { MedicoCitaEditarPage } from '../medico-cita-editar/medico-cita-editar';
+import { MedicoEditarPage } from '../medico-editar/medico-editar';
 
 import { LoadingProvider } from '../../providers/loading/loading';
 import { ToastProvider } from '../../providers/toast/toast';
@@ -17,27 +18,28 @@ import { CallNumber } from '@ionic-native/call-number';
 export class MedicoDetallePage {
 
     @ViewChild('textAreaResize') textAreaResize: ElementRef;
-    @ViewChild('searchBar') myInput;
+    @ViewChild('searchBar') myInput: any;
     @ViewChild(Content) content: Content;
     @ViewChild(Slides) slider: Slides;
 
     previus: boolean = false;
     next: boolean = true;
 
-    selectedSegment: string;
-
     isSearchbarOpened: boolean = false;
     isButtonSearchVisibility: boolean = false;
 
     page: string = "perfil";
     fabCitas: boolean = false;
+    fabPerfil: boolean = true;
     citasZero: boolean = true;
 
+    titleHeader: string = "Detalle Médico";
     medico: any;
     citas: any = [];
     searchCitas: any = [];
 
-    // medicoCitaCrear = MedicoCitaCrearPage;
+    medicoCitaCrear = MedicoCitaCrearPage;
+    medicoEditar = MedicoEditarPage;
 
     constructor(
         public platform: Platform,
@@ -54,26 +56,26 @@ export class MedicoDetallePage {
     }
 
     ionViewDidLoad() {
-        console.log('ionViewDidLoad MedicoDetallePage');
+        this.slideAutoplay();
     }
 
     ionViewWillEnter() {
-        console.log('ionViewWillEnter MedicoDetallePage');
+        console.log("MedicoDetallePage:::ionViewWillEnter");
+        let medicoUpdate_ = this.navParams.get('medicoUpdate') || null;
+        if (medicoUpdate_ != null) {
+            console.log("se actulizo medico", medicoUpdate_);
+            this.medico = medicoUpdate_;
+        }
         this.getCitas();
     }
 
-    ionViewDidEnter() {
-        console.log('ionViewDidEnter MedicoDetallePage');
-    }
-
-    medicoCreate(medico_: any) {
-        this.navCtrl.push(MedicoCitaCrearPage, { 'medico': medico_ });
+    slideAutoplay() {
+        this.slider.lockSwipeToPrev(true);
     }
 
     async getCitas() {
         this.citas = [];
         await this.databaseProvider.getAllCitas(this.medico).then((response) => {
-            console.log("getCitas:::response:::", response);
             if (response.length === 0) {
                 this.citas = [];
                 this.citasZero = true;
@@ -81,12 +83,8 @@ export class MedicoDetallePage {
                 this.citas = response;
                 this.searchCitas = response;
                 this.citasZero = false;
-                console.log("Listado de citas:::", this.citas);
             }
-
-            console.log("SearchCitas:::", this.searchCitas);
         }).catch((err) => {
-            console.log("getCitas:::err:::", err);
             this.toastProvider.show("error", "Porfavor intenta buscando de nuevo", "bottom");
         });
     }
@@ -130,7 +128,6 @@ export class MedicoDetallePage {
                     text: 'Editar',
                     icon: !this.platform.is('ios') ? 'create' : null,
                     handler: () => {
-                        console.log('Editar clicked');
                         this.editarCita(cita_);
                     }
                 },
@@ -139,7 +136,6 @@ export class MedicoDetallePage {
                     role: 'destructive',
                     icon: !this.platform.is('ios') ? 'trash' : null,
                     handler: () => {
-                        console.log('Eliminar clicked');
                         this.eliminarCita(cita_.id);
                     }
                 },
@@ -147,9 +143,7 @@ export class MedicoDetallePage {
                     text: 'Cancelar',
                     role: 'cancel',
                     icon: !this.platform.is('ios') ? 'close' : null,
-                    handler: () => {
-                        console.log('Cancelando clicked');
-                    }
+                    handler: () => { }
                 }
             ]
         });
@@ -157,7 +151,8 @@ export class MedicoDetallePage {
     }
 
     editarCita(cita_: any) {
-        this.navCtrl.push(MedicoCitaEditarPage, { cita: cita_ });
+        this.navCtrl.push(MedicoCitaEditarPage, { 'cita': cita_ });
+        this.cancelSearch();
     }
 
     eliminarCita(id: number) {
@@ -168,22 +163,18 @@ export class MedicoDetallePage {
                 {
                     text: 'Cancelar',
                     role: 'cancel',
-                    handler: () => {
-                        console.log('Cancel clicked');
-                    }
+                    handler: () => { }
                 },
                 {
                     text: 'Si, eliminar',
                     handler: () => {
-                        console.log('Eliminando clicked');
+                        this.cancelSearch();
                         this.loadingProvider.show("Eliminando cita...");
                         this.databaseProvider.deleteCita(id).then((res) => {
-                            console.log("eliminarCita:::res:::", res);
                             this.toastProvider.show("success", "Se elimino la cita correctamente", 'bottom');
                             this.loadingProvider.hide(0);
                             this.getCitas();
                         }).catch((err) => {
-                            console.log("eliminarCita:::err:::", err);
                             this.toastProvider.show("error", "No se pudo eliminar. favor de intentarlo de nuevo", 'bottom');
                             this.loadingProvider.hide(0);
                         });
@@ -195,14 +186,14 @@ export class MedicoDetallePage {
     }
 
     cancelSearch() {
-        this.isSearchbarOpened = false;
-        this.fabCitas = true;
-        this.content.resize();
+        setTimeout(() => {
+            this.isSearchbarOpened = false;
+            this.content.resize();
+        }, 300);
     }
 
     openedSearch() {
         this.isSearchbarOpened = true;
-        this.fabCitas = false;
         this.content.resize();
         setTimeout(() => {
             this.myInput.setFocus();
@@ -210,16 +201,19 @@ export class MedicoDetallePage {
     }
 
     segmentChanged(ev: any) {
-        console.log("segmentChanged:::ev:::", ev.value);
         this.fabCitas = false;
         switch (ev.value) {
             case 'perfil':
+                this.fabPerfil = true;
                 this.fabCitas = false;
+                this.titleHeader = "Detalle Médico";
                 this.isButtonSearchVisibility = false;
                 this.slider.slideTo(0);
                 break;
             case 'citas':
+                this.fabPerfil = false;
                 this.fabCitas = true;
+                this.titleHeader = "Listado de Citas";
                 this.isButtonSearchVisibility = true;
                 this.slider.slideTo(1);
                 break;
@@ -227,22 +221,16 @@ export class MedicoDetallePage {
     }
 
     slideDidChanged(ev: any) {
-        this.fabCitas = false;
-        console.log('slideDidChanged:::ev:::', ev);
         let currentIndex = this.slider.getActiveIndex();
+        this.fabPerfil = (currentIndex === 0) ? true : false;
         this.fabCitas = (currentIndex === 0) ? false : true;
-        console.log('slideDidChanged:::currentIndex:::', currentIndex);
+        this.titleHeader = (currentIndex === 0) ? "Detalle Médico" : "Listado de Citas";
     }
 
     slideWillChanged(ev: any) {
-        this.fabCitas = false;
-        console.log('slideWillChanged:::ev:::', ev);
         let init_ = this.slider.isBeginning();
-        console.log('slideWillChanged:::init_:::', init_);
         let current_ = this.slider.getActiveIndex();
-        console.log('slideWillChanged:::current_:::', current_);
         let end_ = this.slider.isEnd();
-        console.log('slideWillChanged:::end_:::', end_);
 
         if (init_) {
             this.slider.lockSwipeToPrev(true);
@@ -253,13 +241,17 @@ export class MedicoDetallePage {
             this.slider.lockSwipeToNext(false);
             this.isButtonSearchVisibility = false;
             this.fabCitas = false;
+            this.fabPerfil = true;
             this.page = 'perfil';
+            this.titleHeader = "Detalle Médico";
             this.cancelSearch();
         } else {
             this.slider.lockSwipes(false);
             this.isButtonSearchVisibility = true;
             this.fabCitas = true;
+            this.fabPerfil = false;
             this.page = 'citas';
+            this.titleHeader = "Listado de Citas";
         }
 
         if (end_) {

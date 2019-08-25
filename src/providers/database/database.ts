@@ -65,7 +65,7 @@ export class DatabaseProvider {
 
     insertCita(cita: any) {
         console.log("cita:::", cita);
-        let sql = 'INSERT INTO doctor_appointments(day,hour,question,doctor_id) VALUES(?,?,?,?)';
+        let sql = 'INSERT INTO doctor_appointments(day, hour, question, doctor_id) VALUES(?,?,?,?)';
         return this.db.executeSql(sql, [cita.day, cita.hour, cita.question, cita.doctor_id]);
     }
 
@@ -95,8 +95,13 @@ export class DatabaseProvider {
     }
 
     insertMedico(medico: any) {
-        let sql = 'INSERT INTO doctors(names,prefix,speciality,phone,email) VALUES(?,?,?,?,?)';
-        return this.db.executeSql(sql, [medico.nombres, medico.prefix, medico.especialidad, medico.telefono, medico.email]);
+        let sql = 'INSERT INTO doctors(names, prefix, speciality, phone, email) VALUES(?,?,?,?,?)';
+        return this.db.executeSql(sql, [medico.names, medico.prefix, medico.speciality, medico.phone, medico.email]);
+    }
+
+    updateMedico(medico: any) {
+        let sql = 'UPDATE doctors SET names=?, prefix=?, speciality=?, phone=?, email=? WHERE id=?';
+        return this.db.executeSql(sql, [medico.names, medico.prefix, medico.speciality, medico.phone, medico.email, medico.id]);
     }
 
     deleteMedico(id: any) {

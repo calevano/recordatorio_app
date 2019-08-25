@@ -12,6 +12,10 @@ import { ToastProvider } from '../../providers/toast/toast';
 export class MedicoPage {
 
     @ViewChild(Content) content: Content;
+    @ViewChild('searchBar') myInput: any;
+
+    isSearchbarOpened: boolean = false;
+    isButtonSearchVisibility: boolean = false;
 
     loadInit: boolean = true;
     medicosZero: boolean = true;
@@ -41,6 +45,25 @@ export class MedicoPage {
     getMedicosSearch() {
         this.medicos = this.searchMedicos;
     }
+
+    cancelSearch() {
+        setTimeout(() => {
+            this.isSearchbarOpened = false;
+            this.content.resize();
+        }, 300);
+    }
+
+    openedSearch() {
+        this.isSearchbarOpened = true;
+        this.content.resize();
+        setTimeout(() => {
+            this.myInput.setFocus();
+        }, 150);
+    }
+
+    // detalleMedico(){
+    //     this.navCtrl();
+    // }
 
     async deleteMedico(id_: any) {
         await this.databaseProvider.deleteMedico(id_).then((res) => {

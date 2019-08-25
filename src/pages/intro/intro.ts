@@ -11,7 +11,7 @@ import { StorageProvider } from '../../providers/storage/storage';
 export class IntroPage {
 
     @ViewChild(Slides) slider: Slides;
-    
+
     previus: boolean = false;
     next: boolean = true;
 
@@ -23,10 +23,6 @@ export class IntroPage {
     }
 
     ionViewDidLoad() {
-        console.log('ionViewDidLoad IntroPage');
-    }
-
-    ionViewDidEnter() {
         this.slideAutoplay();
     }
 

@@ -1,7 +1,8 @@
 @font-face {
-  font-family: "K2D";
-  src: url("../assets/fonts/K2D.woff2");
+  font-family: "VarelaRound";
+  src: url("../assets/fonts/VarelaRound-Regular.ttf");
 }
+
 @font-face {
   font-family: "vagBlack";
   src: url("../assets/fonts/VAG-Rounded-Std-Black_47296.ttf");
@@ -114,6 +115,11 @@ ion-tabs {
     background: color($colors, blanco) !important;
     a {
       min-height: 75px !important;
+      &.tab-button[aria-selected="true"] {
+        span {
+          font-family: "vagBold";
+        }
+      }
       ion-icon {
         font-size: 3rem !important;
       }

@@ -24,9 +24,9 @@ export class MedicoCrearPage {
         public databaseProvider: DatabaseProvider,
     ) {
         this.addMedicoForm = this.formBuilder.group({
-            nombres: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
-            especialidad: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
-            telefono: ['', Validators.compose([Validators.minLength(9)])],
+            names: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
+            speciality: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
+            phone: ['', Validators.compose([Validators.minLength(9)])],
             email: ['', Validators.compose([Validators.pattern(this.emailPattern)])],
             prefix: ['dr', Validators.compose([Validators.required])],
         });

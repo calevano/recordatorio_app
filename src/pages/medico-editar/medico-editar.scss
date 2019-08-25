@@ -1,0 +1,86 @@
+page-medico-editar {
+  .scroll-content {
+    padding: 32px;
+    padding-bottom: 16px !important;
+  }
+  ion-content {
+    .profileMedico {
+      margin-bottom: 1.5rem;
+      .photoMedico {
+        background-color: color($colors, light);
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1) !important;
+        border-radius: 50%;
+        padding: 2rem;
+        width: 35%;
+        margin: 0 auto;
+        border: 0.6rem solid #fff;
+        ion-icon {
+          font-size: 6rem;
+        }
+      }
+    }
+    .formMedico {
+      ion-list {
+        margin-bottom: 10px;
+        ion-item {
+          border-top: 0 !important;
+          border-bottom: 0 !important;
+          padding-left: 0;
+          background-color: transparent !important;
+          box-shadow: none !important;
+          &.input-has-focus:last-child {
+            box-shadow: none !important;
+          }
+          ion-icon {
+            font-size: 2.5rem;
+            color: rgba(71, 77, 84, 1);
+            margin-right: 5px;
+          }
+          .item-inner {
+            margin-left: 0 !important;
+            .input-wrapper {
+              border-bottom: 1px solid rgba(71, 77, 84, 0.3) !important;
+            }
+          }
+        }
+      }
+      ion-grid {
+        &.gridForm {
+          ion-row {
+            ion-col {
+              ion-list {
+                ion-item {
+                  .item-inner {
+                    margin-right: 1rem;
+                    padding-left: 1rem;
+                    border-bottom: 1px solid rgba(71, 77, 84, 0.3) !important;
+                    .input-wrapper {
+                      border-bottom: 0 !important;
+                    }
+                    ion-radio {
+                      margin-right: 0;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      button {
+        margin-top: 1rem;
+        color: #f4f4f4;
+        padding: 0 1em;
+        height: 2.8em;
+        font-weight: bold;
+        font-size: 1.8rem;
+        text-transform: initial;
+        border-radius: 5px;
+        span {
+          letter-spacing: 0.05em;
+        }
+      }
+    }
+  }
+}

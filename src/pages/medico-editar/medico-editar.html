@@ -1,11 +1,11 @@
 <ion-header>
     <ion-navbar color="orangeMaterial">
-        <ion-title>Agregar Médico</ion-title>
+        <ion-title>Editar Médico</ion-title>
     </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-    <form [formGroup]="addMedicoForm" novalidate="novalidate" (ngSubmit)="saveMedico()">
+    <form [formGroup]="editMedicoForm" novalidate="novalidate" (ngSubmit)="editMedico()">
         <div class="profileMedico">
             <div class="photoMedico">
                 <ion-icon name="custom-doctor" color="orangeMaterial"></ion-icon>
@@ -57,7 +57,7 @@
                     <ion-input placeholder="E-mail" type="email" formControlName="email"></ion-input>
                 </ion-item>
             </ion-list>
-            <button ion-button [disabled]="!addMedicoForm.valid" type="submit" color="orangeMaterial" block>
+            <button ion-button [disabled]="!editMedicoForm.valid" type="submit" color="orangeMaterial" block>
                 Guardar
             </button>
         </div>

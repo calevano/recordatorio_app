@@ -21,6 +21,11 @@ page-medico-detalle {
           }
         }
       }
+      ion-title {
+        .toolbar-title {
+          padding-left: 0;
+        }
+      }
     }
     ion-toolbar {
       min-height: 42px !important;
@@ -43,7 +48,6 @@ page-medico-detalle {
             span {
               color: #fff !important;
               font-family: "vagBold";
-              letter-spacing: 0.1em;
             }
           }
         }
@@ -52,20 +56,23 @@ page-medico-detalle {
   }
   ion-content {
     ion-slides {
+      background-color: color($colors, blanco) !important;
       ion-slide {
         &.swiper-slide {
           text-align: inherit !important;
         }
         .slide-zoom {
           height: 100%;
-          padding: 2rem;
           text-align: inherit !important;
         }
       }
     }
     .perfilToolbar {
       .profileMedico {
+        margin-top: 2rem;
+        margin-bottom: 2rem;
         .photoMedico {
+          background-color: color($colors, light);
           box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1) !important;
           border-radius: 50%;
           padding: 2rem;
@@ -89,27 +96,43 @@ page-medico-detalle {
           text-transform: capitalize;
         }
       }
-      ion-list {
-        margin-top: 2rem;
-        button {
-          box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1) !important;
-          border-radius: 5px;
-          .item-inner {
-            .input-wrapper {
-              ion-label {
-                h2 {
-                  margin-top: 0 !important;
+      ion-card {
+        margin: 0;
+        width: 100%;
+        box-shadow: none;
+        ion-card-content {
+          ion-list {
+            button {
+              border-radius: 5px;
+              .item-inner {
+                .input-wrapper {
+                  ion-label {
+                    p {
+                      font-family: "vagBold";
+                      text-transform: uppercase;
+                      font-size: 1rem;
+                      color: #959da0;
+                    }
+                    h2 {
+                      margin-top: 0 !important;
+                      text-transform: capitalize;
+                      &.emailText {
+                        text-transform: inherit !important;
+                      }
+                    }
+                  }
+                }
+                ion-icon {
+                  color: rgba(71, 77, 84, 1);
                 }
               }
-            }
-            ion-icon {
-              color: rgba(71, 77, 84, 1);
             }
           }
         }
       }
     }
     .citasToolbar {
+      padding: 2rem;
       .emptyCitas {
         height: 100%;
         ion-grid {
@@ -173,21 +196,31 @@ page-medico-detalle {
       }
     }
   }
+  .searchbar-md .searchbar-search-icon {
+    display: none !important;
+  }
+  .searchbar-md .searchbar-md-cancel {
+    display: block !important;
+    span {
+      ion-icon {
+        color: color($colors, orangeMaterial) !important;
+        font-size: 1.5em !important;
+      }
+    }
+  }
 }
-
 .action-sheets-cita {
   .action-sheet-title {
     padding: 10px 16px 5px;
-    font-family: "vagBold";
+    font-family: "vagBlack";
     text-transform: uppercase;
   }
   .action-sheet-sub-title {
     padding: 5px 16px 10px;
-    font-family: "vagBold";
+    font-family: "vagBlack";
   }
   button {
     span {
-      font-family: "vagBold";
       ion-icon {
         margin-right: 2rem !important;
         font-weight: bold !important;
@@ -201,18 +234,5 @@ page-medico-detalle {
   .action-sheet-cancel ion-icon,
   .action-sheet-destructive ion-icon {
     color: color($colors, redMaterial);
-  }
-}
-
-.searchbar-md .searchbar-search-icon {
-  display: none !important;
-}
-.searchbar-md .searchbar-md-cancel {
-  display: block !important;
-  span {
-    ion-icon {
-      color: color($colors, orangeMaterial) !important;
-      font-size: 1.5em !important;
-    }
   }
 }

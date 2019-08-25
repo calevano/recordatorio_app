@@ -1,11 +1,16 @@
 <ion-header>
-    <ion-navbar color="orangeMaterial">
-        <ion-title>MÉDICO</ion-title>
+    <ion-navbar color="orangeMaterial" [ngClass]="isSearchbarOpened ? 'hiddenBack' : ''">
+        <ion-title *ngIf="!isSearchbarOpened">
+            MÉDICO
+        </ion-title>
+        <ion-searchbar #searchBar *ngIf="isSearchbarOpened" showCancelButton="true" placeholder="Filtre nombre"
+            (ionInput)="getItems($event)" (ionCancel)="cancelSearch()"></ion-searchbar>
+        <ion-buttons end *ngIf="searchMedicos.length>0 && !medicosZero">
+            <button *ngIf="!isSearchbarOpened" ion-button icon-only (click)="openedSearch()">
+                <ion-icon name="search"></ion-icon>
+            </button>
+        </ion-buttons>
     </ion-navbar>
-    <ion-toolbar *ngIf="searchMedicos.length>1 && !medicosZero">
-        <ion-searchbar placeholder="Filtre nombre" (ionInput)="getItems($event)">
-        </ion-searchbar>
-    </ion-toolbar>
 </ion-header>
 
 <ion-content>
@@ -25,13 +30,13 @@
         <ion-spinner color="orangeMaterial"></ion-spinner>
     </div>
 
-    <div *ngIf="!loadInit">
+    <div class="contentMedico" *ngIf="!loadInit">
         <div class="emptyMedico" *ngIf="medicos.length==0 && medicosZero">
             <ion-grid>
                 <ion-row justify-content-center align-items-center>
                     <ion-col>
                         <ion-icon name="custom-doctor" color="orangeMaterial"></ion-icon>
-                        <p>Aún no haz agregado medico(s) comienza agregando uno</p>
+                        <p>Aún no has agregado médico(s)<br>comienza agregando uno</p>
                     </ion-col>
                 </ion-row>
             </ion-grid>
@@ -40,7 +45,7 @@
         <div class="listadoMedico" *ngIf="medicos.length>0 && !medicosZero">
             <ion-list>
                 <button ion-item *ngFor="let medico of medicos" [navPush]="medicoDetalle"
-                    [navParams]="{'medico': medico}">
+                    [navParams]="{'medico': medico}" (click)="cancelSearch()">
                     <ion-icon name="custom-doctor" item-start></ion-icon>
                     <h2>{{ medico.prefix }}. {{ medico.names }}</h2>
                     <p>{{ medico.speciality }}</p>

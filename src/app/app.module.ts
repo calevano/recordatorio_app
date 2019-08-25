@@ -20,6 +20,7 @@ import { InformeEnvioPage } from '../pages/informe-envio/informe-envio';
 import { MedicoPage } from '../pages/medico/medico';
 import { MedicoDetallePage } from '../pages/medico-detalle/medico-detalle';
 import { MedicoCrearPage } from '../pages/medico-crear/medico-crear';
+import { MedicoEditarPage } from '../pages/medico-editar/medico-editar';
 import { MedicoCitaCrearPage } from '../pages/medico-cita-crear/medico-cita-crear';
 import { MedicoCitaEditarPage } from '../pages/medico-cita-editar/medico-cita-editar';
 import { ModalConsejoTomaPage } from '../pages/modal-consejo-toma/modal-consejo-toma';
@@ -56,6 +57,7 @@ import { IonicStorageModule } from '@ionic/storage';
         MedicoPage,
         MedicoDetallePage,
         MedicoCrearPage,
+        MedicoEditarPage,
         MedicoCitaCrearPage,
         MedicoCitaEditarPage,
         ModalConsejoTomaPage,
@@ -88,6 +90,7 @@ import { IonicStorageModule } from '@ionic/storage';
         MedicoPage,
         MedicoDetallePage,
         MedicoCrearPage,
+        MedicoEditarPage,
         MedicoCitaCrearPage,
         MedicoCitaEditarPage,
         ModalConsejoTomaPage,

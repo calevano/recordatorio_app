@@ -1,15 +1,17 @@
 page-medico {
   ion-header {
-    ion-toolbar {
-      ion-searchbar {
-        &.searchbar-md {
-          padding-left: 0;
-          padding-top: 0;
-          padding-right: 0;
-          .searchbar-input-container {
+    ion-navbar {
+      &.hiddenBack {
+        &.toolbar-md {
+          padding-left: 0 !important;
+          padding-right: 0 !important;
+          padding-bottom: 0 !important;
+          .toolbar-background {
+            background-color: #fff !important;
+          }
+          ion-searchbar {
             input {
-              box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1) !important;
-              border-radius: 4px;
+              box-shadow: none !important;
             }
           }
         }
@@ -20,52 +22,65 @@ page-medico {
     .ionSpinner {
       text-align: center;
     }
-    .emptyMedico {
+    .contentMedico {
       height: 100%;
-      ion-grid {
+      .emptyMedico {
         height: 100%;
-        ion-row {
+        ion-grid {
           height: 100%;
-          ion-col {
-            text-align: center;
-            ion-icon {
-              font-size: 10rem;
+          ion-row {
+            height: 100%;
+            ion-col {
+              text-align: center;
+              ion-icon {
+                font-size: 10rem;
+              }
+              p {
+                font-size: 2rem;
+              }
             }
-            p {
-              font-size: 2.5rem;
+          }
+        }
+      }
+
+      .listadoMedico {
+        ion-list {
+          button {
+            ion-icon {
+              color: color($colors, orangeMaterial) !important;
+              font-size: 3.5rem !important;
+              margin-right: 0 !important;
+            }
+            .item-inner {
+              margin-left: 1rem !important;
+              ion-label {
+                h2 {
+                  margin-top: 0 !important;
+                }
+                h2,
+                p {
+                  text-transform: capitalize;
+                }
+              }
+              ion-note {
+                font-size: 1.2rem;
+                align-self: center;
+              }
             }
           }
         }
       }
     }
-
-    .listadoMedico {
-      ion-list {
-        button {
-          //   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1) !important;
-          //   border-radius: 5px;
-          ion-icon {
-            color: color($colors, orangeMaterial) !important;
-            font-size: 3.5rem !important;
-            margin-right: 0 !important;
-          }
-          .item-inner {
-            margin-left: 1rem !important;
-            ion-label {
-              h2 {
-                margin-top: 0 !important;
-                text-transform: uppercase;
-              }
-              p {
-                text-transform: capitalize;
-              }
-            }
-            ion-note {
-              font-size: 1.2rem;
-              align-self: center;
-            }
-          }
-        }
+  }
+  .searchbar-md .searchbar-search-icon {
+    display: none !important;
+  }
+  .searchbar-md .searchbar-md-cancel {
+    display: block !important;
+    span {
+      ion-icon {
+        color: color($colors, orangeMaterial) !important;
+        font-size: 1.5em !important;
       }
     }
   }

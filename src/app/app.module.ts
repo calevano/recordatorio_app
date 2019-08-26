@@ -1,5 +1,6 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 
@@ -31,11 +32,14 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HeaderColor } from '@ionic-native/header-color';
 import { CallNumber } from '@ionic-native/call-number';
 import { SQLite } from '@ionic-native/sqlite';
+import { WheelSelector } from '@ionic-native/wheel-selector';
 
 import { LoadingProvider } from '../providers/loading/loading';
 import { ToastProvider } from '../providers/toast/toast';
 import { DatabaseProvider } from '../providers/database/database';
 import { StorageProvider } from '../providers/storage/storage';
+
+import { KeyValuePipe } from '../pipes/key-value/key-value';
 
 import { IonicStorageModule } from '@ionic/storage';
 
@@ -61,7 +65,8 @@ import { IonicStorageModule } from '@ionic/storage';
         MedicoCitaCrearPage,
         MedicoCitaEditarPage,
         ModalConsejoTomaPage,
-        ModalDuracionFechaPage
+        ModalDuracionFechaPage,
+        KeyValuePipe
     ],
     imports: [
         BrowserModule,
@@ -70,7 +75,8 @@ import { IonicStorageModule } from '@ionic/storage';
         IonicStorageModule.forRoot({
             name: '__mydbrecordatorio',
             driverOrder: ['indexeddb', 'sqlite', 'websql']
-        })
+        }),
+        ReactiveFormsModule
     ],
     bootstrap: [IonicApp],
     entryComponents: [
@@ -102,6 +108,7 @@ import { IonicStorageModule } from '@ionic/storage';
         HeaderColor,
         CallNumber,
         SQLite,
+        WheelSelector,
         { provide: ErrorHandler, useClass: IonicErrorHandler },
         LoadingProvider,
         ToastProvider,

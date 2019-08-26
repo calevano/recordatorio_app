@@ -26,20 +26,20 @@ export class HoyPage {
 
     ionViewDidLoad() {
         this.getAllRecordatorio();
-        console.log('ionViewDidLoad HoyPage');
+        console.log('HoyPage ionViewDidLoad');
     }
 
     async getAllRecordatorio() {
         await this.databaseProvider.getAllRecordatorio().then((res) => {
-            console.log("getAllRecordatorio:::res:::", res);
+            console.log("HoyPage:::getAllRecordatorio:::res:::", res);
             if (res.length === 0) {
                 this.recordatorios = [];
             } else {
                 this.recordatorios = res;
-                console.log("Listado de medicamentos:::", this.recordatorios);
+                console.log("HoyPage:::Listado de medicamentos:::", this.recordatorios);
             }
         }).catch((err) => {
-            console.log("getAllRecordatorio:::err:::", err);
+            console.log("HoyPage:::getAllRecordatorio:::err:::", err);
             this.toastProvider.show("error", "Porfavor intenta buscando de nuevo", "bottom");
         });
     }

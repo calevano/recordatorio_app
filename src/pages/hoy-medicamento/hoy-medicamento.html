@@ -5,23 +5,23 @@
 </ion-header>
 
 <ion-content>
-    <ion-searchbar [hidden]="showFormulario" [(ngModel)]="medicamentoTexto" (ionInput)="searchMedicamento($event)"
-        (ionCancel)="searchCancel($event)" placeholder="Escriba su medicamento" cancelButtonText="Cancelar">
+    <ion-searchbar #searchBar *ngIf="!showFormulario" [(ngModel)]="medicamentoTexto"
+        (ionInput)="searchMedicamento($event)" placeholder="Escriba su medicamento">
     </ion-searchbar>
     <div class="addMedicamento" *ngIf="medicamentos.length==0">
         <div class="preguntaMessage" [hidden]="!showPregunta">
-            <h2>No hemos encontrado el medicamento que buscas.</h2>
+            <h4>No hemos encontrado el medicamento que buscas.</h4>
             <h4>¿Quieres agregarlo?</h4>
             <ion-grid>
                 <ion-row>
                     <ion-col col-6>
                         <button ion-button block type="button" color="blueMaterial" (click)="mostrarFormulario()">
-                            SI
+                            SI, AGREGAR
                         </button>
                     </ion-col>
                     <ion-col col-6>
                         <button ion-button block type="button" color="redMaterial" (click)="cancelar()">
-                            NO
+                            CANCELAR
                         </button>
                     </ion-col>
                 </ion-row>
@@ -30,18 +30,18 @@
         <div class="formMedicamento" [hidden]="!showFormulario">
             <p>Por favor escribe el <strong>"Nombre de medicamento"</strong> y cuando termines de escribir el
                 medicamento presiona en <strong>"Guardar"</strong> para que puedas usarlo más adelante.</p>
-            <form [formGroup]="medicamentoForm" (ngSubmit)="addMedicamento()">
+            <form [formGroup]="medicamentoForm" novalidate="novalidate" (ngSubmit)="addMedicamento()">
                 <ion-list>
                     <ion-item>
                         <ion-label floating>Nombre de medicamento</ion-label>
-                        <ion-input type="text" formControlName="name"></ion-input>
+                        <ion-input #inputSelect type="text" formControlName="name"></ion-input>
                     </ion-item>
                 </ion-list>
                 <ion-grid>
                     <ion-row>
                         <ion-col col-6>
                             <button ion-button block color="blueMaterial" type="submit"
-                                [disabled]="medicamentoForm.invalid">
+                                [disabled]="!medicamentoForm.valid">
                                 Guardar
                             </button>
                         </ion-col>
@@ -58,7 +58,7 @@
     <div class="resultadoBusqueda" *ngIf="medicamentos.length>0">
         <ion-list>
             <button ion-item *ngFor="let medicamento of medicamentos" [navPush]="hoyMedicamentoCrear"
-                [navParams]="{ medicamento: medicamento }">
+                [navParams]="{ 'medicamento': medicamento }">
                 <ion-icon name="custom-hoy" item-start></ion-icon>
                 <h2>{{ medicamento.name }}</h2>
             </button>

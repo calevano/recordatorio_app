@@ -5,23 +5,65 @@
 </ion-header>
 
 <ion-content>
-    <div class="formRecordatorio">
-        <ion-list>
-            <ion-item>
-                <h2>{{ medicamento.name }}</h2>
-                <p>Medicina</p>
-            </ion-item>
-            <ion-item (click)="modalConsejo()">
-                <h2>Consejos de la toma</h2>
-                <p *ngIf="note==''">Presiona aquí</p>
-                <p *ngIf="note!==''">{{ note }}</p>
-            </ion-item>
-            <ion-item (click)="modalDuracion()">
-                <h2>Duración</h2>
-                <p *ngIf="dayDurationText==''">Presiona aquí</p>
-                <p *ngIf="dayDurationText!==''">{{ dayDurationText }}</p>
-            </ion-item>
-        </ion-list>
-    </div>
-
+    <form [formGroup]="recordatorioForm" #loginForm="ngForm" novalidate="novalidate" (ngSubmit)="saveRecordatorio()">
+        <div class="formRecordatorio">
+            <ion-list>
+                <ion-item>
+                    <p>Medicina</p>
+                    <h2>{{ medicamento.name }}</h2>
+                </ion-item>
+                <ion-item (click)="modalConsejo()">
+                    <p>Consejos de la toma</p>
+                    <h2 *ngIf="note==''">Presiona aquí</h2>
+                    <h2 *ngIf="note!==''">{{ note }}</h2>
+                </ion-item>
+                <ion-item (click)="modalDuracion()">
+                    <p>Duración</p>
+                    <h2 *ngIf="dayDurationText==''">Presiona aquí</h2>
+                    <h2 *ngIf="dayDurationText!==''">{{ dayDurationText }}</h2>
+                </ion-item>
+            </ion-list>
+            <div class="addHorario" *ngIf="dayDurationType===0 || dayDurationType===1">
+                <p>Añadir hora de la toma <i class="material-icons greenMaterial"
+                        (click)="addControlForm()">alarm_add</i>
+                </p>
+                <!-- <i class="material-icons redMaterial">alarm_add</i> -->
+                <div formArrayName="horarios">
+                    <ion-grid>
+                        <ion-row align-items-center [formGroupName]="i"
+                            *ngFor="let recordatorio of recordatorioForm.controls.horarios.controls;let i = index">
+                            <ion-col col-1>
+                                <span *ngIf="recordatorioForm.controls.horarios.length > 1" (click)="removeInputField(i)">
+                                    <i class="material-icons redMaterial">highlight_off</i>
+                                </span>
+                            </ion-col>
+                            <ion-col col-5>
+                                <button ion-button clear icon-end (click)="picker.open()">
+                                    <ion-datetime #picker formControlName="hour" displayFormat="HH:mm"
+                                        cancelText="Cancelar" doneText="OK" minuteValues="0,15,30,45"
+                                        placeholder="Hora">
+                                    </ion-datetime>
+                                    <ion-icon name="arrow-dropdown"></ion-icon>
+                                </button>
+                            </ion-col>
+                            <ion-col col-6 text-right>
+                                <button type="button" ion-button clear icon-end (click)="openPastillas(i)">
+                                    {{ dataQuantity }} Pastilla(s)
+                                    <ion-input hidden type="text" formControlName="quantity">
+                                    </ion-input>
+                                    <ion-icon name="arrow-dropdown"></ion-icon>
+                                </button>
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </div>
+            </div>
+        </div>
+    </form>
 </ion-content>
+<ion-footer>
+    <button ion-button color="blueMaterial" block type="submit" [disabled]="!recordatorioForm.valid"
+        (click)="loginForm.ngSubmit.emit()">
+        GUARDAR
+    </button>
+</ion-footer>

@@ -9,7 +9,7 @@ export class LoadingProvider {
     constructor(
         public loadingCtrl: LoadingController,
     ) {
-        console.log('Hello LoadingProvider Provider');
+        console.log('LoadingProvider Hello');
     }
 
     preload(text_?: string) {

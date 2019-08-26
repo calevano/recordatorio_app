@@ -65,7 +65,7 @@ export class MyApp {
 
     async getIntro() {
         await this.storageService.getStorageIntro().then((intro: any) => {
-            console.log("intro:::", intro);
+            console.log("MyApp:::getIntro:::", intro);
             if (intro) {
                 this.getLogin();
             } else {
@@ -76,7 +76,7 @@ export class MyApp {
 
     async getLogin() {
         await this.storageService.getStorageLogin().then((login: any) => {
-            console.log("login:::", login);
+            console.log("MyApp:::getLogin:::", login);
             this.rootPage = (login) ? TabsPage : LoginPage;
         });
     }

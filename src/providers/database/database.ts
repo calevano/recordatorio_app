@@ -7,7 +7,7 @@ export class DatabaseProvider {
     db: SQLiteObject = null;
 
     constructor() {
-        console.log('Hello DatabaseProvider Provider');
+        console.log('DatabaseProvider Hello');
     }
 
     setDatabase(db: SQLiteObject) {
@@ -64,7 +64,6 @@ export class DatabaseProvider {
     }
 
     insertCita(cita: any) {
-        console.log("cita:::", cita);
         let sql = 'INSERT INTO doctor_appointments(day, hour, question, doctor_id) VALUES(?,?,?,?)';
         return this.db.executeSql(sql, [cita.day, cita.hour, cita.question, cita.doctor_id]);
     }
@@ -154,9 +153,18 @@ export class DatabaseProvider {
         }
     }
 
-    showMedicamento(medicine: any) {
+    async showMedicamento(id: number) {
         let sql = 'SELECT * FROM medicines WHERE id=?';
-        return this.db.executeSql(sql, [medicine.id]);
+        try {
+            const response = await this.db.executeSql(sql, [id]);
+            let medicine = response.rows.item(0);
+            return Promise.resolve(medicine);
+        }
+        catch (error) {
+            return await Promise.reject(error);
+        }
+
+        // return this.db.executeSql(sql, [id]);
     }
 
     async getAllRecordatorio() {

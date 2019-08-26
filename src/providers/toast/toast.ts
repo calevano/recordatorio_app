@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-
 import { ToastController } from 'ionic-angular';
 
 @Injectable()
@@ -10,7 +9,7 @@ export class ToastProvider {
     constructor(
         public toastCtrl: ToastController,
     ) {
-        console.log('Hello ToastProvider Provider');
+        console.log('ToastProvider Hello');
     }
 
     show(cssClass_: string, message_: string, position_?: string, time_?: number) {

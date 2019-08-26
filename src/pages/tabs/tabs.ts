@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+
 import { HoyPage } from '../hoy/hoy';
 import { ProgresoPage } from '../progreso/progreso';
 import { InformePage } from '../informe/informe';

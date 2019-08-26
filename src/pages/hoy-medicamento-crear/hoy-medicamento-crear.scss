@@ -2,17 +2,73 @@ page-hoy-medicamento-crear {
   ion-content {
     .formRecordatorio {
       ion-list {
+        margin-bottom: 0 !important;
         ion-item {
+          &.item {
+            &:last-child {
+              .item-inner {
+                border-bottom: 1px solid #dedede;
+              }
+            }
+          }
           padding-right: 1.6rem;
-          h2 {
-          }
           p {
+            font-family: "vagBold";
+            text-transform: uppercase;
+            font-size: 1rem;
+            color: #959da0;
           }
-          ion-label {
-          }
-          ion-select {
+          h2 {
+            margin-top: 0 !important;
           }
         }
+      }
+      .addHorario {
+        background: color($colors, blanco) !important;
+        padding-right: 1.6rem;
+        padding-left: 1.6rem;
+        p {
+          font-family: "vagBold";
+          text-transform: uppercase;
+          font-size: 1rem;
+          color: #959da0;
+          margin: 0;
+          padding-top: 1.3rem;
+          i {
+            position: relative;
+            top: 6px;
+          }
+        }
+        ion-grid {
+          padding-left: 0;
+          padding-right: 0;
+          ion-row {
+            ion-col {
+              button {
+                text-transform: inherit;
+                color: #000 !important;
+                ion-datetime {
+                  .datetime-placeholder {
+                    color: #000 !important;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  ion-footer {
+    button {
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      height: 6rem !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      font-size: 2rem !important;
+      span {
+        font-family: "vagBold";
       }
     }
   }

@@ -22,7 +22,7 @@ export class ModalConsejoTomaPage {
     }
 
     ionViewDidLoad() {
-        console.log('ionViewDidLoad ModalConsejoTomaPage');
+        console.log('ModalConsejoTomaPage:::ionViewDidLoad');
     }
 
     selectOpcion() {

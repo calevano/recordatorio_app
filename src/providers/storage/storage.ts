@@ -13,11 +13,10 @@ export class StorageProvider {
         private platform: Platform,
         private storage: Storage
     ) {
-        console.log('Hello StorageProvider Provider');
+        console.log('StorageProvider Hello');
     }
 
     setStorageIntro() {
-        console.log("Seteando:::Intro:::");
         console.log("StorageProvider:::setStorageIntro:::1");
         if (this.platform.is('cordova')) {
             this.storage.set(RECORDATORIO_INTRO_KEY, 1);
@@ -27,8 +26,7 @@ export class StorageProvider {
     }
 
     getStorageIntro() {
-        console.log("Obteniendo:::Intro:::");
-        console.log("StorageProvider:::getStorageIntro...");
+        console.log("StorageProvider:::getStorageIntro");
         return new Promise((resolve, reject) => {
             if (this.platform.is('cordova')) {
                 this.storage.get(RECORDATORIO_INTRO_KEY).then((val) => {
@@ -38,13 +36,14 @@ export class StorageProvider {
                         resolve(false);
                     }
                 });
-            } else {
-                if (localStorage.getItem(RECORDATORIO_INTRO_KEY)) {
-                    resolve(localStorage.getItem(RECORDATORIO_INTRO_KEY));
-                } else {
-                    resolve(false);
-                }
             }
+            // else {
+            //     if (localStorage.getItem(RECORDATORIO_INTRO_KEY)) {
+            //         resolve(localStorage.getItem(RECORDATORIO_INTRO_KEY));
+            //     } else {
+            //         resolve(false);
+            //     }
+            // }
         });
 
         // if (this.platform.is('cordova')) {
@@ -57,7 +56,6 @@ export class StorageProvider {
     }
 
     setStorageLogin(name: string) {
-        console.log("Seteando:::NombreLogin:::");
         console.log("StorageProvider:::setStorageLogin:::", name);
         if (this.platform.is('cordova')) {
             this.storage.set(RECORDATORIO_LOGIN_KEY, name);
@@ -67,8 +65,7 @@ export class StorageProvider {
     }
 
     getStorageLogin() {
-        console.log("Obteniendo:::NombreLogin:::");
-        console.log("StorageProvider:::getStorageLogin...");
+        console.log("StorageProvider:::getStorageLogin");
         return new Promise((resolve, reject) => {
             if (this.platform.is('cordova')) {
                 this.storage.get(RECORDATORIO_LOGIN_KEY).then((val) => {
@@ -78,13 +75,14 @@ export class StorageProvider {
                         resolve(false);
                     }
                 });
-            } else {
-                if (localStorage.getItem(RECORDATORIO_LOGIN_KEY)) {
-                    resolve(localStorage.getItem(RECORDATORIO_LOGIN_KEY));
-                } else {
-                    resolve(false);
-                }
             }
+            // else {
+            //     if (localStorage.getItem(RECORDATORIO_LOGIN_KEY)) {
+            //         resolve(localStorage.getItem(RECORDATORIO_LOGIN_KEY));
+            //     } else {
+            //         resolve(false);
+            //     }
+            // }
         });
 
         // if (this.platform.is('cordova')) {

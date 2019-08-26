@@ -35,7 +35,7 @@ export class MedicoPage {
     }
 
     ionViewDidLoad() {
-        console.log('ionViewDidLoad MedicoPage');
+        console.log('MedicoPage ionViewDidLoad');
     }
 
     ionViewWillEnter() {
@@ -61,21 +61,11 @@ export class MedicoPage {
         }, 150);
     }
 
-    // async deleteMedico(id_: any) {
-    //     await this.databaseProvider.deleteMedico(id_).then((res) => {
-    //         console.log("deleteMedico:::res:::", res);
-    //     }).catch((err) => {
-    //         console.log("deleteMedico:::err:::", err);
-    //         this.toastProvider.show("error", "Porfavor intenta buscando de nuevo", "bottom");
-    //     });
-    // }
-
     async getAllMedicos() {
         this.medicos = [];
         this.loadInit = true;
         await this.databaseProvider.getAllMedicos().then((response) => {
             this.loadInit = false;
-            console.log("getAllMedicos:::response:::", response);
             if (response.length === 0) {
                 this.medicos = [];
                 this.medicosZero = true;
@@ -84,10 +74,8 @@ export class MedicoPage {
                 this.medicos = response;
                 this.searchMedicos = response;
                 this.content.resize();
-                console.log("Listado de medicos:::", this.medicos);
             }
         }).catch((err) => {
-            console.log("getAllMedicos:::err:::", err);
             this.toastProvider.show("error", "Porfavor intenta buscando de nuevo", "bottom");
         });
     }

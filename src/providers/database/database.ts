@@ -48,6 +48,8 @@ export class DatabaseProvider {
         return this.db.executeSql(sql, []);
     }
 
+    // ------------------------------- Citas -----------------------------
+
     async getAllCitas(doctor: any) {
         let sql = 'SELECT * FROM doctor_appointments WHERE doctor_id=? ORDER BY day DESC, hour DESC';
         try {
@@ -77,6 +79,8 @@ export class DatabaseProvider {
         let sql = 'DELETE FROM doctor_appointments WHERE id=?';
         return this.db.executeSql(sql, [id]);
     }
+
+    // ------------------------------- Medicos -----------------------------
 
     async getAllMedicos() {
         let sql = 'SELECT * FROM doctors ORDER BY id DESC';
@@ -108,8 +112,10 @@ export class DatabaseProvider {
         return this.db.executeSql(sql, [id]);
     }
 
+    // ------------------------------- Medicamento -----------------------------
+
     async getAllMedicamento() {
-        let sql = 'SELECT * FROM medicines';
+        let sql = 'SELECT * FROM medicines ORDER BY name ASC';
         try {
             const response = await this.db.executeSql(sql, []);
             let medicines = [];
@@ -163,12 +169,12 @@ export class DatabaseProvider {
         catch (error) {
             return await Promise.reject(error);
         }
-
-        // return this.db.executeSql(sql, [id]);
     }
 
+    // ------------------------------- Recordatorio -----------------------------
+
     async getAllRecordatorio() {
-        let sql = 'SELECT rt.day_duration, rt.hour, rt.quantity, r.note, m.name FROM reminder_times rt INNER JOIN reminders r ON r.id=rt.reminder_id INNER JOIN medicines m ON m.id=r.medicine_id WHERE rt.status=1';
+        let sql = 'SELECT rt.day_duration, rt.hour, rt.quantity, r.note, m.name FROM reminder_times rt INNER JOIN reminders r ON r.id=rt.reminder_id INNER JOIN medicines m ON m.id=r.medicine_id WHERE rt.status=1 ORDER BY rt.day_duration DESC, rt.hour DESC';
         try {
             const response = await this.db.executeSql(sql, []);
             let recordatorios = [];
@@ -181,5 +187,19 @@ export class DatabaseProvider {
             return await Promise.reject(error);
         }
     }
+
+    insertRecordatorio(recordatorio: any) {
+        let sql = 'INSERT INTO reminders(note, medicine_id) VALUES(?,?)';
+        return this.db.executeSql(sql, [recordatorio.note, recordatorio.medicine_id]);
+    }
+
+    // ------------------------------- Recordatorio Times-----------------------------
+
+    insertRecordatorioTimes(recordatorioTime: any, id: number) {
+        //reminder_times(id INTEGER PRIMARY KEY AUTOINCREMENT, day_duration TEXT, hour TEXT, quantity INTEGER, status INTEGER, reminder_id INTEGER, FOREIGN KEY(reminder_id) REFERENCES reminders(id))
+        let sql = 'INSERT INTO reminder_times(day_duration, hour, quantity, status, reminder_id) VALUES(?,?,?,?,?)';
+        return this.db.executeSql(sql, [recordatorioTime.day_duration, recordatorioTime.hour, recordatorioTime.quantity, recordatorioTime.status, id]);
+    }
+
 
 }

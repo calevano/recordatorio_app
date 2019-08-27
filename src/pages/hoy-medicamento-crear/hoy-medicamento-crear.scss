@@ -1,4 +1,13 @@
 page-hoy-medicamento-crear {
+  ion-header {
+    ion-navbar {
+      ion-title {
+        .toolbar-title {
+          padding-left: 0;
+        }
+      }
+    }
+  }
   ion-content {
     .formRecordatorio {
       ion-list {
@@ -27,16 +36,20 @@ page-hoy-medicamento-crear {
         background: color($colors, blanco) !important;
         padding-right: 1.6rem;
         padding-left: 1.6rem;
+        padding-top: 1rem;
         p {
           font-family: "vagBold";
           text-transform: uppercase;
           font-size: 1rem;
           color: #959da0;
           margin: 0;
-          padding-top: 1.3rem;
+          padding-top: 1rem;
           i {
-            position: relative;
-            top: 6px;
+            &.hourIconAdd {
+              position: relative;
+              top: -8px;
+              float: right;
+            }
           }
         }
         ion-grid {
@@ -44,7 +57,17 @@ page-hoy-medicamento-crear {
           padding-right: 0;
           ion-row {
             ion-col {
+              span {
+                &.hourIconClose {
+                  display: block;
+                  i {
+                    position: relative;
+                    top: 2px;
+                  }
+                }
+              }
               button {
+                margin: 0;
                 text-transform: inherit;
                 color: #000 !important;
                 ion-datetime {

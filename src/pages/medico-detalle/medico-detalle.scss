@@ -64,6 +64,8 @@ page-medico-detalle {
         .slide-zoom {
           height: 100%;
           text-align: inherit !important;
+          overflow-y: scroll;
+          overflow-x: hidden;
         }
       }
     }

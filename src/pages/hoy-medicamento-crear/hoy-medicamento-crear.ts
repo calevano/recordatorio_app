@@ -10,6 +10,10 @@ import { WheelSelector } from '@ionic-native/wheel-selector';
 
 import moment from 'moment';
 import "moment/locale/es";
+import { DatabaseProvider } from '../../providers/database/database';
+import { LoadingProvider } from '../../providers/loading/loading';
+import { ToastProvider } from '../../providers/toast/toast';
+import { TabsPage } from '../tabs/tabs';
 
 
 @Component({
@@ -18,18 +22,17 @@ import "moment/locale/es";
 })
 export class HoyMedicamentoCrearPage {
 
+    recordatorioForm: FormGroup;
+
     medicamento: any;
-    note: string = "";
-    day_duration: string = "";
+    noteText: string = "";
+
     dayDurationType: number;
     dayDurationText: string = "";
 
-    dataInicio: string = "";
-    dataFinal: string = "";
+    fechaInicio: string = "";
+    fechaFinal: string = "";
 
-    recordatorioForm: FormGroup;
-
-    dataQuantity: any = "";
     jsonData: any = {
         numbers: [
             { quantity: "1" },
@@ -49,13 +52,19 @@ export class HoyMedicamentoCrearPage {
         public navCtrl: NavController,
         public navParams: NavParams,
         public modalCtrl: ModalController,
+        public toastProvider: ToastProvider,
+        public loadingProvider: LoadingProvider,
         public formBuilder: FormBuilder,
-        private selector: WheelSelector
+        public databaseProvider: DatabaseProvider,
+        private selector: WheelSelector,
     ) {
         this.medicamento = navParams.get('medicamento');
         console.log("medicamento:::", this.medicamento);
 
         this.recordatorioForm = this.formBuilder.group({
+            medicine_id: [this.medicamento.id, Validators.required],
+            day_duration: ['', Validators.required],
+            note: ['', Validators.required],
             horarios: this.formBuilder.array([
                 this.initFields()
             ])
@@ -76,8 +85,6 @@ export class HoyMedicamentoCrearPage {
     addControlForm() {
         const control = <FormArray>this.recordatorioForm.controls.horarios;
         control.push(this.initFields());
-        // this.recordatorioForm.addControl('hour' + this.playerCount, new FormControl('', Validators.required));
-        // this.recordatorioForm.addControl('quantity' + this.playerCount, new FormControl('', Validators.required));
     }
 
     removeInputField(i: number): void {
@@ -86,10 +93,12 @@ export class HoyMedicamentoCrearPage {
     }
 
     modalConsejo() {
-        let consejoTomaModal = this.modalCtrl.create(ModalConsejoTomaPage, { consejoToma: this.note });
+        let consejoTomaModal = this.modalCtrl.create(ModalConsejoTomaPage, { consejoToma: this.noteText });
         consejoTomaModal.onDidDismiss(data => {
             if (typeof data !== "undefined") {
-                this.note = data.consejoToma;
+                this.recordatorioForm.controls.note.setValue(data.consejoToma);
+                console.log("RecordatorioForm:::UPDATE:::3:::", this.recordatorioForm);
+                this.noteText = data.consejoToma;
             }
         });
         consejoTomaModal.present();
@@ -97,33 +106,30 @@ export class HoyMedicamentoCrearPage {
 
     openPastillas(i: any) {
         console.log("i:::", i);
-        console.log("openPastillas:::this.jsonData:::", this.jsonData);
-        this.selector.show({
+        let setValue_ = this.recordatorioForm.controls.horarios.value[i].quantity;
+        console.log("setValue_:::", setValue_);
+        let config_ = {
             title: "Cantidad de pastilla(s) a tomar",
-            items: [
-                this.jsonData.numbers
-            ],
+            items: [this.jsonData.numbers],
             positiveButtonText: "Elegir",
             negativeButtonText: "Cancelar",
             displayKey: 'quantity',
-        }).then(result => {
-            // console.log(result[0].description + ' at index: ' + result[0].index);
-            console.log("openPastillas:::result:::", result);
-            this.dataQuantity = result[0].quantity;
-            console.log("valor:::RecordatorioForm:::value:::", this.recordatorioForm.value);
-            console.log("valor:::RecordatorioForm:::value:::horarios:::[" + i + "]:::", this.recordatorioForm.value.horarios[i]);
-            // this.recordatorioForm.value.horarios[i].quantity = result[0].quantity;
-            // this.recordatorioForm.controls.horarios[i].quantity.setValue(result[0].quantity);
-            console.log("RecordatorioForm:::", this.recordatorioForm);
-            console.log("RecordatorioForm:::controls:::", this.recordatorioForm.controls);
-            console.log("RecordatorioForm:::controls:::horarios:::", this.recordatorioForm.controls.horarios);
-            const horarioControl = (<FormArray>this.recordatorioForm.controls['horarios']);
-            // <FormControl>indice['quantity'].patchValue(result[0].quantity);
-            // horarioControl.controls[i]['controls']['quantity'] = result[0].quantity;
-            // console.log("RecordatorioForm:::UPDATE:::1:::", this.recordatorioForm);
-            this.recordatorioForm.value.horarios[i]['quantity'] = result[0].quantity;
-            console.log("RecordatorioForm:::UPDATE:::2:::", this.recordatorioForm);
+        };
 
+        if (setValue_ !== "") {
+            config_['defaultItems'] = [
+                {
+                    index: 0,
+                    value: setValue_
+                }
+            ];
+        }
+        console.log("config_:::", config_);
+
+        this.selector.show(config_).then(result => {
+            // this.dataQuantity = result[0].quantity;
+            const horarioControl = (<FormArray>this.recordatorioForm.controls['horarios']);
+            this.recordatorioForm.value.horarios[i]['quantity'] = result[0].quantity;
             <FormControl>horarioControl.controls[i]['controls']['quantity'].setValue(result[0].quantity);
             console.log("RecordatorioForm:::UPDATE:::3:::", this.recordatorioForm.controls.horarios);
         }).catch((err) => {
@@ -133,69 +139,122 @@ export class HoyMedicamentoCrearPage {
     }
 
     modalDuracion() {
-        console.log('HoyMedicamentoCrearPage:::modalDuracion');
-        console.log("dayDurationType:::", this.dayDurationType);
-
-        let dataSend_ = {};
+        let dataSend_: any;
         if (typeof this.dayDurationType !== "undefined") {
+            dataSend_ = {
+                duracion: {}
+            };
             if (this.dayDurationType === 0) {
-                dataSend_ = {
-                    duracion: {
-                        opcion: this.dayDurationType,
-                        only: this.day_duration
-                    }
-                };
+                dataSend_.duracion['opcion'] = this.dayDurationType;
+                dataSend_.duracion['only'] = this.fechaFinal;
             } else {
-                dataSend_ = {
-                    duracion: {
-                        opcion: this.dayDurationType,
-                        inicio: this.dataInicio,
-                        final: this.day_duration
-                    }
-                };
+                dataSend_.duracion['opcion'] = this.dayDurationType;
+                dataSend_.duracion['inicio'] = this.fechaInicio;
+                dataSend_.duracion['final'] = this.fechaFinal;
             }
         }
 
         let duracionFecha = this.modalCtrl.create(ModalDuracionFechaPage, dataSend_);
         duracionFecha.onDidDismiss(data => {
             if (typeof data !== "undefined") {
-                console.log("HoyMedicamentoCrearPage:::modalDuracion:::data:::", data);
                 if (data.opcion === 0) {
                     this.dayDurationType = data.opcion;
                     this.dayDurationText = "Solo el " + data.only;
-                    this.day_duration = data.only;
+                    this.fechaInicio = "";
+                    this.fechaFinal = data.only;
+                    this.recordatorioForm.controls.day_duration.setValue(data.only);
                 } else {
                     this.dayDurationType = data.opcion;
                     this.dayDurationText = "Desde el " + data.inicio + " Hasta el " + data.final;
-                    this.dataInicio = data.inicio;
-                    this.day_duration = data.final;
-                    let arrayDias: Array<string> = [];
-
-                    let init_ = moment(data.inicio, "YYYY-MM-DD");
-                    let end_ = moment(data.final, "YYYY-MM-DD");
-                    let diff_ = end_.diff(init_, "days");
-
-                    let cantidadDias: number = diff_;
-
-                    for (let i = 0; i < cantidadDias; i++) {
-                        arrayDias[i] = moment().add((i + 1), 'days').format('YYYY-MM-DD');
-                    }
-                    arrayDias.unshift(data.inicio);
-                    console.log('HoyMedicamentoCrearPage:::modalDuracion:::arrayDias:::', arrayDias);
-                    console.log("HoyMedicamentoCrearPage:::modalDuracion:::cantidadDias:::" + arrayDias.length + ' dias de diferencia');
+                    this.fechaInicio = data.inicio;
+                    this.fechaFinal = data.final;
+                    this.recordatorioForm.controls.day_duration.setValue(data.final);
                 }
             }
         });
         duracionFecha.present();
     }
 
-    saveRecordatorio() {
+    async saveRecordatorio() {
         console.log('HoyMedicamentoCrearPage:::saveRecordatorio');
         if (!this.recordatorioForm.valid) {
             console.log("no es valido");
         } else {
+            this.loadingProvider.show("Creando recordatorio, espera un momento...");
             console.log("data_:::", this.recordatorioForm.value);
+            let recordatorioForm_ = this.recordatorioForm.value;
+            let recordatorio_: any = {
+                medicine_id: recordatorioForm_.medicine_id,
+                note: recordatorioForm_.note
+            };
+            let horariosArray_: any = [];
+            console.log("recordatorio_:::", recordatorio_);
+            if (this.fechaInicio === "") {
+
+                for (let i = 0; i < recordatorioForm_.horarios.length; i++) {
+                    horariosArray_.push(
+                        {
+                            hour: recordatorioForm_.horarios[i].hour,
+                            quantity: recordatorioForm_.horarios[i].quantity,
+                            status: 1,
+                            day_duration: recordatorioForm_.day_duration,
+                        }
+                    );
+                }
+                console.log("recordatorioForm_:::horariosArray_:::", horariosArray_);
+            } else {
+                // let arrayDias: any = [];
+                let init_ = moment(this.fechaInicio, "YYYY-MM-DD");
+                let end_ = moment(this.fechaFinal, "YYYY-MM-DD");
+
+                for (let i = 0; i < recordatorioForm_.horarios.length; i++) {
+                    horariosArray_.push(
+                        {
+                            hour: recordatorioForm_.horarios[i].hour,
+                            quantity: recordatorioForm_.horarios[i].quantity,
+                            status: 1,
+                            day_duration: this.fechaInicio,
+                        }
+                    );
+                }
+                let diff_ = end_.diff(init_, "days");
+                let cantidadDias: number = diff_;
+                console.log("HoyMedicamentoCrearPage:::modalDuracion:::cantidadDias:::" + cantidadDias + ' dias de diferencia');
+
+                for (let k = 0; k < cantidadDias; k++) {
+                    for (let j = 0; j < recordatorioForm_.horarios.length; j++) {
+                        horariosArray_.push(
+                            {
+                                hour: recordatorioForm_.horarios[j].hour,
+                                quantity: recordatorioForm_.horarios[j].quantity,
+                                status: 1,
+                                day_duration: moment(this.fechaInicio).add((k + 1), 'days').format('YYYY-MM-DD'),
+                            }
+                        );
+                    }
+                }
+                console.log('HoyMedicamentoCrearPage:::modalDuracion:::arrayDias:::', horariosArray_);
+            }
+            await this.databaseProvider.insertRecordatorio(recordatorio_).then((response) => {
+                this.toastProvider.show("success", "Se agrego el recordatorio", 'bottom');
+                this.saveRecordatorioTimes(response.insertId, horariosArray_);
+                this.loadingProvider.hide(0);
+            }).catch((err) => {
+                this.toastProvider.show("error", "No se pudo agregar. favor de intentarlo de nuevo", 'bottom');
+            });
         }
     }
 
+    async saveRecordatorioTimes(id: number, horarios: any) {
+        for (let horario of horarios) {
+            await this.databaseProvider.insertRecordatorioTimes(horario, id).then((response) => {
+
+            }).catch((err) => {
+                this.toastProvider.show("error", "No se pudo obtener el recordatorio agregado", 'bottom');
+            });
+        }
+
+        this.navCtrl.popToRoot();
+        // this.app.getRootNav().setRoot(PortadaPage);
+    }
 }

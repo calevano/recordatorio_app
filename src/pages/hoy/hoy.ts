@@ -15,6 +15,8 @@ export class HoyPage {
 
     recordatorios: any = [];
 
+    loadInit: boolean = true;
+
     constructor(
         public navCtrl: NavController,
         public navParams: NavParams,
@@ -25,8 +27,11 @@ export class HoyPage {
     }
 
     ionViewDidLoad() {
+        console.log('HoyPage:::ionViewDidLoad');
+    }
+    ionViewWillEnter() {
+        console.log('HoyPage:::ionViewWillEnter');
         this.getAllRecordatorio();
-        console.log('HoyPage ionViewDidLoad');
     }
 
     async getAllRecordatorio() {
@@ -38,6 +43,7 @@ export class HoyPage {
                 this.recordatorios = res;
                 console.log("HoyPage:::Listado de medicamentos:::", this.recordatorios);
             }
+            this.loadInit = false;
         }).catch((err) => {
             console.log("HoyPage:::getAllRecordatorio:::err:::", err);
             this.toastProvider.show("error", "Porfavor intenta buscando de nuevo", "bottom");

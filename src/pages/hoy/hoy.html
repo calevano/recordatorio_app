@@ -4,33 +4,42 @@
     </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-    <ion-fab right bottom>
+<ion-content>
+
+    <ion-fab right bottom *ngIf="!loadInit">
         <button ion-fab color="blueMaterial" [navPush]="hoyMedicamento">
             <ion-icon name="add"></ion-icon>
         </button>
     </ion-fab>
 
-    <div class="emptyRecordatorio" *ngIf="recordatorios.length==0">
-        <ion-grid>
-            <ion-row justify-content-center align-items-center>
-                <ion-col>
-                    <ion-icon name="custom-hoy" color="blueMaterial" item-start></ion-icon>
-                    <p>Aún no has creado recordatorio(s)<br>comienza agregando uno</p>
-                </ion-col>
-            </ion-row>
-        </ion-grid>
+    <div class="ionSpinner" *ngIf="loadInit">
+        <ion-spinner color="primary"></ion-spinner>
     </div>
 
-    <div class="listadoRecordatorio" *ngIf="recordatorios.length>0">
-        <ion-list *ngFor="let recordatorio of recordatorios">
-            <button ion-item>
-                <ion-icon name="custom-hoy" item-start></ion-icon>
-                <h2>Bactrim</h2>
-                <p>5 pastilla(s)</p>
-                <ion-note item-end>08:00</ion-note>
-            </button>
-        </ion-list>
-    </div>
+    <ng-container *ngIf="!loadInit">
+        <div class="emptyRecordatorio" *ngIf="recordatorios.length==0">
+            <ion-grid>
+                <ion-row justify-content-center align-items-center>
+                    <ion-col>
+                        <ion-icon name="custom-hoy" color="blueMaterial" item-start></ion-icon>
+                        <p>Aún no has creado recordatorio(s)<br>comienza agregando uno</p>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </div>
+
+        <div class="listadoRecordatorio" *ngIf="recordatorios.length>0">
+            <ion-list>
+                <button ion-item *ngFor="let recordatorio of recordatorios">
+                    <ion-icon name="custom-hoy" item-start></ion-icon>
+                    <h2>{{ recordatorio.name }}</h2>
+                    <p>{{ recordatorio.note }}</p>
+                    <p>{{ recordatorio.quantity }} pastilla(s)</p>
+                    <p>{{ recordatorio.day_duration }}</p>
+                    <ion-note item-end>{{ recordatorio.hour }}</ion-note>
+                </button>
+            </ion-list>
+        </div>
+    </ng-container>
 
 </ion-content>

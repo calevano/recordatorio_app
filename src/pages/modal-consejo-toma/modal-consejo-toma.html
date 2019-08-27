@@ -14,23 +14,23 @@
     <ion-list radio-group [(ngModel)]="consejoToma">
         <ion-item>
             <ion-label>Ninguna</ion-label>
-            <ion-radio value="Ninguna"></ion-radio>
+            <ion-radio value="Ninguna" (ionSelect)="selectOption('Ninguna')"></ion-radio>
         </ion-item>
         <ion-item>
             <ion-label>Antes de la comida</ion-label>
-            <ion-radio value="Antes de la comida"></ion-radio>
+            <ion-radio value="Antes de la comida" (ionSelect)="selectOption('Antes de la comida')"></ion-radio>
         </ion-item>
         <ion-item>
             <ion-label>Junto con la comida</ion-label>
-            <ion-radio value="Junto con la comida"></ion-radio>
+            <ion-radio value="Junto con la comida" (ionSelect)="selectOption('Junto con la comida')"></ion-radio>
         </ion-item>
         <ion-item>
             <ion-label>Después de la comida</ion-label>
-            <ion-radio value="Después de la comida"></ion-radio>
+            <ion-radio value="Después de la comida" (ionSelect)="selectOption('Después de la comida')"></ion-radio>
         </ion-item>
     </ion-list>
-    <button ion-button color="blueMaterial" block type="button" (click)="selectOpcion()">
+    <!-- <button ion-button color="blueMaterial" block type="button" (click)="selectOpcionButton()">
         Continuar
-    </button>
+    </button> -->
 
 </ion-content>

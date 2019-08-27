@@ -8,14 +8,16 @@ import { NavController, NavParams, ViewController } from 'ionic-angular';
 })
 export class ModalConsejoTomaPage {
 
-    consejoToma: any = "Ninguna";
+    consejoToma: any;
 
     constructor(
         public navCtrl: NavController,
         public navParams: NavParams,
         public viewCtrl: ViewController
     ) {
+        console.log('ModalConsejoTomaPage:::constructor');
         let consejoToma_ = navParams.get('consejoToma');
+        console.log('ModalConsejoTomaPage:::constructor:::consejoToma_:::', consejoToma_);
         if (consejoToma_ !== "") {
             this.consejoToma = consejoToma_;
         }
@@ -25,12 +27,21 @@ export class ModalConsejoTomaPage {
         console.log('ModalConsejoTomaPage:::ionViewDidLoad');
     }
 
-    selectOpcion() {
+    selectOption(value_: string) {
+        console.log('ModalConsejoTomaPage:::selectOpcion');
+        this.consejoToma = value_;
+        let data = { 'consejoToma': this.consejoToma };
+        this.viewCtrl.dismiss(data);
+    }
+
+    selectOpcionButton() {
+        console.log('ModalConsejoTomaPage:::selectOpcionButton');
         let data = { 'consejoToma': this.consejoToma };
         this.viewCtrl.dismiss(data);
     }
 
     dismiss() {
+        console.log('ModalConsejoTomaPage:::dismiss');
         this.viewCtrl.dismiss();
     }
 

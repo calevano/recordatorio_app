@@ -6,6 +6,7 @@ import { ToastProvider } from '../../providers/toast/toast';
 
 import { DatabaseProvider } from '../../providers/database/database';
 import { HoyMedicamentoCrearPage } from '../hoy-medicamento-crear/hoy-medicamento-crear';
+import { LoadingProvider } from '../../providers/loading/loading';
 
 @Component({
     selector: 'page-hoy-medicamento',
@@ -29,6 +30,7 @@ export class HoyMedicamentoPage {
         public navCtrl: NavController,
         public navParams: NavParams,
         public toastProvider: ToastProvider,
+        public loadingProvider: LoadingProvider,
         public formBuilder: FormBuilder,
         public databaseProvider: DatabaseProvider,
     ) {
@@ -75,7 +77,7 @@ export class HoyMedicamentoPage {
         this.showFormulario = false;
     }
 
-    addMedicamento() {
+    async addMedicamento() {
         if (!this.medicamentoForm.valid) {
             this.toastProvider.show("error", "Debe ingresar el nombre del medicamento", 'bottom');
         } else {
@@ -86,13 +88,15 @@ export class HoyMedicamentoPage {
             } else {
                 let data_ = [];
                 data_['name'] = nameTrim;
+                this.loadingProvider.show("Agregando medicamento...");
                 console.log("addMedicamento:::data:::", data_);
-                this.databaseProvider.insertMedicamento(data_).then((response) => {
+                await this.databaseProvider.insertMedicamento(data_).then((response) => {
                     this.medicamentoTexto = nameTrim;
                     this.toastProvider.show("success", "Se agrego el medicamento", 'bottom');
                     this.medicamentoForm.reset();
-                    this.searchCancel();
                     this.getMedicamentoAfterAddMedicamento(response.insertId);
+                    this.searchCancel();
+                    this.loadingProvider.hide(0);
                 }).catch((err) => {
                     this.toastProvider.show("error", "No se pudo agregar. favor de intentarlo de nuevo", 'bottom');
                     this.searchCancel();
@@ -101,8 +105,8 @@ export class HoyMedicamentoPage {
         }
     }
 
-    getMedicamentoAfterAddMedicamento(id: number) {
-        this.databaseProvider.showMedicamento(id).then((response) => {
+    async getMedicamentoAfterAddMedicamento(id: number) {
+        await this.databaseProvider.showMedicamento(id).then((response) => {
             this.navCtrl.push(HoyMedicamentoCrearPage, { 'medicamento': response });
         }).catch((err) => {
             this.toastProvider.show("error", "No se pudo obtener el medicamento agregado", 'bottom');

@@ -34,17 +34,21 @@ export class ModalDuracionFechaPage {
     ) {
         console.log('ModalDuracionFechaPage:::constructor');
         let duracion_ = navParams.get('duracion');
+        console.log('ModalDuracionFechaPage:::constructor:::', duracion_);
         if (typeof duracion_ !== "undefined") {
             if (duracion_.opcion === 0) {
                 this.data.opcionDia = '0';
                 this.showOnlyDate = true;
                 this.showSelectDate = false;
+                this.dateOnly = moment().format('YYYY-MM-DD');
                 this.data.only = duracion_.only;
                 this.isVerifySave = true;
             } else {
                 this.data.opcionDia = '1';
                 this.showOnlyDate = false;
                 this.showSelectDate = true;
+                this.dateInit = moment().format('YYYY-MM-DD');
+                this.dateEnd = moment().add(1, 'days').format('YYYY-MM-DD');
                 this.data.inicio = duracion_.inicio;
                 this.data.final = duracion_.final;
             }

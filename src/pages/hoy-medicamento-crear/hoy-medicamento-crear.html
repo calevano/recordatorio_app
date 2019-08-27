@@ -14,8 +14,8 @@
                 </ion-item>
                 <ion-item (click)="modalConsejo()">
                     <p>Consejos de la toma</p>
-                    <h2 *ngIf="note==''">Presiona aquí</h2>
-                    <h2 *ngIf="note!==''">{{ note }}</h2>
+                    <h2 *ngIf="noteText==''">Presiona aquí</h2>
+                    <h2 *ngIf="noteText!==''">{{ noteText }}</h2>
                 </ion-item>
                 <ion-item (click)="modalDuracion()">
                     <p>Duración</p>
@@ -24,20 +24,21 @@
                 </ion-item>
             </ion-list>
             <div class="addHorario" *ngIf="dayDurationType===0 || dayDurationType===1">
-                <p>Añadir hora de la toma <i class="material-icons greenMaterial"
-                        (click)="addControlForm()">alarm_add</i>
+                <p>
+                    Añadir hora de la toma
+                    <i class="material-icons greenMaterial hourIconAdd" (click)="addControlForm()">alarm_add</i>
                 </p>
-                <!-- <i class="material-icons redMaterial">alarm_add</i> -->
                 <div formArrayName="horarios">
                     <ion-grid>
                         <ion-row align-items-center [formGroupName]="i"
                             *ngFor="let recordatorio of recordatorioForm.controls.horarios.controls;let i = index">
-                            <ion-col col-1>
-                                <span *ngIf="recordatorioForm.controls.horarios.length > 1" (click)="removeInputField(i)">
+                            <ion-col col-2>
+                                <span class="hourIconClose" *ngIf="recordatorioForm.controls.horarios.length > 1"
+                                    (click)="removeInputField(i)">
                                     <i class="material-icons redMaterial">highlight_off</i>
                                 </span>
                             </ion-col>
-                            <ion-col col-5>
+                            <ion-col col-4>
                                 <button ion-button clear icon-end (click)="picker.open()">
                                     <ion-datetime #picker formControlName="hour" displayFormat="HH:mm"
                                         cancelText="Cancelar" doneText="OK" minuteValues="0,15,30,45"
@@ -48,9 +49,7 @@
                             </ion-col>
                             <ion-col col-6 text-right>
                                 <button type="button" ion-button clear icon-end (click)="openPastillas(i)">
-                                    {{ dataQuantity }} Pastilla(s)
-                                    <ion-input hidden type="text" formControlName="quantity">
-                                    </ion-input>
+                                    {{ recordatorioForm.controls.horarios.value[i].quantity }} Pastilla(s)
                                     <ion-icon name="arrow-dropdown"></ion-icon>
                                 </button>
                             </ion-col>

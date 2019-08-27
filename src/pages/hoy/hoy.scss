@@ -1,6 +1,13 @@
 page-hoy {
   ion-content {
+    .ionSpinner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
     .emptyRecordatorio {
+      padding-top: 1rem;
       height: 100%;
       ion-grid {
         height: 100%;
@@ -21,9 +28,8 @@ page-hoy {
     }
     .listadoRecordatorio {
       ion-list {
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1) !important;
         button {
-          box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1) !important;
-          border-radius: 5px;
           ion-icon {
             color: color($colors, blueMaterial) !important;
           }

@@ -37,8 +37,6 @@ export class MyApp {
                     this.statusBar.styleLightContent();
                 }
                 this.createDatabase();
-            } else {
-                this.getIntro();
             }
         });
     }

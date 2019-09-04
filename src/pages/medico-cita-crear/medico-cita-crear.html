@@ -32,14 +32,16 @@
                         </ion-list>
                     </ion-col>
                     <ion-col col-12>
-                        <textarea name="pregunta" [(ngModel)]="data.pregunta" rows="3"
-                            placeholder="Preguntas?"></textarea>
+                        <ion-textarea name="pregunta" [(ngModel)]="data.pregunta" rows="3" placeholder="Preguntas?">
+                        </ion-textarea>
+                    </ion-col>
+                    <ion-col col-12>
+                        <div class="buttons">
+                            <button ion-button color="orangeMaterial" type="submit" block>Guardar</button>
+                        </div>
                     </ion-col>
                 </ion-row>
             </ion-grid>
-            <div class="buttons">
-                <button ion-button color="orangeMaterial" type="submit" block>Guardar</button>
-            </div>
         </form>
     </div>
     <div class="textContent">

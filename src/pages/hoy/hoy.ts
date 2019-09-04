@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
-
+import { NavController } from 'ionic-angular';
+// Pages
 import { HoyMedicamentoPage } from '../hoy-medicamento/hoy-medicamento';
+import { HoyDetallePage } from '../hoy-detalle/hoy-detalle';
+// Providers
 import { DatabaseProvider } from '../../providers/database/database';
 import { ToastProvider } from '../../providers/toast/toast';
 
@@ -12,14 +14,13 @@ import { ToastProvider } from '../../providers/toast/toast';
 export class HoyPage {
 
     hoyMedicamento = HoyMedicamentoPage;
+    hoyDetalle = HoyDetallePage;
 
     recordatorios: any = [];
-
     loadInit: boolean = true;
 
     constructor(
         public navCtrl: NavController,
-        public navParams: NavParams,
         public databaseProvider: DatabaseProvider,
         public toastProvider: ToastProvider,
     ) {
@@ -29,12 +30,14 @@ export class HoyPage {
     ionViewDidLoad() {
         console.log('HoyPage:::ionViewDidLoad');
     }
+
     ionViewWillEnter() {
         console.log('HoyPage:::ionViewWillEnter');
         this.getAllRecordatorio();
     }
 
     async getAllRecordatorio() {
+        this.recordatorios = [];
         await this.databaseProvider.getAllRecordatorio().then((res) => {
             console.log("HoyPage:::getAllRecordatorio:::res:::", res);
             if (res.length === 0) {

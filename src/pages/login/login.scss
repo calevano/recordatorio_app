@@ -1,76 +1,80 @@
 page-login {
   .scroll-content {
-    padding: 32px;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
     padding-bottom: 16px !important;
   }
   ion-content {
-    // background-color: color($colors, bgApp) !important;
-    .logo {
-      text-align: center;
-      margin-bottom: 2rem;
-      img {
-        width: 45%;
-      }
-    }
-    .form {
-      margin-top: 1rem;
-      padding-left: 1rem;
-      padding-right: 1rem;
-      p {
-        font-size: 1.5rem;
-      }
-      ion-list {
-        ion-item {
-          border-top: 0 !important;
-          padding-left: 0;
-          background-color: transparent !important;
-          border-bottom-width: 2px !important;
-          border-bottom-color: rgba(71, 77, 84, 0.5) !important;
-          box-shadow: none !important;
-          &.input-has-focus:last-child {
-            border-bottom-color: rgba(71, 77, 84, 0.5) !important;
-            box-shadow: none !important;
-          }
-          ion-icon {
-            font-size: 2.5rem;
-            margin-bottom: 4px !important;
-            margin-top: 4px !important;
-            color: rgba(71, 77, 84, 1);
-          }
-          .item-inner {
-            box-shadow: none !important;
-            margin-left: 0 !important;
-            border-bottom-color: rgba(71, 77, 84, 0.5) !important;
-            ion-input {
-              input {
-                margin-bottom: 4px;
-                margin-top: 4px;
-                &::placeholder {
-                  color: #cfd8dc;
+    .centerDiv {
+      ion-grid {
+        ion-row {
+          ion-col {
+            .logo {
+              text-align: center;
+              img {
+                width: 45%;
+              }
+            }
+            p {
+              text-align: center;
+              font-size: 1.5rem;
+            }
+            ion-list {
+              ion-item {
+                border-top: 0 !important;
+                padding-left: 0;
+                background-color: transparent !important;
+                border-bottom-width: 2px !important;
+                border-bottom-color: rgba(71, 77, 84, 0.5) !important;
+                box-shadow: none !important;
+                &.input-has-focus:last-child {
+                  border-bottom-color: rgba(71, 77, 84, 0.5) !important;
+                  box-shadow: none !important;
                 }
-                &:-ms-input-placeholder {
-                  color: #cfd8dc;
+                ion-icon {
+                  font-size: 2.5rem;
+                  margin-bottom: 4px !important;
+                  margin-top: 4px !important;
+                  color: rgba(71, 77, 84, 1);
                 }
-                &::-ms-input-placeholder {
-                  color: #cfd8dc;
+                .item-inner {
+                  box-shadow: none !important;
+                  margin-left: 0 !important;
+                  border-bottom-color: rgba(71, 77, 84, 0.5) !important;
+                  ion-input {
+                    input {
+                      margin-bottom: 4px;
+                      margin-top: 4px;
+                      &::placeholder {
+                        color: #cfd8dc;
+                      }
+                      &:-ms-input-placeholder {
+                        color: #cfd8dc;
+                      }
+                      &::-ms-input-placeholder {
+                        color: #cfd8dc;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+            .buttons {
+              button {
+                margin-top: 2rem;
+                color: #f4f4f4;
+                padding: 0 1em;
+                height: 2.8em;
+                font-weight: bold;
+                font-size: 1.8rem;
+                // text-transform: initial;
+                border-radius: 5px;
+                span {
+                  letter-spacing: 0.05em;
                 }
               }
             }
           }
-        }
-      }
-
-      button {
-        margin-top: 2rem;
-        color: #f4f4f4;
-        padding: 0 1em;
-        height: 2.8em;
-        font-weight: bold;
-        font-size: 1.8rem;
-        text-transform: initial;
-        border-radius: 5px;
-        span {
-          letter-spacing: 0.05em;
         }
       }
     }

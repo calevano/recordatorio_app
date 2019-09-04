@@ -13,16 +13,16 @@
     </ion-fab>
 
     <div class="ionSpinner" *ngIf="loadInit">
-        <ion-spinner color="primary"></ion-spinner>
+        <ion-spinner color="blueMaterial"></ion-spinner>
     </div>
 
     <ng-container *ngIf="!loadInit">
         <div class="emptyRecordatorio" *ngIf="recordatorios.length==0">
             <ion-grid>
-                <ion-row justify-content-center align-items-center>
+                <ion-row>
                     <ion-col>
                         <ion-icon name="custom-hoy" color="blueMaterial" item-start></ion-icon>
-                        <p>Aún no has creado recordatorio(s)<br>comienza agregando uno</p>
+                        <p>Aún no has creado recordatorio(s) comienza agregando uno</p>
                     </ion-col>
                 </ion-row>
             </ion-grid>
@@ -30,12 +30,12 @@
 
         <div class="listadoRecordatorio" *ngIf="recordatorios.length>0">
             <ion-list>
-                <button ion-item *ngFor="let recordatorio of recordatorios">
+                <button ion-item *ngFor="let recordatorio of recordatorios" [navPush]="hoyDetalle"
+                    [navParams]="{ 'recordatorio': recordatorio }">
                     <ion-icon name="custom-hoy" item-start></ion-icon>
                     <h2>{{ recordatorio.name }}</h2>
                     <p>{{ recordatorio.note }}</p>
-                    <p>{{ recordatorio.quantity }} pastilla(s)</p>
-                    <p>{{ recordatorio.day_duration }}</p>
+                    <p>{{ recordatorio.quantity }} pastilla{{ (recordatorio.quantity>1)? 's':'' }}</p>
                     <ion-note item-end>{{ recordatorio.hour }}</ion-note>
                 </button>
             </ion-list>

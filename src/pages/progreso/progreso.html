@@ -4,6 +4,53 @@
     </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
+
+    <div class="ionSpinner" *ngIf="loadInit">
+        <ion-spinner color="greenMaterial"></ion-spinner>
+    </div>
+
+    <ng-container *ngIf="!loadInit">
+        <div class="centerDiv" *ngIf="progresos.length==0">
+            <ion-grid>
+                <ion-row>
+                    <ion-col>
+                        <ion-icon name="custom-progreso" color="greenMaterial"></ion-icon>
+                        <p>Aún no has creado recordatorio(s), comienza agregando uno para mostrar el progreso</p>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </div>
+        <div class="listado" *ngIf="progresos.length>0">
+            <ng-container *ngFor="let progreso of progresos; let i=index">
+                <p>{{ progreso.day_duration | moment:"dddd, D MMMM YYYY" }}</p>
+                <ion-card *ngFor="let medicamento of progreso.medicamento; let j=index">
+                    <ion-card-header>
+                        <h2>
+                            <ion-icon name="custom-hoy" color="blueMaterial"></ion-icon>
+                            {{ medicamento.name }}
+                        </h2>
+                    </ion-card-header>
+                    <ion-card-content>
+                        <ion-grid>
+                            <ion-row *ngFor="let data of medicamento.data; let k=index">
+                                <ion-col col-1 align-items-center>
+                                    <ion-icon *ngIf="data.status===2" color="greenMaterial" name="checkbox"></ion-icon>
+                                    <ion-icon *ngIf="data.status===0" color="redMaterial" name="close-circle"></ion-icon>
+                                </ion-col>
+                                <ion-col col-9 align-items-center>
+                                    {{ data.quantity }} pastilla{{ (data.quantity>1) ? 's': '' }}
+                                </ion-col>
+                                <ion-col col-2 align-items-center>
+                                    {{ data.hour }}
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
+                    </ion-card-content>
+                </ion-card>
+            </ng-container>
+        </div>
+    </ng-container>
+
 
 </ion-content>

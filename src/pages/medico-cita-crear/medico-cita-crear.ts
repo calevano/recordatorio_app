@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-
+// Providers
 import { LoadingProvider } from '../../providers/loading/loading';
 import { ToastProvider } from '../../providers/toast/toast';
 import { DatabaseProvider } from '../../providers/database/database';
-
+// Others
 import moment from 'moment';
 import "moment/locale/es";
 

@@ -34,20 +34,20 @@ page-medico-detalle {
         background-color: color($colors, orangeMaterial) !important;
         ion-segment {
           height: 42px !important;
-          padding-left: 2rem !important;
-          padding-right: 2rem !important;
+          padding-left: 1.7rem !important;
+          padding-right: 1.7rem !important;
           ion-segment-button {
-            font-size: 1.4rem !important;
-            border: 0 !important;
+            border-bottom: 0px !important;
             &.segment-activated {
               border-bottom: 4px solid #fff !important;
               span {
-                font-size: 1.5rem !important;
+                font-size: 1.3rem !important;
               }
             }
             span {
               color: #fff !important;
               font-family: "vagBold";
+              letter-spacing: 0.05em;
             }
           }
         }
@@ -134,26 +134,30 @@ page-medico-detalle {
       }
     }
     .citasToolbar {
-      padding: 2rem;
       .emptyCitas {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         height: 100%;
         ion-grid {
-          height: 100%;
+          padding: 0;
+          margin-top: -4rem;
           ion-row {
-            height: 100%;
             ion-col {
               text-align: center;
               ion-icon {
                 font-size: 10rem;
               }
               p {
-                font-size: 2rem;
+                margin: 0;
+                font-size: 1.7rem;
               }
             }
           }
         }
       }
       .listadoCitas {
+        padding: 2rem;
         ion-card {
           border-radius: 5px !important;
           box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1) !important;

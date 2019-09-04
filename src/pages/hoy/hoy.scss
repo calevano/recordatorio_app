@@ -7,12 +7,15 @@ page-hoy {
       height: 100%;
     }
     .emptyRecordatorio {
-      padding-top: 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       height: 100%;
+      padding-left: 5rem;
+      padding-right: 5rem;
       ion-grid {
-        height: 100%;
+        padding: 0;
         ion-row {
-          height: 100%;
           ion-col {
             text-align: center;
             ion-icon {
@@ -20,7 +23,8 @@ page-hoy {
             }
             p {
               font-size: 2rem;
-              //   font-weight: bold;
+              margin-top: 1rem;
+              margin-bottom: 0;
             }
           }
         }
@@ -35,6 +39,7 @@ page-hoy {
           }
           .item-inner {
             margin-left: 1rem !important;
+            margin-right: 1rem !important;
             ion-label {
               h2 {
                 margin-top: 0 !important;

@@ -1,11 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
-import { ToastProvider } from '../../providers/toast/toast';
-
-import { DatabaseProvider } from '../../providers/database/database';
+// Pages
 import { HoyMedicamentoCrearPage } from '../hoy-medicamento-crear/hoy-medicamento-crear';
+// Providers
+import { ToastProvider } from '../../providers/toast/toast';
+import { DatabaseProvider } from '../../providers/database/database';
 import { LoadingProvider } from '../../providers/loading/loading';
 
 @Component({

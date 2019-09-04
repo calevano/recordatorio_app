@@ -5,7 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 
 import { MyApp } from './app.component';
-
+// Pages
 import { IntroPage } from '../pages/intro/intro';
 import { LoadingPage } from '../pages/loading/loading';
 import { LoginPage } from '../pages/login/login';
@@ -26,22 +26,23 @@ import { MedicoCitaCrearPage } from '../pages/medico-cita-crear/medico-cita-crea
 import { MedicoCitaEditarPage } from '../pages/medico-cita-editar/medico-cita-editar';
 import { ModalConsejoTomaPage } from '../pages/modal-consejo-toma/modal-consejo-toma';
 import { ModalDuracionFechaPage } from '../pages/modal-duracion-fecha/modal-duracion-fecha';
-
+// Providers
+import { LoadingProvider } from '../providers/loading/loading';
+import { ToastProvider } from '../providers/toast/toast';
+import { DatabaseProvider } from '../providers/database/database';
+import { StorageProvider } from '../providers/storage/storage';
+// Pipes
+import { KeyValuePipe } from '../pipes/key-value/key-value';
+import { MomentPipe } from '../pipes/moment/moment';
+// Plugins
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HeaderColor } from '@ionic-native/header-color';
 import { CallNumber } from '@ionic-native/call-number';
 import { SQLite } from '@ionic-native/sqlite';
 import { WheelSelector } from '@ionic-native/wheel-selector';
-
-import { LoadingProvider } from '../providers/loading/loading';
-import { ToastProvider } from '../providers/toast/toast';
-import { DatabaseProvider } from '../providers/database/database';
-import { StorageProvider } from '../providers/storage/storage';
-
-import { KeyValuePipe } from '../pipes/key-value/key-value';
-
 import { IonicStorageModule } from '@ionic/storage';
+
 
 @NgModule({
     declarations: [
@@ -66,7 +67,8 @@ import { IonicStorageModule } from '@ionic/storage';
         MedicoCitaEditarPage,
         ModalConsejoTomaPage,
         ModalDuracionFechaPage,
-        KeyValuePipe
+        KeyValuePipe,
+        MomentPipe
     ],
     imports: [
         BrowserModule,

@@ -12,12 +12,12 @@
                     <p>Medicina</p>
                     <h2>{{ medicamento.name }}</h2>
                 </ion-item>
-                <ion-item (click)="modalConsejo()">
+                <ion-item tappable (click)="modalConsejo()">
                     <p>Consejos de la toma</p>
                     <h2 *ngIf="noteText==''">Presiona aquí</h2>
                     <h2 *ngIf="noteText!==''">{{ noteText }}</h2>
                 </ion-item>
-                <ion-item (click)="modalDuracion()">
+                <ion-item tappable (click)="modalDuracion()">
                     <p>Duración</p>
                     <h2 *ngIf="dayDurationText==''">Presiona aquí</h2>
                     <h2 *ngIf="dayDurationText!==''">{{ dayDurationText }}</h2>

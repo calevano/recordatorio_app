@@ -88,8 +88,18 @@ ion-toast.warning .toast-wrapper {
   background: color($colors, warningMaterial) !important;
 }
 
-.text-right {
-  text-align: right;
+.centerDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.ionSpinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
 ion-app .nav-decor {

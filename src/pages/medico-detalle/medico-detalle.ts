@@ -1,14 +1,14 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { NavController, NavParams, Platform, ActionSheetController, AlertController, Content, Slides, FabContainer } from 'ionic-angular';
-
+// Pages
 import { MedicoCitaCrearPage } from '../medico-cita-crear/medico-cita-crear';
 import { MedicoCitaEditarPage } from '../medico-cita-editar/medico-cita-editar';
 import { MedicoEditarPage } from '../medico-editar/medico-editar';
-
+// Providers
 import { LoadingProvider } from '../../providers/loading/loading';
 import { ToastProvider } from '../../providers/toast/toast';
 import { DatabaseProvider } from '../../providers/database/database';
-
+// Plugins
 import { CallNumber } from '@ionic-native/call-number';
 
 @Component({

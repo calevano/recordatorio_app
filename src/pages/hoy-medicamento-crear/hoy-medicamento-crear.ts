@@ -1,20 +1,18 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ModalController } from 'ionic-angular';
-
 import { FormBuilder, FormGroup, Validators, FormControl, FormArray } from '@angular/forms';
-
+// Modals
 import { ModalConsejoTomaPage } from '../modal-consejo-toma/modal-consejo-toma';
 import { ModalDuracionFechaPage } from '../modal-duracion-fecha/modal-duracion-fecha';
-
-import { WheelSelector } from '@ionic-native/wheel-selector';
-
-import moment from 'moment';
-import "moment/locale/es";
+// Providers
 import { DatabaseProvider } from '../../providers/database/database';
 import { LoadingProvider } from '../../providers/loading/loading';
 import { ToastProvider } from '../../providers/toast/toast';
-import { TabsPage } from '../tabs/tabs';
-
+// Plugins
+import { WheelSelector } from '@ionic-native/wheel-selector';
+// Others
+import moment from 'moment';
+import "moment/locale/es";
 
 @Component({
     selector: 'page-hoy-medicamento-crear',
@@ -253,7 +251,6 @@ export class HoyMedicamentoCrearPage {
                 this.toastProvider.show("error", "No se pudo obtener el recordatorio agregado", 'bottom');
             });
         }
-
         this.navCtrl.popToRoot();
         // this.app.getRootNav().setRoot(PortadaPage);
     }

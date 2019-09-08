@@ -57,8 +57,6 @@ export class HoyMedicamentoCrearPage {
         private selector: WheelSelector,
     ) {
         this.medicamento = navParams.get('medicamento');
-        console.log("medicamento:::", this.medicamento);
-
         this.recordatorioForm = this.formBuilder.group({
             medicine_id: [this.medicamento.id, Validators.required],
             day_duration: ['', Validators.required],
@@ -95,7 +93,6 @@ export class HoyMedicamentoCrearPage {
         consejoTomaModal.onDidDismiss(data => {
             if (typeof data !== "undefined") {
                 this.recordatorioForm.controls.note.setValue(data.consejoToma);
-                console.log("RecordatorioForm:::UPDATE:::3:::", this.recordatorioForm);
                 this.noteText = data.consejoToma;
             }
         });
@@ -103,9 +100,7 @@ export class HoyMedicamentoCrearPage {
     }
 
     openPastillas(i: any) {
-        console.log("i:::", i);
         let setValue_ = this.recordatorioForm.controls.horarios.value[i].quantity;
-        console.log("setValue_:::", setValue_);
         let config_ = {
             title: "Cantidad de pastilla(s) a tomar",
             items: [this.jsonData.numbers],
@@ -122,16 +117,12 @@ export class HoyMedicamentoCrearPage {
                 }
             ];
         }
-        console.log("config_:::", config_);
-
         this.selector.show(config_).then(result => {
-            // this.dataQuantity = result[0].quantity;
             const horarioControl = (<FormArray>this.recordatorioForm.controls['horarios']);
             this.recordatorioForm.value.horarios[i]['quantity'] = result[0].quantity;
             <FormControl>horarioControl.controls[i]['controls']['quantity'].setValue(result[0].quantity);
-            console.log("RecordatorioForm:::UPDATE:::3:::", this.recordatorioForm.controls.horarios);
         }).catch((err) => {
-            console.log('openPastillas:::err:::', err);
+            console.log('HoyMedicamentoCrearPage:::openPastillas:::err:::', JSON.stringify(err));
         });
 
     }
@@ -174,21 +165,17 @@ export class HoyMedicamentoCrearPage {
     }
 
     async saveRecordatorio() {
-        console.log('HoyMedicamentoCrearPage:::saveRecordatorio');
         if (!this.recordatorioForm.valid) {
             console.log("no es valido");
         } else {
             this.loadingProvider.show("Creando recordatorio, espera un momento...");
-            console.log("data_:::", this.recordatorioForm.value);
             let recordatorioForm_ = this.recordatorioForm.value;
             let recordatorio_: any = {
                 medicine_id: recordatorioForm_.medicine_id,
                 note: recordatorioForm_.note
             };
             let horariosArray_: any = [];
-            console.log("recordatorio_:::", recordatorio_);
             if (this.fechaInicio === "") {
-
                 for (let i = 0; i < recordatorioForm_.horarios.length; i++) {
                     horariosArray_.push(
                         {
@@ -199,12 +186,9 @@ export class HoyMedicamentoCrearPage {
                         }
                     );
                 }
-                console.log("recordatorioForm_:::horariosArray_:::", horariosArray_);
             } else {
-                // let arrayDias: any = [];
                 let init_ = moment(this.fechaInicio, "YYYY-MM-DD");
                 let end_ = moment(this.fechaFinal, "YYYY-MM-DD");
-
                 for (let i = 0; i < recordatorioForm_.horarios.length; i++) {
                     horariosArray_.push(
                         {
@@ -217,8 +201,6 @@ export class HoyMedicamentoCrearPage {
                 }
                 let diff_ = end_.diff(init_, "days");
                 let cantidadDias: number = diff_;
-                console.log("HoyMedicamentoCrearPage:::modalDuracion:::cantidadDias:::" + cantidadDias + ' dias de diferencia');
-
                 for (let k = 0; k < cantidadDias; k++) {
                     for (let j = 0; j < recordatorioForm_.horarios.length; j++) {
                         horariosArray_.push(
@@ -231,7 +213,6 @@ export class HoyMedicamentoCrearPage {
                         );
                     }
                 }
-                console.log('HoyMedicamentoCrearPage:::modalDuracion:::arrayDias:::', horariosArray_);
             }
             await this.databaseProvider.insertRecordatorio(recordatorio_).then((response) => {
                 this.toastProvider.show("success", "Se agrego el recordatorio", 'bottom');
@@ -246,12 +227,10 @@ export class HoyMedicamentoCrearPage {
     async saveRecordatorioTimes(id: number, horarios: any) {
         for (let horario of horarios) {
             await this.databaseProvider.insertRecordatorioTimes(horario, id).then((response) => {
-
             }).catch((err) => {
                 this.toastProvider.show("error", "No se pudo obtener el recordatorio agregado", 'bottom');
             });
         }
         this.navCtrl.popToRoot();
-        // this.app.getRootNav().setRoot(PortadaPage);
     }
 }

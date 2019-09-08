@@ -11,7 +11,7 @@ export class DatabaseProvider {
     db: SQLiteObject = null;
 
     constructor() {
-        console.log('DatabaseProvider Hello');
+        console.log('DatabaseProvider:::Provider');
     }
 
     setDatabase(db: SQLiteObject) {
@@ -53,7 +53,6 @@ export class DatabaseProvider {
     }
 
     // ------------------------------- Citas -----------------------------
-
     async getAllCitas(doctor: any) {
         let sql = 'SELECT * FROM doctor_appointments WHERE doctor_id=? ORDER BY day DESC, hour DESC';
         try {
@@ -84,7 +83,6 @@ export class DatabaseProvider {
     }
 
     // ------------------------------- Medicos -----------------------------
-
     async getAllMedicos() {
         let sql = 'SELECT * FROM doctors ORDER BY id DESC';
         try {
@@ -115,7 +113,6 @@ export class DatabaseProvider {
     }
 
     // ------------------------------- Medicamento -----------------------------
-
     async getAllMedicamento() {
         let sql = 'SELECT * FROM medicines ORDER BY name ASC';
         try {
@@ -171,10 +168,9 @@ export class DatabaseProvider {
     }
 
     // ------------------------------- Recordatorio -----------------------------
-
     async getAllRecordatorio() {
         let dateNow = moment().format('YYYY-MM-DD');
-        let sql = 'SELECT rt.day_duration, rt.hour, rt.quantity, r.note, rt.id , rt.status, m.name FROM reminder_times rt INNER JOIN reminders r ON r.id=rt.reminder_id INNER JOIN medicines m ON m.id=r.medicine_id WHERE rt.status=1 AND rt.day_duration="' + dateNow + '" ORDER BY rt.day_duration DESC, rt.hour DESC';
+        let sql = 'SELECT rt.day_duration, rt.hour, rt.quantity, r.note, rt.id , rt.status, m.name FROM reminder_times rt INNER JOIN reminders r ON r.id=rt.reminder_id INNER JOIN medicines m ON m.id=r.medicine_id WHERE rt.status=1 AND rt.day_duration="' + dateNow + '" ORDER BY rt.day_duration DESC, rt.hour ASC';
         try {
             const response = await this.db.executeSql(sql, []);
             let recordatorios = [];
@@ -193,7 +189,6 @@ export class DatabaseProvider {
     }
 
     // ------------------------------- Recordatorio Times-----------------------------
-
     insertRecordatorioTimes(recordatorioTime: any, id: number) {
         let sql = 'INSERT INTO reminder_times(day_duration, hour, quantity, status, reminder_id) VALUES(?,?,?,?,?)';
         return this.db.executeSql(sql, [recordatorioTime.day_duration, recordatorioTime.hour, recordatorioTime.quantity, recordatorioTime.status, id]);
@@ -206,20 +201,20 @@ export class DatabaseProvider {
 
     //--------------------------------Progreso-----------------------------------------
     async getAllProgreso() {
-        let reminderTimesGroupDay = 'SELECT rt.day_duration FROM reminder_times rt INNER JOIN reminders r ON r.id=rt.reminder_id INNER JOIN medicines m ON m.id=r.medicine_id GROUP BY rt.day_duration ORDER BY rt.day_duration DESC';
+        let reminderTimesGroupDay = 'SELECT rt.day_duration FROM reminder_times rt INNER JOIN reminders r ON r.id=rt.reminder_id INNER JOIN medicines m ON m.id=r.medicine_id GROUP BY rt.day_duration ORDER BY rt.day_duration ASC';
         try {
             const responseGroupDay = await this.db.executeSql(reminderTimesGroupDay, []);
             let reminderTimesGroupDay_ = [];
             for (let i = 0; i < responseGroupDay.rows.length; i++) {
                 let rowsGroupDay_ = responseGroupDay.rows.item(i);
                 let dayDuration_ = rowsGroupDay_.day_duration;
-                let reminderTimesGroupName = 'SELECT m.name FROM reminder_times rt INNER JOIN reminders r ON r.id=rt.reminder_id INNER JOIN medicines m ON m.id=r.medicine_id WHERE rt.day_duration="' + dayDuration_ + '" GROUP BY m.name ORDER BY rt.day_duration DESC';
+                let reminderTimesGroupName = 'SELECT m.name FROM reminder_times rt INNER JOIN reminders r ON r.id=rt.reminder_id INNER JOIN medicines m ON m.id=r.medicine_id WHERE rt.day_duration="' + dayDuration_ + '" GROUP BY m.name ORDER BY rt.day_duration ASC';
                 const responseGroupName = await this.db.executeSql(reminderTimesGroupName, []);
                 let reminderTimesGroupName_ = [];
                 for (let j = 0; j < responseGroupName.rows.length; j++) {
                     let rowsGroupName_ = responseGroupName.rows.item(j);
                     let medicamentoName_ = rowsGroupName_.name;
-                    let reminderTimesAll = 'SELECT rt.day_duration, rt.hour, rt.quantity, r.note, rt.id , rt.status, m.name FROM reminder_times rt INNER JOIN reminders r ON r.id=rt.reminder_id INNER JOIN medicines m ON m.id=r.medicine_id WHERE rt.day_duration="' + dayDuration_ + '" AND m.name="' + medicamentoName_ + '" ORDER BY rt.day_duration DESC, rt.hour DESC';
+                    let reminderTimesAll = 'SELECT rt.day_duration, rt.hour, rt.quantity, r.note, rt.id , rt.status, m.name FROM reminder_times rt INNER JOIN reminders r ON r.id=rt.reminder_id INNER JOIN medicines m ON m.id=r.medicine_id WHERE rt.day_duration="' + dayDuration_ + '" AND m.name="' + medicamentoName_ + '" ORDER BY rt.day_duration ASC, rt.hour ASC';
                     const responseGroupAll = await this.db.executeSql(reminderTimesAll, []);
                     let responseGroupAll_ = [];
                     for (let k = 0; k < responseGroupAll.rows.length; k++) {
@@ -231,6 +226,20 @@ export class DatabaseProvider {
                 }
                 rowsGroupDay_['medicamento'] = reminderTimesGroupName_;
                 reminderTimesGroupDay_.push(rowsGroupDay_);
+            }
+            return Promise.resolve(reminderTimesGroupDay_);
+        } catch (error) {
+            return await Promise.reject(error);
+        }
+    }
+
+    async getDataInforme() {
+        let reminderTimesGroupDay = 'SELECT rt.day_duration FROM reminder_times rt INNER JOIN reminders r ON r.id=rt.reminder_id INNER JOIN medicines m ON m.id=r.medicine_id GROUP BY rt.day_duration ORDER BY rt.day_duration ASC';
+        try {
+            const responseGroupDay = await this.db.executeSql(reminderTimesGroupDay, []);
+            let reminderTimesGroupDay_ = [];
+            for (let i = 0; i < responseGroupDay.rows.length; i++) {
+                reminderTimesGroupDay_.push(responseGroupDay.rows.item(i));
             }
             return Promise.resolve(reminderTimesGroupDay_);
         } catch (error) {

@@ -5,18 +5,16 @@
 </ion-header>
 
 <ion-content>
-
-    <ion-fab right bottom *ngIf="!loadInit">
-        <button ion-fab color="blueMaterial" [navPush]="hoyMedicamento">
-            <ion-icon name="add"></ion-icon>
-        </button>
-    </ion-fab>
-
     <div class="ionSpinner" *ngIf="loadInit">
         <ion-spinner color="blueMaterial"></ion-spinner>
     </div>
 
     <ng-container *ngIf="!loadInit">
+        <ion-fab right bottom>
+            <button ion-fab color="blueMaterial" [navPush]="hoyMedicamento">
+                <ion-icon name="add"></ion-icon>
+            </button>
+        </ion-fab>
         <div class="emptyRecordatorio" *ngIf="recordatorios.length==0">
             <ion-grid>
                 <ion-row>
@@ -32,7 +30,7 @@
             <ion-list>
                 <button ion-item *ngFor="let recordatorio of recordatorios" [navPush]="hoyDetalle"
                     [navParams]="{ 'recordatorio': recordatorio }">
-                    <ion-icon name="custom-hoy" item-start></ion-icon>
+                    <ion-icon name="custom-hoy" item-start color="blueMaterial"></ion-icon>
                     <h2>{{ recordatorio.name }}</h2>
                     <p>{{ recordatorio.note }}</p>
                     <p>{{ recordatorio.quantity }} pastilla{{ (recordatorio.quantity>1)? 's':'' }}</p>

@@ -8,9 +8,8 @@ page-hoy-medicamento {
         }
       }
     }
-  }
-  ion-content {
     ion-searchbar {
+      background-color: color($colors, blueMaterial) !important;
       .searchbar-input-container {
         input {
           box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1) !important;
@@ -18,6 +17,8 @@ page-hoy-medicamento {
         }
       }
     }
+  }
+  ion-content {
     .addMedicamento {
       padding: 1rem;
       .preguntaMessage {
@@ -76,9 +77,6 @@ page-hoy-medicamento {
       }
     }
     .resultadoBusqueda {
-      margin-top: 1.5rem;
-      padding-left: 1rem;
-      padding-right: 1rem;
       ion-list {
         box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1) !important;
         button {

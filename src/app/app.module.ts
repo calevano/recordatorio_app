@@ -34,6 +34,7 @@ import { StorageProvider } from '../providers/storage/storage';
 // Pipes
 import { KeyValuePipe } from '../pipes/key-value/key-value';
 import { MomentPipe } from '../pipes/moment/moment';
+import { MesTextPipe } from '../pipes/mes-text/mes-text';
 // Plugins
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -41,7 +42,9 @@ import { HeaderColor } from '@ionic-native/header-color';
 import { CallNumber } from '@ionic-native/call-number';
 import { SQLite } from '@ionic-native/sqlite';
 import { WheelSelector } from '@ionic-native/wheel-selector';
+import { LocalNotifications } from '@ionic-native/local-notifications';
 import { IonicStorageModule } from '@ionic/storage';
+import { LocalNotificationProvider } from '../providers/local-notification/local-notification';
 
 
 @NgModule({
@@ -68,14 +71,15 @@ import { IonicStorageModule } from '@ionic/storage';
         ModalConsejoTomaPage,
         ModalDuracionFechaPage,
         KeyValuePipe,
-        MomentPipe
+        MomentPipe,
+        MesTextPipe,
     ],
     imports: [
         BrowserModule,
         HttpClientModule,
         IonicModule.forRoot(MyApp, { tabsHideOnSubPages: true, platforms: { ios: { backButtonText: 'Atrás' } } }),
         IonicStorageModule.forRoot({
-            name: '__mydbrecordatorio',
+            name: '_mydbrecordatorio',
             driverOrder: ['indexeddb', 'sqlite', 'websql']
         }),
         ReactiveFormsModule
@@ -111,11 +115,13 @@ import { IonicStorageModule } from '@ionic/storage';
         CallNumber,
         SQLite,
         WheelSelector,
+        LocalNotifications,
         { provide: ErrorHandler, useClass: IonicErrorHandler },
         LoadingProvider,
         ToastProvider,
         DatabaseProvider,
-        StorageProvider
+        StorageProvider,
+    LocalNotificationProvider
     ]
 })
 export class AppModule { }

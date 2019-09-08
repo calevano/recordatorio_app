@@ -33,16 +33,19 @@
                     </ion-card-header>
                     <ion-card-content>
                         <ion-grid>
-                            <ion-row *ngFor="let data of medicamento.data; let k=index">
-                                <ion-col col-1 align-items-center>
+                            <ion-row align-items-center *ngFor="let data of medicamento.data; let k=index"
+                                [navPush]="progresoDetalle" [navParams]="{ 'recordatorio': data }">
+                                <ion-col col-1>
                                     <ion-icon *ngIf="data.status===2" color="greenMaterial" name="checkbox"></ion-icon>
-                                    <ion-icon *ngIf="data.status===0" color="redMaterial" name="close-circle"></ion-icon>
+                                    <ion-icon *ngIf="data.status===0" color="redMaterial" name="close-circle">
+                                    </ion-icon>
                                 </ion-col>
-                                <ion-col col-9 align-items-center>
-                                    {{ data.quantity }} pastilla{{ (data.quantity>1) ? 's': '' }}
+                                <ion-col col-9>
+                                    <span>{{ data.quantity }} pastilla{{ (data.quantity>1) ? 's': '' }}</span>
+                                    <p>{{ data.note }}</p>
                                 </ion-col>
-                                <ion-col col-2 align-items-center>
-                                    {{ data.hour }}
+                                <ion-col col-2>
+                                    <span>{{ data.hour }}</span>
                                 </ion-col>
                             </ion-row>
                         </ion-grid>

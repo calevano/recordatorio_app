@@ -1,10 +1,12 @@
 <ion-header>
     <ion-navbar color="blueMaterial">
         <ion-title>Consejos de la toma</ion-title>
-        <ion-buttons start>
-            <button ion-button (click)="dismiss()">
-                <span ion-text color="light" showWhen="ios">Cancelar</span>
-                <ion-icon name="md-close" showWhen="android"></ion-icon>
+        <ion-buttons end>
+            <button ion-button showWhen="android" icon-only (click)="dismiss()">
+                <ion-icon name="md-close"></ion-icon>
+            </button>
+            <button ion-button showWhen="ios" (click)="dismiss()">
+                <span ion-text color="light">Cancelar</span>
             </button>
         </ion-buttons>
     </ion-navbar>

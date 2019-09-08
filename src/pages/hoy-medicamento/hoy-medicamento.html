@@ -2,12 +2,13 @@
     <ion-navbar color="blueMaterial">
         <ion-title>Seleccione un medicamento</ion-title>
     </ion-navbar>
-</ion-header>
-
-<ion-content>
     <ion-searchbar #searchBar *ngIf="!showFormulario" [(ngModel)]="medicamentoTexto"
         (ionInput)="searchMedicamento($event)" placeholder="Escriba su medicamento">
     </ion-searchbar>
+</ion-header>
+
+<ion-content>
+
     <div class="addMedicamento" *ngIf="medicamentos.length==0">
         <div class="preguntaMessage" [hidden]="!showPregunta">
             <h4>No hemos encontrado el medicamento que buscas.</h4>

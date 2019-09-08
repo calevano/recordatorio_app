@@ -21,9 +21,7 @@ export class HoyDetallePage {
         public toastProvider: ToastProvider,
         public loadingProvider: LoadingProvider,
     ) {
-        console.log('HoyDetallePage:::constructor');
         this.recordatorio = navParams.get('recordatorio');
-        console.log('HoyDetallePage:::constructor:::recordatorio:::', this.recordatorio);
     }
 
     ionViewDidLoad() {
@@ -31,8 +29,6 @@ export class HoyDetallePage {
     }
 
     async cancelar() {
-        console.log('HoyDetallePage:::cancelar');
-
         let alert = this.alertCtrl.create({
             title: 'Cancelar',
             message: '¿Está seguro que desea cancelar la toma de este recordatorio?',
@@ -48,7 +44,6 @@ export class HoyDetallePage {
                         let data_: any = {};
                         data_['status'] = 0;
                         data_['id'] = this.recordatorio.id;
-                        console.log('HoyDetallePage:::cancelar:::data_:::', data_);
                         this.loadingProvider.show("Cancelando toma...");
                         this.databaseProvider.tomaRecordatorioTimes(data_).then((response) => {
                             this.toastProvider.show("success", "Se cancelo la toma del recordatorio", 'bottom');
@@ -65,8 +60,6 @@ export class HoyDetallePage {
     }
 
     async confirmar() {
-        console.log('HoyDetallePage:::confirmar');
-
         let alert = this.alertCtrl.create({
             title: 'Confirmar',
             message: '¿Está seguro que desea confirmar la toma de este recordatorio?',
@@ -82,7 +75,6 @@ export class HoyDetallePage {
                         let data_: any = {};
                         data_['status'] = 2;
                         data_['id'] = this.recordatorio.id;
-                        console.log('HoyDetallePage:::confirmar:::data_:::', data_);
                         this.loadingProvider.show("Confirmando toma...");
                         this.databaseProvider.tomaRecordatorioTimes(data_).then((response) => {
                             this.toastProvider.show("success", "Se confirmo la toma del recordatorio", 'bottom');

@@ -24,31 +24,21 @@ export class HoyPage {
         public databaseProvider: DatabaseProvider,
         public toastProvider: ToastProvider,
     ) {
-
     }
 
-    ionViewDidLoad() {
-        console.log('HoyPage:::ionViewDidLoad');
-    }
+    ionViewDidLoad() { }
 
     ionViewWillEnter() {
-        console.log('HoyPage:::ionViewWillEnter');
         this.getAllRecordatorio();
     }
 
     async getAllRecordatorio() {
         this.recordatorios = [];
+        this.loadInit = true;
         await this.databaseProvider.getAllRecordatorio().then((res) => {
-            console.log("HoyPage:::getAllRecordatorio:::res:::", res);
-            if (res.length === 0) {
-                this.recordatorios = [];
-            } else {
-                this.recordatorios = res;
-                console.log("HoyPage:::Listado de medicamentos:::", this.recordatorios);
-            }
+            this.recordatorios = (res.length === 0) ? [] : res;
             this.loadInit = false;
         }).catch((err) => {
-            console.log("HoyPage:::getAllRecordatorio:::err:::", err);
             this.toastProvider.show("error", "Porfavor intenta buscando de nuevo", "bottom");
         });
     }

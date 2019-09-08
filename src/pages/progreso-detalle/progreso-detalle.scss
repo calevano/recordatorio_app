@@ -1,3 +1,80 @@
 page-progreso-detalle {
-
+  ion-header {
+    ion-navbar {
+      button {
+        &.back-button {
+          color: color($colors, blanco) !important;
+          margin-right: 0 !important;
+        }
+      }
+      ion-title {
+        .toolbar-title {
+          letter-spacing: 0.02em;
+          color: color($colors, blanco) !important;
+          padding-left: 0;
+        }
+      }
+    }
+  }
+  ion-content {
+    background-color: #fff !important;
+    ion-grid {
+      padding-left: 1.5rem !important;
+      padding-right: 1.5rem !important;
+      ion-row {
+        ion-col {
+          .iconDetalleRecordatorio {
+            text-align: center;
+            padding: 2rem;
+            width: 43%;
+            margin: 0 auto;
+            ion-icon {
+              font-size: 8rem;
+            }
+          }
+          h2 {
+            font-family: "vagBold";
+            margin-bottom: 0;
+            margin-top: 0;
+          }
+          p {
+            &.subTitle {
+              color: color($colors, blueGrayMaterial);
+              margin: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+  ion-footer {
+    ion-toolbar {
+      padding: 0 !important;
+      .toolbar-background {
+        background: transparent !important;
+        border: 0 !important;
+      }
+      ion-grid {
+        padding: 0 !important;
+        ion-row {
+          ion-col {
+            padding: 0 !important;
+            button {
+              color: #f4f4f4 !important;
+              padding: 0 1em !important;
+              height: 5.6rem !important;
+              font-weight: bold !important;
+              font-size: 1.8rem !important;
+              border-radius: 0 !important;
+              margin: 0 !important;
+              span {
+                font-family: "vagBold";
+                letter-spacing: 0.05em;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }

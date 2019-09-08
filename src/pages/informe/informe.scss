@@ -18,7 +18,7 @@ page-informe {
     .listMonthData {
       ion-list {
         button {
-          box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1) !important;
+          box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.05) !important;
           &.item {
             border-radius: 10px;
           }
@@ -52,7 +52,7 @@ page-informe {
               }
               ion-list {
                 ion-item {
-                  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1) !important;
+                  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.05) !important;
                   padding-left: 0;
                   border-radius: 10px;
                   ion-select {
@@ -105,10 +105,9 @@ page-informe {
       button {
         padding: 0 1em;
         height: 2.8em;
-        font-weight: bold;
-        font-family: "vagBlack";
+        font-family: "vagBold";
         font-size: 1.8rem;
-        text-transform: initial;
+        // text-transform: initial;
         border-radius: 5px;
         span {
             letter-spacing: 0.05em;

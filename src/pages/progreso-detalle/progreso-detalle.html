@@ -1,15 +1,65 @@
-<!--
-  Generated template for the ProgresoDetallePage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-  <ion-navbar>
-    <ion-title>ProgresoDetalle</ion-title>
-  </ion-navbar>
+    <ion-navbar color="greenMaterial">
+        <ion-title>Detalle del progreso</ion-title>
+    </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-
+<ion-content>
+    <ion-grid>
+        <ion-row>
+            <ion-col col-12>
+                <div class="iconDetalleRecordatorio">
+                    <ion-icon name="custom-hoy" color="greenMaterial"></ion-icon>
+                </div>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col col-12>
+                <h2>{{ recordatorio.name }}</h2>
+                <p class="subTitle">{{ recordatorio.note }}</p>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col col-6 text-left>
+                <p>Dosis</p>
+            </ion-col>
+            <ion-col col-6 text-right>
+                <p>{{ recordatorio.quantity }} pastilla{{ (recordatorio.quantity>1)? 's':'' }}</p>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col col-6 text-left>
+                <p>Fecha</p>
+            </ion-col>
+            <ion-col col-6 text-right>
+                <p>{{ recordatorio.day_duration }}</p>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col col-6 text-left>
+                <p>Hora</p>
+            </ion-col>
+            <ion-col col-6 text-right>
+                <p>{{ recordatorio.hour }}</p>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 </ion-content>
+<ion-footer no-border>
+    <ion-toolbar>
+        <ion-grid>
+            <ion-row>
+                <ion-col>
+                    <button ion-button type="button" color="redMaterial" block (click)="cancelar()">
+                        Cancelar
+                    </button>
+                </ion-col>
+                <ion-col>
+                    <button ion-button type="button" color="greenMaterial" block (click)="confirmar()">
+                        Confirmar
+                    </button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-toolbar>
+</ion-footer>

@@ -8,6 +8,7 @@ import { ModalDuracionFechaPage } from '../modal-duracion-fecha/modal-duracion-f
 import { DatabaseProvider } from '../../providers/database/database';
 import { LoadingProvider } from '../../providers/loading/loading';
 import { ToastProvider } from '../../providers/toast/toast';
+import { LocalNotificationProvider } from '../../providers/local-notification/local-notification';
 // Plugins
 import { WheelSelector } from '@ionic-native/wheel-selector';
 // Others
@@ -55,6 +56,7 @@ export class HoyMedicamentoCrearPage {
         public formBuilder: FormBuilder,
         public databaseProvider: DatabaseProvider,
         private selector: WheelSelector,
+        public localNotificationProvider: LocalNotificationProvider
     ) {
         this.medicamento = navParams.get('medicamento');
         this.recordatorioForm = this.formBuilder.group({
@@ -216,7 +218,7 @@ export class HoyMedicamentoCrearPage {
             }
             await this.databaseProvider.insertRecordatorio(recordatorio_).then((response) => {
                 this.toastProvider.show("success", "Se agrego el recordatorio", 'bottom');
-                this.saveRecordatorioTimes(response.insertId, horariosArray_);
+                this.saveRecordatorioTimes(response.insertId, horariosArray_, recordatorio_);
                 this.loadingProvider.hide(0);
             }).catch((err) => {
                 this.toastProvider.show("error", "No se pudo agregar. favor de intentarlo de nuevo", 'bottom');
@@ -224,9 +226,15 @@ export class HoyMedicamentoCrearPage {
         }
     }
 
-    async saveRecordatorioTimes(id: number, horarios: any) {
+    async saveRecordatorioTimes(id: number, horarios: any, recordatorio: any) {
         for (let horario of horarios) {
             await this.databaseProvider.insertRecordatorioTimes(horario, id).then((response) => {
+                let data_: any = [];
+                let cantidadText_ = (horario.quantity > 1) ? ' pastillas ' : ' pastilla ';
+                data_['datehour'] = horario.day_duration + ' ' + horario.hour;
+                data_['title'] = this.medicamento.name;
+                data_['text'] = horario.quantity + cantidadText_ + '\n' + recordatorio.note;
+                this.localNotificationProvider.create(data_);
             }).catch((err) => {
                 this.toastProvider.show("error", "No se pudo obtener el recordatorio agregado", 'bottom');
             });

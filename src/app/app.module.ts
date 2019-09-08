@@ -31,6 +31,7 @@ import { LoadingProvider } from '../providers/loading/loading';
 import { ToastProvider } from '../providers/toast/toast';
 import { DatabaseProvider } from '../providers/database/database';
 import { StorageProvider } from '../providers/storage/storage';
+import { LocalNotificationProvider } from '../providers/local-notification/local-notification';
 // Pipes
 import { KeyValuePipe } from '../pipes/key-value/key-value';
 import { MomentPipe } from '../pipes/moment/moment';
@@ -44,8 +45,6 @@ import { SQLite } from '@ionic-native/sqlite';
 import { WheelSelector } from '@ionic-native/wheel-selector';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { IonicStorageModule } from '@ionic/storage';
-import { LocalNotificationProvider } from '../providers/local-notification/local-notification';
-
 
 @NgModule({
     declarations: [
@@ -121,7 +120,7 @@ import { LocalNotificationProvider } from '../providers/local-notification/local
         ToastProvider,
         DatabaseProvider,
         StorageProvider,
-    LocalNotificationProvider
+        LocalNotificationProvider
     ]
 })
 export class AppModule { }

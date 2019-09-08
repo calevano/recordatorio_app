@@ -22,7 +22,7 @@ export class HoyPage {
     constructor(
         public navCtrl: NavController,
         public databaseProvider: DatabaseProvider,
-        public toastProvider: ToastProvider,
+        public toastProvider: ToastProvider
     ) {
     }
 

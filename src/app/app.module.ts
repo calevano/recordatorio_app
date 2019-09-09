@@ -44,6 +44,7 @@ import { CallNumber } from '@ionic-native/call-number';
 import { SQLite } from '@ionic-native/sqlite';
 import { WheelSelector } from '@ionic-native/wheel-selector';
 import { LocalNotifications } from '@ionic-native/local-notifications';
+import { Network } from '@ionic-native/network';
 import { IonicStorageModule } from '@ionic/storage';
 
 @NgModule({
@@ -115,6 +116,7 @@ import { IonicStorageModule } from '@ionic/storage';
         SQLite,
         WheelSelector,
         LocalNotifications,
+        Network,
         { provide: ErrorHandler, useClass: IonicErrorHandler },
         LoadingProvider,
         ToastProvider,

@@ -6,12 +6,18 @@ import { LoadingPage } from '../loading/loading';
 // Providers
 import { ToastProvider } from '../../providers/toast/toast';
 import { DatabaseProvider } from '../../providers/database/database';
+import { Subscription } from 'rxjs/Subscription';
+// Plugins
+import { Network } from '@ionic-native/network';
 
 @Component({
     selector: 'page-informe',
     templateUrl: 'informe.html',
 })
 export class InformePage {
+
+    connected: Subscription;
+    disconnected: Subscription;
 
     informeForm: FormGroup;
     emailPattern = "[a-zA-Z0-9._-]+[@]+[a-zA-Z0-9.-]+[.]+[a-zA-Z]{2,6}";
@@ -25,7 +31,8 @@ export class InformePage {
         public navCtrl: NavController,
         public toastProvider: ToastProvider,
         public databaseProvider: DatabaseProvider,
-        public formBuilder: FormBuilder
+        public formBuilder: FormBuilder,
+        private network: Network
     ) {
         this.informeForm = this.formBuilder.group({
             anio: ['', Validators.compose([Validators.required])],
@@ -38,6 +45,21 @@ export class InformePage {
 
     ionViewWillEnter() {
         this.getDataInforme();
+    }
+
+    ionViewDidEnter() {
+        this.connected = this.network.onConnect().subscribe(data => {
+            this.displayNetworkUpdate(data.type);
+        }, error => console.error(error));
+
+        this.disconnected = this.network.onDisconnect().subscribe(data => {
+            this.displayNetworkUpdate(data.type);
+        }, error => console.error(error));
+    }
+
+    ionViewWillLeave() {
+        this.connected.unsubscribe();
+        this.disconnected.unsubscribe();
     }
 
     async getDataInforme() {
@@ -103,6 +125,14 @@ export class InformePage {
                     email: this.informeForm.value.email
                 }
             });
+        }
+    }
+
+    displayNetworkUpdate(connectionState: string) {
+        if (connectionState === "online") {
+            this.toastProvider.show("success", "Usted esta conectado", 'bottom');
+        } else {
+            this.toastProvider.show("error", "Usted esta desconectado", 'bottom');
         }
     }
 

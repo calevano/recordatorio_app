@@ -7,6 +7,8 @@ import { HoyDetallePage } from '../hoy-detalle/hoy-detalle';
 import { DatabaseProvider } from '../../providers/database/database';
 import { ToastProvider } from '../../providers/toast/toast';
 
+import { LocalNotifications } from '@ionic-native/local-notifications';
+
 @Component({
     selector: 'page-hoy',
     templateUrl: 'hoy.html',
@@ -22,17 +24,22 @@ export class HoyPage {
     constructor(
         public navCtrl: NavController,
         public databaseProvider: DatabaseProvider,
-        public toastProvider: ToastProvider
+        public toastProvider: ToastProvider,
+        public localNotifications: LocalNotifications
     ) {
     }
 
-    ionViewDidLoad() { }
+    ionViewDidLoad() {
+        console.log('ionViewDidLoad:::');
+     }
 
     ionViewWillEnter() {
         this.getAllRecordatorio();
+        this.getAllNotifications();
     }
 
     async getAllRecordatorio() {
+        console.log('getAllRecordatorio:::');
         this.recordatorios = [];
         this.loadInit = true;
         await this.databaseProvider.getAllRecordatorio().then((res) => {
@@ -40,6 +47,21 @@ export class HoyPage {
             this.loadInit = false;
         }).catch((err) => {
             this.toastProvider.show("error", "Porfavor intenta buscando de nuevo", "bottom");
+        });
+    }
+
+    getAllNotifications() {
+        console.log('getAllNotifications:::');
+        this.localNotifications.getIds().then(res => {
+            console.log('getAllNotifications:::getIds:::res:::', res.length);
+        }).catch(err => {
+            console.log('getAllNotifications:::getIds:::err:::', err);
+        });
+
+        this.localNotifications.getAll().then(res => {
+            console.log('getAllNotifications:::getAll:::res:::', res);
+        }).catch(err => {
+            console.log('getAllNotifications:::getAll:::err:::', err);
         });
     }
 

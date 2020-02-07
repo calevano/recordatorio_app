@@ -24,10 +24,11 @@ page-medico-crear {
     .profileMedico {
       margin-bottom: 1.5rem;
       .photoMedico {
+        text-align: center;
         box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1) !important;
         border-radius: 50%;
         padding: 2rem;
-        width: 35%;
+        width: 120px;
         margin: 0 auto;
         border: 0.6rem solid #fff;
         ion-icon {
@@ -36,14 +37,23 @@ page-medico-crear {
       }
     }
     .formMedico {
+      ion-grid{
+        padding: 0;
+      }
       ion-list {
         margin-bottom: 10px;
+        &.listLast {
+          margin-bottom: 2rem;
+        }
         ion-item {
           border-top: 0 !important;
           border-bottom: 0 !important;
           padding-left: 0;
           background-color: transparent !important;
           box-shadow: none !important;
+          &.colDra {
+            margin-right: 0;
+          }
           &.input-has-focus:last-child {
             box-shadow: none !important;
           }

@@ -59,24 +59,24 @@
             <ion-card>
                 <ion-card-content>
                     <ion-list>
-                        <button ion-item>
+                        <ion-item>
                             <p>Nombres</p>
                             <h2>{{ medico.names }}</h2>
-                        </button>
-                        <button ion-item>
+                        </ion-item>
+                        <ion-item>
                             <p>Especialidad</p>
                             <h2>{{ medico.speciality }}</h2>
-                        </button>
-                        <button ion-item *ngIf="medico.phone">
+                        </ion-item>
+                        <ion-item *ngIf="medico.phone">
                             <p>Teléfono</p>
                             <h2>{{ medico.phone }}</h2>
                             <ion-icon name="call" item-end (click)="callMedico(medico.phone)"></ion-icon>
-                        </button>
-                        <button ion-item *ngIf="medico.email">
+                        </ion-item>
+                        <ion-item *ngIf="medico.email">
                             <p>E-mail</p>
                             <h2 class="emailText">{{ medico.email }}</h2>
                             <ion-icon name="mail" item-end (click)="sendEmailMedico(medico.email)"></ion-icon>
-                        </button>
+                        </ion-item>
                     </ion-list>
                 </ion-card-content>
             </ion-card>
@@ -98,12 +98,12 @@
                         <h4>Tienes una nueva cita</h4>
                         <p>
                             <i class="material-icons redMaterial">alarm</i>
-                            {{ cita.day}} {{ cita.hour }}
+                            {{ cita.day }} {{ cita.hour }}
                             <i class="material-icons redMaterial float-right" (click)="optionCita(cita)">more_vert</i>
                         </p>
                     </ion-card-header>
                     <ion-card-content>
-                        <div>{{ cita.question }}</div>
+                        <div [innerHtml]="cita.question"></div>
                     </ion-card-content>
                 </ion-card>
             </div>

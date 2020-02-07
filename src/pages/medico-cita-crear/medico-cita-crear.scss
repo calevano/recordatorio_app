@@ -22,7 +22,7 @@ page-medico-cita-crear {
       box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1) !important;
       border-radius: 50%;
       padding: 2rem;
-      width: 43%;
+      width: 140px;
       margin: 0 auto 2rem auto;
       border: 0.6rem solid #fff;
       ion-icon {
@@ -81,7 +81,7 @@ page-medico-cita-crear {
           height: 2.8em;
           font-weight: bold;
           font-size: 1.8rem;
-          text-transform: initial;
+          // text-transform: initial;
           border-radius: 5px;
           letter-spacing: 0.03em;
         }
@@ -90,6 +90,11 @@ page-medico-cita-crear {
     .textContent {
       padding-right: 10px;
       padding-left: 10px;
+      p{
+        &:first-child{
+          text-align: center;
+        }
+      }
     }
   }
 }

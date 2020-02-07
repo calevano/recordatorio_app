@@ -19,9 +19,10 @@ export class HoyDetallePage {
         private alertCtrl: AlertController,
         public databaseProvider: DatabaseProvider,
         public toastProvider: ToastProvider,
-        public loadingProvider: LoadingProvider,
+        public loadingProvider: LoadingProvider
     ) {
         this.recordatorio = navParams.get('recordatorio');
+        console.log('recordatorio:::', this.recordatorio);
     }
 
     ionViewDidLoad() {
@@ -58,6 +59,8 @@ export class HoyDetallePage {
         });
         await alert.present();
     }
+
+
 
     async confirmar() {
         let alert = this.alertCtrl.create({

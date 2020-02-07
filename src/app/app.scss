@@ -45,8 +45,21 @@ h6 {
   .ion-page {
     ion-header {
       ion-navbar {
-        padding-top: calc(env(safe-area-inset-top) + 26px) !important;
+        // padding-top: calc(env(safe-area-inset-top) + 48px) !important;
+        // min-height: calc(96px + env(safe-area-inset-top)) !important;
+
+        padding-top: calc(env(safe-area-inset-top) + 36px) !important;
         min-height: calc(76px + env(safe-area-inset-top)) !important;
+      }
+    }
+  }
+  &.platform-android9 {
+    .ion-page {
+      ion-header {
+        ion-navbar {
+          padding-top: calc(env(safe-area-inset-top) + 46px) !important;
+          min-height: calc(96px + env(safe-area-inset-top)) !important;
+        }
       }
     }
   }
@@ -66,6 +79,12 @@ ion-header {
 
 ion-content {
   background-color: color($colors, light) !important;
+}
+
+ion-toast.toastPersonalizado .toast-wrapper {
+  bottom: 10px !important;
+  width: 90%;
+  border-radius: 5px;
 }
 
 ion-toast.text-center {

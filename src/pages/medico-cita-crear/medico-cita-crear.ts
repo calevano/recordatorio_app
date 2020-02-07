@@ -44,26 +44,25 @@ export class MedicoCitaCrearPage {
         if (this.data.fecha === "" ||
             this.data.hora === "" ||
             this.data.pregunta === "") {
-            console.log("vacio");
-            this.toastProvider.show("error", "Necesita completar todos los campos...", 'bottom');
+            this.toastProvider.show('error', 'Necesita completar todos los campos.', 'bottom');
         } else {
-            this.loadingProvider.show("Agregando cita...");
-            let cita_: any = [];
+            this.loadingProvider.show("Agregando cita");
+            let cita_: any = {};
             cita_['day'] = this.data.fecha;
             cita_['hour'] = this.data.hora;
             cita_['question'] = this.data.pregunta;
             cita_['doctor_id'] = this.medico.id;
 
-            console.log("cita:::", cita_);
+            console.log("saveCita:::cita:::", cita_);
 
             this.databaseProvider.insertCita(cita_).then((res) => {
                 console.log("saveCita:::res:::", res);
-                this.toastProvider.show("success", "Se agrego la cita correctamente", 'bottom');
+                this.toastProvider.show("success", "Se agrego la cita correctamente.", 'bottom');
                 this.loadingProvider.hide(0);
                 this.navCtrl.pop();
             }).catch((err) => {
                 console.log("saveCita:::err:::", err);
-                this.toastProvider.show("error", "No se pudo agregar. favor de intentarlo de nuevo", 'bottom');
+                this.toastProvider.show("error", "No se pudo agregar. favor de intentarlo de nuevo.", 'bottom');
                 this.loadingProvider.hide(0);
             });
         }

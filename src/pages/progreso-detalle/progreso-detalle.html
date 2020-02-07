@@ -46,7 +46,10 @@
     </ion-grid>
 </ion-content>
 <ion-footer no-border>
-    <ion-toolbar>
+    <ion-toolbar *ngIf="recordatorio.status===0">
+        <h2 class="cancelarToma">Cancelaste la toma</h2>
+    </ion-toolbar>
+    <ion-toolbar *ngIf="recordatorio.status===1">
         <ion-grid>
             <ion-row>
                 <ion-col>

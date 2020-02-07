@@ -23,8 +23,13 @@ export class ToastProvider {
             message: message_,
             duration: time_,
             position: position_,
-            cssClass: cssClass_
+            cssClass: ' toastPersonalizado ' + cssClass_,
+            showCloseButton: true,
+            closeButtonText: 'OK'
         });
+
+        this.toast.onDidDismiss(() => { });
+
         this.toast.present();
     }
 

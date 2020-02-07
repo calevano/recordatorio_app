@@ -189,14 +189,15 @@ page-medico-detalle {
             }
           }
           ion-card-content {
-            padding-top: 8px !important;
-            padding-bottom: 8px !important;
-            textarea {
-              width: calc(100% - 10px);
-              border: 0;
-              border-radius: 0;
-              background: transparent;
-            }
+            padding-top: 0px !important;
+            padding-bottom: 0px !important;
+            white-space: pre-line !important;
+            // textarea {
+            //   width: calc(100% - 10px);
+            //   border: 0;
+            //   border-radius: 0;
+            //   background: transparent;
+            // }
           }
         }
       }

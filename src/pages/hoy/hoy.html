@@ -5,16 +5,20 @@
 </ion-header>
 
 <ion-content>
-    <div class="ionSpinner" *ngIf="loadInit">
-        <ion-spinner color="blueMaterial"></ion-spinner>
-    </div>
+    <ion-fab right bottom [hidden]="loadInit">
+        <button ion-fab color="blueMaterial" [navPush]="hoyMedicamento">
+            <ion-icon name="add"></ion-icon>
+        </button>
+    </ion-fab>
+
+    <ng-container *ngIf="loadInit">
+        <div class="ionSpinner">
+            <ion-spinner color="blueMaterial"></ion-spinner>
+        </div>
+    </ng-container>
 
     <ng-container *ngIf="!loadInit">
-        <ion-fab right bottom>
-            <button ion-fab color="blueMaterial" [navPush]="hoyMedicamento">
-                <ion-icon name="add"></ion-icon>
-            </button>
-        </ion-fab>
+
         <div class="emptyRecordatorio" *ngIf="recordatorios.length==0">
             <ion-grid>
                 <ion-row>

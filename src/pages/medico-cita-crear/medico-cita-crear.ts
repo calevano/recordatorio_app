@@ -4,6 +4,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { LoadingProvider } from '../../providers/loading/loading';
 import { ToastProvider } from '../../providers/toast/toast';
 import { DatabaseProvider } from '../../providers/database/database';
+import { LocalNotificationProvider } from '../../providers/local-notification/local-notification';
 // Others
 import moment from 'moment';
 import "moment/locale/es";
@@ -28,16 +29,18 @@ export class MedicoCitaCrearPage {
         public loadingProvider: LoadingProvider,
         public databaseProvider: DatabaseProvider,
         public toastProvider: ToastProvider,
+        public localNotificationProvider: LocalNotificationProvider
     ) {
         this.medico = navParams.get('medico');
+        // console.log('medico:::', this.medico);
         this.date = moment().format('YYYY-MM-DD');
         this.data.fecha = this.date;
         // this.data.hora = moment().format('HH:mm');
-        console.log("this.data.hora:::", this.data.hora);
+        // console.log("this.data.hora:::", this.data.hora);
     }
 
     ionViewDidLoad() {
-        console.log('ionViewDidLoad MedicoCitaCrearPage');
+        // console.log('ionViewDidLoad MedicoCitaCrearPage');
     }
 
     saveCita() {
@@ -48,24 +51,61 @@ export class MedicoCitaCrearPage {
         } else {
             this.loadingProvider.show("Agregando cita");
             let cita_: any = {};
-            cita_['day'] = this.data.fecha;
-            cita_['hour'] = this.data.hora;
-            cita_['question'] = this.data.pregunta;
-            cita_['doctor_id'] = this.medico.id;
+            cita_.day = this.data.fecha;
+            cita_.hour = this.data.hora;
+            cita_.question = this.data.pregunta;
+            cita_.doctor_id = this.medico.id;
 
-            console.log("saveCita:::cita:::", cita_);
+            // console.log("saveCita:::cita:::", cita_);
 
-            this.databaseProvider.insertCita(cita_).then((res) => {
-                console.log("saveCita:::res:::", res);
+            this.databaseProvider.insertCita(cita_).then(response => {
+                // console.log("saveCita:::res:::", response);
+                this.insertNotifications('cita', cita_, response.insertId);
                 this.toastProvider.show("success", "Se agrego la cita correctamente.", 'bottom');
                 this.loadingProvider.hide(0);
                 this.navCtrl.pop();
-            }).catch((err) => {
+                // let data_: any = {};
+                // const tipoMedico = (this.medico.prefix === 'dr' ? 'el Dr. ' : 'la Dra. ');
+                // this.databaseProvider.insertNotifications('cita', response.insertId).then(res => {
+                //     console.log('saveCita:::insertNotifications:::res:::', res);
+
+                //     data_.id = res.insertId;
+                //     data_.dateHour = cita_.day + ' ' + cita_.hour;
+                //     data_.title = 'Cita con ' + tipoMedico + this.medico.names;
+                //     data_.text = cita_.question;
+                //     data_.group = 'cita';
+
+                //     console.log('saveCita:::insertNotifications:::data[' + response.insertId + ']:::', data_);
+                //     this.loadingProvider.hide(0);
+                //     this.navCtrl.pop();
+                //     // this.localNotificationProvider.create(data_);
+                // }).catch(error => {
+                //     console.log('saveCita:::insertNotifications:::err:::', error);
+                // });
+
+            }).catch(err => {
                 console.log("saveCita:::err:::", err);
                 this.toastProvider.show("error", "No se pudo agregar. favor de intentarlo de nuevo.", 'bottom');
                 this.loadingProvider.hide(0);
             });
         }
+    }
+
+    async insertNotifications(type: any, cita_: any, idCita: any) {
+        await this.databaseProvider.insertNotifications(type, idCita).then(res => {
+            // console.log('insertNotifications:::res:::', res);
+            let data_: any = {};
+            const tipoMedico = (this.medico.prefix === 'dr' ? 'el Dr. ' : 'la Dra. ');
+            data_.id = res.insertId;
+            data_.dateHour = cita_.day + ' ' + cita_.hour;
+            data_.title = 'Cita con ' + tipoMedico + this.medico.names;
+            data_.text = cita_.question;
+            data_.group = 'cita';
+            // console.log('insertNotifications:::', data_);
+            this.localNotificationProvider.create(data_);
+        }).catch(err => {
+            console.log('insertNotifications:::err:::', err);
+        });
     }
 
 }

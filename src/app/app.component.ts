@@ -45,14 +45,14 @@ export class MyApp {
         this.sqlite.create({
             name: 'recordatorio.db',
             location: 'default'
-        }).then((db) => {
+        }).then(db => {
             this.databaseProvider.setDatabase(db);
             this.databaseProvider.createTableMedicines();
             this.databaseProvider.createTableReminders();
             this.databaseProvider.createTableReminderTimes();
             this.databaseProvider.createTableDoctors();
             this.databaseProvider.createTableDoctorAppointments();
-            return true;
+            this.databaseProvider.createTableNotifications();
         }).then(() => {
             this.getIntro();
             this.splashScreen.hide();
@@ -63,7 +63,6 @@ export class MyApp {
 
     async getIntro() {
         await this.storageService.getStorageIntro().then((intro: any) => {
-            console.log("MyApp:::getIntro:::", intro);
             if (intro) {
                 this.getLogin();
             } else {
@@ -74,7 +73,6 @@ export class MyApp {
 
     async getLogin() {
         await this.storageService.getStorageLogin().then((login: any) => {
-            console.log("MyApp:::getLogin:::", login);
             this.rootPage = (login) ? TabsPage : LoginPage;
         });
     }

@@ -18,7 +18,7 @@ export class InformeEnvioPage {
     }
 
     ionViewDidLoad() {
-        console.log('ionViewDidLoad InformeEnvioPage');
+        // console.log('ionViewDidLoad InformeEnvioPage');
     }
 
     backButton() {

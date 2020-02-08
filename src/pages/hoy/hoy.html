@@ -18,30 +18,32 @@
     </ng-container>
 
     <ng-container *ngIf="!loadInit">
-
-        <div class="emptyRecordatorio" *ngIf="recordatorios.length==0">
-            <ion-grid>
-                <ion-row>
-                    <ion-col>
-                        <ion-icon name="custom-hoy" color="blueMaterial" item-start></ion-icon>
-                        <p>Aún no has creado recordatorio(s) comienza agregando uno</p>
-                    </ion-col>
-                </ion-row>
-            </ion-grid>
-        </div>
-
-        <div class="listadoRecordatorio" *ngIf="recordatorios.length>0">
-            <ion-list>
-                <button ion-item *ngFor="let recordatorio of recordatorios" [navPush]="hoyDetalle"
-                    [navParams]="{ 'recordatorio': recordatorio }">
-                    <ion-icon name="custom-hoy" item-start color="blueMaterial"></ion-icon>
-                    <h2>{{ recordatorio.name }}</h2>
-                    <p>{{ recordatorio.note }}</p>
-                    <p>{{ recordatorio.quantity }} pastilla{{ (recordatorio.quantity>1)? 's':'' }}</p>
-                    <ion-note item-end>{{ recordatorio.hour }}</ion-note>
-                </button>
-            </ion-list>
-        </div>
+        <ng-container *ngIf="recordatorios.length===0">
+            <div class="emptyRecordatorio">
+                <ion-grid>
+                    <ion-row>
+                        <ion-col>
+                            <ion-icon name="custom-hoy" color="blueMaterial" item-start></ion-icon>
+                            <p>Aún no has creado recordatorio(s) comienza agregando uno</p>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="recordatorios.length>0">
+            <div class="listadoRecordatorio">
+                <ion-list>
+                    <button ion-item *ngFor="let recordatorio of recordatorios" [navPush]="hoyDetalle"
+                        [navParams]="{ 'recordatorio': recordatorio }">
+                        <ion-icon name="custom-hoy" item-start color="blueMaterial"></ion-icon>
+                        <h2 text-wrap>{{ recordatorio.name }}</h2>
+                        <p>{{ recordatorio.note }}</p>
+                        <p>{{ recordatorio.quantity }} pastilla{{ (recordatorio.quantity>1)? 's':'' }}</p>
+                        <ion-note item-end>{{ recordatorio.hour }}</ion-note>
+                    </button>
+                </ion-list>
+            </div>
+        </ng-container>
     </ng-container>
 
 </ion-content>

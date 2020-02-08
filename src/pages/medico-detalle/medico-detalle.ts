@@ -8,6 +8,7 @@ import { MedicoEditarPage } from '../medico-editar/medico-editar';
 import { LoadingProvider } from '../../providers/loading/loading';
 import { ToastProvider } from '../../providers/toast/toast';
 import { DatabaseProvider } from '../../providers/database/database';
+import { LocalNotificationProvider } from '../../providers/local-notification/local-notification';
 // Plugins
 import { CallNumber } from '@ionic-native/call-number';
 
@@ -51,6 +52,7 @@ export class MedicoDetallePage {
         public actionSheetCtrl: ActionSheetController,
         private alertCtrl: AlertController,
         public loadingProvider: LoadingProvider,
+        public localNotificationProvider: LocalNotificationProvider
     ) {
         this.medico = navParams.get('medico');
     }
@@ -149,7 +151,7 @@ export class MedicoDetallePage {
     }
 
     editarCita(cita_: any) {
-        this.navCtrl.push(MedicoCitaEditarPage, { 'cita': cita_ });
+        this.navCtrl.push(MedicoCitaEditarPage, { 'cita': cita_, 'medico': this.medico });
         this.cancelSearch();
     }
 
@@ -167,13 +169,14 @@ export class MedicoDetallePage {
                     text: 'Si, eliminar',
                     handler: () => {
                         this.cancelSearch();
-                        this.loadingProvider.show("Eliminando cita...");
-                        this.databaseProvider.deleteCita(id).then((res) => {
+                        this.loadingProvider.show("Eliminando cita");
+                        this.databaseProvider.deleteCita(id).then(res => {
+                            this.searchNotification('cita', id);
                             this.toastProvider.show("success", "Se elimino la cita correctamente", 'bottom');
                             this.loadingProvider.hide(0);
                             this.getCitas();
-                        }).catch((err) => {
-                            this.toastProvider.show("error", "No se pudo eliminar. favor de intentarlo de nuevo", 'bottom');
+                        }).catch(err => {
+                            this.toastProvider.show("error", "No se elimino. favor de intentarlo de nuevo", 'bottom');
                             this.loadingProvider.hide(0);
                         });
                     }
@@ -181,6 +184,21 @@ export class MedicoDetallePage {
             ]
         });
         alert.present();
+    }
+
+    async searchNotification(type: any, foreign_id: any) {
+        await this.databaseProvider.searchNotification(type, foreign_id).then(res => {
+            // console.log('searchNotification:::res:::', res[0]);
+            if (res.length === 1) {
+                this.deleteNotification(res[0].id);
+            }
+        }).catch(err => {
+            console.log('searchNotification:::err:::', err);
+        });
+    }
+
+    async deleteNotification(id: any) {
+        await this.localNotificationProvider.delete(id);
     }
 
     cancelSearch() {

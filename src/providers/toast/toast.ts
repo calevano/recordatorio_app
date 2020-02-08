@@ -9,7 +9,7 @@ export class ToastProvider {
     constructor(
         public toastCtrl: ToastController,
     ) {
-        console.log('ToastProvider Hello');
+        // console.log('ToastProvider Hello');
     }
 
     show(cssClass_: string, message_: string, position_?: string, time_?: number) {

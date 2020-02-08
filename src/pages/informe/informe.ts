@@ -68,7 +68,7 @@ export class InformePage {
         this.meses = [];
         this.loadInit = true;
         await this.databaseProvider.getDataInforme().then((response) => {
-            console.log("InformePage:::getDataInforme:::response:::", response);
+            // console.log("InformePage:::getDataInforme:::response:::", response);
             let response_ = response;
             if (response_.length === 0) {
                 this.anioMes = [];
@@ -114,7 +114,7 @@ export class InformePage {
     }
 
     sendEmail() {
-        console.log('InformePage:::sendEmail');
+        // console.log('InformePage:::sendEmail');
         if (!this.informeForm.valid) {
             this.toastProvider.show("dark", "Todos los campos son requeridos", 'bottom');
         } else {

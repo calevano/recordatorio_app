@@ -32,9 +32,9 @@ export class ModalDuracionFechaPage {
         public viewCtrl: ViewController,
         public toastProvider: ToastProvider,
     ) {
-        console.log('ModalDuracionFechaPage:::constructor');
+        // console.log('ModalDuracionFechaPage:::constructor');
         let duracion_ = navParams.get('duracion');
-        console.log('ModalDuracionFechaPage:::constructor:::', duracion_);
+        // console.log('ModalDuracionFechaPage:::constructor:::', duracion_);
         if (typeof duracion_ !== "undefined") {
             if (duracion_.opcion === 0) {
                 this.data.opcionDia = '0';
@@ -60,7 +60,7 @@ export class ModalDuracionFechaPage {
     }
 
     ionViewDidLoad() {
-        console.log('ModalDuracionFechaPage:::ionViewDidLoad');
+        // console.log('ModalDuracionFechaPage:::ionViewDidLoad');
     }
 
     selectOptionDay(option_: number) {
@@ -130,7 +130,7 @@ export class ModalDuracionFechaPage {
     }
 
     selectOpcion() {
-        console.log('ModalDuracionFechaPage:::selectOpcion');
+        // console.log('ModalDuracionFechaPage:::selectOpcion');
         let data: Object = {};
         if (this.data.opcionDia === '0') {
             data = { 'opcion': 0, 'only': this.data.only };
@@ -159,7 +159,7 @@ export class ModalDuracionFechaPage {
     }
 
     dismiss() {
-        console.log('ModalDuracionFechaPage:::dismiss');
+        // console.log('ModalDuracionFechaPage:::dismiss');
         this.viewCtrl.dismiss();
     }
 

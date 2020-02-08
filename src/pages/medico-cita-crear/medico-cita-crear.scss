@@ -81,9 +81,11 @@ page-medico-cita-crear {
           height: 2.8em;
           font-weight: bold;
           font-size: 1.8rem;
-          // text-transform: initial;
           border-radius: 5px;
-          letter-spacing: 0.03em;
+          span {
+            font-family: "vagBlack";
+            letter-spacing: 0.05em;
+          }
         }
       }
     }

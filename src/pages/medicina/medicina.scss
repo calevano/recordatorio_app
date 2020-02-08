@@ -1,0 +1,78 @@
+page-medicina {
+  ion-header {
+    ion-navbar {
+      &.hiddenBack {
+        &.toolbar-md {
+          padding-left: 0 !important;
+          padding-right: 0 !important;
+          padding-bottom: 0 !important;
+          .toolbar-background {
+            background-color: #fff !important;
+          }
+          ion-searchbar {
+            input {
+              box-shadow: none !important;
+            }
+          }
+        }
+      }
+    }
+  }
+  ion-content {
+    .ionSpinner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
+    .empty {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      padding-left: 5rem;
+      padding-right: 5rem;
+      ion-grid {
+        padding: 0;
+        ion-row {
+          ion-col {
+            text-align: center;
+            ion-icon {
+              font-size: 10rem;
+            }
+            p {
+              font-size: 2rem;
+              margin-top: 1rem;
+              margin-bottom: 0;
+            }
+          }
+        }
+      }
+    }
+    .listado {
+      ion-list {
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1) !important;
+        button {
+          .item-inner {
+            margin-left: 1rem !important;
+            margin-right: 1rem !important;
+            ion-label {
+              h2 {
+                margin-top: 0 !important;
+                font-family: "vagBold";
+              }
+              p {
+              }
+            }
+            ion-note {
+              font-size: 1.5rem;
+              align-self: center;
+              font-family: "vagBold";
+              color: #222;
+            }
+          }
+        }
+      }
+    }
+  }
+}

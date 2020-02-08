@@ -9,14 +9,15 @@ export class LoadingProvider {
     constructor(
         public loadingCtrl: LoadingController,
     ) {
-        console.log('LoadingProvider Hello');
+        // console.log('LoadingProvider Hello');
     }
 
     preload(text_?: string) {
         text_ = (text_ === undefined) ? "" : text_;
         this.loading = this.loadingCtrl.create({
             content: text_,
-            duration: 1000
+            duration: 1000,
+            enableBackdropDismiss: true
         });
         this.loading.present();
     }
@@ -25,7 +26,8 @@ export class LoadingProvider {
         if (!this.loading) {
             text_ = (text_ === undefined) ? "" : text_;
             this.loading = this.loadingCtrl.create({
-                content: text_
+                content: text_,
+                enableBackdropDismiss: true
             });
             this.loading.present();
         }

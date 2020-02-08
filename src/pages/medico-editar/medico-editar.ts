@@ -25,7 +25,7 @@ export class MedicoEditarPage {
         public databaseProvider: DatabaseProvider,
     ) {
         this.medico = navParams.get('medico');
-        console.log("MedicoEditarPage:::construct:::thisMedico:::", this.medico);
+        // console.log("MedicoEditarPage:::construct:::thisMedico:::", this.medico);
         this.editMedicoForm = this.formBuilder.group({
             names: [this.medico.names, Validators.compose([Validators.required, Validators.minLength(6)])],
             speciality: [this.medico.speciality, Validators.compose([Validators.required, Validators.minLength(6)])],
@@ -36,16 +36,16 @@ export class MedicoEditarPage {
     }
 
     ionViewDidLoad() {
-        console.log('MedicoEditarPage ionViewDidLoad');
+        // console.log('MedicoEditarPage ionViewDidLoad');
     }
 
     editMedico() {
         if (this.editMedicoForm.valid) {
-            this.loadingProvider.show("Editando médico...");
+            this.loadingProvider.show("Editando médico");
             let data_ = this.editMedicoForm.value;
             data_['id'] = this.medico.id;
-            console.log("MedicoEditarPage:::editMedico:::data:::", data_);
-            this.databaseProvider.updateMedico(data_).then((response) => {
+            // console.log("MedicoEditarPage:::editMedico:::data:::", data_);
+            this.databaseProvider.updateMedico(data_).then(response => {
                 setTimeout(() => {
                     this.toastProvider.show("success", "Se edito al médico correctamente", 'bottom');
                     this.editMedicoForm.reset();
@@ -53,7 +53,7 @@ export class MedicoEditarPage {
                     this.navCtrl.getPrevious().data.medicoUpdate = data_;
                     this.navCtrl.pop();
                 }, 500);
-            }).catch((err) => {
+            }).catch(err => {
                 this.toastProvider.show("error", "No se pudo editar. favor de intentarlo de nuevo", 'bottom');
                 this.loadingProvider.hide(0);
             });

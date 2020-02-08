@@ -4,6 +4,7 @@ import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { DatabaseProvider } from '../../providers/database/database';
 import { ToastProvider } from '../../providers/toast/toast';
 import { LoadingProvider } from '../../providers/loading/loading';
+import { LocalNotificationProvider } from '../../providers/local-notification/local-notification';
 
 @Component({
     selector: 'page-hoy-detalle',
@@ -19,7 +20,8 @@ export class HoyDetallePage {
         private alertCtrl: AlertController,
         public databaseProvider: DatabaseProvider,
         public toastProvider: ToastProvider,
-        public loadingProvider: LoadingProvider
+        public loadingProvider: LoadingProvider,
+        public localNotificationProvider: LocalNotificationProvider
     ) {
         this.recordatorio = navParams.get('recordatorio');
         console.log('recordatorio:::', this.recordatorio);
@@ -42,25 +44,13 @@ export class HoyDetallePage {
                 {
                     text: 'Si, Cancelar',
                     handler: () => {
-                        let data_: any = {};
-                        data_['status'] = 0;
-                        data_['id'] = this.recordatorio.id;
-                        this.loadingProvider.show("Cancelando toma...");
-                        this.databaseProvider.tomaRecordatorioTimes(data_).then((response) => {
-                            this.toastProvider.show("success", "Se cancelo la toma del recordatorio", 'bottom');
-                            this.loadingProvider.hide(0);
-                            this.navCtrl.pop();
-                        }).catch((err) => {
-                            this.toastProvider.show("error", "No se pudo cancelar la toma del recordatorio", 'bottom');
-                        });
+                        this.tomaRecordatorioTimes(0, 'cancelo');
                     }
                 }
             ]
         });
         await alert.present();
     }
-
-
 
     async confirmar() {
         let alert = this.alertCtrl.create({
@@ -75,22 +65,43 @@ export class HoyDetallePage {
                 {
                     text: 'Si, Confirmar',
                     handler: () => {
-                        let data_: any = {};
-                        data_['status'] = 2;
-                        data_['id'] = this.recordatorio.id;
-                        this.loadingProvider.show("Confirmando toma...");
-                        this.databaseProvider.tomaRecordatorioTimes(data_).then((response) => {
-                            this.toastProvider.show("success", "Se confirmo la toma del recordatorio", 'bottom');
-                            this.loadingProvider.hide(0);
-                            this.navCtrl.pop();
-                        }).catch((err) => {
-                            this.toastProvider.show("error", "No se pudo confirmar la toma del recordatorio", 'bottom');
-                        });
+                        this.tomaRecordatorioTimes(2, 'confirmo');
                     }
                 }
             ]
         });
         await alert.present();
+    }
+
+    async tomaRecordatorioTimes(status: any, action: any) {
+        const recordatorioId = this.recordatorio.id;
+        let data_: any = {};
+        data_.status = status;
+        data_.id = recordatorioId;
+        this.loadingProvider.show("Confirmando toma");
+        this.databaseProvider.tomaRecordatorioTimes(data_).then(response => {
+            this.searchNotification('recordatorio', recordatorioId);
+            this.toastProvider.show("success", "Se " + action + " la toma del recordatorio", 'bottom');
+            this.loadingProvider.hide(0);
+            this.navCtrl.pop();
+        }).catch(err => {
+            this.toastProvider.show("error", "No se " + action + " la toma del recordatorio", 'bottom');
+        });
+    }
+
+    async searchNotification(type: any, foreign_id: any) {
+        await this.databaseProvider.searchNotification(type, foreign_id).then(res => {
+            // console.log('searchNotification:::res:::', res[0]);
+            if (res.length === 1) {
+                this.deleteNotification(res[0].id);
+            }
+        }).catch(err => {
+            console.log('searchNotification:::err:::', err);
+        });
+    }
+
+    async deleteNotification(id: any) {
+        await this.localNotificationProvider.delete(id);
     }
 
 }

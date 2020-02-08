@@ -35,7 +35,7 @@ export class MedicoPage {
     }
 
     ionViewDidLoad() {
-        console.log('MedicoPage ionViewDidLoad');
+        // console.log('MedicoPage ionViewDidLoad');
     }
 
     ionViewWillEnter() {
@@ -64,7 +64,7 @@ export class MedicoPage {
     async getAllMedicos() {
         this.medicos = [];
         this.loadInit = true;
-        await this.databaseProvider.getAllMedicos().then((response) => {
+        await this.databaseProvider.getAllMedicos().then(response => {
             this.loadInit = false;
             if (response.length === 0) {
                 this.medicos = [];
@@ -75,7 +75,7 @@ export class MedicoPage {
                 this.searchMedicos = response;
                 this.content.resize();
             }
-        }).catch((err) => {
+        }).catch(err => {
             this.toastProvider.show("error", "Porfavor intenta buscando de nuevo", "bottom");
         });
     }

@@ -32,15 +32,30 @@ page-intro {
             padding: 0 3rem;
           }
           button {
+            // padding: 0 1em;
+            // height: 2.8em;
+            // font-weight: bold;
+            // font-size: 1.8rem;
+            // // text-transform: initial;
+            // border-radius: 5px;
+            // width: 50vw;
+
+            // color: #f4f4f4 !important;
+            // color: #f4f4f4;
             padding: 0 1em;
             height: 2.8em;
             font-weight: bold;
             font-size: 1.8rem;
-            text-transform: initial;
             border-radius: 5px;
-            width: 50vw;
             span {
+              font-family: "vagBold";
               letter-spacing: 0.05em;
+              i {
+                position: relative;
+                top: -1px;
+                right: -7px;
+                font-size: 3rem;
+              }
             }
           }
         }
@@ -61,15 +76,18 @@ page-intro {
   }
 
   .slide_one {
-    background-color: color($colors, blueMaterial) !important;
+    background-color: color($colors, blueLight) !important;
   }
   .slide_two {
-    background-color: color($colors, greenMaterial) !important;
+    background-color: color($colors, greenLight) !important;
   }
   .slide_three {
-    background-color: color($colors, redMaterial) !important;
+    background-color: color($colors, warningMaterial) !important;
   }
   .slide_four {
-    background-color: color($colors, orangeMaterial) !important;
+    background-color: color($colors, red) !important;
+  }
+  .slide_five {
+    background-color: color($colors, deepOrange) !important;
   }
 }

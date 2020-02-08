@@ -22,18 +22,18 @@
             </ion-grid>
         </div>
         <div class="listado" *ngIf="progresos.length>0">
-            <ng-container *ngFor="let progreso of progresos; let i=index">
+            <ng-container *ngFor="let progreso of progresos">
                 <p>{{ progreso.day_duration | moment:"dddd, D MMMM YYYY" }}</p>
-                <ion-card *ngFor="let medicamento of progreso.medicamento; let j=index">
+                <ion-card *ngFor="let medicamento of progreso.medicamento">
                     <ion-card-header>
                         <h2>
-                            <ion-icon name="custom-hoy" color="blueMaterial"></ion-icon>
+                            <ion-icon name="custom-medicina" color="blueMaterial"></ion-icon>
                             {{ medicamento.name }}
                         </h2>
                     </ion-card-header>
                     <ion-card-content>
                         <ion-grid>
-                            <ion-row align-items-center *ngFor="let data of medicamento.data; let k=index"
+                            <ion-row align-items-center *ngFor="let data of medicamento.data"
                                 [navPush]="progresoDetalle" [navParams]="{ 'recordatorio': data }">
                                 <ion-col col-1>
                                     <ion-icon *ngIf="data.status===2" color="greenMaterial" name="checkbox"></ion-icon>
@@ -54,6 +54,5 @@
             </ng-container>
         </div>
     </ng-container>
-
 
 </ion-content>

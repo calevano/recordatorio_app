@@ -21,13 +21,13 @@ export class ProgresoDetallePage {
         public toastProvider: ToastProvider,
         public loadingProvider: LoadingProvider,
     ) {
-        console.log('HoyDetallePage:::constructor');
+        // console.log('HoyDetallePage:::constructor');
         this.recordatorio = navParams.get('recordatorio');
-        console.log('HoyDetallePage:::constructor:::recordatorio:::', this.recordatorio);
+        // console.log('HoyDetallePage:::constructor:::recordatorio:::', this.recordatorio);
     }
 
     ionViewDidLoad() {
-        console.log('ProgresoDetallePage:::ionViewDidLoad');
+        // console.log('ProgresoDetallePage:::ionViewDidLoad');
     }
 
     async cancelar() {

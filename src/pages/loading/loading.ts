@@ -48,7 +48,7 @@ export class LoadingPage {
     }
 
     ionViewDidLoad() {
-        console.log('ionViewDidLoad LoadingPage');
+        // console.log('ionViewDidLoad LoadingPage');
     }
 
 }

@@ -1,0 +1,40 @@
+<!-- <ion-header>
+	<ion-navbar color="blueLight">
+		<ion-title>Crear Medicina</ion-title>
+		<ion-buttons end>
+			<button ion-button showWhen="android" icon-only (click)="dismiss()">
+				<ion-icon name="md-close"></ion-icon>
+			</button>
+			<button ion-button showWhen="ios" (click)="dismiss()">
+				<span ion-text color="light">Cancelar</span>
+			</button>
+		</ion-buttons>
+	</ion-navbar>
+</ion-header> -->
+
+<ion-content>
+	<div class="centerDiv">
+		<form [formGroup]="medicinaForm" novalidate="novalidate" (ngSubmit)="addMedicamento()">
+			<ion-list>
+				<ion-item>
+					<ion-label floating>Nombre de la medicina</ion-label>
+					<ion-input type="text" formControlName="name"></ion-input>
+				</ion-item>
+			</ion-list>
+			<ion-grid>
+				<ion-row>
+					<ion-col col-6>
+						<button ion-button block color="blueMaterial" type="submit" [disabled]="!medicinaForm.valid">
+							Guardar
+						</button>
+					</ion-col>
+					<ion-col col-6>
+						<button ion-button block type="button" color="redMaterial" (click)="dismiss()">
+							Cancelar
+						</button>
+					</ion-col>
+				</ion-row>
+			</ion-grid>
+		</form>
+	</div>
+</ion-content>

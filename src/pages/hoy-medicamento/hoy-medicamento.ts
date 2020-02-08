@@ -32,7 +32,7 @@ export class HoyMedicamentoPage {
         public toastProvider: ToastProvider,
         public loadingProvider: LoadingProvider,
         public formBuilder: FormBuilder,
-        public databaseProvider: DatabaseProvider,
+        public databaseProvider: DatabaseProvider
     ) {
         this.medicamentoForm = this.formBuilder.group({
             name: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
@@ -40,8 +40,12 @@ export class HoyMedicamentoPage {
     }
 
     ionViewDidLoad() {
-        console.log('HoyMedicamentoPage:::ionViewDidLoad');
+        // console.log('HoyMedicamentoPage:::ionViewDidLoad');
         this.initSearchBar();
+    }
+
+    ionViewWillEnter() {
+        this.getAllMedicinas();
     }
 
     initSearchBar() {
@@ -50,11 +54,20 @@ export class HoyMedicamentoPage {
         }, 400);
     }
 
-    searchMedicamento(ev: any) {
+    async getAllMedicinas() {
+        this.medicamentos = [];
+        const orderBy = ' ORDER BY id DESC LIMIT 10';
+        await this.databaseProvider.getAllMedicamento(orderBy).then(response => {
+            // console.log('getAllMedicamento:::res:::', response);
+            this.medicamentos = (response.length === 0) ? [] : response;
+        }).catch(err => { });
+    }
+
+    async searchMedicamento(ev: any) {
         let val = ev.target.value;
         if (val) {
             if (val.length > 3) {
-                this.databaseProvider.searchMedicamento(val).then((response) => {
+                await this.databaseProvider.searchMedicamento(val).then(response => {
                     if (response.length === 0) {
                         this.showPregunta = true;
                         this.medicamentos = [];
@@ -62,7 +75,7 @@ export class HoyMedicamentoPage {
                         this.showPregunta = false;
                         this.medicamentos = response;
                     }
-                }).catch((err) => {
+                }).catch(err => {
                     this.toastProvider.show("error", "Porfavor intenta buscando de nuevo", "bottom");
                 });
             }
@@ -79,36 +92,37 @@ export class HoyMedicamentoPage {
 
     async addMedicamento() {
         if (!this.medicamentoForm.valid) {
-            this.toastProvider.show("error", "Debe ingresar el nombre del medicamento", 'bottom');
+            this.toastProvider.show('error', 'Debe ingresar el nombre del medicamento', 'bottom');
         } else {
             let dataForm_ = this.medicamentoForm.value;
             let nameTrim = dataForm_.name.trim();
             if (nameTrim === "") {
-                this.toastProvider.show("error", "Debe ingresar el nombre del medicamento (vacio)", 'bottom');
+                this.toastProvider.show('error', 'Debe ingresar el nombre del medicamento', 'bottom');
             } else {
-                let data_ = [];
+                let data_ = {};
                 data_['name'] = nameTrim;
-                this.loadingProvider.show("Agregando medicamento...");
-                console.log("addMedicamento:::data:::", data_);
-                await this.databaseProvider.insertMedicamento(data_).then((response) => {
+                this.loadingProvider.show("Agregando medicamento");
+                // console.log("addMedicamento:::data:::", data_);
+                await this.databaseProvider.insertMedicamento(data_).then(response => {
+                    this.toastProvider.show('success', 'Se agrego el medicamento', 'bottom');
                     this.medicamentoTexto = nameTrim;
-                    this.toastProvider.show("success", "Se agrego el medicamento", 'bottom');
                     this.medicamentoForm.reset();
                     this.getMedicamentoAfterAddMedicamento(response.insertId);
                     this.searchCancel();
                     this.loadingProvider.hide(0);
-                }).catch((err) => {
-                    this.toastProvider.show("error", "No se pudo agregar. favor de intentarlo de nuevo", 'bottom');
+                }).catch(err => {
+                    this.toastProvider.show('error', 'No se pudo agregar. favor de intentarlo de nuevo', 'bottom');
                     this.searchCancel();
+                    this.loadingProvider.hide(0);
                 });
             }
         }
     }
 
     async getMedicamentoAfterAddMedicamento(id: number) {
-        await this.databaseProvider.showMedicamento(id).then((response) => {
+        await this.databaseProvider.showMedicamento(id).then(response => {
             this.navCtrl.push(HoyMedicamentoCrearPage, { 'medicamento': response });
-        }).catch((err) => {
+        }).catch(err => {
             this.toastProvider.show("error", "No se pudo obtener el medicamento agregado", 'bottom');
         });
     }

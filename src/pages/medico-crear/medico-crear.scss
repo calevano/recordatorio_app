@@ -37,7 +37,7 @@ page-medico-crear {
       }
     }
     .formMedico {
-      ion-grid{
+      ion-grid {
         padding: 0;
       }
       ion-list {
@@ -52,7 +52,9 @@ page-medico-crear {
           background-color: transparent !important;
           box-shadow: none !important;
           &.colDra {
-            margin-right: 0;
+            .item-inner {
+              margin-right: 0 !important;
+            }
           }
           &.input-has-focus:last-child {
             box-shadow: none !important;
@@ -65,7 +67,7 @@ page-medico-crear {
           .item-inner {
             margin-left: 0 !important;
             .input-wrapper {
-              border-bottom: 1px solid rgba(71, 77, 84, 0.3) !important;
+              border-bottom: 1px solid rgba(71, 77, 84, 0.2) !important;
             }
           }
         }
@@ -79,7 +81,7 @@ page-medico-crear {
                   .item-inner {
                     margin-right: 1rem;
                     padding-left: 1rem;
-                    border-bottom: 1px solid rgba(71, 77, 84, 0.3) !important;
+                    border-bottom: 1px solid rgba(71, 77, 84, 0.2) !important;
                     .input-wrapper {
                       border-bottom: 0 !important;
                     }
@@ -101,9 +103,10 @@ page-medico-crear {
         height: 2.8em;
         font-weight: bold;
         font-size: 1.8rem;
-        text-transform: initial;
+        // text-transform: initial;
         border-radius: 5px;
         span {
+          font-family: "vagBlack";
           letter-spacing: 0.05em;
         }
       }

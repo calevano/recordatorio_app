@@ -1,0 +1,61 @@
+page-medicina-editar {
+  ion-header {
+    ion-navbar {
+      button {
+        &.back-button {
+          color: color($colors, blanco) !important;
+          margin-right: 0 !important;
+        }
+      }
+      ion-title {
+        .toolbar-title {
+          letter-spacing: 0.02em;
+          color: color($colors, blanco) !important;
+          padding-left: 0;
+        }
+      }
+    }
+  }
+  ion-content {
+    background-color: rgba(33, 33, 33, 0.9) !important;
+    form {
+      width: 90%;
+      background-color: #fff !important;
+      border-radius: 5px;
+      ion-list {
+        width: 90%;
+        margin: 10px auto !important;
+        // margin-top: 10px !important;
+        // margin-bottom: 10px !important;
+        ion-item {
+          padding-left: 0 !important;
+          .item-inner {
+            border-bottom: 1px solid #dedede;
+            // margin-right: 10px;
+            padding-right: 0 !important;
+          }
+        }
+      }
+      ion-grid {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        ion-row {
+          ion-col {
+            button {
+              color: #f4f4f4;
+              padding: 0 1em;
+              height: 2.8em;
+              font-weight: bold;
+              font-size: 1.8rem;
+              border-radius: 5px;
+              span {
+                font-family: "vagBlack";
+                letter-spacing: 0.05em;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -36,15 +36,17 @@
                         <textarea name="pregunta" [(ngModel)]="data.pregunta" rows="3"
                             placeholder="Preguntas?"></textarea>
                     </ion-col>
+                    <ion-col col-12>
+                        <div class="buttons">
+                            <button ion-button color="orangeMaterial" type="submit" block>Guardar</button>
+                        </div>
+                    </ion-col>
                 </ion-row>
             </ion-grid>
-            <div class="buttons">
-                <button ion-button color="orangeMaterial" type="submit" block>Guardar</button>
-            </div>
         </form>
     </div>
     <div class="textContent">
         <p>Recibirás un recordatorio el día de la cita.</p>
-        <p>Se notificará 30 min antes para que tome sus precauciones.</p>
+        <!-- <p>Se notificará 30 min antes para que tome sus precauciones.</p> -->
     </div>
 </ion-content>

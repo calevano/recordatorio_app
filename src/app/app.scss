@@ -83,7 +83,7 @@ ion-content {
 
 ion-toast.toastPersonalizado .toast-wrapper {
   bottom: 10px !important;
-  width: 90%;
+  width: 95%;
   border-radius: 5px;
 }
 
@@ -162,13 +162,21 @@ ion-tabs {
       }
       &:nth-child(2) {
         &.tab-button[aria-selected="true"] {
+          color: color($colors, blueLight) !important;
+          ion-icon {
+            color: color($colors, blueLight) !important;
+          }
+        }
+      }
+      &:nth-child(3) {
+        &.tab-button[aria-selected="true"] {
           color: color($colors, greenMaterial) !important;
           ion-icon {
             color: color($colors, greenMaterial) !important;
           }
         }
       }
-      &:nth-child(3) {
+      &:nth-child(4) {
         &.tab-button[aria-selected="true"] {
           color: color($colors, redMaterial) !important;
           ion-icon {
@@ -176,7 +184,7 @@ ion-tabs {
           }
         }
       }
-      &:nth-child(4) {
+      &:nth-child(5) {
         &.tab-button[aria-selected="true"] {
           color: color($colors, orangeMaterial) !important;
           ion-icon {
@@ -204,6 +212,9 @@ ion-icon {
     mask-image: url(../assets/imgs/right-arrow.svg);
   }
   &[class*="custom-hoy"] {
+    mask-image: url(../assets/imgs/random/hoy.svg);
+  }
+  &[class*="custom-medicina"] {
     mask-image: url(../assets/imgs/random/medicine.svg);
   }
   &[class*="custom-progreso"] {

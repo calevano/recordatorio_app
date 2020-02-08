@@ -70,7 +70,7 @@ export class HoyMedicamentoCrearPage {
     }
 
     ionViewDidLoad() {
-        console.log('HoyMedicamentoCrearPage:::ionViewDidLoad');
+        // console.log('HoyMedicamentoCrearPage:::ionViewDidLoad');
     }
 
     initFields(): FormGroup {
@@ -168,7 +168,7 @@ export class HoyMedicamentoCrearPage {
 
     async saveRecordatorio() {
         if (!this.recordatorioForm.valid) {
-            console.log("no es valido");
+            // console.log("no es valido");
         } else {
             this.loadingProvider.show("Creando recordatorio, espera un momento...");
             let recordatorioForm_ = this.recordatorioForm.value;
@@ -217,8 +217,8 @@ export class HoyMedicamentoCrearPage {
                 }
             }
             await this.databaseProvider.insertRecordatorio(recordatorio_).then(response => {
-                this.toastProvider.show("success", "Se agrego el recordatorio", 'bottom');
                 this.saveRecordatorioTimes(response.insertId, horariosArray_, recordatorio_);
+                this.toastProvider.show("success", "Se agrego el recordatorio", 'bottom');
                 this.loadingProvider.hide(0);
             }).catch(err => {
                 this.toastProvider.show("error", "No se pudo agregar. favor de intentarlo de nuevo", 'bottom');
@@ -229,20 +229,22 @@ export class HoyMedicamentoCrearPage {
     async saveRecordatorioTimes(id: number, horarios: any, recordatorio: any) {
         for (let horario of horarios) {
             await this.databaseProvider.insertRecordatorioTimes(horario, id).then(response => {
-                let data_: any = [];
+                let data_: any = {};
                 let cantidadText_ = (horario.quantity > 1) ? ' pastillas ' : ' pastilla ';
-                data_.push({
-                    id: response.insertId,
-                    dateHour: horario.day_duration + ' ' + horario.hour,
-                    title: this.medicamento.name,
-                    text: horario.quantity + cantidadText_ + '\n' + recordatorio.note
+                this.databaseProvider.insertNotifications('recordatorio', response.insertId).then(res => {
+                    // console.log('saveRecordatorioTimes:::insertNotifications:::res:::', res);
+
+                    data_.id = res.insertId;
+                    data_.dateHour = horario.day_duration + ' ' + horario.hour;
+                    data_.title = this.medicamento.name;
+                    data_.text = horario.quantity + cantidadText_ + '\n' + recordatorio.note;
+                    data_.group = 'recordatorio';
+
+                    // console.log('saveRecordatorioTimes:::insertRecordatorioTimes:::data[' + response.insertId + ']:::', data_);
+                    this.localNotificationProvider.create(data_);
+                }).catch(error => {
+                    console.log('saveRecordatorioTimes:::insertNotifications:::err:::', error);
                 });
-                // data_['id'] = response.insertId;
-                // data_['datehour'] = horario.day_duration + ' ' + horario.hour;
-                // data_['title'] = this.medicamento.name;
-                // data_['text'] = horario.quantity + cantidadText_ + '\n' + recordatorio.note;
-                console.log('saveRecordatorioTimes:::create:::data[' + response.insertId + ']:::', data_[0]);
-                this.localNotificationProvider.create(data_[0]);
             }).catch(err => {
                 console.log('saveRecordatorioTimes:::create:::err:::', err);
                 this.toastProvider.show("error", "No se pudo obtener el recordatorio agregado", 'bottom');

@@ -3,9 +3,9 @@
         <ion-title *ngIf="!isSearchbarOpened">
             MÉDICO
         </ion-title>
-        <ion-searchbar #searchBar *ngIf="isSearchbarOpened" showCancelButton="true" placeholder="Filtre nombre"
+        <ion-searchbar #searchBar *ngIf="isSearchbarOpened" showCancelButton="true" placeholder="Filtre médico"
             (ionInput)="getItems($event)" (ionCancel)="cancelSearch()"></ion-searchbar>
-        <ion-buttons end *ngIf="searchMedicos.length>0 && !medicosZero">
+        <ion-buttons end *ngIf="searchMedicos.length>4 && !medicosZero">
             <button *ngIf="!isSearchbarOpened" ion-button icon-only (click)="openedSearch()">
                 <ion-icon name="search"></ion-icon>
             </button>

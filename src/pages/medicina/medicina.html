@@ -1,0 +1,54 @@
+<ion-header>
+	<ion-navbar color="blueLight" [ngClass]="isSearchbarOpened ? 'hiddenBack' : ''">
+		<ion-title *ngIf="!isSearchbarOpened">
+			Medicinas
+		</ion-title>
+		<ion-searchbar #searchBar *ngIf="isSearchbarOpened" showCancelButton="true" placeholder="Filtre medicina"
+			(ionInput)="getItems($event)" (ionCancel)="cancelSearch()"></ion-searchbar>
+		<ion-buttons end *ngIf="searchMedicinas.length>0 && !medicinasZero">
+			<button *ngIf="!isSearchbarOpened" ion-button icon-only (click)="openedSearch()">
+				<ion-icon name="search"></ion-icon>
+			</button>
+		</ion-buttons>
+	</ion-navbar>
+</ion-header>
+
+<ion-content>
+	<ion-fab right bottom [hidden]="loadInit">
+		<button ion-fab color="blueLight" (click)="modalCrear()">
+			<ion-icon name="add"></ion-icon>
+		</button>
+	</ion-fab>
+
+	<ng-container *ngIf="loadInit">
+		<div class="ionSpinner">
+			<ion-spinner color="blueLight"></ion-spinner>
+		</div>
+	</ng-container>
+
+	<ng-container *ngIf="!loadInit">
+		<ng-container *ngIf="medicinas.length===0">
+			<div class="empty">
+				<ion-grid>
+					<ion-row>
+						<ion-col>
+							<ion-icon name="custom-medicina" color="blueLight" item-start></ion-icon>
+							<p>Aún no has agregado medicina(s) comienza agregando uno</p>
+						</ion-col>
+					</ion-row>
+				</ion-grid>
+			</div>
+		</ng-container>
+		<ng-container *ngIf="medicinas.length>0">
+			<div class="listado">
+				<ion-list>
+					<button ion-item *ngFor="let medicina of medicinas" (click)="modalEditar(medicina)">
+						<ion-icon name="custom-medicina" item-start color="blueLight"></ion-icon>
+						<h2 text-wrap>{{ medicina.name }}</h2>
+					</button>
+				</ion-list>
+			</div>
+		</ng-container>
+	</ng-container>
+
+</ion-content>

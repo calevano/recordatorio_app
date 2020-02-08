@@ -33,7 +33,7 @@ export class MedicoCrearPage {
     }
 
     ionViewDidLoad() {
-        console.log('MedicoCrearPage ionViewDidLoad');
+        // console.log('MedicoCrearPage ionViewDidLoad');
     }
 
     saveMedico() {

@@ -25,10 +25,10 @@ page-login {
                 padding-left: 0;
                 background-color: transparent !important;
                 border-bottom-width: 2px !important;
-                border-bottom-color: rgba(71, 77, 84, 0.5) !important;
+                border-bottom-color: rgba(71, 77, 84, 0.2) !important;
                 box-shadow: none !important;
                 &.input-has-focus:last-child {
-                  border-bottom-color: rgba(71, 77, 84, 0.5) !important;
+                  border-bottom-color: rgba(71, 77, 84, 0.2) !important;
                   box-shadow: none !important;
                 }
                 ion-icon {
@@ -40,7 +40,7 @@ page-login {
                 .item-inner {
                   box-shadow: none !important;
                   margin-left: 0 !important;
-                  border-bottom-color: rgba(71, 77, 84, 0.5) !important;
+                  border-bottom-color: rgba(71, 77, 84, 0.2) !important;
                   ion-input {
                     input {
                       margin-bottom: 4px;
@@ -67,9 +67,9 @@ page-login {
                 height: 2.8em;
                 font-weight: bold;
                 font-size: 1.8rem;
-                // text-transform: initial;
                 border-radius: 5px;
                 span {
+                  font-family: "vagBlack";
                   letter-spacing: 0.05em;
                 }
               }

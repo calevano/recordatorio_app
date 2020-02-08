@@ -14,6 +14,9 @@ import { HoyPage } from '../pages/hoy/hoy';
 import { HoyDetallePage } from '../pages/hoy-detalle/hoy-detalle';
 import { HoyMedicamentoPage } from '../pages/hoy-medicamento/hoy-medicamento';
 import { HoyMedicamentoCrearPage } from '../pages/hoy-medicamento-crear/hoy-medicamento-crear';
+import { MedicinaPage } from '../pages/medicina/medicina';
+import { MedicinaCrearPage } from '../pages/medicina-crear/medicina-crear';
+import { MedicinaEditarPage } from '../pages/medicina-editar/medicina-editar';
 import { ProgresoPage } from '../pages/progreso/progreso';
 import { ProgresoDetallePage } from '../pages/progreso-detalle/progreso-detalle';
 import { InformePage } from '../pages/informe/informe';
@@ -58,6 +61,9 @@ import { IonicStorageModule } from '@ionic/storage';
         HoyDetallePage,
         HoyMedicamentoPage,
         HoyMedicamentoCrearPage,
+        MedicinaPage,
+        MedicinaCrearPage,
+        MedicinaEditarPage,
         ProgresoPage,
         ProgresoDetallePage,
         InformePage,
@@ -74,10 +80,11 @@ import { IonicStorageModule } from '@ionic/storage';
         MomentPipe,
         MesTextPipe,
     ],
+    // tabsHideOnSubPages: true, 
     imports: [
         BrowserModule,
         HttpClientModule,
-        IonicModule.forRoot(MyApp, { tabsHideOnSubPages: true, platforms: { ios: { backButtonText: 'Atrás' } } }),
+        IonicModule.forRoot(MyApp, { platforms: { ios: { backButtonText: 'Atrás' } } }),
         IonicStorageModule.forRoot({
             name: '_mydbrecordatorio',
             driverOrder: ['indexeddb', 'sqlite', 'websql']
@@ -95,6 +102,9 @@ import { IonicStorageModule } from '@ionic/storage';
         HoyDetallePage,
         HoyMedicamentoPage,
         HoyMedicamentoCrearPage,
+        MedicinaPage,
+        MedicinaCrearPage,
+        MedicinaEditarPage,
         ProgresoPage,
         ProgresoDetallePage,
         InformePage,

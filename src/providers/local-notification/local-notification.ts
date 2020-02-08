@@ -25,13 +25,13 @@ export class LocalNotificationProvider {
             title: content_.title,
             text: content_.text,
             trigger: { at: date_ },
-            // foreground: true,
+            foreground: true,
             lockscreen: true,
-            launch: true,
+            // launch: true,
             sound: this.setSound()
         };
         if (this.platform.is('android')) {
-            contentSchedule.group = content_.group;
+            // contentSchedule.group = content_.group;
             contentSchedule.led = 'FF0000';
             contentSchedule.vibrate = true;
         }

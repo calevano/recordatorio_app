@@ -19,9 +19,11 @@ page-medico-cita-crear {
   ion-content {
     .image {
       text-align: center;
-      box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1) !important;
+      // box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1) !important;
+      box-shadow: none !important;
       border-radius: 50%;
       padding: 2rem;
+      height: 140px;
       width: 140px;
       margin: 0 auto 2rem auto;
       border: 0.6rem solid #fff;
@@ -39,7 +41,8 @@ page-medico-cita-crear {
               margin-bottom: 0.5rem;
               ion-item {
                 border-radius: 8px;
-                box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.05) !important;
+                // box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.05) !important;
+                box-shadow: none !important;
                 &.input-has-focus:last-child {
                   border-bottom-color: rgba(71, 77, 84, 0.5) !important;
                 }
@@ -54,12 +57,13 @@ page-medico-cita-crear {
             }
             ion-textarea {
               textarea {
-                box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.05) !important;
+                // box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.05) !important;
                 width: 100%;
                 border-radius: 8px;
                 padding: 1.6rem;
                 background-color: #fff !important;
                 margin: 0;
+                box-shadow: none !important;
                 &::placeholder {
                   color: #cfd8dc;
                 }
@@ -76,12 +80,14 @@ page-medico-cita-crear {
       }
       .buttons {
         button {
+          margin-top: 1rem;
           color: #f4f4f4;
           padding: 0 1em;
           height: 2.8em;
           font-weight: bold;
           font-size: 1.8rem;
-          border-radius: 5px;
+          border-radius: 50px;
+          box-shadow: none !important;
           span {
             font-family: "vagBlack";
             letter-spacing: 0.05em;
@@ -92,8 +98,8 @@ page-medico-cita-crear {
     .textContent {
       padding-right: 10px;
       padding-left: 10px;
-      p{
-        &:first-child{
+      p {
+        &:first-child {
           text-align: center;
         }
       }

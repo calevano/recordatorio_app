@@ -29,6 +29,7 @@ page-medico-editar {
         border-radius: 50%;
         padding: 2rem;
         width: 120px;
+        height: 120px;
         margin: 0 auto;
         border: 0.6rem solid #fff;
         ion-icon {
@@ -46,28 +47,35 @@ page-medico-editar {
           margin-bottom: 2rem;
         }
         ion-item {
-          border-top: 0 !important;
+          border-radius: 50px;
           border-bottom: 0 !important;
-          padding-left: 0;
-          background-color: transparent !important;
+          // padding-left: 0;
+          // background-color: transparent !important;
           box-shadow: none !important;
+          &.input-has-focus:last-child {
+            border-bottom: none;
+            box-shadow: none !important;
+          }
           &.colDra {
             .item-inner {
               margin-right: 0 !important;
             }
           }
-          &.input-has-focus:last-child {
-            box-shadow: none !important;
-          }
           ion-icon {
             font-size: 2.5rem;
-            color: rgba(71, 77, 84, 1);
-            margin-right: 5px;
+            // color: rgba(71, 77, 84, 1);
+            // margin-right: 5px;
+            margin-bottom: 4px !important;
+            margin-top: 4px !important;
           }
           .item-inner {
+            box-shadow: none !important;
             margin-left: 0 !important;
-            .input-wrapper {
-              border-bottom: 1px solid rgba(71, 77, 84, 0.2) !important;
+            ion-input {
+              input {
+                margin-bottom: 4px;
+                margin-top: 4px;
+              }
             }
           }
         }
@@ -76,12 +84,19 @@ page-medico-editar {
         &.gridForm {
           ion-row {
             ion-col {
+              &:first-child {
+                padding-left: 0;
+              }
+              &:last-child {
+                padding-right: 0;
+              }
               ion-list {
                 ion-item {
                   .item-inner {
                     margin-right: 1rem;
                     padding-left: 1rem;
-                    border-bottom: 1px solid rgba(71, 77, 84, 0.2) !important;
+                    // border-bottom: 1px solid rgba(71, 77, 84, 0.2) !important;
+                    border-bottom: 0 !important;
                     .input-wrapper {
                       border-bottom: 0 !important;
                     }
@@ -103,8 +118,8 @@ page-medico-editar {
         height: 2.8em;
         font-weight: bold;
         font-size: 1.8rem;
-        // text-transform: initial;
-        border-radius: 5px;
+        border-radius: 50px;
+        box-shadow: none !important;
         span {
           font-family: "vagBlack";
           letter-spacing: 0.05em;

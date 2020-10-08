@@ -1,53 +1,59 @@
-<ion-header>
-    <ion-navbar color="blueMaterial">
-        <ion-title>Seleccione un medicamento</ion-title>
+<ion-header no-border>
+    <ion-navbar color="themePrimaryNavyBlueStrongColor">
+        <ion-title>{{ titleView }}</ion-title>
     </ion-navbar>
     <ion-searchbar #searchBar *ngIf="!showFormulario" [(ngModel)]="medicamentoTexto"
-        (ionInput)="searchMedicamento($event)" placeholder="Escriba su medicamento">
+        (ionInput)="searchMedicamento($event)" placeholder="Escriba el medicamento">
     </ion-searchbar>
+    <div class="headerBorder themePrimaryNavyBlueStrongColor">
+        <div class="contenedor" [ngClass]="{ 'blanco':!showFormulario && !showPregunta }"></div>
+    </div>
 </ion-header>
 
 <ion-content>
-
-    <div class="addMedicamento" *ngIf="medicamentos.length===0">
-        <div class="preguntaMessage" [hidden]="!showPregunta">
+    <div class="addMedicamento animated fadeIn" *ngIf="medicamentos.length===0">
+        <!-- [hidden]="!showPregunta" -->
+        <div class="preguntaMessage animated fadeIn" *ngIf="showPregunta">
             <h4>No hemos encontrado el medicamento que buscas.</h4>
             <h4>¿Quieres agregarlo?</h4>
             <ion-grid>
                 <ion-row>
                     <ion-col col-6>
-                        <button ion-button block type="button" color="blueMaterial" (click)="mostrarFormulario()">
+                        <button ion-button block type="button" color="themePrimaryNavyBlueStrongColor"
+                            (click)="mostrarFormulario()">
                             SI, AGREGAR
                         </button>
                     </ion-col>
                     <ion-col col-6>
-                        <button ion-button block type="button" color="redMaterial" (click)="cancelar()">
+                        <button ion-button block type="button" color="themeSecondaryRedStrongColor"
+                            (click)="cancelar()">
                             CANCELAR
                         </button>
                     </ion-col>
                 </ion-row>
             </ion-grid>
         </div>
-        <div class="formMedicamento" [hidden]="!showFormulario">
+        <div class="formMedicamento animated fadeIn" *ngIf="showFormulario">
             <p>Por favor escribe el <strong>"Nombre de medicamento"</strong> y cuando termines de escribir el
                 medicamento presiona en <strong>"Guardar"</strong> para que puedas usarlo más adelante.</p>
             <form [formGroup]="medicamentoForm" novalidate="novalidate" (ngSubmit)="addMedicamento()">
                 <ion-list>
                     <ion-item>
-                        <ion-label floating>Nombre de medicamento</ion-label>
+                        <ion-label floating>Nombre del medicamento</ion-label>
                         <ion-input #inputSelect type="text" formControlName="name"></ion-input>
                     </ion-item>
                 </ion-list>
                 <ion-grid>
                     <ion-row>
                         <ion-col col-6>
-                            <button ion-button block color="blueMaterial" type="submit"
+                            <button ion-button block color="themePrimaryNavyBlueStrongColor" type="submit"
                                 [disabled]="!medicamentoForm.valid">
                                 Guardar
                             </button>
                         </ion-col>
                         <ion-col col-6>
-                            <button ion-button block type="button" color="redMaterial" (click)="cancelarFormulario()">
+                            <button ion-button block type="button" color="themeSecondaryRedStrongColor"
+                                (click)="cancelarFormulario()">
                                 Cancelar
                             </button>
                         </ion-col>
@@ -56,13 +62,13 @@
             </form>
         </div>
     </div>
-    <div class="resultadoBusqueda" *ngIf="medicamentos.length>0">
+    <div class="resultadoBusqueda animated fadeIn" *ngIf="medicamentos.length>0">
         <ion-list>
-            <button ion-item *ngFor="let medicamento of medicamentos" [navPush]="hoyMedicamentoCrear"
+            <ion-item *ngFor="let medicamento of medicamentos" [navPush]="hoyMedicamentoCrear"
                 [navParams]="{ 'medicamento': medicamento }">
-                <ion-icon name="custom-hoy" item-start></ion-icon>
+                <ion-icon name="custom-medicina" item-start></ion-icon>
                 <h2>{{ medicamento.name }}</h2>
-            </button>
+            </ion-item>
         </ion-list>
     </div>
 </ion-content>

@@ -31,7 +31,7 @@ page-medico-detalle {
       min-height: 42px !important;
       padding: 0 !important;
       .toolbar-content {
-        background-color: color($colors, orangeMaterial) !important;
+        background-color: color($colors, themePrimaryOrangeStrongColor) !important;
         ion-segment {
           height: 42px !important;
           padding-left: 1.7rem !important;
@@ -56,7 +56,7 @@ page-medico-detalle {
   }
   ion-content {
     ion-slides {
-      background-color: color($colors, blanco) !important;
+      background-color: color($colors, themeDefault) !important;
       ion-slide {
         &.swiper-slide {
           text-align: inherit !important;
@@ -78,8 +78,8 @@ page-medico-detalle {
           box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1) !important;
           border-radius: 50%;
           padding: 2rem;
-          width: 112px;
-          height: 112px;
+          width: 120px;
+          height: 120px;
           margin: 0 auto;
           border: 0.6rem solid #fff;
           ion-icon {
@@ -102,33 +102,38 @@ page-medico-detalle {
         margin: 0;
         width: 100%;
         box-shadow: none;
+        background-color: color($colors, themeDefault) !important;
         ion-card-content {
           ion-list {
-            button {
-              border-radius: 5px;
-              .item-inner {
-                .input-wrapper {
-                  ion-label {
-                    p {
-                      font-family: "vagBold";
-                      text-transform: uppercase;
-                      font-size: 1rem;
-                      color: #959da0;
-                    }
-                    h2 {
-                      margin-top: 0 !important;
-                      text-transform: capitalize;
-                      &.emailText {
-                        text-transform: inherit !important;
-                      }
-                    }
-                  }
-                }
-                ion-icon {
-                  color: rgba(71, 77, 84, 1);
-                }
-              }
+            ion-item {
+              margin-bottom: 1rem;
+              border-radius: 8px;
             }
+            // button {
+            //   border-radius: 5px;
+            //   .item-inner {
+            //     .input-wrapper {
+            //       ion-label {
+            //         p {
+            //           font-family: "vagBold";
+            //           text-transform: uppercase;
+            //           font-size: 1rem;
+            //           color: #959da0;
+            //         }
+            //         h2 {
+            //           margin-top: 0 !important;
+            //           text-transform: capitalize;
+            //           &.emailText {
+            //             text-transform: inherit !important;
+            //           }
+            //         }
+            //       }
+            //     }
+            //     ion-icon {
+            //       color: rgba(71, 77, 84, 1);
+            //     }
+            //   }
+            // }
           }
         }
       }
@@ -159,8 +164,9 @@ page-medico-detalle {
       .listadoCitas {
         padding: 2rem;
         ion-card {
-          border-radius: 5px !important;
-          box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1) !important;
+          border-radius: 8px !important;
+          // box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1) !important;
+          box-shadow: none !important;
           margin: 10px 0 !important;
           width: 100%;
           ion-card-header {
@@ -180,6 +186,7 @@ page-medico-detalle {
             p {
               font-weight: bold;
               i {
+                color: color($colors, themeSecondaryRedStrongColor);
                 position: relative;
                 top: 0.6rem;
                 &.float-right {
@@ -210,13 +217,19 @@ page-medico-detalle {
     display: block !important;
     span {
       ion-icon {
-        color: color($colors, orangeMaterial) !important;
+        color: color($colors, themePrimaryOrangeStrongColor) !important;
         font-size: 1.5em !important;
       }
     }
   }
 }
 .action-sheets-cita {
+  .action-sheet-group {
+    border-radius: 20px 20px 0 0;
+    &.action-sheet-group-cancel {
+      border-radius: 0 !important;
+    }
+  }
   .action-sheet-title {
     padding: 10px 16px 5px;
     font-family: "vagBlack";
@@ -236,10 +249,10 @@ page-medico-detalle {
   }
 
   .ion-md-create {
-    color: color($colors, greenMaterial);
+    color: color($colors, themeSecondaryGreenStrongColor);
   }
   .action-sheet-cancel ion-icon,
   .action-sheet-destructive ion-icon {
-    color: color($colors, redMaterial);
+    color: color($colors, themeSecondaryRedStrongColor);
   }
 }

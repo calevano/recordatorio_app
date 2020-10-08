@@ -8,7 +8,7 @@
                     </div>
                 </ion-col>
                 <ion-col col-12>
-                    <p>Ingresa tú nombre para que el app pueda interacturar contigo.</p>
+                    <p>Ingresa tú nombre para que el app te recuerde.</p>
                 </ion-col>
                 <ion-col col-12>
                     <form [formGroup]="loginForm" novalidate="novalidate" (ngSubmit)="ingresarApp()">
@@ -19,7 +19,7 @@
                             </ion-item>
                         </ion-list>
                         <div class="buttons">
-                            <button ion-button [disabled]="!loginForm.valid" type="submit" color="blueMaterial"
+                            <button ion-button [disabled]="!loginForm.valid" type="submit" color="themeDefault"
                                 block>Comenzar</button>
                         </div>
                     </form>

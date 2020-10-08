@@ -31,18 +31,77 @@ page-hoy {
       }
     }
     .listadoRecordatorio {
+      padding-right: 0.8rem;
+      .cardRowList {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .lineTime {
+          display: inline-block;
+          width: 10%;
+          text-align: center;
+          position: relative;
+          // margin-bottom: 1.2rem;
+          &::before {
+            content: "";
+            position: absolute;
+            height: 75px;
+            background-color: color($colors, themePrimaryNavyBlueStrongColor);
+            border: 1px solid color($colors, themePrimaryNavyBlueStrongColor);
+            top: -80px;
+            z-index: 1;
+            left: 19px;
+          }
+          &::after {
+            content: "";
+            position: absolute;
+            height: 30px;
+            background-color: color($colors, themePrimaryNavyBlueStrongColor);
+            border: 1px solid color($colors, themePrimaryNavyBlueStrongColor);
+            bottom: -34px;
+            z-index: 1;
+            left: 19px;
+          }
+          ion-icon {
+            font-size: 2.2rem !important;
+          }
+        }
+      }
+      .cardRowList:first-child .lineTime:before {
+        content: "";
+        position: absolute;
+        height: 26px;
+        background-color: color($colors, themePrimaryNavyBlueStrongColor);
+        border: 1px solid color($colors, themePrimaryNavyBlueStrongColor);
+        top: -30px;
+        z-index: 1;
+        left: 19px;
+      }
       ion-list {
-        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1) !important;
-        button {
+        display: inline-block;
+        width: 90%;
+        // box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1) !important;
+        box-shadow: none !important;
+        margin-bottom: 0;
+        ion-item-sliding {
+          margin: 1rem auto;
+          width: 95%;
+          border-radius: 8px;
+          background-color: #f0f0f0;
+        }
+        ion-item {
+          border-radius: 8px;
+          ion-icon {
+            display: none;
+          }
           .item-inner {
+            border-bottom: 0 !important;
             margin-left: 1rem !important;
             margin-right: 1rem !important;
             ion-label {
               h2 {
                 margin-top: 0 !important;
                 font-family: "vagBold";
-              }
-              p {
               }
             }
             ion-note {
@@ -51,6 +110,14 @@ page-hoy {
               font-family: "vagBold";
               color: #222;
             }
+          }
+        }
+        ion-item-options {
+          &.optionLeftSliding {
+            background-color: color($colors, themeSecondaryRedStrongColor);
+          }
+          &.optionRightSliding {
+            background-color: color($colors, blueStrongColor);
           }
         }
       }

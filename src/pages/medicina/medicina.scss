@@ -7,7 +7,7 @@ page-medicina {
           padding-right: 0 !important;
           padding-bottom: 0 !important;
           .toolbar-background {
-            background-color: #fff !important;
+            background-color: color($colors, blanco) !important;
           }
           ion-searchbar {
             input {
@@ -51,17 +51,19 @@ page-medicina {
     }
     .listado {
       ion-list {
-        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1) !important;
-        button {
+        // box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1) !important;
+        ion-item {
+          margin: 1rem auto;
+          width: 95%;
+          border-radius: 8px;
           .item-inner {
             margin-left: 1rem !important;
             margin-right: 1rem !important;
+            border-bottom: 0 !important;
             ion-label {
               h2 {
                 margin-top: 0 !important;
-                font-family: "vagBold";
-              }
-              p {
+                // font-family: "vagBold";
               }
             }
             ion-note {

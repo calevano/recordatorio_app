@@ -1,14 +1,18 @@
-<ion-header>
-    <ion-navbar color="orangeMaterial">
+<ion-header no-border>
+    <ion-navbar color="themePrimaryOrangeStrongColor">
         <ion-title>Editar Médico</ion-title>
     </ion-navbar>
+    <div class="headerBorder themePrimaryOrangeStrongColor">
+        <div class="contenedor"></div>
+    </div>
 </ion-header>
 
 <ion-content padding>
     <form [formGroup]="editMedicoForm" novalidate="novalidate" (ngSubmit)="editMedico()">
         <div class="profileMedico">
             <div class="photoMedico">
-                <ion-icon name="custom-doctor" color="orangeMaterial"></ion-icon>
+                <img [src]="optionImageMedicoDefault" />
+                <!-- <ion-icon name="custom-doctor" color="themePrimaryOrangeStrongColor"></ion-icon> -->
             </div>
         </div>
         <div class="formMedico">
@@ -17,7 +21,9 @@
                     <ion-col col-6>
                         <ion-list>
                             <ion-item>
-                                <ion-radio value="dr" color="orangeMaterial"></ion-radio>
+                                <ion-radio value="dr" color="themePrimaryNavyBlueStrongColor"
+                                    (ionSelect)="selectOptionDr($event)">
+                                </ion-radio>
                                 <ion-label>Dr.</ion-label>
                             </ion-item>
                         </ion-list>
@@ -26,7 +32,9 @@
                         <ion-list>
                             <ion-item class="colDra">
                                 <ion-label>Dra.</ion-label>
-                                <ion-radio value="dra" color="orangeMaterial"></ion-radio>
+                                <ion-radio value="dra" color="themePrimaryNavyBlueStrongColor"
+                                    (ionSelect)="selectOptionDr($event)">
+                                </ion-radio>
                             </ion-item>
                         </ion-list>
                     </ion-col>
@@ -34,29 +42,30 @@
             </ion-grid>
             <ion-list>
                 <ion-item>
-                    <ion-icon name="person" item-start></ion-icon>
+                    <ion-icon name="person" color="themePrimaryNavyBlueStrongColor" item-start></ion-icon>
                     <ion-input placeholder="Nombres" type="text" formControlName="names"></ion-input>
                 </ion-item>
             </ion-list>
             <ion-list>
                 <ion-item>
-                    <ion-icon name="school" item-start></ion-icon>
+                    <ion-icon name="school" color="themePrimaryNavyBlueStrongColor" item-start></ion-icon>
                     <ion-input placeholder="Especialidad" type="text" formControlName="speciality"></ion-input>
                 </ion-item>
             </ion-list>
             <ion-list>
                 <ion-item>
-                    <ion-icon name="call" item-start></ion-icon>
+                    <ion-icon name="call" color="themePrimaryNavyBlueStrongColor" item-start></ion-icon>
                     <ion-input placeholder="Teléfono" type="tel" maxlength="9" formControlName="phone"></ion-input>
                 </ion-item>
             </ion-list>
             <ion-list class="listLast">
                 <ion-item>
-                    <ion-icon name="mail" item-start></ion-icon>
+                    <ion-icon name="mail" color="themePrimaryNavyBlueStrongColor" item-start></ion-icon>
                     <ion-input placeholder="E-mail" type="email" formControlName="email"></ion-input>
                 </ion-item>
             </ion-list>
-            <button ion-button [disabled]="!editMedicoForm.valid" type="submit" color="orangeMaterial" block>
+            <button ion-button [disabled]="!editMedicoForm.valid" type="submit" color="themePrimaryOrangeStrongColor"
+                block>
                 Guardar
             </button>
         </div>

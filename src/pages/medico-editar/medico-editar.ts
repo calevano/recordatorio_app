@@ -12,6 +12,7 @@ import { DatabaseProvider } from '../../providers/database/database';
 })
 export class MedicoEditarPage {
 
+    optionImageMedicoDefault: string;
     editMedicoForm: FormGroup;
     emailPattern = "[a-zA-Z0-9._-]+[@]+[a-zA-Z0-9.-]+[.]+[a-zA-Z]{2,6}";
     medico: any;
@@ -25,6 +26,7 @@ export class MedicoEditarPage {
         public databaseProvider: DatabaseProvider,
     ) {
         this.medico = navParams.get('medico');
+        this.optionImageMedicoDefault = 'assets/imgs/random/doctor-' + (this.medico.prefix === 'dra' ? 'wo' : '') + 'men.svg';
         // console.log("MedicoEditarPage:::construct:::thisMedico:::", this.medico);
         this.editMedicoForm = this.formBuilder.group({
             names: [this.medico.names, Validators.compose([Validators.required, Validators.minLength(6)])],
@@ -39,20 +41,24 @@ export class MedicoEditarPage {
         // console.log('MedicoEditarPage ionViewDidLoad');
     }
 
-    editMedico() {
+    selectOptionDr(event: any) {
+        this.optionImageMedicoDefault = 'assets/imgs/random/doctor-' + (event === 'dra' ? 'wo' : '') + 'men.svg';
+    }
+
+    async editMedico() {
         if (this.editMedicoForm.valid) {
             this.loadingProvider.show("Editando médico");
             let data_ = this.editMedicoForm.value;
             data_['id'] = this.medico.id;
             // console.log("MedicoEditarPage:::editMedico:::data:::", data_);
-            this.databaseProvider.updateMedico(data_).then(response => {
-                setTimeout(() => {
-                    this.toastProvider.show("success", "Se edito al médico correctamente", 'bottom');
-                    this.editMedicoForm.reset();
-                    this.loadingProvider.hide(0);
-                    this.navCtrl.getPrevious().data.medicoUpdate = data_;
-                    this.navCtrl.pop();
-                }, 500);
+            await this.databaseProvider.updateMedico(data_).then(response => {
+                // setTimeout(() => {
+                this.toastProvider.show("success", "Se edito al médico correctamente", 'bottom');
+                this.editMedicoForm.reset();
+                this.loadingProvider.hide(0);
+                this.navCtrl.getPrevious().data.medicoUpdate = data_;
+                this.navCtrl.pop();
+                // }, 500);
             }).catch(err => {
                 this.toastProvider.show("error", "No se pudo editar. favor de intentarlo de nuevo", 'bottom');
                 this.loadingProvider.hide(0);

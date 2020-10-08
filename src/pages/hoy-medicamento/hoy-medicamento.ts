@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, Content } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 // Pages
 import { HoyMedicamentoCrearPage } from '../hoy-medicamento-crear/hoy-medicamento-crear';
@@ -16,15 +16,17 @@ export class HoyMedicamentoPage {
 
     @ViewChild('inputSelect') inputSelect: any;
     @ViewChild('searchBar') searchBar: any;
+    @ViewChild(Content) content: Content;
 
     medicamentoForm: FormGroup;
     hoyMedicamentoCrear = HoyMedicamentoCrearPage;
 
-    showPregunta: boolean = false;
-    showFormulario: boolean = false;
+    showPregunta = false;
+    showFormulario = false;
 
     medicamentos: any = [];
     medicamentoTexto: string;
+    titleView = 'Seleccione un medicamento';
 
     constructor(
         public navCtrl: NavController,
@@ -49,9 +51,11 @@ export class HoyMedicamentoPage {
     }
 
     initSearchBar() {
+        // this.resizeContent();
+        this.content.resize();
         setTimeout(() => {
-            this.searchBar.setFocus();
-        }, 400);
+            this.searchBar.setFocus()
+        }, 500);
     }
 
     async getAllMedicinas() {
@@ -60,22 +64,28 @@ export class HoyMedicamentoPage {
         await this.databaseProvider.getAllMedicamento(orderBy).then(response => {
             // console.log('getAllMedicamento:::res:::', response);
             this.medicamentos = (response.length === 0) ? [] : response;
-        }).catch(err => { });
+        }).catch(err => {
+            console.log('getAllMedicinas:::err:::', err);
+        });
     }
 
     async searchMedicamento(ev: any) {
+        // console.log('searchMedicamento:::ev:::', ev);
         let val = ev.target.value;
-        if (val) {
-            if (val.length > 3) {
+        if (val !== '') {
+            if (val.length > 2) {
                 await this.databaseProvider.searchMedicamento(val).then(response => {
                     if (response.length === 0) {
+                        this.titleView = '¿Quieres agregarlo?';
                         this.showPregunta = true;
                         this.medicamentos = [];
                     } else {
                         this.showPregunta = false;
                         this.medicamentos = response;
                     }
+                    // console.log('response:::medicamentos:::', this.medicamentos);
                 }).catch(err => {
+                    console.log('searchMedicamento:::err:::', err);
                     this.toastProvider.show("error", "Porfavor intenta buscando de nuevo", "bottom");
                 });
             }
@@ -110,7 +120,8 @@ export class HoyMedicamentoPage {
                     this.getMedicamentoAfterAddMedicamento(response.insertId);
                     this.searchCancel();
                     this.loadingProvider.hide(0);
-                }).catch(err => {
+                }).catch((err) => {
+                    // console.log('addMedicamento:::err:::', err);
                     this.toastProvider.show('error', 'No se pudo agregar. favor de intentarlo de nuevo', 'bottom');
                     this.searchCancel();
                     this.loadingProvider.hide(0);
@@ -123,25 +134,37 @@ export class HoyMedicamentoPage {
         await this.databaseProvider.showMedicamento(id).then(response => {
             this.navCtrl.push(HoyMedicamentoCrearPage, { 'medicamento': response });
         }).catch(err => {
+            console.log('getMedicamentoAfterAddMedicamento:::err:::', err);
             this.toastProvider.show("error", "No se pudo obtener el medicamento agregado", 'bottom');
         });
     }
 
     mostrarFormulario() {
-        this.showPregunta = false;
+        this.titleView = 'Agregar medicamento';
+        this.medicamentoTexto = '';
         this.showFormulario = true;
+        this.showPregunta = false;
         this.medicamentoForm = this.formBuilder.group({
             name: [this.medicamentoTexto],
         });
-        this.medicamentoTexto = "";
+        this.content.resize();
         setTimeout(() => {
             this.inputSelect.setFocus();
-        }, 400);
+        }, 500);
     }
 
     cancelarFormulario() {
         this.showFormulario = false;
-        this.medicamentoTexto = "";
+        this.medicamentoTexto = '';
+        this.getAllMedicinas();
+        this.resizeContent();
+    }
+
+    resizeContent() {
+        this.content.resize();
+        setTimeout(() => {
+            this.searchBar.setFocus()
+        }, 400);
     }
 
     cancelar() {

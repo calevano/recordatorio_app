@@ -1,0 +1,10 @@
+header-border-footer {
+    .headerBorder {
+        min-height: 20px;
+        .contenedor {
+            min-height: 20px;
+            border-radius: 20px 20px 0 0;
+            background-color: color($colors, themeDefault);
+        }
+    }
+}

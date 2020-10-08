@@ -39,6 +39,7 @@ $colors: (
   danger:               #f53d3d,
   light:                #f4f4f4,
   blanco:               #fff,
+  themeDefault:         #f0f0f0,
   dark:                 #222,
   bgApp:                #e7eef5,
   bgAppContent:         #FAFAFA,
@@ -57,7 +58,33 @@ $colors: (
   warningMaterial:      #F9A825,
   blueGrayMaterial:     #546E7A,
   blueGrayLightMaterial:#B0BEC5,
-  
+
+  primaryLightColor:    #92E2FF,
+  primaryStrongColor:   #1DBEF9,
+  secondaryLightColor:  #FFD099,
+  secondaryStrongColor: #FE9B4B,
+  greyBlueLightColor:   #7395CF,
+  greyBlueStrongColor:  #3C5073,
+  greyStrongColor:      #45597A,
+  blueStrongColor:      #1E2843,
+
+  themePrimaryLightBlueBasicColor:  #92E2FF,
+  themePrimaryLightBlueStrongColor: #1DBEF9,
+  themePrimaryOrangeBasicColor:     #FFD099,
+  themePrimaryOrangeStrongColor:    #FE9B4B,
+  themePrimaryBlueGrayBasicColor:   #7395CF,
+  themePrimaryBlueGrayStrongColor:  #3C5073,
+  themePrimaryGreyStrongColor:      #45597A,
+  themePrimaryNavyBlueStrongColor:  #1E2843,
+
+  themeSecondaryGreenLightColor:    #62DBC6,
+  themeSecondaryGreenStrongColor:   #309F8C,
+  themeSecondaryRedLightColor:      #FFAFC6,
+  themeSecondaryRedStrongColor:     #FF6C87,
+  themeSecondaryBlueColor:          #3580FF,
+  // themeSecondaryGreyStrongColor:    #45597A,
+  // themeSecondaryNavyBlueStrongColor:#1E2843,
+
 );
 
 

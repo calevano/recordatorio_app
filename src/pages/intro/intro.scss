@@ -46,7 +46,7 @@ page-intro {
             height: 2.8em;
             font-weight: bold;
             font-size: 1.8rem;
-            border-radius: 5px;
+            border-radius: 50px;
             span {
               font-family: "vagBold";
               letter-spacing: 0.05em;
@@ -76,18 +76,18 @@ page-intro {
   }
 
   .slide_one {
-    background-color: color($colors, blueLight) !important;
+    background-color: color($colors, themePrimaryNavyBlueStrongColor) !important;
   }
   .slide_two {
-    background-color: color($colors, greenLight) !important;
+    background-color: color($colors, themePrimaryLightBlueStrongColor) !important;
   }
   .slide_three {
-    background-color: color($colors, warningMaterial) !important;
+    background-color: color($colors, themeSecondaryGreenStrongColor) !important;
   }
   .slide_four {
-    background-color: color($colors, red) !important;
+    background-color: color($colors, themeSecondaryRedStrongColor) !important;
   }
   .slide_five {
-    background-color: color($colors, deepOrange) !important;
+    background-color: color($colors, themePrimaryOrangeStrongColor) !important;
   }
 }

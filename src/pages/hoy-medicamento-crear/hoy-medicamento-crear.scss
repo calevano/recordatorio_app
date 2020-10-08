@@ -7,6 +7,11 @@ page-hoy-medicamento-crear {
         }
       }
     }
+    .headerBorder {
+      .contenedor {
+        background-color: color($colors, blanco) !important;
+      }
+    }
   }
   ion-content {
     .formRecordatorio {
@@ -84,12 +89,17 @@ page-hoy-medicamento-crear {
     }
   }
   ion-footer {
+    margin-bottom: 1rem;
+    &::before {
+      height: 0 !important;
+    }
     button {
-      border-radius: 0 !important;
+      border-radius: 50px !important;
       box-shadow: none !important;
-      height: 6rem !important;
+      height: 4.6rem !important;
       padding: 0 !important;
-      margin: 0 !important;
+      margin: 0 auto !important;
+      width: 95% !important;
       font-size: 2rem !important;
       span {
         font-family: "vagBold";

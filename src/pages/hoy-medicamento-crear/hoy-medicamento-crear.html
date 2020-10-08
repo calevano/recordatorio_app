@@ -1,7 +1,10 @@
-<ion-header>
-    <ion-navbar color="blueMaterial">
+<ion-header no-border>
+    <ion-navbar color="themePrimaryNavyBlueStrongColor">
         <ion-title>Añadir recordatorio</ion-title>
     </ion-navbar>
+    <div class="headerBorder themePrimaryNavyBlueStrongColor">
+        <div class="contenedor"></div>
+    </div>
 </ion-header>
 
 <ion-content>
@@ -26,22 +29,24 @@
             <div class="addHorario" *ngIf="dayDurationType===0 || dayDurationType===1">
                 <p>
                     Añadir hora de la toma
-                    <i class="material-icons greenMaterial hourIconAdd" (click)="addControlForm()">alarm_add</i>
+                    <i class="material-icons themeSecondaryGreenStrongColor hourIconAdd"
+                        (click)="addControlForm()">alarm_add</i>
                 </p>
                 <div formArrayName="horarios">
                     <ion-grid>
-                        <ion-row align-items-center [formGroupName]="i"
-                            *ngFor="let recordatorio of recordatorioForm.controls.horarios.controls;let i = index">
+                        <ion-row align-items-center
+                            *ngFor="let recordatorio of recordatorioForm.controls.horarios.controls;let i = index"
+                            [formGroupName]="i">
                             <ion-col col-2>
                                 <span class="hourIconClose" *ngIf="recordatorioForm.controls.horarios.length > 1"
                                     (click)="removeInputField(i)">
-                                    <i class="material-icons redMaterial">highlight_off</i>
+                                    <i class="material-icons themeSecondaryRedStrongColor">highlight_off</i>
                                 </span>
                             </ion-col>
                             <ion-col col-4>
                                 <button ion-button clear icon-end (click)="picker.open()">
                                     <ion-datetime #picker formControlName="hour" displayFormat="HH:mm"
-                                        cancelText="Cancelar" doneText="OK" minuteValues="0,5,10,15,20,25,30,35,40,45,50,55"
+                                        cancelText="Cancelar" doneText="Seleccionar" [minuteValues]="minuteDefault"
                                         placeholder="Hora">
                                     </ion-datetime>
                                     <ion-icon name="arrow-dropdown"></ion-icon>
@@ -61,7 +66,7 @@
     </form>
 </ion-content>
 <ion-footer>
-    <button ion-button color="blueMaterial" block type="submit" [disabled]="!recordatorioForm.valid"
+    <button ion-button color="themePrimaryNavyBlueStrongColor" block type="submit" [disabled]="!recordatorioForm.valid"
         (click)="loginForm.ngSubmit.emit()">
         GUARDAR
     </button>

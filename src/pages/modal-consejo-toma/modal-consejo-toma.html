@@ -1,5 +1,5 @@
-<ion-header>
-    <ion-navbar color="blueMaterial">
+<ion-header no-border>
+    <ion-navbar color="themePrimaryNavyBlueStrongColor">
         <ion-title>Consejos de la toma</ion-title>
         <ion-buttons end>
             <button ion-button showWhen="android" icon-only (click)="dismiss()">
@@ -10,28 +10,42 @@
             </button>
         </ion-buttons>
     </ion-navbar>
+    <div class="headerBorder themePrimaryNavyBlueStrongColor">
+        <div class="contenedor"></div>
+    </div>
 </ion-header>
 
 <ion-content padding>
+    <div class="logoSvgCenter">
+        <img src="assets/imgs/random/consejo.svg" alt=logo_duracion />
+    </div>
     <ion-list radio-group [(ngModel)]="consejoToma">
-        <ion-item>
+        <ion-item *ngFor="let consejo of consejos;let i=index;">
+            <ion-label>{{ consejo }}</ion-label>
+            <ion-radio [value]="consejo" color="themePrimaryNavyBlueStrongColor" (ionSelect)="selectOption(i)">
+            </ion-radio>
+        </ion-item>
+        <!-- <ion-item>
             <ion-label>Ninguna</ion-label>
-            <ion-radio value="Ninguna" (ionSelect)="selectOption('Ninguna')"></ion-radio>
+            <ion-radio value="Ninguna" color="themePrimaryNavyBlueStrongColor" (ionSelect)="selectOption('Ninguna')"></ion-radio>
         </ion-item>
         <ion-item>
             <ion-label>Antes de la comida</ion-label>
-            <ion-radio value="Antes de la comida" (ionSelect)="selectOption('Antes de la comida')"></ion-radio>
+            <ion-radio value="Antes de la comida" color="themePrimaryNavyBlueStrongColor"
+                (ionSelect)="selectOption('Antes de la comida')"></ion-radio>
         </ion-item>
         <ion-item>
             <ion-label>Junto con la comida</ion-label>
-            <ion-radio value="Junto con la comida" (ionSelect)="selectOption('Junto con la comida')"></ion-radio>
+            <ion-radio value="Junto con la comida" color="themePrimaryNavyBlueStrongColor"
+                (ionSelect)="selectOption('Junto con la comida')"></ion-radio>
         </ion-item>
         <ion-item>
             <ion-label>Después de la comida</ion-label>
-            <ion-radio value="Después de la comida" (ionSelect)="selectOption('Después de la comida')"></ion-radio>
-        </ion-item>
+            <ion-radio value="Después de la comida" color="themePrimaryNavyBlueStrongColor"
+                (ionSelect)="selectOption('Después de la comida')"></ion-radio>
+        </ion-item> -->
     </ion-list>
-    <!-- <button ion-button color="blueMaterial" block type="button" (click)="selectOpcionButton()">
+    <!-- <button ion-button color="themePrimaryNavyBlueStrongColor" block type="button" (click)="selectOpcionButton()">
         Continuar
     </button> -->
 

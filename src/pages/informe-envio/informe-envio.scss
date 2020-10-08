@@ -1,6 +1,6 @@
 page-informe-envio {
   ion-content {
-    background-color: color($colors, redMaterial) !important;
+    background-color: color($colors, blueStrongColor) !important;
     ion-grid {
       &.loadingGrid {
         height: 100%;
@@ -33,7 +33,7 @@ page-informe-envio {
           font-family: "vagBlack";
           font-size: 1.8rem;
           text-transform: initial;
-          border-radius: 5px;
+          border-radius: 50px;
           span {
             letter-spacing: 0.05em;
           }

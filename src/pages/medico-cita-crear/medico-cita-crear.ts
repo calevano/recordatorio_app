@@ -15,6 +15,9 @@ import "moment/locale/es";
 })
 export class MedicoCitaCrearPage {
 
+    hourDefault = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22];
+    minuteDefault = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55];
+
     data: any = {
         fecha: '',
         hora: '',
@@ -32,24 +35,26 @@ export class MedicoCitaCrearPage {
         public localNotificationProvider: LocalNotificationProvider
     ) {
         this.medico = navParams.get('medico');
-        // console.log('medico:::', this.medico);
-        this.date = moment().format('YYYY-MM-DD');
+        let horarioActual = moment();
+        let minute = Number(horarioActual.format('mm'));
+        this.date = horarioActual.format('YYYY-MM-DD');
         this.data.fecha = this.date;
-        // this.data.hora = moment().format('HH:mm');
-        // console.log("this.data.hora:::", this.data.hora);
+        this.data.hora = horarioActual.format('HH') + ':' + (Math.ceil(minute / 5) * 5);
+
     }
 
     ionViewDidLoad() {
         // console.log('ionViewDidLoad MedicoCitaCrearPage');
     }
 
-    saveCita() {
+    async saveCita() {
         if (this.data.fecha === "" ||
             this.data.hora === "" ||
-            this.data.pregunta === "") {
+            this.data.pregunta === ""
+        ) {
             this.toastProvider.show('error', 'Necesita completar todos los campos.', 'bottom');
         } else {
-            this.loadingProvider.show("Agregando cita");
+            this.loadingProvider.show("Guardando cita");
             let cita_: any = {};
             cita_.day = this.data.fecha;
             cita_.hour = this.data.hora;
@@ -58,7 +63,7 @@ export class MedicoCitaCrearPage {
 
             // console.log("saveCita:::cita:::", cita_);
 
-            this.databaseProvider.insertCita(cita_).then(response => {
+            await this.databaseProvider.insertCita(cita_).then(response => {
                 // console.log("saveCita:::res:::", response);
                 this.insertNotifications('cita', cita_, response.insertId);
                 this.toastProvider.show("success", "Se agrego la cita correctamente.", 'bottom');

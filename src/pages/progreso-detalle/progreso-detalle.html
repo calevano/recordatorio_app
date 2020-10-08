@@ -1,7 +1,10 @@
-<ion-header>
-    <ion-navbar color="greenMaterial">
+<ion-header no-border>
+    <ion-navbar color="themeSecondaryGreenStrongColor">
         <ion-title>Detalle del progreso</ion-title>
     </ion-navbar>
+    <div class="headerBorder themeSecondaryGreenStrongColor">
+        <div class="contenedor"></div>
+    </div>
 </ion-header>
 
 <ion-content>
@@ -9,7 +12,7 @@
         <ion-row>
             <ion-col col-12>
                 <div class="iconDetalleRecordatorio">
-                    <ion-icon name="custom-hoy" color="greenMaterial"></ion-icon>
+                    <ion-icon name="custom-hoy" color="themeSecondaryGreenStrongColor"></ion-icon>
                 </div>
             </ion-col>
         </ion-row>
@@ -56,12 +59,12 @@
         <ion-grid>
             <ion-row>
                 <ion-col>
-                    <button ion-button type="button" color="redMaterial" block (click)="cancelar()">
+                    <button ion-button type="button" color="themeSecondaryRedStrongColor" block (click)="cancelar()">
                         Cancelar
                     </button>
                 </ion-col>
                 <ion-col>
-                    <button ion-button type="button" color="greenMaterial" block (click)="confirmar()">
+                    <button ion-button type="button" color="themeSecondaryGreenStrongColor" block (click)="confirmar()">
                         Confirmar
                     </button>
                 </ion-col>

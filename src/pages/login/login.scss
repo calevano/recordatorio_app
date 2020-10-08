@@ -2,9 +2,10 @@ page-login {
   .scroll-content {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
-    padding-bottom: 16px !important;
+    // padding-bottom: 16px !important;
   }
   ion-content {
+    background-color: color($colors, themePrimaryNavyBlueStrongColor) !important;
     .centerDiv {
       ion-grid {
         ion-row {
@@ -12,23 +13,28 @@ page-login {
             .logo {
               text-align: center;
               img {
-                width: 45%;
+                width: 120px;
               }
             }
             p {
               text-align: center;
               font-size: 1.5rem;
+              color: color($colors, blanco);
             }
             ion-list {
               ion-item {
-                border-top: 0 !important;
-                padding-left: 0;
-                background-color: transparent !important;
-                border-bottom-width: 2px !important;
-                border-bottom-color: rgba(71, 77, 84, 0.2) !important;
+                // box-shadow: none;
+                border-radius: 50px;
+                border-bottom: 0 !important;
+                // border-top: 0 !important;
+                // padding-left: 0;
+                // background-color: transparent !important;
+                // border-bottom-width: 2px !important;
+                // border-bottom-color: rgba(71, 77, 84, 0.2) !important;
                 box-shadow: none !important;
                 &.input-has-focus:last-child {
-                  border-bottom-color: rgba(71, 77, 84, 0.2) !important;
+                  // border-bottom-color: rgba(71, 77, 84, 0.2) !important;
+                  border-bottom: none;
                   box-shadow: none !important;
                 }
                 ion-icon {
@@ -40,19 +46,25 @@ page-login {
                 .item-inner {
                   box-shadow: none !important;
                   margin-left: 0 !important;
-                  border-bottom-color: rgba(71, 77, 84, 0.2) !important;
+                  // border-bottom-color: rgba(71, 77, 84, 0.2) !important;
+                  // border-bottom-color: rgba(71, 77, 84, 0.2) !important;
                   ion-input {
                     input {
+                      // color: #fff;
+                      color: color($colors, themePrimaryNavyBlueStrongColor);
                       margin-bottom: 4px;
                       margin-top: 4px;
                       &::placeholder {
-                        color: #cfd8dc;
+                        color: color($colors, themePrimaryNavyBlueStrongColor);
+                        // color: #fff;
                       }
                       &:-ms-input-placeholder {
-                        color: #cfd8dc;
+                        color: color($colors, themePrimaryNavyBlueStrongColor);
+                        // color: #fff;
                       }
                       &::-ms-input-placeholder {
-                        color: #cfd8dc;
+                        color: color($colors, themePrimaryNavyBlueStrongColor);
+                        // color: #fff;
                       }
                     }
                   }
@@ -62,12 +74,12 @@ page-login {
             .buttons {
               button {
                 margin-top: 2rem;
-                color: #f4f4f4;
+                color: color($colors, themePrimaryNavyBlueStrongColor);
                 padding: 0 1em;
                 height: 2.8em;
                 font-weight: bold;
                 font-size: 1.8rem;
-                border-radius: 5px;
+                border-radius: 50px;
                 span {
                   font-family: "vagBlack";
                   letter-spacing: 0.05em;

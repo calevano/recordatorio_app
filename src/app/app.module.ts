@@ -35,6 +35,7 @@ import { ToastProvider } from '../providers/toast/toast';
 import { DatabaseProvider } from '../providers/database/database';
 import { StorageProvider } from '../providers/storage/storage';
 import { LocalNotificationProvider } from '../providers/local-notification/local-notification';
+import { EmailComposerProvider } from '../providers/email-composer/email-composer';
 // Pipes
 import { KeyValuePipe } from '../pipes/key-value/key-value';
 import { MomentPipe } from '../pipes/moment/moment';
@@ -48,7 +49,12 @@ import { SQLite } from '@ionic-native/sqlite';
 import { WheelSelector } from '@ionic-native/wheel-selector';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { Network } from '@ionic-native/network';
+import { EmailComposer } from '@ionic-native/email-composer';
+import { File } from '@ionic-native/file';
+import { SocialSharing } from '@ionic-native/social-sharing';
 import { IonicStorageModule } from '@ionic/storage';
+// import { HeaderBorderFooterComponent } from '../components/header-border-footer/header-border-footer';
+// import { ComponentsModule } from '../components/components.module';
 
 @NgModule({
     declarations: [
@@ -79,6 +85,7 @@ import { IonicStorageModule } from '@ionic/storage';
         KeyValuePipe,
         MomentPipe,
         MesTextPipe,
+        // HeaderBorderFooterComponent,
     ],
     // tabsHideOnSubPages: true, 
     imports: [
@@ -89,7 +96,8 @@ import { IonicStorageModule } from '@ionic/storage';
             name: '_mydbrecordatorio',
             driverOrder: ['indexeddb', 'sqlite', 'websql']
         }),
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        // ComponentsModule
     ],
     bootstrap: [IonicApp],
     entryComponents: [
@@ -127,12 +135,16 @@ import { IonicStorageModule } from '@ionic/storage';
         WheelSelector,
         LocalNotifications,
         Network,
+        EmailComposer,
+        File,
+        SocialSharing,
         { provide: ErrorHandler, useClass: IonicErrorHandler },
         LoadingProvider,
         ToastProvider,
         DatabaseProvider,
         StorageProvider,
-        LocalNotificationProvider
+        LocalNotificationProvider,
+        EmailComposerProvider
     ]
 })
 export class AppModule { }

@@ -24,11 +24,11 @@ export class HoyDetallePage {
         public localNotificationProvider: LocalNotificationProvider
     ) {
         this.recordatorio = navParams.get('recordatorio');
-        console.log('recordatorio:::', this.recordatorio);
+        // console.log('recordatorio:::', this.recordatorio);
     }
 
     ionViewDidLoad() {
-        console.log('HoyDetallePage:::ionViewDidLoad');
+        // console.log('HoyDetallePage:::ionViewDidLoad');
     }
 
     async cancelar() {
@@ -79,7 +79,7 @@ export class HoyDetallePage {
         data_.status = status;
         data_.id = recordatorioId;
         this.loadingProvider.show("Confirmando toma");
-        this.databaseProvider.tomaRecordatorioTimes(data_).then(response => {
+        await this.databaseProvider.tomaRecordatorioTimes(data_).then(response => {
             this.searchNotification('recordatorio', recordatorioId);
             this.toastProvider.show("success", "Se " + action + " la toma del recordatorio", 'bottom');
             this.loadingProvider.hide(0);

@@ -1,5 +1,5 @@
-<ion-header>
-	<ion-navbar color="blueLight" [ngClass]="isSearchbarOpened ? 'hiddenBack' : ''">
+<ion-header no-border>
+	<ion-navbar color="themePrimaryLightBlueStrongColor" [ngClass]="isSearchbarOpened ? 'hiddenBack' : ''">
 		<ion-title *ngIf="!isSearchbarOpened">
 			Medicinas
 		</ion-title>
@@ -11,28 +11,33 @@
 			</button>
 		</ion-buttons>
 	</ion-navbar>
+	<div class="headerBorder"
+		[ngClass]="{ 'themePrimaryLightBlueStrongColor': !isSearchbarOpened, 'blanco':isSearchbarOpened }">
+		<div class="contenedor"></div>
+	</div>
 </ion-header>
 
 <ion-content>
-	<ion-fab right bottom [hidden]="loadInit">
-		<button ion-fab color="blueLight" (click)="modalCrear()">
-			<ion-icon name="add"></ion-icon>
-		</button>
-	</ion-fab>
 
 	<ng-container *ngIf="loadInit">
 		<div class="ionSpinner">
-			<ion-spinner color="blueLight"></ion-spinner>
+			<ion-spinner color="themePrimaryLightBlueStrongColor"></ion-spinner>
 		</div>
 	</ng-container>
 
 	<ng-container *ngIf="!loadInit">
+		<ion-fab right bottom>
+			<button ion-fab color="themePrimaryLightBlueStrongColor" (click)="modalCrear()">
+				<ion-icon name="add"></ion-icon>
+			</button>
+		</ion-fab>
 		<ng-container *ngIf="medicinas.length===0">
-			<div class="empty">
+			<div class="empty animated fadeIn">
 				<ion-grid>
 					<ion-row>
 						<ion-col>
-							<ion-icon name="custom-medicina" color="blueLight" item-start></ion-icon>
+							<ion-icon name="custom-medicina" color="themePrimaryLightBlueStrongColor" item-start>
+							</ion-icon>
 							<p>Aún no has agregado medicina(s) comienza agregando uno</p>
 						</ion-col>
 					</ion-row>
@@ -40,12 +45,12 @@
 			</div>
 		</ng-container>
 		<ng-container *ngIf="medicinas.length>0">
-			<div class="listado">
+			<div class="listado animated fadeIn">
 				<ion-list>
-					<button ion-item *ngFor="let medicina of medicinas" (click)="modalEditar(medicina)">
-						<ion-icon name="custom-medicina" item-start color="blueLight"></ion-icon>
+					<ion-item *ngFor="let medicina of medicinas" (click)="modalEditar(medicina)">
+						<ion-icon name="custom-medicina" item-start color="themePrimaryLightBlueStrongColor"></ion-icon>
 						<h2 text-wrap>{{ medicina.name }}</h2>
-					</button>
+					</ion-item>
 				</ion-list>
 			</div>
 		</ng-container>

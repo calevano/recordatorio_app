@@ -120,7 +120,7 @@ export class DatabaseProvider {
 
     // ------------------------------- Medicamento -----------------------------
     async getAllMedicamento(cadena?: any) {
-        console.log('getAllMedicamento:::', cadena);
+        // console.log('getAllMedicamento:::', cadena);
         const query = (typeof cadena !== 'undefined') ? cadena : '';
         let sql = 'SELECT * FROM medicines' + query;
         try {
@@ -241,6 +241,40 @@ export class DatabaseProvider {
         }
     }
 
+    async getAllProgresoDays() {
+        let reminderTimesGroupDay = 'SELECT rt.day_duration FROM reminder_times rt INNER JOIN reminders r ON r.id=rt.reminder_id INNER JOIN medicines m ON m.id=r.medicine_id GROUP BY rt.day_duration ORDER BY rt.day_duration ASC';
+        try {
+            const responseGroupDay = await this.db.executeSql(reminderTimesGroupDay, []);
+            let reminderTimesGroupDay_ = [];
+            for (let i = 0; i < responseGroupDay.rows.length; i++) {
+                let rowsGroupDay_ = responseGroupDay.rows.item(i);
+                let dayDuration_ = rowsGroupDay_.day_duration;
+                let reminderTimesGroupName = 'SELECT rt.day_duration, rt.hour, rt.quantity, r.note, rt.id , rt.status, m.name FROM reminder_times rt INNER JOIN reminders r ON r.id=rt.reminder_id INNER JOIN medicines m ON m.id=r.medicine_id WHERE rt.day_duration="' + dayDuration_ + '" ORDER BY rt.day_duration ASC';
+                const responseGroupName = await this.db.executeSql(reminderTimesGroupName, []);
+                let reminderTimesGroupName_ = [];
+                for (let j = 0; j < responseGroupName.rows.length; j++) {
+                    let rowsGroupName_ = responseGroupName.rows.item(j);
+                    // let medicamentoName_ = rowsGroupName_.name;
+                    // let reminderTimesAll = 'SELECT rt.day_duration, rt.hour, rt.quantity, r.note, rt.id , rt.status, m.name FROM reminder_times rt INNER JOIN reminders r ON r.id=rt.reminder_id INNER JOIN medicines m ON m.id=r.medicine_id WHERE rt.day_duration="' + dayDuration_ + '" AND m.name="' + medicamentoName_ + '" ORDER BY rt.day_duration ASC, rt.hour ASC';
+                    // const responseGroupAll = await this.db.executeSql(reminderTimesAll, []);
+                    // let responseGroupAll_ = [];
+                    // for (let k = 0; k < responseGroupAll.rows.length; k++) {
+                    //     let rowsGroupAll_ = responseGroupAll.rows.item(k);
+                    //     responseGroupAll_.push(rowsGroupAll_);
+                    // }
+                    // rowsGroupName_['data'] = responseGroupAll_;
+                    reminderTimesGroupName_.push(rowsGroupName_);
+                }
+                rowsGroupDay_['data'] = reminderTimesGroupName_;
+                reminderTimesGroupDay_.push(rowsGroupDay_);
+            }
+            return await Promise.resolve(reminderTimesGroupDay_);
+        } catch (error) {
+            return await Promise.reject(error);
+        }
+    }
+
+    //--------------------------------Informe-----------------------------------------//
     async getDataInforme() {
         let reminderTimesGroupDay = 'SELECT rt.day_duration FROM reminder_times rt INNER JOIN reminders r ON r.id=rt.reminder_id INNER JOIN medicines m ON m.id=r.medicine_id GROUP BY rt.day_duration ORDER BY rt.day_duration ASC';
         try {
@@ -254,6 +288,23 @@ export class DatabaseProvider {
             return await Promise.reject(error);
         }
     }
+
+    async getDataInformeMes(anio: any, mes: any) {
+        // let reminderTimesGroupDay = 'SELECT rt.day_duration, rt.hour, rt.quantity, r.note, rt.id , rt.status, m.name FROM reminder_times rt INNER JOIN reminders r ON r.id=rt.reminder_id INNER JOIN medicines m ON m.id=r.medicine_id WHERE rt.day_duration="' + dayDuration_ + '" ORDER BY rt.day_duration ASC';
+        const anioMes = anio + '-' + mes;
+        let sql = "SELECT rt.day_duration AS fecha, rt.hour AS hora, rt.quantity AS cantidad, r.note AS nota, m.name AS medicina, CASE WHEN rt.status=0 THEN 'Cancelado' WHEN rt.status=1 THEN 'Pendiente' WHEN rt.status=2 THEN 'Confirmado' END AS estado FROM reminder_times rt INNER JOIN reminders r ON r.id=rt.reminder_id INNER JOIN medicines m ON m.id=r.medicine_id WHERE rt.day_duration LIKE '%" + anioMes + "%' ORDER BY rt.day_duration ASC";
+        try {
+            const response = await this.db.executeSql(sql, []);
+            let data = [];
+            for (let i = 0; i < response.rows.length; i++) {
+                data.push(response.rows.item(i));
+            }
+            return await Promise.resolve(data);
+        } catch (err) {
+            return await Promise.reject(err);
+        }
+    }
+    //--------------------------------Fin Informe-----------------------------------------//
 
     //--------------------------------Notificaciones-----------------------------------------//
     async getAllNotifications() {

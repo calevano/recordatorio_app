@@ -1,12 +1,15 @@
-<ion-header>
-    <ion-navbar color="orangeMaterial">
+<ion-header no-border>
+    <ion-navbar color="themePrimaryOrangeStrongColor">
         <ion-title>Editar Cita</ion-title>
     </ion-navbar>
+    <div class="headerBorder themePrimaryOrangeStrongColor">
+        <div class="contenedor"></div>
+    </div>
 </ion-header>
 
 <ion-content padding>
     <div class="image">
-        <ion-icon name="custom-cita" color="orangeMaterial"></ion-icon>
+        <ion-icon name="custom-cita" color="themePrimaryOrangeStrongColor"></ion-icon>
     </div>
     <div class="fechaHora">
         <form (ngSubmit)="editCita()">
@@ -38,7 +41,8 @@
                     </ion-col>
                     <ion-col col-12>
                         <div class="buttons">
-                            <button ion-button color="orangeMaterial" type="submit" block>Guardar</button>
+                            <button ion-button color="themePrimaryOrangeStrongColor" type="submit"
+                                block>Guardar</button>
                         </div>
                     </ion-col>
                 </ion-row>

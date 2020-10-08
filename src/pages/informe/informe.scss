@@ -18,7 +18,8 @@ page-informe {
     .listMonthData {
       ion-list {
         button {
-          box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.05) !important;
+          // box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.05) !important;
+          box-shadow: none !important;
           &.item {
             border-radius: 10px;
           }
@@ -52,7 +53,8 @@ page-informe {
               }
               ion-list {
                 ion-item {
-                  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.05) !important;
+                  // box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.05) !important;
+                  box-shadow: none !important;
                   padding-left: 0;
                   border-radius: 10px;
                   ion-select {
@@ -69,33 +71,26 @@ page-informe {
         padding: 0 2px;
         ion-list {
           ion-item {
-            border-top: 0 !important;
-            padding-left: 0;
-            background-color: transparent !important;
-            border-bottom-width: 1px !important;
-            border-bottom-color: rgba(71, 77, 84, 0.5) !important;
+            border-radius: 50px;
+            border-bottom: 0 !important;
             box-shadow: none !important;
             &.input-has-focus:last-child {
-              border-bottom-color: rgba(71, 77, 84, 0.5) !important;
+              border-bottom: none;
               box-shadow: none !important;
             }
             ion-icon {
               font-size: 2.5rem;
-              color: rgba(71, 77, 84, 1);
+              // color: rgba(71, 77, 84, 1);
+              margin-bottom: 4px !important;
+              margin-top: 4px !important;
             }
             .item-inner {
+              box-shadow: none !important;
               margin-left: 0 !important;
               ion-input {
                 input {
-                  &::placeholder {
-                    color: #cfd8dc;
-                  }
-                  &:-ms-input-placeholder {
-                    color: #cfd8dc;
-                  }
-                  &::-ms-input-placeholder {
-                    color: #cfd8dc;
-                  }
+                  margin-bottom: 4px;
+                  margin-top: 4px;
                 }
               }
             }
@@ -103,14 +98,17 @@ page-informe {
         }
       }
       button {
+        // padding: 0 1em;
+        color: #fff;
         padding: 0 1em;
         height: 2.8em;
+        font-weight: bold;
         font-size: 1.8rem;
-        // text-transform: initial;
-        border-radius: 5px;
+        border-radius: 50px;
+        box-shadow: none !important;
         span {
           font-family: "vagBlack";
-            letter-spacing: 0.05em;
+          letter-spacing: 0.05em;
           ion-spinner {
             * {
               stroke: #f4f4f4 !important;

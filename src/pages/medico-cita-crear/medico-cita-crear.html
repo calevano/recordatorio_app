@@ -1,12 +1,15 @@
-<ion-header>
-    <ion-navbar color="orangeMaterial">
+<ion-header no-border>
+    <ion-navbar color="themePrimaryOrangeStrongColor">
         <ion-title>Crear Cita</ion-title>
     </ion-navbar>
+    <div class="headerBorder themePrimaryOrangeStrongColor">
+        <div class="contenedor"></div>
+    </div>
 </ion-header>
 
 <ion-content padding>
     <div class="image">
-        <ion-icon name="custom-cita" color="orangeMaterial"></ion-icon>
+        <ion-icon name="custom-cita" color="themePrimaryOrangeStrongColor"></ion-icon>
     </div>
     <div class="fechaHora">
         <form (ngSubmit)="saveCita()">
@@ -16,7 +19,7 @@
                         <ion-list>
                             <ion-item>
                                 <ion-datetime [(ngModel)]="data.fecha" name="fecha" displayFormat="DD-MM-YYYY"
-                                    min="{{ date }}" cancelText="Cancelar" doneText="OK" placeholder="Fecha">
+                                    min="{{ date }}" cancelText="Cancelar" doneText="Seleccionar" placeholder="Fecha">
                                 </ion-datetime>
                             </ion-item>
                         </ion-list>
@@ -25,19 +28,20 @@
                         <ion-list>
                             <ion-item>
                                 <ion-datetime [(ngModel)]="data.hora" name="hora" displayFormat="HH:mm"
-                                    cancelText="Cancelar" doneText="OK"
-                                    hourValues="8,9,10,11,12,13,14,15,16,17,18,19,20,21,22"
-                                    minuteValues="0,5,10,15,20,25,30,35,40,45,50,55" placeholder="Hora"></ion-datetime>
+                                    cancelText="Cancelar" doneText="Seleccionar" [hourValues]="hourDefault"
+                                    [minuteValues]="minuteDefault" placeholder="Hora"></ion-datetime>
                             </ion-item>
                         </ion-list>
                     </ion-col>
                     <ion-col col-12>
-                        <ion-textarea name="pregunta" [(ngModel)]="data.pregunta" rows="3" placeholder="Preguntas?">
+                        <ion-textarea name="pregunta" [(ngModel)]="data.pregunta" rows="3"
+                            placeholder="Escriba aquí lo que quieres preguntarle al medico">
                         </ion-textarea>
                     </ion-col>
                     <ion-col col-12>
                         <div class="buttons">
-                            <button ion-button color="orangeMaterial" type="submit" block>Guardar</button>
+                            <button ion-button color="themePrimaryOrangeStrongColor" type="submit"
+                                block>Guardar</button>
                         </div>
                     </ion-col>
                 </ion-row>

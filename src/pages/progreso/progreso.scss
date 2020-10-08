@@ -1,5 +1,52 @@
 page-progreso {
+  ion-header {
+    ion-scroll {
+      white-space: nowrap;
+      height: 75px;
+      background-color: color($colors, themeSecondaryGreenStrongColor);
+      .cardDate {
+        display: inline-block;
+        margin: 0.5rem;
+        text-align: center;
+        width: 60px;
+        height: 60px;
+        color: #fff;
+        &.active {
+          color: color($colors, themeSecondaryGreenStrongColor);
+          background-color: #fff;
+          border-radius: 20px;
+          font-weight: bold;
+          p {
+            &:first-child {
+              font-size: 3rem;
+              margin: 0;
+              position: relative;
+              top: 3px;
+            }
+          }
+        }
+        p {
+          &:first-child {
+            font-size: 3rem;
+            margin: 0;
+          }
+          &:last-child {
+            margin: 0;
+            text-transform: capitalize;
+          }
+        }
+      }
+    }
+  }
   ion-content {
+    // background-color: color($colors, themeSecondaryGreenStrongColor) !important;
+    // .content-principal {
+    //   background: #f0f0f0;
+    //   border-radius: 20px 20px 0 0;
+    //   padding-top: 1.3rem;
+    //   padding-right: 0.6rem;
+    //   height: 100%;
+    // }
     .centerDiv {
       padding-left: 5rem;
       padding-right: 5rem;
@@ -20,51 +67,200 @@ page-progreso {
         }
       }
     }
+
     .listado {
-      p {
-        padding-left: 1.5rem;
-        padding-right: 1.5rem;
-        font-family: "vagBold";
-        text-transform: capitalize;
-      }
-      ion-card {
-        border-radius: 5px;
-        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.05) !important;
-        ion-card-header {
-          border-bottom: 1px solid #e5e5e5;
-          h2 {
-            font-family: "vagBold";
+      // .cardDate {
+      //   display: inline-block;
+      //   background-color: #fff;
+      //   border-radius: 8px;
+      //   margin: 1rem;
+      //   text-align: center;
+      //   width: 70px;
+      //   height: 70px;
+      //   &.active {
+      //     color: #fff;
+      //     background-color: color($colors, themeSecondaryGreenStrongColor);
+      //   }
+      //   p {
+      //     &:first-child {
+      //       font-size: 3rem;
+      //       margin: 1rem 0 0 0;
+      //     }
+      //     &:last-child {
+      //       margin: 0 0 1rem 0;
+      //       text-transform: capitalize;
+      //     }
+      //   }
+      // }
+      .listadoProgreso {
+        .loadDataEmpty {
+          height: 60vh;
+        }
+        .cardRowListEmpty {
+          padding: 1rem 2rem;
+          text-align: center;
+          p {
+            margin-top: 5rem;
+            font-size: 1.8rem;
+          }
+        }
+        .cardRowList {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          .lineTime {
+            display: inline-block;
+            width: 10%;
+            text-align: center;
+            position: relative;
+            // margin-bottom: 1.2rem;
+            &::before {
+              content: "";
+              position: absolute;
+              height: 75px;
+              background-color: color($colors, themePrimaryNavyBlueStrongColor);
+              border: 1px solid color($colors, themePrimaryNavyBlueStrongColor);
+              top: -80px;
+              z-index: 1;
+              left: 19px;
+            }
+            &::after {
+              content: "";
+              position: absolute;
+              height: 30px;
+              background-color: color($colors, themePrimaryNavyBlueStrongColor);
+              border: 1px solid color($colors, themePrimaryNavyBlueStrongColor);
+              bottom: -34px;
+              z-index: 1;
+              left: 19px;
+            }
             ion-icon {
-              position: relative;
-              top: 5px;
+              font-size: 2.2rem !important;
             }
           }
         }
-        ion-card-content {
-          padding-top: 13px !important;
-          ion-grid {
-            ion-row {
-              ion-col {
-                ion-icon {
-                  position: relative;
-                  top: 2px;
+        .cardRowList:first-child .lineTime:before {
+          content: "";
+          position: absolute;
+          height: 26px;
+          background-color: color($colors, themePrimaryNavyBlueStrongColor);
+          border: 1px solid color($colors, themePrimaryNavyBlueStrongColor);
+          top: -30px;
+          z-index: 1;
+          left: 19px;
+        }
+        ion-list {
+          display: inline-block;
+          width: 90%;
+          // box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1) !important;
+          box-shadow: none !important;
+          margin-bottom: 0;
+          ion-item-sliding {
+            margin: 1rem auto;
+            width: 95%;
+            border-radius: 8px;
+            background-color: #f0f0f0;
+          }
+          ion-item {
+            border-radius: 8px;
+            ion-icon {
+              display: none;
+            }
+            .item-inner {
+              border-bottom: 0 !important;
+              margin-left: 1rem !important;
+              margin-right: 1rem !important;
+              ion-label {
+                h2 {
+                  margin-top: 0 !important;
+                  font-family: "vagBold";
                 }
-                p{
-                    font-family: "vagLight";
-                    padding: 0;
-                    text-transform: inherit;
-                }
-                span{
+              }
+              ion-note {
+                text-align: center;
+                margin: 0 !important;
+                span {
+                  display: block;
+                  &.hour {
+                    font-size: 1.5rem;
+                    align-self: center;
                     font-family: "vagBold";
+                    color: #222;
+                  }
+                  &.status {
+                    color: #fff;
+                    border-radius: 50px;
+                    font-size: 1.2rem;
+                    padding: 0.3rem 1rem;
+                    margin-top: 5px;
+                    &.cancelado {
+                      background-color: color($colors, themeSecondaryRedStrongColor);
+                    }
+                    &.pendiente {
+                      background-color: color($colors, themePrimaryOrangeStrongColor);
+                    }
+                    &.tomado {
+                      background-color: color($colors, themeSecondaryGreenStrongColor);
+                    }
+                  }
                 }
               }
             }
           }
-        }
-        &:last-child {
-          margin-bottom: 2rem;
+          ion-item-options {
+            &.optionLeftSliding {
+              background-color: color($colors, themeSecondaryRedStrongColor);
+            }
+            &.optionRightSliding {
+              background-color: color($colors, themeSecondaryGreenStrongColor);
+            }
+          }
         }
       }
+      // p {
+      //   padding-left: 1.5rem;
+      //   padding-right: 1.5rem;
+      //   font-family: "vagBold";
+      //   text-transform: capitalize;
+      // }
+      // ion-card {
+      //   border-radius: 5px;
+      //   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.05) !important;
+      //   ion-card-header {
+      //     border-bottom: 1px solid #e5e5e5;
+      //     h2 {
+      //       font-family: "vagBold";
+      //       ion-icon {
+      //         position: relative;
+      //         top: 5px;
+      //       }
+      //     }
+      //   }
+      //   ion-card-content {
+      //     padding-top: 13px !important;
+      //     ion-grid {
+      //       ion-row {
+      //         ion-col {
+      //           ion-icon {
+      //             position: relative;
+      //             top: 2px;
+      //           }
+      //           p {
+      //             font-family: "vagLight";
+      //             padding: 0;
+      //             text-transform: inherit;
+      //           }
+      //           span {
+      //             font-family: "vagBold";
+      //           }
+      //         }
+      //       }
+      //     }
+      //   }
+      //   &:last-child {
+      //     margin-bottom: 2rem;
+      //   }
+      // }
     }
   }
 }

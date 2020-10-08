@@ -10,11 +10,19 @@ page-hoy-medicamento {
       }
     }
     ion-searchbar {
-      background-color: color($colors, blueMaterial) !important;
+      background-color: color($colors, themePrimaryNavyBlueStrongColor) !important;
       .searchbar-input-container {
         input {
           box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1) !important;
-          border-radius: 5px !important;
+          border-radius: 8px !important;
+        }
+      }
+    }
+    .headerBorder {
+      .contenedor {
+        min-height: 21px;
+        &.blanco {
+          background-color: color($colors, blanco) !important;
         }
       }
     }
@@ -31,9 +39,9 @@ page-hoy-medicamento {
                 padding: 0 1em;
                 height: 2.8em;
                 font-weight: bold;
-                font-size: 1.8rem;
+                font-size: 1.5rem;
                 text-transform: initial;
-                border-radius: 5px;
+                border-radius: 50px;
                 span {
                   letter-spacing: 0.05em;
                 }
@@ -67,9 +75,9 @@ page-hoy-medicamento {
             padding: 0 1em;
             height: 2.8em;
             font-weight: bold;
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             text-transform: initial;
-            border-radius: 5px;
+            border-radius: 50px;
             span {
               letter-spacing: 0.05em;
             }
@@ -79,18 +87,19 @@ page-hoy-medicamento {
     }
     .resultadoBusqueda {
       ion-list {
-        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1) !important;
-        button {
-          border-bottom: 1px solid color($colors, blueGrayLightMaterial);
-          &:first-child {
-            border-radius: 5px 5px 0 0;
-          }
+        // box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1) !important;
+        box-shadow: none !important;
+        margin-bottom: 0 !important;
+        ion-item {
+          // border-bottom: 1px solid color($colors, blueGrayLightMaterial);
           &:last-child {
-            border-radius: 0 0 5px 5px;
-            border-bottom: none;
+            // border-radius: 0 0 5px 5px;
+            .item-inner {
+              border-bottom: 1px solid #dedede;
+            }
           }
           ion-icon {
-            color: color($colors, blueMaterial) !important;
+            color: color($colors, themePrimaryNavyBlueStrongColor) !important;
           }
           .item-inner {
             margin-left: 1rem !important;

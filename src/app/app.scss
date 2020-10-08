@@ -24,8 +24,8 @@
 }
 
 * {
-  font-family: "vagLight";
-  letter-spacing: 0.02em;
+  font-family: "VarelaRound";
+  // letter-spacing: 0.02em;
 }
 
 h1,
@@ -34,7 +34,8 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "vagLight";
+  // font-family: "vagLight";
+  font-family: "VarelaRound";
 }
 
 *::-webkit-scrollbar {
@@ -53,6 +54,7 @@ h6 {
       }
     }
   }
+  &.platform-android10,
   &.platform-android9 {
     .ion-page {
       ion-header {
@@ -78,7 +80,7 @@ ion-header {
 }
 
 ion-content {
-  background-color: color($colors, light) !important;
+  background-color: color($colors, themeDefault) !important;
 }
 
 ion-toast.toastPersonalizado .toast-wrapper {
@@ -92,7 +94,7 @@ ion-toast.text-center {
 }
 
 ion-toast.success .toast-wrapper {
-  background: color($colors, greenMaterial) !important;
+  background: color($colors, themeSecondaryGreenStrongColor) !important;
 }
 
 ion-toast.dark .toast-wrapper {
@@ -100,7 +102,7 @@ ion-toast.dark .toast-wrapper {
 }
 
 ion-toast.error .toast-wrapper {
-  background: color($colors, redMaterial) !important;
+  background: color($colors, themeSecondaryRedStrongColor) !important;
 }
 
 ion-toast.warning .toast-wrapper {
@@ -142,6 +144,9 @@ ion-app .nav-decor {
 ion-tabs {
   .tabbar {
     background: color($colors, blanco) !important;
+    &:before {
+      height: 0 !important;
+    }
     a {
       min-height: 75px !important;
       &.tab-button[aria-selected="true"] {
@@ -154,41 +159,41 @@ ion-tabs {
       }
       &:nth-child(1) {
         &.tab-button[aria-selected="true"] {
-          color: color($colors, blueMaterial) !important;
+          color: color($colors, blueStrongColor) !important;
           ion-icon {
-            color: color($colors, blueMaterial) !important;
+            color: color($colors, blueStrongColor) !important;
           }
         }
       }
       &:nth-child(2) {
         &.tab-button[aria-selected="true"] {
-          color: color($colors, blueLight) !important;
+          color: color($colors, themePrimaryLightBlueStrongColor) !important;
           ion-icon {
-            color: color($colors, blueLight) !important;
+            color: color($colors, themePrimaryLightBlueStrongColor) !important;
           }
         }
       }
       &:nth-child(3) {
         &.tab-button[aria-selected="true"] {
-          color: color($colors, greenMaterial) !important;
+          color: color($colors, themeSecondaryGreenStrongColor) !important;
           ion-icon {
-            color: color($colors, greenMaterial) !important;
+            color: color($colors, themeSecondaryGreenStrongColor) !important;
           }
         }
       }
       &:nth-child(4) {
         &.tab-button[aria-selected="true"] {
-          color: color($colors, redMaterial) !important;
+          color: color($colors, themeSecondaryRedStrongColor) !important;
           ion-icon {
-            color: color($colors, redMaterial) !important;
+            color: color($colors, themeSecondaryRedStrongColor) !important;
           }
         }
       }
       &:nth-child(5) {
         &.tab-button[aria-selected="true"] {
-          color: color($colors, orangeMaterial) !important;
+          color: color($colors, themePrimaryOrangeStrongColor) !important;
           ion-icon {
-            color: color($colors, orangeMaterial) !important;
+            color: color($colors, themePrimaryOrangeStrongColor) !important;
           }
         }
       }
@@ -206,41 +211,47 @@ ion-icon {
   }
 
   &[class*="custom-arrow-left"] {
-    mask-image: url(../assets/imgs/left-arrow.svg);
+    mask-image: url("../assets/imgs/left-arrow.svg");
   }
   &[class*="custom-arrow-right"] {
-    mask-image: url(../assets/imgs/right-arrow.svg);
+    mask-image: url("../assets/imgs/right-arrow.svg");
   }
   &[class*="custom-hoy"] {
-    mask-image: url(../assets/imgs/random/hoy.svg);
+    mask-image: url("../assets/imgs/random/hoy.svg");
   }
   &[class*="custom-medicina"] {
-    mask-image: url(../assets/imgs/random/medicine.svg);
+    mask-image: url("../assets/imgs/random/medicine.svg");
   }
   &[class*="custom-progreso"] {
-    mask-image: url(../assets/imgs/random/progreso.svg);
+    mask-image: url("../assets/imgs/random/progreso.svg");
   }
   &[class*="custom-informe"] {
-    mask-image: url(../assets/imgs/random/informe.svg);
+    mask-image: url("../assets/imgs/random/informe.svg");
   }
   &[class*="custom-doctor"] {
-    mask-image: url(../assets/imgs/random/doctor.svg);
+    mask-image: url("../assets/imgs/random/doctor.svg");
+  }
+  &[class*="custom-doctor-men"] {
+    mask-image: url("../assets/imgs/random/doctor-men.svg");
+  }
+  &[class*="custom-doctor-women"] {
+    mask-image: url("../assets/imgs/random/doctor-women.svg");
   }
   &[class*="custom-cita"] {
-    mask-image: url(../assets/imgs/random/cita.svg);
+    mask-image: url("../assets/imgs/random/cita.svg");
   }
 }
 
 .redMaterial {
-  color: color($colors, redMaterial);
+  color: color($colors, themeSecondaryRedStrongColor);
 }
 
 .orangeMaterial {
-  color: color($colors, orangeMaterial);
+  color: color($colors, themePrimaryOrangeStrongColor);
 }
 
 .greenMaterial {
-  color: color($colors, greenMaterial);
+  color: color($colors, themeSecondaryGreenStrongColor);
 }
 
 .blueGrayLightMaterial {
@@ -248,7 +259,7 @@ ion-icon {
 }
 
 .alert-wrapper {
-  border-radius: 4px;
+  border-radius: 8px !important;
   box-shadow: 0px 0px 10px 15px rgba(0, 0, 0, 0.1) !important;
   .alert-head {
     h2 {
@@ -257,5 +268,123 @@ ion-icon {
         letter-spacing: 0.08rem;
       }
     }
+  }
+}
+
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+.fast {
+  -webkit-animation-duration: 0.4s;
+  animation-duration: 0.4s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fadeIn {
+  animation-name: fadeIn;
+}
+
+.text-center {
+  text-align: center;
+}
+.font-weight-bold {
+  font-weight: bold;
+}
+
+.logoSvgCenter {
+  text-align: center;
+  img {
+    width: 120px;
+  }
+}
+
+.m-b-0 {
+  margin-bottom: 0 !important;
+}
+
+.m-t-0 {
+  margin-top: 0 !important;
+}
+
+.pointer-none {
+  pointer-events: none;
+}
+
+.no-padding-header {
+  padding-bottom: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.headerContain {
+  background-color: color($colors, themeDefault);
+  border-radius: 20px 20px 0 0;
+  height: 20px;
+  margin-top: 1rem;
+}
+
+.headerBorder {
+  min-height: 20px;
+  &.themePrimaryLightBlueBasicColor {
+    background-color: color($colors, themePrimaryLightBlueBasicColor);
+  }
+  &.themePrimaryLightBlueStrongColor {
+    background-color: color($colors, themePrimaryLightBlueStrongColor);
+  }
+  &.themePrimaryOrangeBasicColor {
+    background-color: color($colors, themePrimaryOrangeBasicColor);
+  }
+  &.themePrimaryOrangeStrongColor {
+    background-color: color($colors, themePrimaryOrangeStrongColor);
+  }
+  &.themePrimaryBlueGrayBasicColor {
+    background-color: color($colors, themePrimaryBlueGrayBasicColor);
+  }
+  &.themePrimaryBlueGrayStrongColor {
+    background-color: color($colors, themePrimaryBlueGrayStrongColor);
+  }
+  &.themePrimaryGreyStrongColor {
+    background-color: color($colors, themePrimaryGreyStrongColor);
+  }
+  &.themePrimaryNavyBlueStrongColor {
+    background-color: color($colors, themePrimaryNavyBlueStrongColor);
+  }
+  &.themeSecondaryGreenLightColor {
+    background-color: color($colors, themeSecondaryGreenLightColor);
+  }
+  &.themeSecondaryGreenStrongColor {
+    background-color: color($colors, themeSecondaryGreenStrongColor);
+  }
+  &.themeSecondaryRedLightColor {
+    background-color: color($colors, themeSecondaryRedLightColor);
+  }
+  &.themeSecondaryRedStrongColor {
+    background-color: color($colors, themeSecondaryRedStrongColor);
+  }
+  &.themeSecondaryBlueColor {
+    background-color: color($colors, themeSecondaryBlueColor);
+  }
+  &.blanco {
+    background-color: color($colors, blanco);
+  }
+
+  .contenedor {
+    min-height: 20px;
+    border-radius: 20px 20px 0 0;
+    background-color: color($colors, themeDefault);
   }
 }

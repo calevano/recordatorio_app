@@ -23,6 +23,8 @@ export class HoyMedicamentoCrearPage {
 
     recordatorioForm: FormGroup;
 
+    minuteDefault = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55];
+
     medicamento: any;
     noteText: string = "";
 
@@ -74,8 +76,12 @@ export class HoyMedicamentoCrearPage {
     }
 
     initFields(): FormGroup {
+        let horarioActual = moment();
+        let minute = Number(horarioActual.format('mm'));
+        // console.log(horarioActual.format('HH') + ':' + (Math.ceil(minute / 5) * 5));
         return this.formBuilder.group({
-            hour: ['', Validators.required],
+            // hour: ['', Validators.required],
+            hour: horarioActual.format('HH') + ':' + (Math.ceil(minute / 5) * 5),
             quantity: ['', Validators.required],
         });
     }
@@ -94,6 +100,7 @@ export class HoyMedicamentoCrearPage {
         let consejoTomaModal = this.modalCtrl.create(ModalConsejoTomaPage, { consejoToma: this.noteText });
         consejoTomaModal.onDidDismiss(data => {
             if (typeof data !== "undefined") {
+                // console.log('modalConsejo:::data:::', data);
                 this.recordatorioForm.controls.note.setValue(data.consejoToma);
                 this.noteText = data.consejoToma;
             }
@@ -219,9 +226,9 @@ export class HoyMedicamentoCrearPage {
             await this.databaseProvider.insertRecordatorio(recordatorio_).then(response => {
                 this.saveRecordatorioTimes(response.insertId, horariosArray_, recordatorio_);
                 this.toastProvider.show("success", "Se agrego el recordatorio", 'bottom');
-                this.loadingProvider.hide(0);
+
             }).catch(err => {
-                this.toastProvider.show("error", "No se pudo agregar. favor de intentarlo de nuevo", 'bottom');
+                this.toastProvider.show("error", "No se pudo agregar, favor de intentarlo de nuevo", 'bottom');
             });
         }
     }
@@ -229,27 +236,49 @@ export class HoyMedicamentoCrearPage {
     async saveRecordatorioTimes(id: number, horarios: any, recordatorio: any) {
         for (let horario of horarios) {
             await this.databaseProvider.insertRecordatorioTimes(horario, id).then(response => {
-                let data_: any = {};
-                let cantidadText_ = (horario.quantity > 1) ? ' pastillas ' : ' pastilla ';
-                this.databaseProvider.insertNotifications('recordatorio', response.insertId).then(res => {
-                    // console.log('saveRecordatorioTimes:::insertNotifications:::res:::', res);
+                // console.log('saveRecordatorioTimes:::insertNotifications:::response:::', response);
+                this.insertRecordatorioTimes(horario, recordatorio, response);
+                // let data_: any = {};
+                // let cantidadText_ = (horario.quantity > 1) ? ' pastillas ' : ' pastilla ';
+                // this.databaseProvider.insertNotifications('recordatorio', response.insertId).then(res => {
+                //     console.log('saveRecordatorioTimes:::insertNotifications:::res:::', res);
 
-                    data_.id = res.insertId;
-                    data_.dateHour = horario.day_duration + ' ' + horario.hour;
-                    data_.title = this.medicamento.name;
-                    data_.text = horario.quantity + cantidadText_ + '\n' + recordatorio.note;
-                    data_.group = 'recordatorio';
+                //     data_.id = res.insertId;
+                //     data_.dateHour = horario.day_duration + ' ' + horario.hour;
+                //     data_.title = this.medicamento.name;
+                //     data_.text = horario.quantity + cantidadText_ + '\n' + recordatorio.note;
+                //     data_.group = 'recordatorio';
 
-                    // console.log('saveRecordatorioTimes:::insertRecordatorioTimes:::data[' + response.insertId + ']:::', data_);
-                    this.localNotificationProvider.create(data_);
-                }).catch(error => {
-                    console.log('saveRecordatorioTimes:::insertNotifications:::err:::', error);
-                });
+                //     console.log('saveRecordatorioTimes:::insertRecordatorioTimes:::data[' + response.insertId + ']:::', data_);
+                //     this.localNotificationProvider.create(data_);
+                // }).catch(error => {
+                //     console.log('saveRecordatorioTimes:::insertNotifications:::err:::', error);
+                // });
             }).catch(err => {
                 console.log('saveRecordatorioTimes:::create:::err:::', err);
                 this.toastProvider.show("error", "No se pudo obtener el recordatorio agregado", 'bottom');
             });
         }
+        this.loadingProvider.hide(0);
         this.navCtrl.popToRoot();
+    }
+
+    async insertRecordatorioTimes(horario: any, recordatorio: any, response: any) {
+        let data_: any = {};
+        let cantidadText_ = (horario.quantity > 1) ? ' pastillas ' : ' pastilla ';
+        await this.databaseProvider.insertNotifications('recordatorio', response.insertId).then(res => {
+            // console.log('saveRecordatorioTimes:::insertNotifications:::res:::', res);
+
+            data_.id = res.insertId;
+            data_.dateHour = horario.day_duration + ' ' + horario.hour;
+            data_.title = this.medicamento.name;
+            data_.text = horario.quantity + cantidadText_ + '\n' + recordatorio.note;
+            data_.group = 'recordatorio';
+
+            // console.log('saveRecordatorioTimes:::insertRecordatorioTimes:::data[' + response.insertId + ']:::', data_);
+            this.localNotificationProvider.create(data_);
+        }).catch(error => {
+            console.log('saveRecordatorioTimes:::insertNotifications:::err:::', error);
+        });
     }
 }

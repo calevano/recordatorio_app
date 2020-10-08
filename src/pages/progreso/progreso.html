@@ -1,33 +1,110 @@
-<ion-header>
-    <ion-navbar color="greenMaterial">
+<ion-header no-border>
+    <ion-navbar class="no-padding-header" color="themeSecondaryGreenStrongColor">
         <ion-title>PROGRESO</ion-title>
+        <ion-scroll scrollX="true">
+            <div class="cardDate animated fadeIn" [ngClass]="{ 'active': day===daySelected}"
+                *ngFor="let day of daysCalendar;let i=index;" (click)="selectProgressDay(day)" [id]="'slide_date_'+i">
+                <p>{{ day | moment:"D" }}</p>
+                <p>{{ day | moment:"ddd" }}</p>
+            </div>
+        </ion-scroll>
+        <div class="headerContain"></div>
     </ion-navbar>
+
 </ion-header>
 
 <ion-content>
 
+    <!-- <div class="content-principal"> -->
+
     <div class="ionSpinner" *ngIf="loadInit">
-        <ion-spinner color="greenMaterial"></ion-spinner>
+        <ion-spinner color="themeSecondaryGreenStrongColor"></ion-spinner>
     </div>
 
     <ng-container *ngIf="!loadInit">
-        <div class="centerDiv" *ngIf="progresos.length==0">
+
+        <div class="centerDiv animated fadeIn" *ngIf="progresos.length==0">
             <ion-grid>
                 <ion-row>
                     <ion-col>
-                        <ion-icon name="custom-progreso" color="greenMaterial"></ion-icon>
-                        <p>Aún no has creado recordatorio(s), comienza agregando uno para mostrar el progreso</p>
+                        <ion-icon name="custom-progreso" color="themeSecondaryGreenStrongColor"></ion-icon>
+                        <!-- <p>Aún no has creado recordatorio(s), comienza agregando uno para mostrar el progreso</p> -->
+                        <p>No se ha creado recordatorio(s) para esta fecha</p>
                     </ion-col>
                 </ion-row>
             </ion-grid>
         </div>
-        <div class="listado" *ngIf="progresos.length>0">
-            <ng-container *ngFor="let progreso of progresos">
+
+        <div class="listado animated fadeIn" *ngIf="progresos.length>0">
+
+            <div class="listadoProgreso">
+
+                <ng-container *ngIf="!loadData">
+                    <div class="centerDiv animated fadeIn loadDataEmpty">
+                        <ion-grid>
+                            <ion-row>
+                                <ion-col>
+                                    <ion-icon name="custom-progreso" color="themeSecondaryGreenStrongColor">
+                                    </ion-icon>
+                                    <!-- <p>Aún no has creado recordatorio(s), comienza agregando uno para mostrar el progreso</p> -->
+                                    <p>No se ha creado recordatorio(s) para esta fecha</p>
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
+                        <!-- <p>No se ha creado recordatorio(s) para esta fecha.</p> -->
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="loadData">
+                    <div class="cardRowList animated fadeIn" *ngFor="let data of progressDefault.data">
+                        <div class="lineTime">
+                            <ion-icon name="md-radio-button-on" *ngIf="data.status===0"
+                                color="themeSecondaryRedStrongColor"></ion-icon>
+                            <ion-icon name="md-radio-button-on" *ngIf="data.status===1"
+                                color="themePrimaryOrangeStrongColor"></ion-icon>
+                            <ion-icon name="md-radio-button-on" *ngIf="data.status===2"
+                                color="themeSecondaryGreenStrongColor"></ion-icon>
+                        </div>
+                        <ion-list>
+                            <ion-item-sliding #slidingItem>
+                                <ion-item [navPush]="progresoDetalle" [navParams]="{ 'recordatorio': data }">
+                                    <ion-icon name="custom-medicina" item-start color="themeSecondaryGreenStrongColor">
+                                    </ion-icon>
+                                    <h2 text-wrap>{{ data.name }}</h2>
+                                    <p>{{ data.quantity }} pastilla{{ (data.quantity>1) ? 's': '' }}</p>
+                                    <p>{{ data.note }}</p>
+                                    <ion-note item-end>
+                                        <span class="hour">{{ data.hour }}</span>
+                                        <span class="status cancelado" *ngIf="data.status===0">Cancelado</span>
+                                        <span class="status pendiente" *ngIf="data.status===1">Pendiente</span>
+                                        <span class="status tomado" *ngIf="data.status===2">Confirmado</span>
+                                    </ion-note>
+                                </ion-item>
+                                <ion-item-options *ngIf="data.status===1" side="left" class="optionLeftSliding">
+                                    <button ion-button color="themeSecondaryRedStrongColor"
+                                        (click)="cancelar(slidingItem, data)">
+                                        <ion-icon name="md-trash"></ion-icon>
+                                        Cancelar
+                                    </button>
+                                </ion-item-options>
+                                <ion-item-options *ngIf="data.status===1" side="right" class="optionRightSliding">
+                                    <button ion-button color="themeSecondaryGreenStrongColor"
+                                        (click)="confirmar(slidingItem, data)">
+                                        <ion-icon name="md-checkbox-outline"></ion-icon>
+                                        Confirmar
+                                    </button>
+                                </ion-item-options>
+                            </ion-item-sliding>
+                        </ion-list>
+                    </div>
+                </ng-container>
+            </div>
+
+            <!-- <ng-container *ngFor="let progreso of progresos">
                 <p>{{ progreso.day_duration | moment:"dddd, D MMMM YYYY" }}</p>
                 <ion-card *ngFor="let medicamento of progreso.medicamento">
                     <ion-card-header>
                         <h2>
-                            <ion-icon name="custom-medicina" color="blueMaterial"></ion-icon>
+                            <ion-icon name="custom-medicina" color="blueStrongColor"></ion-icon>
                             {{ medicamento.name }}
                         </h2>
                     </ion-card-header>
@@ -36,8 +113,10 @@
                             <ion-row align-items-center *ngFor="let data of medicamento.data"
                                 [navPush]="progresoDetalle" [navParams]="{ 'recordatorio': data }">
                                 <ion-col col-1>
-                                    <ion-icon *ngIf="data.status===2" color="greenMaterial" name="checkbox"></ion-icon>
-                                    <ion-icon *ngIf="data.status===0" color="redMaterial" name="close-circle">
+                                    <ion-icon *ngIf="data.status===2" color="themeSecondaryGreenStrongColor"
+                                        name="checkbox"></ion-icon>
+                                    <ion-icon *ngIf="data.status===0" color="themeSecondaryRedStrongColor"
+                                        name="close-circle">
                                     </ion-icon>
                                 </ion-col>
                                 <ion-col col-9>
@@ -51,8 +130,9 @@
                         </ion-grid>
                     </ion-card-content>
                 </ion-card>
-            </ng-container>
+            </ng-container> -->
         </div>
     </ng-container>
+    <!-- </div> -->
 
 </ion-content>

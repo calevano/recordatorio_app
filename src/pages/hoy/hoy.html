@@ -1,29 +1,32 @@
-<ion-header>
-    <ion-navbar color="blueMaterial">
+<ion-header no-border>
+    <ion-navbar color="themePrimaryNavyBlueStrongColor">
         <ion-title>HOY</ion-title>
     </ion-navbar>
+    <div class="headerBorder themePrimaryNavyBlueStrongColor">
+        <div class="contenedor"></div>
+    </div>
 </ion-header>
 
 <ion-content>
     <ion-fab right bottom [hidden]="loadInit">
-        <button ion-fab color="blueMaterial" [navPush]="hoyMedicamento">
+        <button ion-fab color="themePrimaryNavyBlueStrongColor" [navPush]="hoyMedicamento">
             <ion-icon name="add"></ion-icon>
         </button>
     </ion-fab>
 
     <ng-container *ngIf="loadInit">
         <div class="ionSpinner">
-            <ion-spinner color="blueMaterial"></ion-spinner>
+            <ion-spinner color="themePrimaryNavyBlueStrongColor"></ion-spinner>
         </div>
     </ng-container>
 
     <ng-container *ngIf="!loadInit">
         <ng-container *ngIf="recordatorios.length===0">
-            <div class="emptyRecordatorio">
+            <div class="emptyRecordatorio animated fadeIn">
                 <ion-grid>
                     <ion-row>
                         <ion-col>
-                            <ion-icon name="custom-hoy" color="blueMaterial" item-start></ion-icon>
+                            <ion-icon name="custom-hoy" color="themePrimaryNavyBlueStrongColor" item-start></ion-icon>
                             <p>Aún no has creado recordatorio(s) comienza agregando uno</p>
                         </ion-col>
                     </ion-row>
@@ -32,16 +35,37 @@
         </ng-container>
         <ng-container *ngIf="recordatorios.length>0">
             <div class="listadoRecordatorio">
-                <ion-list>
-                    <button ion-item *ngFor="let recordatorio of recordatorios" [navPush]="hoyDetalle"
-                        [navParams]="{ 'recordatorio': recordatorio }">
-                        <ion-icon name="custom-hoy" item-start color="blueMaterial"></ion-icon>
-                        <h2 text-wrap>{{ recordatorio.name }}</h2>
-                        <p>{{ recordatorio.note }}</p>
-                        <p>{{ recordatorio.quantity }} pastilla{{ (recordatorio.quantity>1)? 's':'' }}</p>
-                        <ion-note item-end>{{ recordatorio.hour }}</ion-note>
-                    </button>
-                </ion-list>
+                <div class="cardRowList animated fadeIn" *ngFor="let recordatorio of recordatorios">
+                    <div class="lineTime">
+                        <ion-icon name="md-radio-button-on"></ion-icon>
+                    </div>
+                    <ion-list>
+                        <ion-item-sliding #slidingItem>
+                            <ion-item [navPush]="hoyDetalle" [navParams]="{ 'recordatorio': recordatorio }">
+                                <ion-icon name="custom-medicina" item-start color="themePrimaryNavyBlueStrongColor">
+                                </ion-icon>
+                                <h2 text-wrap>{{ recordatorio.name }}</h2>
+                                <p>{{ recordatorio.note }}</p>
+                                <p>{{ recordatorio.quantity }} pastilla{{ (recordatorio.quantity>1)? 's':'' }}</p>
+                                <ion-note item-end>{{ recordatorio.hour }}</ion-note>
+                            </ion-item>
+                            <ion-item-options side="left" class="optionLeftSliding">
+                                <button ion-button color="themeSecondaryRedStrongColor"
+                                    (click)="cancelar(slidingItem, recordatorio)">
+                                    <ion-icon name="md-trash"></ion-icon>
+                                    Cancelar
+                                </button>
+                            </ion-item-options>
+                            <ion-item-options side="right" class="optionRightSliding">
+                                <button ion-button color="themePrimaryNavyBlueStrongColor"
+                                    (click)="confirmar(slidingItem, recordatorio)">
+                                    <ion-icon name="md-checkbox-outline"></ion-icon>
+                                    Confirmar
+                                </button>
+                            </ion-item-options>
+                        </ion-item-sliding>
+                    </ion-list>
+                </div>
             </div>
         </ng-container>
     </ng-container>

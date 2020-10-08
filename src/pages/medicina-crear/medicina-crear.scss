@@ -25,10 +25,13 @@ page-medicina-crear {
       ion-list {
         width: 90%;
         margin: 10px auto !important;
+        border-radius: 8px;
         // margin-top: 10px !important;
         // margin-bottom: 10px !important;
         ion-item {
           padding-left: 0 !important;
+          border-bottom: 2px solid #dedede !important;
+          box-shadow: none !important;
           .item-inner {
             border-bottom: 1px solid #dedede;
             // margin-right: 10px;
@@ -42,12 +45,12 @@ page-medicina-crear {
         ion-row {
           ion-col {
             button {
-              color: #f4f4f4;
-              padding: 0 1em;
-              height: 2.8em;
-              font-weight: bold;
-              font-size: 1.8rem;
-              border-radius: 5px;
+              color: #fff !important;
+              padding: 0 1em !important;
+              font-weight: bold !important;
+              border-radius: 50px !important;
+              text-transform: initial !important;
+              box-shadow: none !important;
               span {
                 font-family: "vagBlack";
                 letter-spacing: 0.05em;

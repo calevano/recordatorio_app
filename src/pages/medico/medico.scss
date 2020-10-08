@@ -7,7 +7,7 @@ page-medico {
           padding-right: 0 !important;
           padding-bottom: 0 !important;
           .toolbar-background {
-            background-color: #fff !important;
+            background-color: color($colors, blanco) !important;
           }
           ion-searchbar {
             input {
@@ -45,15 +45,35 @@ page-medico {
 
       .listadoMedico {
         ion-list {
-          button {
-            ion-icon {
-              color: color($colors, orangeMaterial) !important;
-              font-size: 3.5rem !important;
-              margin-right: 0 !important;
+          ion-item {
+            margin: 1rem auto;
+            width: 95%;
+            border-radius: 8px;
+            ion-thumbnail {
+              margin: 8px 0px 8px 0 !important;
+              min-width: 40px;
+              min-height: 40px;
+              img {
+                width: 40px;
+                height: 40px;
+              }
             }
+            ion-icon {
+              &.micon {
+                color: color($colors, themePrimaryOrangeStrongColor) !important;
+                font-size: 3.5rem !important;
+                margin-right: 0 !important;
+              }
+              &.list-detail {
+                font-size: 2rem;
+              }
+            }
+
             .item-inner {
               margin-left: 1rem !important;
+              border-bottom: 0 !important;
               ion-label {
+                margin-right: 4rem;
                 h2 {
                   margin-top: 0 !important;
                 }
@@ -79,7 +99,7 @@ page-medico {
     display: block !important;
     span {
       ion-icon {
-        color: color($colors, orangeMaterial) !important;
+        color: color($colors, themePrimaryOrangeStrongColor) !important;
         font-size: 1.5em !important;
       }
     }

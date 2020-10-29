@@ -1,57 +1,55 @@
 <ion-header no-border>
-    <ion-navbar color="themeSecondaryRedStrongColor">
-        <ion-title>INFORME</ion-title>
-    </ion-navbar>
-    <div class="headerBorder themeSecondaryRedStrongColor">
-        <div class="contenedor"></div>
-    </div>
+  <ion-navbar color="themeSecondaryRedStrongColor">
+    <ion-title>INFORME</ion-title>
+  </ion-navbar>
+  <div class="headerBorder themeSecondaryRedStrongColor">
+    <div class="contenedor"></div>
+  </div>
 </ion-header>
 
 <ion-content padding>
-    <div class="ionSpinner" *ngIf="loadInit">
-        <ion-spinner color="themeSecondaryRedStrongColor"></ion-spinner>
-    </div>
-    <ng-container *ngIf="!loadInit">
-        <div class="animated fadeIn">
-            <p class="m-t-0">Seleccione el año/mes para poder generar el informe y así pueda imprimirlo y mostrarle al
-                médico en su
-                siguiente
-                cita.</p>
-            <div class="formSendEmail">
-                <form [formGroup]="informeForm" novalidate="novalidate" (ngSubmit)="sendEmail()">
-                    <ion-grid class="selectAnioMes">
-                        <ion-row>
-                            <ion-col col-6 class="colLeft">
-                                <p>Año</p>
-                                <ion-list>
-                                    <ion-item [ngClass]="{ 'pointer-none': anios.length===0 }">
-                                        <ion-label>Año</ion-label>
-                                        <ion-select placeholder="Año" interface="popover" formControlName="anio">
-                                            <ion-option *ngFor="let anio of anios" [value]="anio.anio"
-                                                (ionSelect)="changeAnio(anio.anio)">
-                                                {{ anio.anio }}
-                                            </ion-option>
-                                        </ion-select>
-                                    </ion-item>
-                                </ion-list>
-                            </ion-col>
-                            <ion-col col-6 class="colRight">
-                                <p>Mes</p>
-                                <ion-list>
-                                    <ion-item [ngClass]="{ 'pointer-none': meses.length===0 }">
-                                        <ion-label>Mes</ion-label>
-                                        <ion-select placeholder="Mes" interface="popover" formControlName="mes">
-                                            <ion-option *ngFor="let mes of meses" [value]="mes.mes">
-                                                {{ mes.mes | mesText }}
-                                            </ion-option>
-                                        </ion-select>
-                                    </ion-item>
-                                </ion-list>
-                            </ion-col>
-                        </ion-row>
-                    </ion-grid>
+  <div class="ionSpinner" *ngIf="loadInit">
+    <ion-spinner color="themeSecondaryRedStrongColor"></ion-spinner>
+  </div>
+  <ng-container *ngIf="!loadInit">
+    <div class="animated fadeIn">
+      <h3>Hola, {{ user }}</h3>
+      <p class="m-t-0">Seleccione el año/mes para poder generar un informe.</p>
+      <p>Una vez generado podrás compartirlo por las aplicaciones que tengas instalados en tu dispositivo a tu médico u familiar.</p>
+      <div class="formSendEmail">
+        <form [formGroup]="informeForm" novalidate="novalidate" (ngSubmit)="sendEmail()">
+          <ion-grid class="selectAnioMes">
+            <ion-row>
+              <ion-col col-6 class="colLeft">
+                <p>Año</p>
+                <ion-list>
+                  <ion-item [ngClass]="{ 'pointer-none': anios.length===0 }">
+                    <ion-label>Año</ion-label>
+                    <ion-select placeholder="Año" interface="popover" formControlName="anio">
+                      <ion-option *ngFor="let anio of anios" [value]="anio.anio" (ionSelect)="changeAnio(anio.anio)">
+                        {{ anio.anio }}
+                      </ion-option>
+                    </ion-select>
+                  </ion-item>
+                </ion-list>
+              </ion-col>
+              <ion-col col-6 class="colRight">
+                <p>Mes</p>
+                <ion-list>
+                  <ion-item [ngClass]="{ 'pointer-none': meses.length===0 }">
+                    <ion-label>Mes</ion-label>
+                    <ion-select placeholder="Mes" interface="popover" formControlName="mes">
+                      <ion-option *ngFor="let mes of meses" [value]="mes.mes">
+                        {{ mes.mes | mesText }}
+                      </ion-option>
+                    </ion-select>
+                  </ion-item>
+                </ion-list>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
 
-                    <!-- <div class="listInputEmail">
+          <!-- <div class="listInputEmail">
                         <p>Ingrese el correo para enviar el informe</p>
                         <ion-list>
                             <ion-item>
@@ -62,12 +60,12 @@
                         </ion-list>
                     </div> -->
 
-                    <div>
-                        <button ion-button [disabled]="!informeForm.valid" type="submit"
-                            color="themeSecondaryRedStrongColor" block>Generar</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </ng-container>
+          <div>
+            <button ion-button [disabled]="!informeForm.valid" type="submit" color="themeSecondaryRedStrongColor"
+              block>Generar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </ng-container>
 </ion-content>

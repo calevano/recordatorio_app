@@ -1,30 +1,30 @@
 <ion-content>
-    <div class="centerDiv">
-        <ion-grid>
-            <ion-row>
-                <ion-col col-12>
-                    <div class="logo">
-                        <img src="assets/imgs/logoapp.svg" alt="logoapp">
-                    </div>
-                </ion-col>
-                <ion-col col-12>
-                    <p>Ingresa tú nombre para que el app te recuerde.</p>
-                </ion-col>
-                <ion-col col-12>
-                    <form [formGroup]="loginForm" novalidate="novalidate" (ngSubmit)="ingresarApp()">
-                        <ion-list>
-                            <ion-item>
-                                <ion-icon name="person" item-start></ion-icon>
-                                <ion-input placeholder="Tú nombre" type="text" formControlName="nombre"></ion-input>
-                            </ion-item>
-                        </ion-list>
-                        <div class="buttons">
-                            <button ion-button [disabled]="!loginForm.valid" type="submit" color="themeDefault"
-                                block>Comenzar</button>
-                        </div>
-                    </form>
-                </ion-col>
-            </ion-row>
-        </ion-grid>
-    </div>
+  <div class="centerDiv">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-12>
+          <div class="logo">
+            <img src="assets/imgs/logoapp.svg" alt="logoapp">
+          </div>
+        </ion-col>
+        <ion-col col-12>
+          <p>Ingresa tú nombre para que el app te recuerde.</p>
+        </ion-col>
+        <ion-col col-12>
+          <form [formGroup]="loginForm" novalidate="novalidate" (ngSubmit)="ingresarApp()">
+            <ion-list>
+              <ion-item>
+                <ion-icon name="person" item-start></ion-icon>
+                <ion-input placeholder="Tú nombre" type="text" formControlName="nombre"></ion-input>
+              </ion-item>
+            </ion-list>
+            <div class="buttons">
+              <button ion-button [disabled]="!loginForm.valid" type="submit" color="themeDefault"
+                block>Comenzar</button>
+            </div>
+          </form>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
 </ion-content>

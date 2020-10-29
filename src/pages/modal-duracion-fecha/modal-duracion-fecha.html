@@ -1,58 +1,58 @@
 <ion-header no-border>
-    <ion-navbar color="themePrimaryNavyBlueStrongColor">
-        <ion-title>Duración</ion-title>
-        <ion-buttons end>
-            <button ion-button showWhen="android" icon-only (click)="dismiss()">
-                <ion-icon name="md-close"></ion-icon>
-            </button>
-            <button ion-button showWhen="ios" (click)="dismiss()">
-                <span ion-text color="light">Cancelar</span>
-            </button>
-        </ion-buttons>
-    </ion-navbar>
-    <div class="headerBorder themePrimaryNavyBlueStrongColor">
-        <div class="contenedor"></div>
-    </div>
+  <ion-navbar color="themePrimaryNavyBlueStrongColor">
+    <ion-title>Duración</ion-title>
+    <ion-buttons end>
+      <button ion-button showWhen="android" icon-only (click)="dismiss()">
+        <ion-icon name="md-close"></ion-icon>
+      </button>
+      <button ion-button showWhen="ios" (click)="dismiss()">
+        <span ion-text color="light">Cancelar</span>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+  <div class="headerBorder themePrimaryNavyBlueStrongColor">
+    <div class="contenedor"></div>
+  </div>
 </ion-header>
 
 <ion-content padding>
-    <div class="logoSvgCenter">
-        <img src="assets/imgs/random/duracion.svg" alt=logo_duracion />
-    </div>
-    <h4 class="titleDuracion">Tenga en cuenta</h4>
-    <div class="leyendas">
-        <p><strong>Solo un día:</strong> Tendrá que seleccionar una fecha para la toma.</p>
-        <p><strong>Para "x" días:</strong> Tendrá que indicar la cantidad de días seleccionando una
-            <strong>fecha de inicio</strong> y una <strong>fecha final</strong>.</p>
-        <p class="m-b-0"><strong>Fecha inicio:</strong> Inicio de la toma.</p>
-        <p class="m-t-0"><strong>Fecha final:</strong> Fin de la toma.</p>
-    </div>
-    <div class="opcionDias">
-        <ion-grid class="gridForm">
-            <ion-row radio-group [(ngModel)]="data.opcionDia">
-                <ion-col col-6 class="colLeft">
-                    <ion-list>
-                        <ion-item>
-                            <ion-label>Solo un día</ion-label>
-                            <ion-radio value="0" color="themePrimaryNavyBlueStrongColor" (ionSelect)="selectOptionDay(0)"></ion-radio>
-                        </ion-item>
-                    </ion-list>
-                </ion-col>
-                <ion-col col-6 class="colRight">
-                    <ion-list>
-                        <ion-item>
-                            <ion-label>Para <strong>"x"</strong> días</ion-label>
-                            <ion-radio value="1" color="themePrimaryNavyBlueStrongColor" (ionSelect)="selectOptionDay(1)"></ion-radio>
-                        </ion-item>
-                    </ion-list>
-                    <div class="headerBorder themePrimaryNavythemePrimaryNavyBlueStrongColor">
-                        <div class="contenedor"></div>
-                    </div>
-                </ion-col>
-            </ion-row>
-        </ion-grid>
+  <div class="logoSvgCenter">
+    <img src="assets/imgs/random/duracion.svg" alt=logo_duracion />
+  </div>
+  <h4 class="titleDuracion">Tenga en cuenta</h4>
+  <div class="leyendas">
+    <p><strong>Solo un día:</strong> Tendrá que seleccionar una fecha para la toma.</p>
+    <p><strong>Para "x" días:</strong> Tendrá que indicar la cantidad de días seleccionando una
+      <strong>fecha de inicio</strong> y una <strong>fecha final</strong>.</p>
+    <p class="m-b-0"><strong>Fecha inicio:</strong> Inicio de la toma.</p>
+    <p class="m-t-0"><strong>Fecha final:</strong> Fin de la toma.</p>
+  </div>
+  <div class="opcionDias">
+    <ion-grid class="gridForm">
+      <ion-row radio-group [(ngModel)]="data.opcionDia">
+        <ion-col col-6 class="colLeft">
+          <ion-list>
+            <ion-item>
+              <ion-label>Solo un día</ion-label>
+              <ion-radio value="0" color="themePrimaryNavyBlueStrongColor" (ionSelect)="selectOptionDay(0)"></ion-radio>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+        <ion-col col-6 class="colRight">
+          <ion-list>
+            <ion-item>
+              <ion-label>Para <strong>"x"</strong> días</ion-label>
+              <ion-radio value="1" color="themePrimaryNavyBlueStrongColor" (ionSelect)="selectOptionDay(1)"></ion-radio>
+            </ion-item>
+          </ion-list>
+          <div class="headerBorder themePrimaryNavythemePrimaryNavyBlueStrongColor">
+            <div class="contenedor"></div>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
 
-        <!-- <ion-list radio-group [(ngModel)]="data.opcionDia">
+    <!-- <ion-list radio-group [(ngModel)]="data.opcionDia">
             <ion-item>
                 <ion-label>Solo un día</ion-label>
                 <ion-radio value="0" (ionSelect)="selectOptionDay(0)"></ion-radio>
@@ -65,60 +65,61 @@
                 <ion-radio value="1" (ionSelect)="selectOptionDay(1)"></ion-radio>
             </ion-item>
         </ion-list> -->
-    </div>
-    <div *ngIf="showOnlyDate" class="showOnlyDate">
-        <!-- <p><strong>Solo un día:</strong> Indica que tendrá que seleccionar una fecha para la toma.</p> -->
-        <ion-grid>
-            <ion-row>
-                <ion-col col-12 class="text-center">
-                    <p class="font-weight-bold">Seleccione fecha</p>
-                    <ion-list>
-                        <ion-item>
-                            <ion-datetime [(ngModel)]="data.only" displayFormat="DD-MM-YYYY" min="{{ dateOnly }}"
-                                name="only" cancelText="Cancelar" doneText="Seleccionar" placeholder="{{ dateOnly }}">
-                            </ion-datetime>
-                        </ion-item>
-                    </ion-list>
-                </ion-col>
-            </ion-row>
-        </ion-grid>
-    </div>
-    <div *ngIf="showSelectDate" class="showSelectDate">
-        <!-- <p><strong>Para "x" días:</strong> Indica que tendrá que indicar la cantidad de días seleccionando una
+  </div>
+  <div *ngIf="showOnlyDate" class="showOnlyDate">
+    <!-- <p><strong>Solo un día:</strong> Indica que tendrá que seleccionar una fecha para la toma.</p> -->
+    <ion-grid>
+      <ion-row>
+        <ion-col col-12 class="text-center">
+          <p class="font-weight-bold">Seleccione fecha</p>
+          <ion-list>
+            <ion-item>
+              <ion-datetime [(ngModel)]="data.only" displayFormat="DD-MM-YYYY" [min]="dateOnly" [max]="maxAnio"
+                [ngModelOptions]="{standalone: true}" name="only" cancelText="Cancelar" doneText="Seleccionar"
+                [placeholder]="dateOnly">
+              </ion-datetime>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <div *ngIf="showSelectDate" class="showSelectDate">
+    <!-- <p><strong>Para "x" días:</strong> Indica que tendrá que indicar la cantidad de días seleccionando una
             <strong>fecha de inicio</strong> y una <strong>fecha final</strong>.</p>
         <p>Porfavor tenga en cuenta lo siguiente:</p>
         <p><strong>Fecha inicio:</strong> Indica desde cuando inicia la toma.</p>
         <p><strong>Fecha final:</strong> Indica cuando finalizará la toma.</p> -->
-        <ion-grid>
-            <ion-row>
-                <ion-col col-6 class="colLeft">
-                    <p class="font-weight-bold">Fecha inicio</p>
-                    <ion-list>
-                        <ion-item>
-                            <ion-datetime [(ngModel)]="data.inicio" displayFormat="DD-MM-YYYY" min="{{ dateInit }}"
-                                name="inicio" cancelText="Cancelar" doneText="Seleccionar" placeholder="{{ dateInit }}">
-                            </ion-datetime>
-                        </ion-item>
-                    </ion-list>
-                </ion-col>
-                <ion-col col-6 class="colRight">
-                    <p class="font-weight-bold">Fecha final</p>
-                    <ion-list>
-                        <ion-item>
-                            <ion-datetime [(ngModel)]="data.final" displayFormat="DD-MM-YYYY" min="{{ dateEnd }}"
-                                name="final" cancelText="Cancelar" doneText="Seleccionar" placeholder="{{ dateEnd }}">
-                            </ion-datetime>
-                        </ion-item>
-                    </ion-list>
-                </ion-col>
-            </ion-row>
-        </ion-grid>
-    </div>
-    <button ion-button color="themePrimaryNavyBlueStrongColor" block type="button" (click)="selectOpcion()">
-        Continuar
-    </button>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-6 class="colLeft">
+          <p class="font-weight-bold">Fecha inicio</p>
+          <ion-list>
+            <ion-item>
+              <ion-datetime [(ngModel)]="data.inicio" displayFormat="DD-MM-YYYY" [min]="dateInit" name="inicio"
+                [max]="maxAnio" cancelText="Cancelar" doneText="Seleccionar" [placeholder]="dateInit">
+              </ion-datetime>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+        <ion-col col-6 class=" colRight">
+          <p class="font-weight-bold">Fecha final</p>
+          <ion-list>
+            <ion-item>
+              <ion-datetime [(ngModel)]="data.final" displayFormat="DD-MM-YYYY" [min]="dateEnd" name="final"
+                [max]="maxAnio" cancelText="Cancelar" doneText="Seleccionar" [placeholder]="dateEnd">
+              </ion-datetime>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <button ion-button color="themePrimaryNavyBlueStrongColor" block type="button" (click)="selectOpcion()">
+    Continuar
+  </button>
 
 </ion-content>
 <div class="headerBorder themePrimaryNavythemePrimaryNavyBlueStrongColor">
-    <div class="contenedor"></div>
+  <div class="contenedor"></div>
 </div>

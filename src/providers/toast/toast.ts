@@ -14,7 +14,7 @@ export class ToastProvider {
 
     show(cssClass_: string, message_: string, position_?: string, time_?: number) {
         position_ = (position_ === undefined) ? "top" : position_;
-        time_ = (time_ === undefined) ? 3000 : time_;
+        time_ = (time_ === undefined) ? 5000 : time_;
         if (this.toast) {
             this.toast.dismiss();
         }

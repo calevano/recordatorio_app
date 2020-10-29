@@ -55,38 +55,38 @@ export class HoyPage {
         });
     }
 
-    async getAllNotifications() {
-        // console.log('getAllNotifications:::');
-        await this.localNotifications.getIds().then(res => {
-            console.log('getAllNotifications:::getIds:::res:::', res.length);
-        }).catch(err => {
-            console.log('getAllNotifications:::getIds:::err:::', err);
-        });
+    // async getAllNotifications() {
+    //     // console.log('getAllNotifications:::');
+    //     await this.localNotifications.getIds().then(res => {
+    //         console.log('getAllNotifications:::getIds:::res:::', res.length);
+    //     }).catch(err => {
+    //         console.log('getAllNotifications:::getIds:::err:::', err);
+    //     });
 
-        await this.localNotifications.getAll().then(res => {
-            console.log('getAllNotifications:::getAll:::res:::', res);
-        }).catch(err => {
-            console.log('getAllNotifications:::getAll:::err:::', err);
-        });
+    //     await this.localNotifications.getAll().then(res => {
+    //         console.log('getAllNotifications:::getAll:::res:::', res);
+    //     }).catch(err => {
+    //         console.log('getAllNotifications:::getAll:::err:::', err);
+    //     });
 
-        await this.databaseProvider.getAllNotifications().then(res => {
-            console.log('getAllNotifications:::res:::', res);
-        }).catch(err => {
-            console.log('getAllNotifications:::err:::', err);
-        });
+    //     await this.databaseProvider.getAllNotifications().then(res => {
+    //         console.log('getAllNotifications:::res:::', res);
+    //     }).catch(err => {
+    //         console.log('getAllNotifications:::err:::', err);
+    //     });
 
-        await this.databaseProvider.getAllNotificationsRecordatorios().then(res => {
-            console.log('getAllNotificationsRecordatorios:::res:::', res);
-        }).catch(err => {
-            console.log('getAllNotificationsRecordatorios:::err:::', err);
-        });
+    //     await this.databaseProvider.getAllNotificationsRecordatorios().then(res => {
+    //         console.log('getAllNotificationsRecordatorios:::res:::', res);
+    //     }).catch(err => {
+    //         console.log('getAllNotificationsRecordatorios:::err:::', err);
+    //     });
 
-        await this.databaseProvider.getAllNotificationsCitas().then(res => {
-            console.log('getAllNotificationsCitas:::res:::', res);
-        }).catch(err => {
-            console.log('getAllNotificationsCitas:::err:::', err);
-        });
-    }
+    //     await this.databaseProvider.getAllNotificationsCitas().then(res => {
+    //         console.log('getAllNotificationsCitas:::res:::', res);
+    //     }).catch(err => {
+    //         console.log('getAllNotificationsCitas:::err:::', err);
+    //     });
+    // }
 
     async confirmar(slidingItem: ItemSliding, recordatorio: any) {
         let alert = this.alertCtrl.create({
